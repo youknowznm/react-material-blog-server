@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/*
+模仿 Google Design 好看的头部
+https://github.com/youknowznm/google-design-site-header
+@youknowznm
+*/
+@import "../_general";
+@import "./_reset";
+@import "./_themes";
+@import "./_ripple";
+@import "./_indicator";
+
+/*
+z-index
+
+1 .gds-header-content;
+2 .ripple;
+3 .nav-indicator;
+*/
+
+.gds-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: nth($gds-header-colors, 1);
+    overflow: hidden;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    box-shadow: 0 0 6px 6px map-get($gen-colors, light-silver);
+    transition: all .3s;
+    li, a {
+        color: map-get($gen-colors, white);
+    }
+}
+
+.gds-header-content {
+    // TODO
+    width: 1280px;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 1;
+    > nav {
+        position: relative;
+        width: 100%;
+        height: 64px;
+        line-height: 64px;
+        .site-title {
+            display: inline-block;
+            font-size: 20px;
+            line-height: 64px;
+            height: 64px;
+            padding-left: 20px;
+            .single-word {
+                float: left;
+                &::after {
+                    content: '·';
+                    opacity: .4;
+                }
+                &:last-of-type:after {
+                    content: '¬';
+                }
+            }
+        }
+    }
+    .nav-items {
+        position: relative;
+        float: right;
+        font-size: 14px;
+        // 字符间距
+        letter-spacing: .25px;
+        font-weight: 700;
+        .nav-item {
+            float: left;
+            z-index: 2;
+            padding: 27px 12px 21px;
+            line-height: 1;
+            border-bottom: 2px solid transparent;
+            transition: all .2s;
+            cursor: pointer;
+            text-transform: uppercase;
+            &.active {
+                border-color: map-get($gen-colors, white);
+            }
+            &.clicking,
+            &:not(.active):hover {
+                border-color: map-get($gen-colors, translucent-white);
+            }
+        }
+    }
+    .ripple-layer {
+        width: 100%;
+        height: 192px;
+        .current-title {
+            position: absolute;
+            bottom: 70px;
+            display: block;
+            color: map-get($gen-colors, white);
+            height: 56px;
+            padding-left: 20px;
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 56px;
+            text-transform: capitalize;
+            animation: slidingFadeIn .8s;
+            transition: opacity .2s;
+            &.hidden {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+@keyframes slidingFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

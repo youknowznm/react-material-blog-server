@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/*
+font
+*/
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url("/fonts/RobotoMono-Regular.ttf");
+}
+/*
+colors
+*/
+$gds-header-colors: (
+    rgb(234, 67, 53), //red
+    rgb(251, 188, 5), //yellow
+    rgb(66, 133, 244), //blue
+    rgb(52, 168, 83), //green
+    rgb(60, 90, 100), //gray
+    rgb(241, 243, 244), //silver
+);
+$gen-colors: (
+    translucent-black: rgba(#000, .3),
+    translucent-white: rgba(#fff, .5),
+    black: rgba(#000, .7),
+    white: #fff,
+    light-silver: #99A9BF,
+);
+/*
+general
+*/
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+a {
+    text-decoration: none;
+}
+ul, ol {
+    list-style: none;
+}
+html,
+body {
+    font-family: "Roboto Mono", "Helvetica Neue",
+                 "PingFang SC", "Microsoft YaHei",
+                 "微软雅黑", Arial, sans-serif;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+body {
+    position: relative;
+    height: 5000px;
+}
