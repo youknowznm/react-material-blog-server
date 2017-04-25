@@ -4,6 +4,8 @@ https://github.com/youknowznm/google-design-site-header
 @youknowznm
 */
 
+import $ from '../common/jquery.js';
+
 export default function initGDSHeader() {
 
     let $window = $(window).scrollTop(0),

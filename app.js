@@ -17,14 +17,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, '/static/dist/images', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, '/dist/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // 指定静态文件目录
-app.use(express.static(path.join(__dirname, '/static/dist/')));
+app.use(express.static(path.join(__dirname, '/dist/')));
 
 app.use('/', index);
 
