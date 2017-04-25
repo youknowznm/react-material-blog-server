@@ -24,7 +24,7 @@ gulp.task('js', function() {
         .pipe(plumber())
 		.pipe(sourcemaps.init())
 		.pipe(babel({
-			presets: ['latest']
+			presets: ['es2015']
 		}))
         .pipe(uglify())
 		.pipe(sourcemaps.write('/maps'))

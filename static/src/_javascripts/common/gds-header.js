@@ -4,7 +4,7 @@ https://github.com/youknowznm/google-design-site-header
 @youknowznm
 */
 
-let initGDSHeader = function() {
+export default function initGDSHeader() {
 
     let $window = $(window).scrollTop(0),
         $body = $('body'),
@@ -194,5 +194,3 @@ let initGDSHeader = function() {
     }
 
 };
-
-export { initGDSHeader };

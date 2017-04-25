@@ -1,15 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-let featureName = 'index';
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
     let sourceName = 'index';
-    res.render('pages/index', {
+    res.render('index', {
         title: 'Express',
-        featureName,
-        sourceName,
+        static: 'index'
     });
 });
 
