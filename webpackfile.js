@@ -64,11 +64,11 @@ module.exports = {
             filename: 'common.js',
             minChunks: Infinity,
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-                warnings: true,
-            },
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     sourceMap: true,
+        //     compress: {
+        //         warnings: true,
+        //     },
+        // }),
     ],
 }

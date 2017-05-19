@@ -1,0 +1,4 @@
+移除window的query
+修改width和height 加inner outer
+修改add和removeclass
+text

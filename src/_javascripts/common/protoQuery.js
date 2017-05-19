@@ -32,9 +32,9 @@
                 return tarNode.id === RegExp.$1;
                 // 类选择器，支持多个类
             case /^\.([\w-\.]+)$/.test(selector):
-                let tarClasses = RegExp.$1.split('.');
+                let tarClassesStr = RegExp.$1.split('.');
                 let thisNodeMatches = false;
-                for (let tarClass of tarClasses) {
+                for (let tarClass of tarClassesStr) {
                     thisNodeMatches = true;
                     if (!tarNode.hasClass(tarClass)) {
                         thisNodeMatches = false;
@@ -157,7 +157,7 @@
         }
     };
 
-    // 基本动画
+    // 基本动画（基于样式）
     // @param {node} ele 目标元素
     // @param {string} tarStyle 目标样式名
     // @param {string} tarValue 目标样式值
@@ -169,8 +169,8 @@
             throw new Error('Expected a number-type style value.');
         }
         if (FLOAT_TYPE_STYLE_NAMES.indexOf(tarStyle) > -1) {
-            currentValue *= 100;
-            tarValue *= 100;
+            currentValue *= 10000;
+            tarValue *= 10000;
         }
         // #02 开始忽略了负值的情况
         let styleSuffix = fullStyleValue.match(/^[-\d]+(.*)$/)[1] || '';
@@ -187,7 +187,7 @@
                     clearInterval(cycleId);
             }
             if (FLOAT_TYPE_STYLE_NAMES.indexOf(tarStyle) > -1) {
-                ele.css(tarStyle, currentValue / 100);
+                ele.css(tarStyle, currentValue / 10000);
             } else {
                 ele.css(tarStyle, currentValue + styleSuffix);
             }
@@ -195,6 +195,42 @@
         zQueryUtil.onGoingAnimations[cycleId] = false;
         return cycleId;
     };
+
+    /*
+    动画滚动页面至目标元素位置
+    @param selector {string} 目标元素选择器
+    @param cb {function?} 滚动完成的回调
+    */
+    // function scrollIntoTargetSelector(selector, cb) {
+    //     let bodyPaddingTop = parseInt($('body').css('padding-top'));
+    //     let targetEleScrollTop = document.querySelector(selector).offsetTop;
+    //     let targetBodyScrollTop = targetEleScrollTop - bodyPaddingTop;
+    //     let tId = setInterval(function() {
+    //         let currentBodyScrollTop = document.body.scrollTop;
+    //         let diff = targetBodyScrollTop - currentBodyScrollTop;
+    //         switch (true) {
+    //             case diff > 0:
+    //                 currentBodyScrollTop += Math.ceil(diff / 5);
+    //                 break;
+    //             case diff < 0:
+    //                 currentBodyScrollTop -= Math.ceil(diff / -5);
+    //                 break;
+    //             default:
+    //                 clearIntervalAndCallback(tId, cb);
+    //         }
+    //         document.body.scrollTop = currentBodyScrollTop;
+    //         // 如果页面滚动到了底部，也停止interval
+    //         if (document.body.scrollHeight - document.body.scrollTop === document.body.clientHeight) {
+    //             clearIntervalAndCallback(tId, cb);
+    //         }
+    //     }, 10);
+    //     function clearIntervalAndCallback(n, f) {
+    //         clearInterval(n);
+    //         if (typeof f === 'function') {
+    //             f();
+    //         }
+    //     }
+    // };
 
     /////////////////////////////////////////////
     //////////////  处理window对象  //////////////
@@ -393,41 +429,56 @@
 
         ///////////////  样式和属性  ///////////////
 
-        nodePrototype.hasClass = function(tarClassName) {
-            if (typeof tarClassName !== 'string') {
-                throw new Error('Expected STRING as target class name.');
+        // 检查目标元素是否包含所有的类名
+        nodePrototype.hasClass = function(tarClassesStr) {
+            if (typeof tarClassesStr !== 'string' || /^\s*$/.test(tarClassesStr)) {
+                throw new Error('Expected non-empty STRING as target class name(s).');
             }
-            var classArr = this.className.split(/\s+/);
-            if (classArr[0] !== '') {
-                if (classArr.indexOf(tarClassName) !== -1) {
-                    return true;
+            let tarClassesArr = tarClassesStr.split(/\s+/);
+            let eleClassesArr = this.className.split(/\s+/);
+            let allMatch = true;
+            for (let i = 0; i < tarClassesArr.length; i++) {
+                if (eleClassesArr.indexOf(tarClassesArr[i]) === -1) {
+                    allMatch = false;
+                    break;
                 }
             }
-            return false;
+            return allMatch;
         };
 
-        // 为目标元素添加指定类
-        nodePrototype.addClass = function(tarClassName) {
-            if (typeof tarClassName !== 'string') {
-                throw new Error('Expected STRING as target class name.');
+        // 为目标元素添加若干个类名
+        nodePrototype.addClass = function(tarClassesStr) {
+            if (typeof tarClassesStr !== 'string' || /^\s*$/.test(tarClassesStr)) {
+                throw new Error('Expected non-empty STRING as target class name(s).');
             }
-            if (!this.hasClass(tarClassName)) {
-                this.className = this.className.concat(' ' + tarClassName.trim());
+            let tarClassesArr = tarClassesStr.split(/\s+/);
+            let eleClassesArr = this.className.split(/\s+/);
+            for (let i = 0; i < tarClassesArr.length; i++) {
+                if (eleClassesArr.indexOf(tarClassesArr[i]) === -1) {
+                    eleClassesArr.push(tarClassesArr[i]);
+                }
             }
+            this.className = eleClassesArr.join(' ').trim();
             return this;
         };
 
-        // 为目标元素移除指定类
-        nodePrototype.removeClass = function(tarClassName) {
-            if (typeof tarClassName !== 'string') {
-                throw new Error('Expected STRING as target class name.');
+        // 为目标元素移除若干个类名
+        nodePrototype.removeClass = function(tarClassesStr) {
+            if (typeof tarClassesStr !== 'string' || /^\s*$/.test(tarClassesStr)) {
+                throw new Error('Expected non-empty STRING as target class name(s).');
             }
-            if (this.hasClass(tarClassName)) {
-                let classArr = this.className.split(/\s+/);
-                classArr.splice(classArr.indexOf(tarClassName), 1);
-                this.className = classArr.join(' ');
+            let tarClassesArr = tarClassesStr.split(/\s+/);
+            let eleClassesStr = this.className;
+            let eleClassesArr = this.className.split(/\s+/);
+            for (let i = 0; i < tarClassesArr.length; i++) {
+                let pos = eleClassesArr.indexOf(tarClassesArr[i]);
+                if (pos !== -1) {
+                    eleClassesArr[pos] = '';
+                }
             }
+            this.className = eleClassesArr.join(' ').trim();
             return this;
+
         };
 
         // 目标元素含指定类时移除，否则添加
@@ -493,15 +544,17 @@
             if (typeof styleObj !== 'object') {
                 throw new Error('Expected PLAIN OBJECT containing style key-value pairs.');
             }
-            let animationIdGruop = [];
+            let animationIdGroup = [];
             for (var i in styleObj) {
+                console.log(i);
+                console.log(styleObj[i]);
                 let id = transformSingleRule(this, i, styleObj[i]);
-                animationIdGruop.push(id);
+                animationIdGroup.push(id);
             }
             if (typeof callback === 'function') {
                 let callbackId = setInterval(function() {
-                    for (var j in animationIdGruop) {
-                        if (zQueryUtil.onGoingAnimations[animationIdGruop[j]] ===
+                    for (var j in animationIdGroup) {
+                        if (zQueryUtil.onGoingAnimations[animationIdGroup[j]] ===
                             false) {
                             return;
                         }
@@ -560,6 +613,15 @@
                 return this.innerHTML;
             }
             this.innerHTML = tarHTML;
+            return this;
+        };
+
+        // 获取或设置目标的文字内容
+        nodePrototype.text = function(tarText) {
+            if (tarHTML === undefined) {
+                return this.textContent;
+            }
+            this.textContent = tarText;
             return this;
         };
 
@@ -1000,9 +1062,11 @@
     (function(stringPrototype) {
 
         // 去除字符串首尾的空格
-        stringPrototype.trim = function() {
-            return this.replace(/^\s+|\s+/g, '');
-        };
+        if (stringPrototype.trim === undefined) {
+            stringPrototype.trim = function() {
+                return this.replace(/^\s+|\s+/g, '');
+            };
+        }
 
         // 判断字符串是否符合常见邮箱格式
         stringPrototype.isEmail = function() {
