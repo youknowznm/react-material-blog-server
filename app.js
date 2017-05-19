@@ -28,6 +28,9 @@ app.use(express.static(path.join(__dirname, '/dist/')));
 
 app.use('/', index);
 
+// 过滤器
+// var filter = require('./filters');
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

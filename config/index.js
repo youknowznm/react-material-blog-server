@@ -1,5 +1,5 @@
 const CONFIG = {
-    siteName: 'youknowznm'
+    siteName: 'Laguna'
 }
 
 module.exports = CONFIG;

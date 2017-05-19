@@ -8,6 +8,8 @@ import $ from '../common/jquery.js';
 
 export default function initGDSHeader() {
 
+    document.body.scrollTop = 0;
+
     let $window = $(window).scrollTop(0),
         $body = $('body'),
         $header = $('.gds-header'),
@@ -16,31 +18,40 @@ export default function initGDSHeader() {
         $navButtons = $header.find('.nav-item'),
         $navIndicator = $header.find('.nav-indicator'),
         $rippleLayer = $header.find('.ripple-layer'),
-        $currentTitle = $rippleLayer.children('.current-title');
+        $pageTitle = $rippleLayer.children('.page-title');
+
+    let body = window.document.body,
+        header = body.protoQuery('.gds-header'),
+        navButtonsContainer = header.protoQuery('.nav-items'),
+        navButtons = navButtonsContainer.protoQueryAll('.nav-item'),
+        navIndicator = header.protoQuery('.nav-indicator'),
+        ripple = header.protoQuery('.ripple'),
+        rippleLayer = header.protoQuery('.ripple-layer'),
+        pageTitle = rippleLayer.protoQuery('.page-title');
 
     // 判断是否移动端
     let isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent);
     if (isMobile) {
-        $('body').addClass('mobile');
+        body.attr('id', 'mobile');
     }
 
     // 波纹扩散标识
     let rippling = false;
-
     // 修正.nav-items的宽度
     let w = 0;
-    $navButtons.each(function(index, ele) {
-        w += $(this).innerWidth();
+    navButtons.forEach(function(item) {
+        console.log(item.width());
+        w += item.width();
     });
-    $navButtonsContainer.width(w);
+    navButtonsContainer.width(w + 10);
 
-    let $navButtonClicked = null;
+    let navButtonClicked = null;
 
-    $header
+    header
         .on('mousedown', '.nav-item', function(evt) {
-            let $targetBtn = $(this);
-            if (!$targetBtn.hasClass('active')) {
-                $ripple
+            let targetBtn = this
+            if (!targetBtn.hasClass('active')) {
+                ripple
                     .css({
                         // 直接从鼠标系事件中取得相对于页面的坐标
                         left: evt.pageX - 50,
@@ -48,7 +59,7 @@ export default function initGDSHeader() {
                         top: evt.pageY - 50 - document.body.scrollTop,
                     })
                     .addClass('noneToCircle');
-                $navButtonClicked = $targetBtn.addClass('clicking');
+                navButtonClicked = targetBtn.addClass('clicking');
             }
         })
         .on('click', '.nav-item', function(evt) {
@@ -60,11 +71,11 @@ export default function initGDSHeader() {
                 /*
                 按钮下划线动画
                 */
-                let $currentBtn = $navButtons.filter('.active').removeClass('active clicking');
+                let $currentBtn = $navButtons.filter('.active').removeClass(
+                    'active clicking');
                 let targetIsAtRight =
-                    $navButtons.index($targetBtn) > $navButtons.index($currentBtn)
-                    ? true
-                    : false;
+                    $navButtons.index($targetBtn) > $navButtons.index(
+                        $currentBtn) ? true : false;
 
                 let startX, endX;
 
@@ -87,8 +98,7 @@ export default function initGDSHeader() {
                 $targetBtn.addClass('active');
 
                 // 动画结束时如果目标按钮在右侧，则left为终点坐标，反之为起点坐标
-                $navIndicator.animate(
-                    {
+                $navIndicator.animate({
                         width: 0,
                         left: [targetIsAtRight ? endX : startX],
                     },
@@ -115,8 +125,7 @@ export default function initGDSHeader() {
                             left: evt.pageX - 50,
                             top: evt.pageY - 50 - document.body.scrollTop,
                         })
-                        .animate(
-                            {
+                        .animate({
                                 transform: 'scale(18)',
                             },
                             700,
@@ -141,7 +150,9 @@ export default function initGDSHeader() {
                 /*
                 波纹元素的扩大
                 */
-                $body.animate({scrollTop: 0}, 200, function() {
+                $body.animate({
+                    scrollTop: 0
+                }, 200, function() {
                     $ripple
                         .css({
                             'animation-play-state': 'paused',
@@ -153,7 +164,9 @@ export default function initGDSHeader() {
                         });
                     setTimeout(function() {
                         // 移除波纹元素的动画类
-                        $ripple.removeClass('noneToCircle toFullscreen');
+                        $ripple.removeClass(
+                            'noneToCircle toFullscreen'
+                        );
                     }, 650);
                 });
 
@@ -165,7 +178,7 @@ export default function initGDSHeader() {
         });
 
 
-    $window
+    body
         .on('scroll', function(evt) {
             var scTp = document.body.scrollTop;
             let layerHeight = 192 - scTp;
@@ -182,17 +195,16 @@ export default function initGDSHeader() {
     function changeColorTheme($ele) {
         let colorIndex = $navButtons.index($ele) % 5;
         let pallete = [
-            'red',
-            'yellow',
             'blue',
+            'yellow',
             'green',
+            'red',
             'gray',
             'silver',
         ];
         // 搜索按钮为特殊配色，其它按以上值循环配色
-        $ele.hasClass('search')
-            ? $header.attr('data-theme', pallete[5])
-            : $header.attr('data-theme', pallete[colorIndex]);
+        $ele.hasClass('search') ? $header.attr('data-theme', pallete[5]) :
+            $header.attr('data-theme', pallete[colorIndex]);
     }
 
 };
