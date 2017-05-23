@@ -163,172 +163,213 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = initGDSHeader;
-/*
-模仿 Google Design 好看的头部
-https://github.com/youknowznm/google-design-site-header
-@youknowznm
-*/
+
+var _protoQuery = __webpack_require__(2);
+
+var _protoQuery2 = _interopRequireDefault(_protoQuery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function initGDSHeader() {
+    //
+    // document.body.scrollTop = 0;
+    //
+    // let $window = $(window).scrollTop(0),
+    //     $body = $('body'),
+    //     $header = $('.gds-header'),
+    //     $ripple = $header.children('.ripple'),
+    //     $navButtonsContainer = $header.find('.nav-items'),
+    //     $navButtons = $header.find('.nav-item'),
+    //     $navIndicator = $header.find('.nav-indicator'),
+    //     $rippleLayer = $header.find('.ripple-layer'),
+    //     $currentTitle = $rippleLayer.children('.current-title');
+    //
+    // // 判断是否移动端
+    // let isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent);
+    // if (isMobile) {
+    //     $('body').attr('id', 'mobile');
+    // }
+    //
+    // // 波纹扩散标识
+    // let rippling = false;
+    //
+    // // 修正.nav-items的宽度
+    // let w = 0;
+    // $navButtons.each(function(item) {
+    //     w += $(item).outerWidth();
+    // });
+    // $navButtonsContainer.width(w + 10);
+    //
+    // let $navButtonClicked = null;
+    //
+    // $header
+    //     .on('mousedown', '.nav-item', function(evt) {
+    //         let $targetBtn = $(this);
+    //         if (!$targetBtn.hasClass('active')) {
+    //             $ripple
+    //                 .css({
+    //                     // 直接从鼠标系事件中取得相对于页面的坐标
+    //                     left: evt.pageX - 50,
+    //                     // top 值要减掉窗口的垂直滚动偏移
+    //                     top: evt.pageY - 50 - document.body.scrollTop,
+    //                 })
+    //                 .addClass('noneToCircle');
+    //             $navButtonClicked = $targetBtn.addClass('clicking');
+    //         }
+    //     })
+    //     .on('click', '.nav-item', function(evt) {
+    //         let $targetBtn = $(this);
+    //         if (!$targetBtn.hasClass('active') && !rippling) {
+    //
+    //             rippling = true;
+    //
+    //             /*
+    //             按钮下划线动画
+    //             */
+    //             let $currentBtn = $navButtons.filter('.active').removeClass(
+    //                 'active clicking');
+    //             let targetIsAtRight =
+    //                 $navButtons.index($targetBtn) > $navButtons.index(
+    //                     $currentBtn) ? true : false;
+    //
+    //             let startX, endX;
+    //
+    //             // 根据目标按钮和当前活动按钮的相对位置，求得提示条的目标起始点坐标
+    //             if (targetIsAtRight) {
+    //                 startX = $currentBtn.position().left;
+    //                 endX = $targetBtn.position().left + $targetBtn.innerWidth();
+    //             } else {
+    //                 startX = $targetBtn.position().left;
+    //                 endX = $currentBtn.position().left + $currentBtn.innerWidth();
+    //             }
+    //
+    //             $navIndicator.css({
+    //                 left: startX,
+    //                 right: endX,
+    //                 width: endX - startX,
+    //             });
+    //
+    //             $navButtons.removeClass('clicking');
+    //             $targetBtn.addClass('active');
+    //
+    //             // 动画结束时如果目标按钮在右侧，则left为终点坐标，反之为起点坐标
+    //             $navIndicator.animate({
+    //                     width: 0,
+    //                     left: [targetIsAtRight ? endX : startX],
+    //                 },
+    //                 function() {
+    //                     $navIndicator.css({
+    //                         left: 0,
+    //                         width: 0,
+    //                         right: 'auto'
+    //                     });
+    //                 }
+    //             );
+    //
+    //             // 主题配色
+    //             changeColorTheme($targetBtn);
+    //
+    //             // 改变标题文字
+    //             $currentTitle.text($targetBtn.text());
+    //
+    //             // 移动端的波纹处理
+    //             if (isMobile) {
+    //                 $ripple
+    //                     .css({
+    //                         // 从触摸系事件的changedTouches属性中取得相对于页面的坐标
+    //                         left: evt.pageX - 50,
+    //                         top: evt.pageY - 50 - document.body.scrollTop,
+    //                     })
+    //                     .animate({
+    //                             transform: 'scale(18)',
+    //                         },
+    //                         700,
+    //                         function() {
+    //                             rippling = false;
+    //                             $ripple.css({
+    //                                 transform: 'scale(0)',
+    //                             });
+    //                         }
+    //                     );
+    //             } else {
+    //                 rippling = false;
+    //             }
+    //         }
+    //     });
+    //
+    // $body
+    //     .on('mouseup', function(evt) {
+    //         // 根据事件目标的话，只能判断 mousedown，无法判断 mouseup，因为后者的目标永远是波纹元素。
+    //         // 所以以波纹元素是否已有动画类为标准，决定如何处理
+    //         if ($ripple.hasClass('noneToCircle')) {
+    //             /*
+    //             波纹元素的扩大
+    //             */
+    //             $body.animate({
+    //                 scrollTop: 0
+    //             }, 200, function() {
+    //                 $ripple
+    //                     .css({
+    //                         'animation-play-state': 'paused',
+    //                     })
+    //                     .removeClass('noneToCircle')
+    //                     .addClass('toFullscreen')
+    //                     .css({
+    //                         'animation-play-state': 'running',
+    //                     });
+    //                 setTimeout(function() {
+    //                     // 移除波纹元素的动画类
+    //                     $ripple.removeClass(
+    //                         'noneToCircle toFullscreen'
+    //                     );
+    //                 }, 650);
+    //             });
+    //
+    //         }
+    //         //  如果 $navButtonClicked 不为 null，则在它上面触发 click 事件
+    //         if ($navButtonClicked !== null) {
+    //             $navButtonClicked.click();
+    //         }
+    //     });
+    //
+    //
+    // $window
+    //     .on('scroll', function(evt) {
+    //         var scTp = document.body.scrollTop;
+    //         let layerHeight = 192 - scTp;
+    //         (layerHeight < 0) && (layerHeight = 0);
+    //         $rippleLayer.height(layerHeight);
+    //         // 大于一定值时渐隐标题
+    //         if (scTp > 30) {
+    //             $currentTitle.addClass('hidden');
+    //         } else {
+    //             $currentTitle.removeClass('hidden');
+    //         }
+    //     });
+    //
+    // function changeColorTheme($ele) {
+    //     let colorIndex = $navButtons.index($ele) % 5;
+    //     let pallete = [
+    //         'blue',
+    //         'yellow',
+    //         'green',
+    //         'red',
+    //         'gray',
+    //         'silver',
+    //     ];
+    //     // 搜索按钮为特殊配色，其它按以上值循环配色
+    //     $ele.hasClass('search') ? $header.attr('data-theme', pallete[5]) :
+    //         $header.attr('data-theme', pallete[colorIndex]);
+    // }
 
-    document.body.scrollTop = 0;
+} /*
+  模仿 Google Design 好看的头部
+  https://github.com/youknowznm/google-design-site-header
+  @youknowznm
+  */
 
-    var body = window.document.body,
-        header = body.protoQuery('.gds-header'),
-        navButtonsContainer = header.protoQuery('.nav-items'),
-        navButtons = navButtonsContainer.protoQueryAll('.nav-item'),
-        navIndicator = header.protoQuery('.nav-indicator'),
-        ripple = header.protoQuery('.ripple'),
-        rippleLayer = header.protoQuery('.ripple-layer'),
-        pageTitle = rippleLayer.protoQuery('.page-title');
-
-    // 判断是否移动端
-    var isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent);
-    if (isMobile) {
-        body.attr('id', 'mobile');
-    }
-
-    // 波纹扩散标识
-    var rippling = false;
-    // 修正.nav-items的宽度
-    var w = 0;
-    navButtons.forEach(function (item) {
-        w += item.outerWidth();
-    });
-    navButtonsContainer.width(w + 10);
-
-    var navButtonClicked = null;
-
-    header.on('mousedown', '.nav-item', function (evt) {
-        var targetBtn = evt.target;
-        console.log(targetBtn);
-        if (!targetBtn.hasClass('active')) {
-            ripple.css({
-                // 直接从鼠标系事件中取得相对于页面的坐标
-                left: evt.pageX - 50,
-                // top 值要减掉窗口的垂直滚动偏移
-                top: evt.pageY - 50 - document.body.scrollTop
-            }).addClass('noneToCircle');
-            navButtonClicked = targetBtn.addClass('clicking');
-        }
-    }).on('click', '.nav-item', function (evt) {
-        var targetBtn = evt.target;
-        if (!targetBtn.hasClass('active') && !rippling) {
-
-            rippling = true;
-
-            /*
-            按钮下划线动画
-            */
-            var currentBtn = navButtonsContainer.protoQuery('.active').removeClass('active clicking');
-            var targetIsAtRight = navButtons.indexOf(targetBtn) > navButtons.indexOf(currentBtn) ? true : false;
-
-            var startX = void 0,
-                endX = void 0;
-
-            // 根据目标按钮和当前活动按钮的相对位置，求得提示条的目标起始点坐标
-            if (targetIsAtRight) {
-                startX = currentBtn.position().left;
-                endX = targetBtn.position().left + targetBtn.innerWidth();
-            } else {
-                startX = targetBtn.position().left;
-                endX = currentBtn.position().left + currentBtn.innerWidth();
-            }
-
-            navIndicator.css({
-                left: startX,
-                right: endX,
-                width: endX - startX
-            });
-
-            navButtonsContainer.protoQuery('.clicking').removeClass('clicking');
-            targetBtn.addClass('active');
-
-            // 动画结束时如果目标按钮在右侧，则left为终点坐标，反之为起点坐标
-            navIndicator.transform({
-                width: 0,
-                left: [targetIsAtRight ? endX : startX]
-            }, function () {
-                navIndicator.css({
-                    left: 0,
-                    width: 0,
-                    right: 'auto'
-                });
-            });
-
-            // 主题配色
-            changeColorTheme(targetBtn);
-
-            // 改变标题文字
-            currentTitle.text(targetBtn.text());
-
-            // 移动端的波纹处理
-            if (isMobile) {
-                ripple.css({
-                    // 从触摸系事件的changedTouches属性中取得相对于页面的坐标
-                    left: evt.pageX - 50,
-                    top: evt.pageY - 50 - document.body.scrollTop
-                }).transform({
-                    transform: 'scale(18)'
-                }, 700, function () {
-                    rippling = false;
-                    ripple.css({
-                        transform: 'scale(0)'
-                    });
-                });
-            } else {
-                rippling = false;
-            }
-        }
-    });
-
-    body.on('mouseup', function (evt) {
-        // 根据事件目标的话，只能判断 mousedown，无法判断 mouseup，因为后者的目标永远是波纹元素。
-        // 所以以波纹元素是否已有动画类为标准，决定如何处理
-        if (ripple.hasClass('noneToCircle')) {
-            /*
-            波纹元素的扩大
-            */
-            body.transform({
-                scrollTop: 0
-            }, 200, function () {
-                ripple.css({
-                    'animation-play-state': 'paused'
-                }).removeClass('noneToCircle').addClass('toFullscreen').css({
-                    'animation-play-state': 'running'
-                });
-                setTimeout(function () {
-                    // 移除波纹元素的动画类
-                    ripple.removeClass('noneToCircle toFullscreen');
-                }, 650);
-            });
-        }
-        //  如果 navButtonClicked 不为 null，则在它上面触发 click 事件
-        if (navButtonClicked !== null) {
-            navButtonClicked.click();
-        }
-    });
-
-    body.on('scroll', function (evt) {
-        var scTp = document.body.scrollTop;
-        var layerHeight = 192 - scTp;
-        layerHeight < 0 && (layerHeight = 0);
-        rippleLayer.height(layerHeight);
-        // 大于一定值时渐隐标题
-        if (scTp > 30) {
-            currentTitle.addClass('hidden');
-        } else {
-            currentTitle.removeClass('hidden');
-        }
-    });
-
-    function changeColorTheme(ele) {
-        var colorIndex = navButtons.indexOf(ele) % 5;
-        var pallete = ['blue', 'yellow', 'green', 'red', 'gray', 'silver'];
-        // 搜索按钮为特殊配色，其它按以上值循环配色
-        ele.hasClass('search') ? header.attr('data-theme', pallete[5]) : header.attr('data-theme', pallete[colorIndex]);
-    }
-};
+// import $ from '../common/jquery.js';
+;
 
 /***/ }),
 /* 1 */
@@ -10173,8 +10214,25 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 "use strict";
 
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _basic = __webpack_require__(17);
 
+var _basic2 = _interopRequireDefault(_basic);
+
+var _node = __webpack_require__(16);
+
+var _node2 = _interopRequireDefault(_node);
+
+var _string = __webpack_require__(19);
+
+var _string2 = _interopRequireDefault(_string);
+
+var _util = __webpack_require__(18);
+
+var _util2 = _interopRequireDefault(_util);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// 在文档结束渲染、开始加载内嵌资源时初始化
 /*
  * protoQuery lib
  * https://github.com/youknowznm/zQuery
@@ -10182,7 +10240,747 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * 2017-05-18
  */
 
-(function (wd) {
+document.onreadystatechange = function () {
+    if (document.readyState === 'interactive') {
+        initProtoQuery(window);
+    }
+};
+
+var initProtoQuery = function initProtoQuery(wd) {
+
+    (0, _basic2.default)(wd);
+    (0, _node2.default)(wd.Node.prototype);
+    (0, _string2.default)(wd.String.prototype);
+    (0, _util2.default)(wd);
+
+    var extendNodeFuncToArray = function extendNodeFuncToArray(funcName) {
+        Array.prototype[funcName] = function () {
+            var firstItem = this[0];
+            if (firstItem instanceof Node) {
+                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                }
+
+                return wd.Node.prototype[funcName].apply(firstItem, args);
+            } else {
+                throw Error('Expected NODE as first item in array.');
+            }
+        };
+    };
+
+    ['css', 'transform', 'position', 'offset', 'attr', 'html', 'text', 'protoQuery', 'is', 'prepend', 'insertAfter', 'parent', 'parents', 'parentsUntil', 'closest', 'children', 'prev', 'next', 'prevAll', 'nextAll', 'siblings', 'prevUntil', 'nextUntil', 'on', 'off', 'width', 'height', 'innerWidth', 'initHeight', 'outerWidth', 'outerHeight', 'show', 'hide', 'fadeIn', 'fadeOut', 'slideDown', 'slideUp'].forEach(function (i) {
+        extendNodeFuncToArray(i);
+    });
+};
+
+/***/ }),
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(1);
+__webpack_require__(2);
+module.exports = __webpack_require__(0);
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.default = handleNodePrototype;
+function handleNodePrototype(nodePrototype) {
+
+    ///////////////  样式和属性  ///////////////
+
+    // 设置或读取目标元素的样式
+    // @param {string|object} arg1 只提供此参数：为数值时返回该样式值；为对象时设置元素的多条规则
+    // @param {string|number?} arg2 提供时设置指定样式的值
+    // @return {node|string|null} 读取时返回字符串或null；设置时返回自身
+    nodePrototype.css = function (arg1, arg2) {
+        var changeSingleRule = function changeSingleRule(name, value) {
+            if (/^.*\d$/.test(value) && NUMBER_TYPE_STYLE_NAMES.indexOf(name) === -1) {
+                value += 'px';
+            }
+            this.style[name] = value;
+        };
+        switch (arguments.length) {
+            case 0:
+                throw new Error('Expected at least 1 argument.');
+            case 1:
+                switch (typeof arg1 === 'undefined' ? 'undefined' : _typeof(arg1)) {
+                    case 'string':
+                        // #03 对值为auto的样式，似乎chrome懂事儿地返回了0px，safari返回auto。
+                        var rawResult = document.defaultView.getComputedStyle(this, null)[arg1] || null;
+                        return rawResult === 'auto' ? '0px' : rawResult;
+                    case 'object':
+                        for (var i in arg1) {
+                            changeSingleRule.call(this, i, arg1[i]);
+                        }
+                        return this;
+                    default:
+                        throw new Error('Expected STRING as target style name or OBJECT as style group.');
+                }
+            case 2:
+                switch (typeof arg2 === 'undefined' ? 'undefined' : _typeof(arg2)) {
+                    case 'string':
+                    case 'number':
+                        changeSingleRule.call(this, arg1, arg2 + '');
+                        return this;
+                    default:
+                        throw new Error('Expected STRING or NUMBER as target style value.');
+                }
+            default:
+                throw new Error('Expected 1~2 arguments.');
+        }
+    };
+
+    // 渐变目标的一个或多个样式
+    //  @param {object} arg1 键：样式名；值：样式值
+    //  @param {function?} arg2 完成后的回调函数
+    nodePrototype.transform = function (styleObj, callback) {
+        if ((typeof styleObj === 'undefined' ? 'undefined' : _typeof(styleObj)) !== 'object') {
+            throw new Error('Expected PLAIN OBJECT containing style key-value pairs.');
+        }
+        var animationIdGroup = [];
+        for (var i in styleObj) {
+            console.log(i);
+            console.log(styleObj[i]);
+            var id = transformSingleRule(this, i, styleObj[i]);
+            animationIdGroup.push(id);
+        }
+        if (typeof callback === 'function') {
+            var callbackId = setInterval(function () {
+                for (var j in animationIdGroup) {
+                    if (zQueryUtil.onGoingAnimations[animationIdGroup[j]] === false) {
+                        return;
+                    }
+                }
+                clearInterval(callbackId);
+                callback();
+            }, 5);
+        }
+        return this;
+    };
+
+    // 返回元素相对于父定位元素之坐标
+    nodePrototype.position = function () {
+        var top = this.offsetTop,
+            left = this.offsetLeft;
+        return { top: top, left: left };
+    };
+
+    // 返回元素相对于浏览器窗口之坐标
+    nodePrototype.offset = function () {
+        var top = this.offsetTop;
+        var left = this.offsetLeft;
+        var posParent = this.offsetParent;
+        while (posParent !== null) {
+            top += posParent.offsetTop;
+            left += posParent.offsetLeft;
+            posParent = posParent.offsetParent;
+        }
+        return { top: top, left: left };
+    };
+
+    // 获取或设置目标属性
+    // @param {string} tarAttr 目标属性名
+    // @param {string} tarValue 目标属性值
+    // @return {string|null|object.node} 获取时返回字符串或null；设置时返回自身
+    nodePrototype.attr = function (tarAttr, tarValue) {
+        if (typeof tarAttr !== 'string') {
+            throw new Error('Expected STRING as target attribute name.');
+        }
+        if (tarValue === undefined) {
+            return this.getAttribute(tarAttr);
+        } else {
+            if (typeof tarValue !== 'string') {
+                throw new Error('Expected STRING as target attribute value (if provided).');
+            } else {
+                this.setAttribute(tarAttr, tarValue);
+                return this;
+            }
+        }
+    };
+
+    // 获取或设置目标的innerHTML
+    nodePrototype.html = function (tarHTML) {
+        if (tarHTML === undefined) {
+            return this.innerHTML;
+        }
+        this.innerHTML = tarHTML;
+        return this;
+    };
+
+    // 获取或设置目标的文字内容
+    nodePrototype.text = function (tarText) {
+        if (tarHTML === undefined) {
+            return this.textContent;
+        }
+        this.textContent = tarText;
+        return this;
+    };
+
+    ///////////////  选择和遍历  ///////////////
+
+    // 根据组合选择器字符串查询，返回元素下所有符合的元素
+    // @param {string} selectorGroup "#header"，".item"，"ul"，"[type]"，"[type=radio]"形式以空格连接的查询字符串
+    // @return {array.<node>} 返回成员类型为node的数组或空数组
+    nodePrototype.protoQuery = function (selectorGroup) {
+        return multiQuery(selectorGroup, this);
+    };
+
+    // 目标元素本身符合字符串时返回真
+    nodePrototype.is = function (selector) {
+        return nodeMatchesSelector(this, selector);
+    };
+
+    // 在当前元素的第一个子元素前插入目标元素
+    // @return {node} 插入的新元素节点
+    nodePrototype.prepend = function (tarNode) {
+        if (tarNode.nodeType !== 1) {
+            throw new Error('Expected ELEMENT NODE as target node.');
+        }
+        this.insertBefore(tarNode, this.firstElementChild);
+        return tarNode;
+    };
+
+    // @param {node} newNode 新元素节点
+    // @param {node} referenceNode 比照元素节点
+    // @return {node} 插入的新元素节点
+    nodePrototype.insertAfter = function (newNode, referenceNode) {
+        if (newNode.nodeType !== 1) {
+            throw new Error('Expected ELEMENT NODE as target node.');
+        }
+        if (referenceNode.nodeType !== 1) {
+            throw new Error('Expected ELEMENT NODE as reference node.');
+        }
+        if (this.lastElementChild === referenceNode) {
+            this.appendChild(newNode);
+        } else {
+            this.insertBefore(newNode, referenceNode.nextElementSibling);
+        }
+        return newNode;
+    };
+
+    // 返回目标元素的直接父元素
+    // @return {node} 元素节点或null
+    nodePrototype.parent = function () {
+        var tarElement = this.parentNode;
+        while (true) {
+            if (tarElement === null || tarElement.nodeType === 1) {
+                return tarElement;
+            } else {
+                tarElement = tarElement.parentNode;
+            }
+        }
+    };
+
+    // 返回目标元素的所有符合参数条件的父元素
+    // @return {array.<node>} 元素节点对象构成之数组
+    nodePrototype.parents = function (selector) {
+        var result = [];
+        var currentNode = this.parent();
+        while (currentNode !== null) {
+            if (nodeMatchesSelector(currentNode, selector)) {
+                result.push(currentNode);
+            }
+            currentNode = currentNode.parent();
+        }
+        return result;
+    };
+
+    // 返回目标元素的不符合参数条件的所有父元素
+    // @return {array.<node>} 元素节点对象构成之数组
+    nodePrototype.parentsUntil = function (selector) {
+        var result = [];
+        var currentNode = this.parent();
+        while (currentNode !== null) {
+            if (!nodeMatchesSelector(currentNode, selector)) {
+                result.push(currentNode);
+            } else {
+                break;
+            }
+            currentNode = currentNode.parent();
+        }
+        return result;
+    };
+
+    // 返回目标元素的符合参数条件的最近的父元素，遍历包含元素自身
+    // @return {node} 元素节点或null
+    nodePrototype.closest = function (selector) {
+        var currentNode = this;
+        while (currentNode !== null) {
+            if (nodeMatchesSelector(currentNode, selector)) {
+                return currentNode;
+            } else {
+                currentNode = currentNode.parent();
+            }
+        }
+        return null;
+    };
+
+    // 返回目标元素的符合参数条件的直接子元素
+    // @return {array.<node>} 元素节点对象构成之数组
+    nodePrototype.children = function (selector) {
+        var result = [];
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = this.childNodes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var child = _step.value;
+
+                if (child.nodeType === 1 && nodeMatchesSelector(child, selector)) {
+                    result.push(child);
+                }
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
+        return result;
+    };
+
+    // 返回目标元素之前的符合参数条件的最近的兄弟元素
+    // @return {node} 元素节点或null
+    nodePrototype.prev = function (selector) {
+        var prevSib = this.previousElementSibling;
+        while (prevSib !== null) {
+            if (nodeMatchesSelector(prevSib, selector)) {
+                return prevSib;
+            }
+            prevSib = prevSib.previousElementSibling;
+        }
+        return null;
+    };
+
+    // 返回目标元素之后的符合参数条件的最近的兄弟元素
+    // @return {node} 元素节点或null
+    nodePrototype.next = function (selector) {
+        var nextSib = this.nextElementSibling;
+        while (nextSib !== null) {
+            if (nodeMatchesSelector(nextSib, selector)) {
+                return nextSib;
+            }
+            nextSib = nextSib.nextElementSibling;
+        }
+        return null;
+    };
+
+    // 返回位于目标元素之前的所有符合参数条件的兄弟元素
+    // @return {array.<node>} 元素节点对象构成之数组
+    nodePrototype.prevAll = function (selector) {
+        var result = [];
+        var prevSib = this.previousElementSibling;
+        while (prevSib !== null) {
+            if (nodeMatchesSelector(prevSib, selector)) {
+                result.unshift(prevSib);
+            }
+            prevSib = prevSib.previousElementSibling;
+        }
+        return result;
+    };
+
+    // 返回位于目标元素之后的所有符合参数条件的兄弟元素
+    // @return {array.<node>} 元素节点对象构成之数组
+    nodePrototype.nextAll = function (selector) {
+        var result = [];
+        var nextSib = this.nextElementSibling;
+        while (nextSib !== null) {
+            if (nodeMatchesSelector(nextSib, selector)) {
+                result.push(nextSib);
+            }
+            nextSib = nextSib.nextElementSibling;
+        }
+        return result;
+    };
+
+    // 返回目标元素的所有符合参数条件的兄弟元素
+    // @return {array.<node>} 元素节点对象构成之数组
+    nodePrototype.siblings = function (selector) {
+        return this.prevAll(selector).concat(this.nextAll(selector));
+    };
+
+    // 返回目标元素之前、符合参数条件的元素（如有）之后的所有兄弟元素
+    // @return {array.<node>} 元素节点对象构成之数组
+    nodePrototype.prevUntil = function (selector) {
+        var result = [];
+        var prevSib = this.previousElementSibling;
+        while (prevSib !== null) {
+            if (nodeMatchesSelector(prevSib, selector)) {
+                break;
+            }
+            result.unshift(prevSib);
+            prevSib = prevSib.previousElementSibling;
+        }
+        return result;
+    };
+
+    // 返回目标元素之后、符合参数条件的元素（如有）之前的所有兄弟元素
+    // @return {array.<node>} 元素节点对象构成之数组
+    nodePrototype.nextUntil = function (selector) {
+        var result = [];
+        var nextSib = this.nextElementSibling;
+        while (nextSib !== null) {
+            if (nodeMatchesSelector(nextSib, selector)) {
+                break;
+            }
+            result.push(nextSib);
+            nextSib = nextSib.nextElementSibling;
+        }
+        return result;
+    };
+
+    ///////////////  事件  ///////////////
+
+    // 添加事件监听
+    //  1 arg
+    //  @param {object} arg1 键：一个或多个事件名；值：该事件的监听函数
+    //  2 arg
+    //  @param {string} arg1 一个或多个事件名
+    //  @param {function} arg2 监听函数
+    //  3 arg
+    //  @param {string} arg1 一个或多个事件名
+    //  @param {string} arg2 被代理者的选择字符串
+    //  @param {function} arg3 监听函数
+    nodePrototype.on = function (arg1, arg2, arg3) {
+        switch (arguments.length) {
+            case 1:
+                if ((typeof arg1 === 'undefined' ? 'undefined' : _typeof(arg1)) !== 'object') {
+                    throw new Error('Expected PLAIN OBJECT if only 1 argument is provided.');
+                }
+                for (var i in arg1) {
+                    handleSingleListener(this, i, arg1[i], {
+                        method: 'add'
+                    });
+                }
+                return this;
+            case 2:
+                if (typeof arg1 !== 'string') {
+                    throw new Error('Expected STRING as target event(s)\' name.');
+                }
+                if (typeof arg2 !== 'function') {
+                    throw new Error('Expected FUNCTION as target event listener.');
+                }
+                handleSingleListener(this, arg1, arg2, {
+                    method: 'add'
+                });
+                return this;
+            case 3:
+                if (typeof arg1 !== 'string') {
+                    throw new Error('Expected STRING as target event(s)\' name.');
+                }
+                if (typeof arg2 !== 'string') {
+                    throw new Error('Expected STRING as selector for delegated elements.');
+                }
+                if (typeof arg3 !== 'function') {
+                    throw new Error('Expected FUNCTION as target event listener.');
+                }
+                handleSingleListener(this, arg1, arg3, {
+                    method: 'add',
+                    delegationSelector: arg2
+                });
+                return this;
+            default:
+                throw new Error('Expected 1~3 arguments.');
+        }
+    };
+
+    // 移除事件监听。未提供代理移除的方法
+    //  1 arg
+    //  @param {object} arg1 键：一个或多个事件名；值：该事件的监听函数
+    //  2 arg
+    //  @param {string} arg1 一个或多个事件名
+    //  @param {function} arg2 监听函数
+    nodePrototype.off = function (arg1, arg2) {
+        switch (arguments.length) {
+            case 1:
+                if ((typeof arg1 === 'undefined' ? 'undefined' : _typeof(arg1)) !== 'object') {
+                    throw new Error('Expected PLAIN OBJECT if only 1 argument is provided.');
+                }
+                for (var i in arg1) {
+                    handleSingleListener(this, i, arg1[i], {
+                        method: 'remove'
+                    });
+                }
+                return this;
+            case 2:
+                if (typeof arg1 !== 'string') {
+                    throw new Error('Expected STRING as target event(s)\' name.');
+                }
+                if (typeof arg2 !== 'function') {
+                    throw new Error('Expected FUNCTION as target event listener.');
+                }
+                handleSingleListener(this, arg1, arg2, {
+                    method: 'remove'
+                });
+                return this;
+            default:
+                throw new Error('Expected 1~2 arguments.');
+        }
+    };
+
+    ///////////////  捷径  ///////////////
+
+    // 读写元素自身的宽/高
+    nodePrototype.width = function (value) {
+        console.log(1, value);
+        return value === undefined ? parseInt(this.css('width')) : this.css('width', value);
+    };
+    nodePrototype.height = function (value) {
+        return value === undefined ? parseInt(this.css('height')) : this.css('height', value);
+    };
+    // 获取元素的自身宽/高 + 内边距
+    nodePrototype.innerWidth = function () {
+        return this.width() + parseInt(this.css('paddingLeft')) + parseInt(this.css('paddingRight'));
+    };
+    nodePrototype.innerHeight = function () {
+        return this.height() + parseInt(this.css('paddingTop')) + parseInt(this.css('paddingBottom'));
+    };
+    // 获取元素的自身宽/高 + 内边距 + 边框，参数为真时包括外边距
+    nodePrototype.outerWidth = function (includeMargin) {
+        var r = this.innerWidth() + parseInt(this.css('borderLeftWidth')) + parseInt(this.css('borderRightWidth'));
+        if (includeMargin === true) {
+            r += parseInt(this.css('marginLeft')) + parseInt(this.css('marginRight'));
+        }
+        return r;
+    };
+    nodePrototype.outerHeight = function (includeMargin) {
+        var r = this.innerHeight() + parseInt(this.css('borderTopWidth')) + parseInt(this.css('borderBottomWidth'));
+        if (includeMargin === true) {
+            r += parseInt(this.css('marginTop')) + parseInt(this.css('marginBottom'));
+        }
+        return r;
+    };
+    // 显示/隐藏元素。参数为'transform'时从左上角开始动画，否则即时
+    nodePrototype.show = function (option) {
+        if (this.css('display') === 'none') {
+            switch (option) {
+                case 'transform':
+                    var initWidth = parseInt(this.width());
+                    var initHeight = parseInt(this.height());
+                    this.css({
+                        display: 'block',
+                        width: 0,
+                        height: 0
+                    });
+                    this.transform({
+                        width: initWidth,
+                        height: initHeight
+                    });
+                    break;
+                default:
+                    this.css('display', 'block');
+            }
+        }
+        return this;
+    };
+    nodePrototype.hide = function (option) {
+        if (this.css('display') !== 'none') {
+            switch (option) {
+                case 'transform':
+                    this.transform({
+                        width: 0,
+                        height: 0
+                    });
+                    break;
+                default:
+                    this.css('display', 'none');
+            }
+        }
+        return this;
+    };
+    // 渐变透明度以显示/隐藏元素
+    nodePrototype.fadeIn = function () {
+        if (this.css('display') === 'none') {
+            this.css({
+                opacity: 0,
+                display: 'block'
+            });
+            this.transform({
+                opacity: 1
+            });
+        }
+        return this;
+    };
+    nodePrototype.fadeOut = function () {
+        if (this.css('display') !== 'none') {
+            this.transform({
+                'opacity': 0
+            }, function () {
+                this.hide();
+            });
+        }
+        return this;
+    };
+    // 渐变高度以显示/隐藏元素
+    nodePrototype.slideDown = function () {
+        if (this.css('display') === 'none') {
+            var initHeight = this.height();
+            this.css({
+                height: 0,
+                display: 'block'
+            });
+            this.transform({
+                height: initHeight
+            });
+        }
+        return this;
+    };
+    nodePrototype.slideUp = function () {
+        if (this.css('display') !== 'none') {
+            var that = this;
+            this.transform({
+                'height': 0
+            }, function () {
+                that.hide();
+            });
+        }
+        return this;
+    };
+};
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = handleBasic;
+function handleBasic(wd) {
+
+    //////////// 类相关 ////////////
+
+    var nodePrototype = wd.Node.prototype;
+
+    // 检查目标元素是否包含所有的类名
+    nodePrototype.hasClass = function (tarClassesStr) {
+        if (typeof tarClassesStr !== 'string' || /^\s*$/.test(tarClassesStr)) {
+            throw new Error('Expected non-empty STRING as target class name(s).');
+        }
+        var tarClassesArr = tarClassesStr.split(/\s+/);
+        var eleClassesArr = this.className.split(/\s+/);
+        var allMatch = true;
+        for (var i = 0; i < tarClassesArr.length; i++) {
+            if (eleClassesArr.indexOf(tarClassesArr[i]) === -1) {
+                allMatch = false;
+                break;
+            }
+        }
+        return allMatch;
+    };
+
+    // 为目标元素添加若干个类名
+    nodePrototype.addClass = function (tarClassesStr) {
+        if (typeof tarClassesStr !== 'string' || /^\s*$/.test(tarClassesStr)) {
+            throw new Error('Expected non-empty STRING as target class name(s).');
+        }
+        var tarClassesArr = tarClassesStr.split(/\s+/);
+        var eleClassesArr = this.className.split(/\s+/);
+        for (var i = 0; i < tarClassesArr.length; i++) {
+            if (eleClassesArr.indexOf(tarClassesArr[i]) === -1) {
+                eleClassesArr.push(tarClassesArr[i]);
+            }
+        }
+        this.className = eleClassesArr.join(' ').trim();
+        return this;
+    };
+
+    // 为目标元素移除若干个类名
+    nodePrototype.removeClass = function (tarClassesStr) {
+        if (typeof tarClassesStr !== 'string' || /^\s*$/.test(tarClassesStr)) {
+            throw new Error('Expected non-empty STRING as target class name(s).');
+        }
+        var tarClassesArr = tarClassesStr.split(/\s+/);
+        var eleClassesStr = this.className;
+        var eleClassesArr = this.className.split(/\s+/);
+        for (var i = 0; i < tarClassesArr.length; i++) {
+            var pos = eleClassesArr.indexOf(tarClassesArr[i]);
+            if (pos !== -1) {
+                eleClassesArr[pos] = '';
+            }
+        }
+        this.className = eleClassesArr.join(' ').trim();
+        return this;
+    };
+
+    // 目标元素含指定类时移除，否则添加
+    nodePrototype.toggleClass = function (tarClassName) {
+        if (typeof tarClassName !== 'string') {
+            throw new Error('Expected STRING as target class name.');
+        }
+        if (this.hasClass(tarClassName)) {
+            this.removeClass(tarClassName);
+        } else {
+            this.addClass(tarClassName);
+        }
+        return this;
+    };
+
+    //////////// 基本方法 ////////////
 
     var NUMBER_TYPE_STYLE_NAMES = ['opacity'];
     var FLOAT_TYPE_STYLE_NAMES = ['opacity'];
@@ -10191,17 +10989,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         onGoingAnimations: {}
     };
 
-    /////////////////////////////////////////////
-    /////////////////  基本方法  /////////////////
-    /////////////////////////////////////////////
-
-    // 判断单个节点是否符合单个选择器
-    var nodeMatchesSelector = function nodeMatchesSelector(tarNode, selector) {
+    /*
+    判断单个节点是否符合单个选择器
+    @param {node} tarNode 目标节点
+    @param {string} selector "#header"，".item"，"ul"，"[type]"，"[type=radio]"形式的［单个］查询字符串
+    @return {boolean}
+    */
+    wd.nodeMatchesSelector = function (tarNode, selector) {
         if (!tarNode instanceof Node) {
             throw new Error('Expected NODE as target node.');
         }
         if (typeof selector !== 'string' || selector === '') {
-            throw new Error('Expected STRING as selector.');
+            throw new Error('Expected non-empty STRING as selector.');
         }
         switch (true) {
             // id选择器
@@ -10258,20 +11057,39 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
     };
 
-    // 根据［单个］选择器字符串查询，返回目标元素下［所有］符合的元素
-    // @param {string} selector "#header"，".item"，"ul"，"[type]"，"[type=radio]"形式的［单个］查询字符串
-    // @param {node?} root 提供时以其为遍历起点，否则以document为起点
-    // @return {array.<node>} 返回成员类型为node的数组或空数组
-    var singleSelectorAllResults = function singleSelectorAllResults(selector, root) {
-        if (root === undefined) {
-            return [];
+    /*
+    处理根元素参数
+    @param {node|array|undefined} root 要处理的节点。不传入则以body为起点，传入第一项为节点的数组则以该项为起点
+    @return {node}
+    */
+    var handleRootNodeParam = function handleRootNodeParam(root) {
+        var r = void 0;
+        switch (true) {
+            case root === undefined:
+                r = document.body;
+                break;
+            case root[0] instanceof Node:
+                r = root[0];
+                break;
+            default:
+                r = root;
         }
+        return r;
+    };
+
+    /*
+    根据［单个］选择器字符串查询，返回目标元素下所有符合的元素
+    @param {string} selector 单个查询字符串
+    @param {node|array|undefined} root 要处理的节点。不传入则以body为起点，传入第一项为节点的数组则以该项为起点
+    @return {array.<node>} 返回成员类型为node的数组或空数组
+    */
+    var singleQuery = function singleQuery(selector, root) {
+        if (typeof selector !== 'string' || selector === '') {
+            throw new Error('Expected non-empty STRING as selector.');
+        }
+        var _root = handleRootNodeParam(root);
         var result = [];
-        // #01 TreeWalker实例在遍历时并不会计算根节点，因此在这里添加对根节点的判定
-        if (nodeMatchesSelector(root, selector)) {
-            result.push(root);
-        }
-        var walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT, null, false);
+        var walker = document.createTreeWalker(_root, NodeFilter.SHOW_ELEMENT, null, false);
         var currentNode = walker.nextNode();
         while (currentNode !== null) {
             if (nodeMatchesSelector(currentNode, selector)) {
@@ -10282,40 +11100,81 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return result;
     };
 
-    // 根据［组合］选择器字符串查询，返回目标元素下［所有］符合的元素
-    // @param {string} selectorGroup "#header"，".item"，"ul"，"[type]"，"[type=radio]"形式以空格连接的查询字符串
-    // @return {array.<node>} 返回成员类型为node的数组或空数组
-    var groupSelectorAllResults = function groupSelectorAllResults(selectorGroup, root) {
-        var selectorArr = selectorGroup.split(' ');
-        var r1 = void 0,
-            r2 = void 0,
-            r3 = void 0;
-        switch (selectorArr.length) {
-            case 1:
-                return singleSelectorAllResults(selectorArr[0], root);
-            case 2:
-                r1 = singleSelectorAllResults(selectorArr[0], root)[0];
-                return singleSelectorAllResults(selectorArr[1], r1);
-            case 3:
-                r1 = singleSelectorAllResults(selectorArr[0], root)[0];
-                r2 = singleSelectorAllResults(selectorArr[1], r1)[0];
-                return singleSelectorAllResults(selectorArr[2], r2);
-            case 4:
-                r1 = singleSelectorAllResults(selectorArr[0], root)[0];
-                r2 = singleSelectorAllResults(selectorArr[1], r1)[0];
-                r3 = singleSelectorAllResults(selectorArr[2], r2)[0];
-                return singleSelectorAllResults(selectorArr[3], r3);
-            default:
-                throw new Error('Expected at most 4 selector snippets.');
+    /*
+    根据［组合］选择器字符串查询，返回目标元素下所有符合的元素
+    @param {string} selectorGroup 多个以空格连接的查询字符串
+    @param {node|array|undefined} root 要处理的节点。不传入则以body为起点，传入第一项为节点的数组则以该项为起点
+    @return {array.<node>} 返回成员类型为node的数组或空数组
+    */
+    var multiQuery = wd.$ = function (selectorGroup, root) {
+        // 选择器开头如有'body'去掉之
+        selectorGroup = selectorGroup.trim().replace(/^body\s+/, '');
+        var selectorArr = selectorGroup.split(/\s+/);
+        var _root = handleRootNodeParam(root);
+        if (_root.querySelectorAll !== undefined) {
+
+            // querySelectorAll返回类数组对象，需转换为数组
+            var fakeArr = _root.querySelectorAll(selectorGroup);
+            return [].slice.call(fakeArr);
+        } else {
+
+            return selectorArr.reduce(function (i1, i2) {
+                // 为普通空数组时返回之
+                if (Array.isArray(i1) && i1[0] === undefined) {
+                    return [];
+                }
+                return singleQuery(i2, i1);
+            }, _root);
         }
     };
 
-    // 在单一元素上添加/删除单一监听函数
-    // @param {node} ele 目标元素节点
-    // @param {string} evts 单一或多个目标事件
-    // @param {function} fn 监听函数
-    // @param {object} options 'method'为'add'或'remove'；提供'delegationSelector'时代理监听
-    var handleSingleListener = function handleSingleListener(ele, evts, fn, options) {
+    /*
+    返回添加/删除监听的方法，兼容远古浏览器
+    @param {string|undefined} delegationSelector 要代理的元素选择器
+    */
+    var getOnFunc = function getOnFunc(ele, fn, delegationSelector) {
+        var _fn = void 0;
+        // 提供代理元素选择器则处理之
+        if (typeof delegationSelector === 'string') {
+            _fn = function _fn(evtObj) {
+                if (evtObj.target.is(delegationSelector)) {
+                    fn.call(this, evtObj);
+                }
+            };
+        } else {
+            _fn = fn;
+        }
+        if (ele.addEventListener) {
+            return function (evtName) {
+                ele.addEventListener(evtName, _fn, false);
+            };
+        } else {
+            return function (evtName) {
+                ele.attachEvent('on' + evtName, _fn);
+            };
+        }
+    };
+
+    var getOffFunc = function getOffFunc(ele, evtName, fn) {
+        if (ele.removeEventListener) {
+            return function (evtName) {
+                ele.removeEventListener(evtName, fn, false);
+            };
+        } else {
+            return function (evtName) {
+                ele.detachEvent('on' + evtName, fn);
+            };
+        }
+    };
+
+    /*
+    在单一元素上添加/删除单一监听函数
+    @param {node} ele 目标元素节点
+    @param {string} evts 单一或多个目标事件
+    @param {function} fn 监听函数
+    @param {object} options 'method'为'add'或'remove'；提供'delegationSelector'时代理监听
+    */
+    wd.handleSingleListener = function (ele, evts, fn, options) {
         if (ele.nodeType !== 1) {
             throw new Error('Expected ELEMENT NODE as target.');
         }
@@ -10328,26 +11187,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var handleEachEvent = null;
         switch (options.method) {
             case 'add':
-                if (options.delegationSelector !== undefined) {
-                    handleEachEvent = function handleEachEvent(evtName) {
-                        ele.addEventListener(evtName, function (evtObj) {
-                            if (evtObj.target.is(options.delegationSelector)) {
-                                fn.call(this, evtObj);
-                            }
-                        }, false);
-                    };
-                } else {
-                    handleEachEvent = function handleEachEvent(evtName) {
-                        ele.addEventListener(evtName, fn, false);
-                    };
-                }
+                handleEachEvent = getOnFunc(ele, fn, options.delegationSelector);
                 break;
             case 'remove':
-                handleEachEvent = function handleEachEvent(evtName) {
-                    ele.removeEventListener(evtName, fn, false);
-                };
+                handleEachEvent = getOffFunc(ele, fn);
                 break;
         }
+        // 提供多个事件名时，分别添加该监听
         var targetEvents = evts.split(/\s/);
         var _iteratorNormalCompletion2 = true;
         var _didIteratorError2 = false;
@@ -10380,7 +11226,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     // @param {string} tarStyle 目标样式名
     // @param {string} tarValue 目标样式值
     // @return {number} cycleId 动画标识id
-    var transformSingleRule = function transformSingleRule(ele, tarStyle, tarValue) {
+    wd.transformSingleRule = function (ele, tarStyle, tarValue) {
         var fullStyleValue = ele.css(tarStyle);
         var currentValue = parseFloat(fullStyleValue);
         if (!isFinite(currentValue)) {
@@ -10413,42 +11259,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         zQueryUtil.onGoingAnimations[cycleId] = false;
         return cycleId;
     };
+};
 
-    /*
-    动画滚动页面至目标元素位置
-    @param selector {string} 目标元素选择器
-    @param cb {function?} 滚动完成的回调
-    */
-    // function scrollIntoTargetSelector(selector, cb) {
-    //     let bodyPaddingTop = parseInt($('body').css('padding-top'));
-    //     let targetEleScrollTop = document.querySelector(selector).offsetTop;
-    //     let targetBodyScrollTop = targetEleScrollTop - bodyPaddingTop;
-    //     let tId = setInterval(function() {
-    //         let currentBodyScrollTop = document.body.scrollTop;
-    //         let diff = targetBodyScrollTop - currentBodyScrollTop;
-    //         switch (true) {
-    //             case diff > 0:
-    //                 currentBodyScrollTop += Math.ceil(diff / 5);
-    //                 break;
-    //             case diff < 0:
-    //                 currentBodyScrollTop -= Math.ceil(diff / -5);
-    //                 break;
-    //             default:
-    //                 clearIntervalAndCallback(tId, cb);
-    //         }
-    //         document.body.scrollTop = currentBodyScrollTop;
-    //         // 如果页面滚动到了底部，也停止interval
-    //         if (document.body.scrollHeight - document.body.scrollTop === document.body.clientHeight) {
-    //             clearIntervalAndCallback(tId, cb);
-    //         }
-    //     }, 10);
-    //     function clearIntervalAndCallback(n, f) {
-    //         clearInterval(n);
-    //         if (typeof f === 'function') {
-    //             f();
-    //         }
-    //     }
-    // };
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.default = addUtil;
+function addUtil(wd) {
 
     /////////////////////////////////////////////
     //////////////  处理window对象  //////////////
@@ -10633,733 +11460,52 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 break;
         }
     };
-
-    /////////////////////////////////////////////
-    ///////////////  处理node原型  ///////////////
-    /////////////////////////////////////////////
-
-    (function (nodePrototype) {
-
-        ///////////////  样式和属性  ///////////////
-
-        // 检查目标元素是否包含所有的类名
-        nodePrototype.hasClass = function (tarClassesStr) {
-            if (typeof tarClassesStr !== 'string' || /^\s*$/.test(tarClassesStr)) {
-                throw new Error('Expected non-empty STRING as target class name(s).');
-            }
-            var tarClassesArr = tarClassesStr.split(/\s+/);
-            var eleClassesArr = this.className.split(/\s+/);
-            var allMatch = true;
-            for (var i = 0; i < tarClassesArr.length; i++) {
-                if (eleClassesArr.indexOf(tarClassesArr[i]) === -1) {
-                    allMatch = false;
-                    break;
-                }
-            }
-            return allMatch;
-        };
-
-        // 为目标元素添加若干个类名
-        nodePrototype.addClass = function (tarClassesStr) {
-            if (typeof tarClassesStr !== 'string' || /^\s*$/.test(tarClassesStr)) {
-                throw new Error('Expected non-empty STRING as target class name(s).');
-            }
-            var tarClassesArr = tarClassesStr.split(/\s+/);
-            var eleClassesArr = this.className.split(/\s+/);
-            for (var i = 0; i < tarClassesArr.length; i++) {
-                if (eleClassesArr.indexOf(tarClassesArr[i]) === -1) {
-                    eleClassesArr.push(tarClassesArr[i]);
-                }
-            }
-            this.className = eleClassesArr.join(' ').trim();
-            return this;
-        };
-
-        // 为目标元素移除若干个类名
-        nodePrototype.removeClass = function (tarClassesStr) {
-            if (typeof tarClassesStr !== 'string' || /^\s*$/.test(tarClassesStr)) {
-                throw new Error('Expected non-empty STRING as target class name(s).');
-            }
-            var tarClassesArr = tarClassesStr.split(/\s+/);
-            var eleClassesStr = this.className;
-            var eleClassesArr = this.className.split(/\s+/);
-            for (var i = 0; i < tarClassesArr.length; i++) {
-                var pos = eleClassesArr.indexOf(tarClassesArr[i]);
-                if (pos !== -1) {
-                    eleClassesArr[pos] = '';
-                }
-            }
-            this.className = eleClassesArr.join(' ').trim();
-            return this;
-        };
-
-        // 目标元素含指定类时移除，否则添加
-        nodePrototype.toggleClass = function (tarClassName) {
-            if (typeof tarClassName !== 'string') {
-                throw new Error('Expected STRING as target class name.');
-            }
-            if (this.hasClass(tarClassName)) {
-                this.removeClass(tarClassName);
-            } else {
-                this.addClass(tarClassName);
-            }
-            return this;
-        };
-
-        // 设置或读取目标元素的样式
-        // @param {string|object} arg1 只提供此参数：为数值时返回该样式值；为对象时设置元素的多条规则
-        // @param {string|number?} arg2 提供时设置指定样式的值
-        // @return {node|string|null} 读取时返回字符串或null；设置时返回自身
-        nodePrototype.css = function (arg1, arg2) {
-            var changeSingleRule = function changeSingleRule(name, value) {
-                if (/^.*\d$/.test(value) && NUMBER_TYPE_STYLE_NAMES.indexOf(name) === -1) {
-                    value += 'px';
-                }
-                this.style[name] = value;
-            };
-            switch (arguments.length) {
-                case 0:
-                    throw new Error('Expected at least 1 argument.');
-                case 1:
-                    switch (typeof arg1 === 'undefined' ? 'undefined' : _typeof(arg1)) {
-                        case 'string':
-                            // #03 对值为auto的样式，似乎chrome懂事儿地返回了0px，safari返回auto。
-                            var rawResult = document.defaultView.getComputedStyle(this, null)[arg1] || null;
-                            return rawResult === 'auto' ? '0px' : rawResult;
-                        case 'object':
-                            for (var i in arg1) {
-                                changeSingleRule.call(this, i, arg1[i]);
-                            }
-                            return this;
-                        default:
-                            throw new Error('Expected STRING as target style name or OBJECT as style group.');
-                    }
-                case 2:
-                    switch (typeof arg2 === 'undefined' ? 'undefined' : _typeof(arg2)) {
-                        case 'string':
-                        case 'number':
-                            changeSingleRule.call(this, arg1, arg2 + '');
-                            return this;
-                        default:
-                            throw new Error('Expected STRING or NUMBER as target style value.');
-                    }
-                default:
-                    throw new Error('Expected 1~2 arguments.');
-            }
-        };
-
-        // 渐变目标的一个或多个样式
-        //  @param {object} arg1 键：样式名；值：样式值
-        //  @param {function?} arg2 完成后的回调函数
-        nodePrototype.transform = function (styleObj, callback) {
-            if ((typeof styleObj === 'undefined' ? 'undefined' : _typeof(styleObj)) !== 'object') {
-                throw new Error('Expected PLAIN OBJECT containing style key-value pairs.');
-            }
-            var animationIdGroup = [];
-            for (var i in styleObj) {
-                console.log(i);
-                console.log(styleObj[i]);
-                var id = transformSingleRule(this, i, styleObj[i]);
-                animationIdGroup.push(id);
-            }
-            if (typeof callback === 'function') {
-                var callbackId = setInterval(function () {
-                    for (var j in animationIdGroup) {
-                        if (zQueryUtil.onGoingAnimations[animationIdGroup[j]] === false) {
-                            return;
-                        }
-                    }
-                    clearInterval(callbackId);
-                    callback();
-                }, 5);
-            }
-            return this;
-        };
-
-        // 返回元素相对于父定位元素之坐标
-        nodePrototype.position = function () {
-            var top = this.offsetTop,
-                left = this.offsetLeft;
-            return { top: top, left: left };
-        };
-
-        // 返回元素相对于浏览器窗口之坐标
-        nodePrototype.offset = function () {
-            var top = this.offsetTop;
-            var left = this.offsetLeft;
-            var posParent = this.offsetParent;
-            while (posParent !== null) {
-                top += posParent.offsetTop;
-                left += posParent.offsetLeft;
-                posParent = posParent.offsetParent;
-            }
-            return { top: top, left: left };
-        };
-
-        // 获取或设置目标属性
-        // @param {string} tarAttr 目标属性名
-        // @param {string} tarValue 目标属性值
-        // @return {string|null|object.node} 获取时返回字符串或null；设置时返回自身
-        nodePrototype.attr = function (tarAttr, tarValue) {
-            if (typeof tarAttr !== 'string') {
-                throw new Error('Expected STRING as target attribute name.');
-            }
-            if (tarValue === undefined) {
-                return this.getAttribute(tarAttr);
-            } else {
-                if (typeof tarValue !== 'string') {
-                    throw new Error('Expected STRING as target attribute value (if provided).');
-                } else {
-                    this.setAttribute(tarAttr, tarValue);
-                    return this;
-                }
-            }
-        };
-
-        // 获取或设置目标的innerHTML
-        nodePrototype.html = function (tarHTML) {
-            if (tarHTML === undefined) {
-                return this.innerHTML;
-            }
-            this.innerHTML = tarHTML;
-            return this;
-        };
-
-        // 获取或设置目标的文字内容
-        nodePrototype.text = function (tarText) {
-            if (tarHTML === undefined) {
-                return this.textContent;
-            }
-            this.textContent = tarText;
-            return this;
-        };
-
-        ///////////////  选择和遍历  ///////////////
-
-        // 根据组合选择器字符串查询，返回元素下所有符合的元素
-        // @param {string} selectorGroup "#header"，".item"，"ul"，"[type]"，"[type=radio]"形式以空格连接的查询字符串
-        // @return {array.<node>} 返回成员类型为node的数组或空数组
-        nodePrototype.protoQueryAll = function (selectorGroup) {
-            return groupSelectorAllResults(selectorGroup, this);
-        };
-
-        // 根据组合选择器字符串查询，返回元素下第一个符合的元素或null
-        // @param {string} selectorGroup "#header"，".item"，"ul"，"[type]"，"[type=radio]"形式以空格连接的查询字符串
-        // @return {node | null} 返回Node实例或null
-        nodePrototype.protoQuery = function (selectorGroup) {
-            return groupSelectorAllResults(selectorGroup, this)[0] || null;
-        };
-
-        // 目标元素本身符合字符串时返回真
-        nodePrototype.is = function (selector) {
-            return nodeMatchesSelector(this, selector);
-        };
-
-        // 在当前元素的第一个子元素前插入目标元素
-        // @return {node} 插入的新元素节点
-        nodePrototype.prependChild = function (tarNode) {
-            if (tarNode.nodeType !== 1) {
-                throw new Error('Expected ELEMENT NODE as target node.');
-            }
-            this.insertBefore(tarNode, this.firstElementChild);
-            return tarNode;
-        };
-
-        // @param {node} newNode 新元素节点
-        // @param {node} referenceNode 比照元素节点
-        // @return {node} 插入的新元素节点
-        nodePrototype.insertAfter = function (newNode, referenceNode) {
-            if (newNode.nodeType !== 1) {
-                throw new Error('Expected ELEMENT NODE as target node.');
-            }
-            if (referenceNode.nodeType !== 1) {
-                throw new Error('Expected ELEMENT NODE as reference node.');
-            }
-            if (this.lastElementChild === referenceNode) {
-                this.appendChild(newNode);
-            } else {
-                this.insertBefore(newNode, referenceNode.nextElementSibling);
-            }
-            return newNode;
-        };
-
-        // 返回目标元素的直接父元素
-        // @return {node} 元素节点或null
-        nodePrototype.parent = function () {
-            var tarElement = this.parentNode;
-            while (true) {
-                if (tarElement === null || tarElement.nodeType === 1) {
-                    return tarElement;
-                } else {
-                    tarElement = tarElement.parentNode;
-                }
-            }
-        };
-
-        // 返回目标元素的所有符合参数条件的父元素
-        // @return {array.<node>} 元素节点对象构成之数组
-        nodePrototype.matchedParents = function (selector) {
-            var result = [];
-            var currentNode = this.parent();
-            while (currentNode !== null) {
-                if (nodeMatchesSelector(currentNode, selector)) {
-                    result.push(currentNode);
-                }
-                currentNode = currentNode.parent();
-            }
-            return result;
-        };
-
-        // 返回目标元素的不符合参数条件的所有父元素
-        // @return {array.<node>} 元素节点对象构成之数组
-        nodePrototype.parentsUntil = function (selector) {
-            var result = [];
-            var currentNode = this.parent();
-            while (currentNode !== null) {
-                if (!nodeMatchesSelector(currentNode, selector)) {
-                    result.push(currentNode);
-                } else {
-                    break;
-                }
-                currentNode = currentNode.parent();
-            }
-            return result;
-        };
-
-        // 返回目标元素的符合参数条件的最近的父元素，遍历包含元素自身
-        // @return {node} 元素节点或null
-        nodePrototype.closest = function (selector) {
-            var currentNode = this;
-            while (currentNode !== null) {
-                if (nodeMatchesSelector(currentNode, selector)) {
-                    return currentNode;
-                } else {
-                    currentNode = currentNode.parent();
-                }
-            }
-            return null;
-        };
-
-        // 返回目标元素的符合参数条件的直接子元素
-        // @return {array.<node>} 元素节点对象构成之数组
-        nodePrototype.matchedChildren = function (selector) {
-            var result = [];
-            var _iteratorNormalCompletion3 = true;
-            var _didIteratorError3 = false;
-            var _iteratorError3 = undefined;
-
-            try {
-                for (var _iterator3 = this.childNodes[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var child = _step3.value;
-
-                    if (child.nodeType === 1 && nodeMatchesSelector(child, selector)) {
-                        result.push(child);
-                    }
-                }
-            } catch (err) {
-                _didIteratorError3 = true;
-                _iteratorError3 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                        _iterator3.return();
-                    }
-                } finally {
-                    if (_didIteratorError3) {
-                        throw _iteratorError3;
-                    }
-                }
-            }
-
-            return result;
-        };
-
-        // 返回目标元素之前的符合参数条件的最近的兄弟元素
-        // @return {node} 元素节点或null
-        nodePrototype.prev = function (selector) {
-            var prevSib = this.previousElementSibling;
-            while (prevSib !== null) {
-                if (nodeMatchesSelector(prevSib, selector)) {
-                    return prevSib;
-                }
-                prevSib = prevSib.previousElementSibling;
-            }
-            return null;
-        };
-
-        // 返回目标元素之后的符合参数条件的最近的兄弟元素
-        // @return {node} 元素节点或null
-        nodePrototype.next = function (selector) {
-            var nextSib = this.nextElementSibling;
-            while (nextSib !== null) {
-                if (nodeMatchesSelector(nextSib, selector)) {
-                    return nextSib;
-                }
-                nextSib = nextSib.nextElementSibling;
-            }
-            return null;
-        };
-
-        // 返回位于目标元素之前的所有符合参数条件的兄弟元素
-        // @return {array.<node>} 元素节点对象构成之数组
-        nodePrototype.prevAll = function (selector) {
-            var result = [];
-            var prevSib = this.previousElementSibling;
-            while (prevSib !== null) {
-                if (nodeMatchesSelector(prevSib, selector)) {
-                    result.unshift(prevSib);
-                }
-                prevSib = prevSib.previousElementSibling;
-            }
-            return result;
-        };
-
-        // 返回位于目标元素之后的所有符合参数条件的兄弟元素
-        // @return {array.<node>} 元素节点对象构成之数组
-        nodePrototype.nextAll = function (selector) {
-            var result = [];
-            var nextSib = this.nextElementSibling;
-            while (nextSib !== null) {
-                if (nodeMatchesSelector(nextSib, selector)) {
-                    result.push(nextSib);
-                }
-                nextSib = nextSib.nextElementSibling;
-            }
-            return result;
-        };
-
-        // 返回目标元素的所有符合参数条件的兄弟元素
-        // @return {array.<node>} 元素节点对象构成之数组
-        nodePrototype.siblings = function (selector) {
-            return this.prevAll(selector).concat(this.nextAll(selector));
-        };
-
-        // 返回目标元素之前、符合参数条件的元素（如有）之后的所有兄弟元素
-        // @return {array.<node>} 元素节点对象构成之数组
-        nodePrototype.prevUntil = function (selector) {
-            var result = [];
-            var prevSib = this.previousElementSibling;
-            while (prevSib !== null) {
-                if (nodeMatchesSelector(prevSib, selector)) {
-                    break;
-                }
-                result.unshift(prevSib);
-                prevSib = prevSib.previousElementSibling;
-            }
-            return result;
-        };
-
-        // 返回目标元素之后、符合参数条件的元素（如有）之前的所有兄弟元素
-        // @return {array.<node>} 元素节点对象构成之数组
-        nodePrototype.nextUntil = function (selector) {
-            var result = [];
-            var nextSib = this.nextElementSibling;
-            while (nextSib !== null) {
-                if (nodeMatchesSelector(nextSib, selector)) {
-                    break;
-                }
-                result.push(nextSib);
-                nextSib = nextSib.nextElementSibling;
-            }
-            return result;
-        };
-
-        ///////////////  事件  ///////////////
-
-        // 添加事件监听
-        //  1 arg
-        //  @param {object} arg1 键：一个或多个事件名；值：该事件的监听函数
-        //  2 arg
-        //  @param {string} arg1 一个或多个事件名
-        //  @param {function} arg2 监听函数
-        //  3 arg
-        //  @param {string} arg1 一个或多个事件名
-        //  @param {string} arg2 被代理者的选择字符串
-        //  @param {function} arg3 监听函数
-        nodePrototype.on = function (arg1, arg2, arg3) {
-            switch (arguments.length) {
-                case 1:
-                    if ((typeof arg1 === 'undefined' ? 'undefined' : _typeof(arg1)) !== 'object') {
-                        throw new Error('Expected PLAIN OBJECT if only 1 argument is provided.');
-                    }
-                    for (var i in arg1) {
-                        handleSingleListener(this, i, arg1[i], {
-                            method: 'add'
-                        });
-                    }
-                    return this;
-                case 2:
-                    if (typeof arg1 !== 'string') {
-                        throw new Error('Expected STRING as target event(s)\' name.');
-                    }
-                    if (typeof arg2 !== 'function') {
-                        throw new Error('Expected FUNCTION as target event listener.');
-                    }
-                    handleSingleListener(this, arg1, arg2, {
-                        method: 'add'
-                    });
-                    return this;
-                case 3:
-                    if (typeof arg1 !== 'string') {
-                        throw new Error('Expected STRING as target event(s)\' name.');
-                    }
-                    if (typeof arg2 !== 'string') {
-                        throw new Error('Expected STRING as selector for delegated elements.');
-                    }
-                    if (typeof arg3 !== 'function') {
-                        throw new Error('Expected FUNCTION as target event listener.');
-                    }
-                    handleSingleListener(this, arg1, arg3, {
-                        method: 'add',
-                        delegationSelector: arg2
-                    });
-                    return this;
-                default:
-                    throw new Error('Expected 1~3 arguments.');
-            }
-        };
-
-        // 移除事件监听。未提供代理移除的方法
-        //  1 arg
-        //  @param {object} arg1 键：一个或多个事件名；值：该事件的监听函数
-        //  2 arg
-        //  @param {string} arg1 一个或多个事件名
-        //  @param {function} arg2 监听函数
-        nodePrototype.off = function (arg1, arg2) {
-            switch (arguments.length) {
-                case 1:
-                    if ((typeof arg1 === 'undefined' ? 'undefined' : _typeof(arg1)) !== 'object') {
-                        throw new Error('Expected PLAIN OBJECT if only 1 argument is provided.');
-                    }
-                    for (var i in arg1) {
-                        handleSingleListener(this, i, arg1[i], {
-                            method: 'remove'
-                        });
-                    }
-                    return this;
-                case 2:
-                    if (typeof arg1 !== 'string') {
-                        throw new Error('Expected STRING as target event(s)\' name.');
-                    }
-                    if (typeof arg2 !== 'function') {
-                        throw new Error('Expected FUNCTION as target event listener.');
-                    }
-                    handleSingleListener(this, arg1, arg2, {
-                        method: 'remove'
-                    });
-                    return this;
-                default:
-                    throw new Error('Expected 1~2 arguments.');
-            }
-        };
-
-        ///////////////  捷径  ///////////////
-
-        // 读写元素自身的宽/高
-        nodePrototype.width = function (value) {
-            return value === undefined ? parseInt(this.css('width')) : this.css('width', value);
-        };
-        nodePrototype.height = function (value) {
-            return value === undefined ? parseInt(this.css('height')) : this.css('height', value);
-        };
-        // 获取元素的自身宽/高 + 内边距
-        nodePrototype.innerWidth = function () {
-            return this.width() + parseInt(this.css('paddingLeft')) + parseInt(this.css('paddingRight'));
-        };
-        nodePrototype.innerHeight = function () {
-            return this.height() + parseInt(this.css('paddingTop')) + parseInt(this.css('paddingBottom'));
-        };
-        // 获取元素的自身宽/高 + 内边距 + 边框，参数为真时包括外边距
-        nodePrototype.outerWidth = function (includeMargin) {
-            var r = this.innerWidth() + parseInt(this.css('borderLeftWidth')) + parseInt(this.css('borderRightWidth'));
-            if (includeMargin === true) {
-                r += parseInt(this.css('marginLeft')) + parseInt(this.css('marginRight'));
-            }
-            return r;
-        };
-        nodePrototype.outerHeight = function (includeMargin) {
-            var r = this.innerHeight() + parseInt(this.css('borderTopWidth')) + parseInt(this.css('borderBottomWidth'));
-            if (includeMargin === true) {
-                r += parseInt(this.css('marginTop')) + parseInt(this.css('marginBottom'));
-            }
-            return r;
-        };
-        // 显示/隐藏元素。参数为'transform'时从左上角开始动画，否则即时
-        nodePrototype.show = function (option) {
-            if (this.css('display') === 'none') {
-                switch (option) {
-                    case 'transform':
-                        var initWidth = parseInt(this.width());
-                        var initHeight = parseInt(this.height());
-                        this.css({
-                            display: 'block',
-                            width: 0,
-                            height: 0
-                        });
-                        this.transform({
-                            width: initWidth,
-                            height: initHeight
-                        });
-                        break;
-                    default:
-                        this.css('display', 'block');
-                }
-            }
-            return this;
-        };
-        nodePrototype.hide = function (option) {
-            if (this.css('display') !== 'none') {
-                switch (option) {
-                    case 'transform':
-                        this.transform({
-                            width: 0,
-                            height: 0
-                        });
-                        break;
-                    default:
-                        this.css('display', 'none');
-                }
-            }
-            return this;
-        };
-        // 渐变透明度以显示/隐藏元素
-        nodePrototype.fadeIn = function () {
-            if (this.css('display') === 'none') {
-                this.css({
-                    opacity: 0,
-                    display: 'block'
-                });
-                this.transform({
-                    opacity: 1
-                });
-            }
-            return this;
-        };
-        nodePrototype.fadeOut = function () {
-            if (this.css('display') !== 'none') {
-                this.transform({
-                    'opacity': 0
-                }, function () {
-                    this.hide();
-                });
-            }
-            return this;
-        };
-        // 渐变高度以显示/隐藏元素
-        nodePrototype.slideDown = function () {
-            if (this.css('display') === 'none') {
-                var initHeight = this.height();
-                this.css({
-                    height: 0,
-                    display: 'block'
-                });
-                this.transform({
-                    height: initHeight
-                });
-            }
-            return this;
-        };
-        nodePrototype.slideUp = function () {
-            if (this.css('display') !== 'none') {
-                var that = this;
-                this.transform({
-                    'height': 0
-                }, function () {
-                    that.hide();
-                });
-            }
-            return this;
-        };
-    })(wd.Node.prototype);
-
-    /////////////////////////////////////////////
-    ///////////////  处理string原型  //////////////
-    /////////////////////////////////////////////
-
-    (function (stringPrototype) {
-
-        // 去除字符串首尾的空格
-        if (stringPrototype.trim === undefined) {
-            stringPrototype.trim = function () {
-                return this.replace(/^\s+|\s+/g, '');
-            };
-        }
-
-        // 判断字符串是否符合常见邮箱格式
-        stringPrototype.isEmail = function () {
-            return (/^([a-zA-Z\d]+)\w@(\w+)(\.[a-zA-Z]{2,}) {1,2}$/.test(this)
-            );
-        };
-
-        // 判断字符串是否为有效日期，无法判断闰年
-        stringPrototype.isValidDate = function () {
-            if (/^([012]\d\d\d)-(([01]\d)-([0123]\d))$/.test(this)) {
-                var y = +RegExp.$1;
-                var m = +RegExp.$3;
-                var d = +RegExp.$4;
-                var md = RegExp.$2;
-                if (y !== 0 && m !== 0 && d !== 0) {
-                    if (y < 2100 && m < 13 && d < 32) {
-                        if (['02-30', '02-31', '04-31', '06-31', '09-31', '11-31'].indexOf(md) === -1) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        };
-    })(wd.String.prototype);
-})(window);
-
-// export let protoQuery = 'protoQuery';
+}
 
 /***/ }),
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 15 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1);
-__webpack_require__(2);
-module.exports = __webpack_require__(0);
+"use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = handleStringPrototype;
+function handleStringPrototype(stringPrototype) {
+
+    // 去除字符串首尾的空格
+    if (stringPrototype.trim === undefined) {
+        stringPrototype.trim = function () {
+            return this.replace(/^\s+|\s+/g, '');
+        };
+    }
+
+    // 判断字符串是否符合常见邮箱格式
+    stringPrototype.isEmail = function () {
+        return (/^([a-zA-Z\d]+)\w@(\w+)(\.[a-zA-Z]{2,}) {1,2}$/.test(this)
+        );
+    };
+
+    // 判断字符串是否为有效日期，无法判断闰年
+    stringPrototype.isValidDate = function () {
+        if (/^([012]\d\d\d)-(([01]\d)-([0123]\d))$/.test(this)) {
+            var y = +RegExp.$1;
+            var m = +RegExp.$3;
+            var d = +RegExp.$4;
+            var md = RegExp.$2;
+            if (y !== 0 && m !== 0 && d !== 0) {
+                if (y < 2100 && m < 13 && d < 32) {
+                    if (['02-30', '02-31', '04-31', '06-31', '09-31', '11-31'].indexOf(md) === -1) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    };
+};
 
 /***/ })
 /******/ ]);
