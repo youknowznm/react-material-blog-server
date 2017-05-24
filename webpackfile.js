@@ -2,16 +2,13 @@ const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
 
-// 输入目录
 const INPUT_PATH = path.join(__dirname, '/src/_javascripts/pages/')
-    // 输出目录
 const OUTPUT_PATH = path.join(__dirname, '/dist/javascripts/')
 
 // 公用模块
 let entries = {
     common: [
         path.join(__dirname, '/src/_javascripts/common/jquery.js'),
-        path.join(__dirname, '/src/_javascripts/common/protoQuery.js'),
         path.join(__dirname, '/src/_javascripts/common/gds-header.js'),
     ],
 }
