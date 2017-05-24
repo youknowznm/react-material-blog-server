@@ -6,7 +6,7 @@ https://github.com/youknowznm/google-design-site-header
 
 import $ from '../common/jquery.js';
 
-export default function initGDSHeader() {
+export default function initGDHeader() {
 
     let $window = $(window).scrollTop(0),
         $body = $('body'),
@@ -16,7 +16,7 @@ export default function initGDSHeader() {
         $navButtons = $header.find('.nav-item'),
         $navIndicator = $header.find('.nav-indicator'),
         $rippleLayer = $header.find('.ripple-layer'),
-        $currentTitle = $rippleLayer.children('.current-title');
+        $pageTitle = $rippleLayer.children('.page-title');
 
     // 判断是否移动端
     let isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent);
@@ -104,7 +104,7 @@ export default function initGDSHeader() {
                 changeColorTheme($targetBtn);
 
                 // 改变标题文字
-                $currentTitle.text($targetBtn.text());
+                $pageTitle.text($targetBtn.text());
 
                 // 移动端的波纹处理
                 if (isMobile) {
@@ -175,9 +175,9 @@ export default function initGDSHeader() {
             $rippleLayer.height(layerHeight);
             // 大于一定值时渐隐标题
             if (scTp > 30) {
-                $currentTitle.addClass('hidden');
+                $pageTitle.addClass('hidden');
             } else {
-                $currentTitle.removeClass('hidden');
+                $pageTitle.removeClass('hidden');
             }
         });
 

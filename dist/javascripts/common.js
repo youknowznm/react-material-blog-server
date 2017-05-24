@@ -163,7 +163,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = initGDSHeader;
+exports.default = initGDHeader;
 
 var _jquery = __webpack_require__(1);
 
@@ -171,7 +171,7 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function initGDSHeader() {
+function initGDHeader() {
 
     var $window = (0, _jquery2.default)(window).scrollTop(0),
         $body = (0, _jquery2.default)('body'),
@@ -181,7 +181,7 @@ function initGDSHeader() {
         $navButtons = $header.find('.nav-item'),
         $navIndicator = $header.find('.nav-indicator'),
         $rippleLayer = $header.find('.ripple-layer'),
-        $currentTitle = $rippleLayer.children('.current-title');
+        $pageTitle = $rippleLayer.children('.page-title');
 
     // 判断是否移动端
     var isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent);
@@ -261,7 +261,7 @@ function initGDSHeader() {
             changeColorTheme($targetBtn);
 
             // 改变标题文字
-            $currentTitle.text($targetBtn.text());
+            $pageTitle.text($targetBtn.text());
 
             // 移动端的波纹处理
             if (isMobile) {
@@ -317,9 +317,9 @@ function initGDSHeader() {
         $rippleLayer.height(layerHeight);
         // 大于一定值时渐隐标题
         if (scTp > 30) {
-            $currentTitle.addClass('hidden');
+            $pageTitle.addClass('hidden');
         } else {
-            $currentTitle.removeClass('hidden');
+            $pageTitle.removeClass('hidden');
         }
     });
 

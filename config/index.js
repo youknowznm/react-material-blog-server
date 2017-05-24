@@ -1,5 +1,6 @@
 const CONFIG = {
-    siteName: 'Laguna'
-}
+    siteName: 'Rhaego',
+    dbPath: "mongodb://localhost/rhaego",
+};
 
 module.exports = CONFIG;
