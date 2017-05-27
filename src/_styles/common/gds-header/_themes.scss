@@ -11,16 +11,16 @@
     &[data-theme=green] {
         background-color: nth($gds-header-colors, 3);
     }
+    &[data-theme=silver] nav,
+    &[data-theme=silver] {
+        background-color: nth($gds-header-colors, 4);
+    }
     &[data-theme=red] nav,
     &[data-theme=red] {
-        background-color: nth($gds-header-colors, 4);
+        background-color: nth($gds-header-colors, 5);
     }
     &[data-theme=gray] nav,
     &[data-theme=gray] {
-        background-color: nth($gds-header-colors, 5);
-    }
-    &[data-theme=silver] nav,
-    &[data-theme=silver] {
         background-color: nth($gds-header-colors, 6);
     }
     &[data-theme=red],

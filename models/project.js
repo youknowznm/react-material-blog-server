@@ -2,7 +2,7 @@ const db = require('./db');
 const mongoose = db.mongoose;
 const base = db.base;
 
-let toySchema = base.extend({
+let projectSchema = base.extend({
     title: String,
     summary: String,
     content: String,
@@ -10,4 +10,6 @@ let toySchema = base.extend({
     tags: [String],
 });
 
-exports.ToyModel = mongoose.model('toy', toySchema, 'toy');
+let ProjectModel = mongoose.model('project', projectSchema, 'project');
+
+export ProjectModel;

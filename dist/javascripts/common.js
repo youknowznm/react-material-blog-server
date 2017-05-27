@@ -149,197 +149,12 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ({
 
 /***/ 0:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = initGDHeader;
-
-var _jquery = __webpack_require__(1);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function initGDHeader() {
-
-    var $window = (0, _jquery2.default)(window).scrollTop(0),
-        $body = (0, _jquery2.default)('body'),
-        $header = (0, _jquery2.default)('.gds-header'),
-        $ripple = $header.children('.ripple'),
-        $navButtonsContainer = $header.find('.nav-items'),
-        $navButtons = $header.find('.nav-item'),
-        $navIndicator = $header.find('.nav-indicator'),
-        $rippleLayer = $header.find('.ripple-layer'),
-        $pageTitle = $rippleLayer.children('.page-title');
-
-    // 判断是否移动端
-    var isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent);
-    if (isMobile) {
-        (0, _jquery2.default)('body').attr('id', 'mobile');
-    }
-
-    // 波纹扩散标识
-    var rippling = false;
-
-    // 修正.nav-items的宽度
-    var w = 0;
-    $navButtons.each(function () {
-        w += (0, _jquery2.default)(this).outerWidth();
-    });
-    $navButtonsContainer.width(w + 10);
-
-    var $navButtonClicked = null;
-
-    $header.on('mousedown', '.nav-item', function (evt) {
-        var $targetBtn = (0, _jquery2.default)(this);
-        if (!$targetBtn.hasClass('active')) {
-            $ripple.css({
-                // 直接从鼠标系事件中取得相对于页面的坐标
-                left: evt.pageX - 50,
-                // top 值要减掉窗口的垂直滚动偏移
-                top: evt.pageY - 50 - document.body.scrollTop
-            }).addClass('noneToCircle');
-            $navButtonClicked = $targetBtn.addClass('clicking');
-        }
-    }).on('click', '.nav-item', function (evt) {
-        var $targetBtn = (0, _jquery2.default)(this);
-        if (!$targetBtn.hasClass('active') && !rippling) {
-
-            rippling = true;
-
-            /*
-            按钮下划线动画
-            */
-            var $currentBtn = $navButtons.filter('.active').removeClass('active clicking');
-            var targetIsAtRight = $navButtons.index($targetBtn) > $navButtons.index($currentBtn) ? true : false;
-
-            var startX = void 0,
-                endX = void 0;
-
-            // 根据目标按钮和当前活动按钮的相对位置，求得提示条的目标起始点坐标
-            if (targetIsAtRight) {
-                startX = $currentBtn.position().left;
-                endX = $targetBtn.position().left + $targetBtn.innerWidth();
-            } else {
-                startX = $targetBtn.position().left;
-                endX = $currentBtn.position().left + $currentBtn.innerWidth();
-            }
-
-            $navIndicator.css({
-                left: startX,
-                right: endX,
-                width: endX - startX
-            });
-
-            $navButtons.removeClass('clicking');
-            $targetBtn.addClass('active');
-
-            // 动画结束时如果目标按钮在右侧，则left为终点坐标，反之为起点坐标
-            $navIndicator.animate({
-                width: 0,
-                left: [targetIsAtRight ? endX : startX]
-            }, function () {
-                $navIndicator.css({
-                    left: 0,
-                    width: 0,
-                    right: 'auto'
-                });
-            });
-
-            // 主题配色
-            changeColorTheme($targetBtn);
-
-            // 改变标题文字
-            $pageTitle.text($targetBtn.text());
-
-            // 移动端的波纹处理
-            if (isMobile) {
-                $ripple.css({
-                    // 从触摸系事件的changedTouches属性中取得相对于页面的坐标
-                    left: evt.pageX - 50,
-                    top: evt.pageY - 50 - document.body.scrollTop
-                }).animate({
-                    transform: 'scale(18)'
-                }, 700, function () {
-                    rippling = false;
-                    $ripple.css({
-                        transform: 'scale(0)'
-                    });
-                });
-            } else {
-                rippling = false;
-            }
-        }
-    });
-
-    $body.on('mouseup', function (evt) {
-        // 根据事件目标的话，只能判断 mousedown，无法判断 mouseup，因为后者的目标永远是波纹元素。
-        // 所以以波纹元素是否已有动画类为标准，决定如何处理
-        if ($ripple.hasClass('noneToCircle')) {
-            /*
-            波纹元素的扩大
-            */
-            $body.animate({
-                scrollTop: 0
-            }, 200, function () {
-                $ripple.css({
-                    'animation-play-state': 'paused'
-                }).removeClass('noneToCircle').addClass('toFullscreen').css({
-                    'animation-play-state': 'running'
-                });
-                setTimeout(function () {
-                    // 移除波纹元素的动画类
-                    $ripple.removeClass('noneToCircle toFullscreen');
-                }, 650);
-            });
-        }
-        //  如果 $navButtonClicked 不为 null，则在它上面触发 click 事件
-        if ($navButtonClicked !== null) {
-            $navButtonClicked.click();
-        }
-    });
-
-    $window.on('scroll', function (evt) {
-        var scTp = document.body.scrollTop;
-        var layerHeight = 192 - scTp;
-        layerHeight < 0 && (layerHeight = 0);
-        $rippleLayer.height(layerHeight);
-        // 大于一定值时渐隐标题
-        if (scTp > 30) {
-            $pageTitle.addClass('hidden');
-        } else {
-            $pageTitle.removeClass('hidden');
-        }
-    });
-
-    function changeColorTheme($ele) {
-        var colorIndex = $navButtons.index($ele) % 5;
-        var pallete = ['blue', 'yellow', 'green', 'red', 'gray', 'silver'];
-        // 搜索按钮为特殊配色，其它按以上值循环配色
-        $ele.hasClass('search') ? $header.attr('data-theme', pallete[5]) : $header.attr('data-theme', pallete[colorIndex]);
-    }
-} /*
-  模仿 Google Design 好看的头部
-  https://github.com/youknowznm/google-design-site-header
-  @youknowznm
-  */
-
-;
-
-/***/ }),
-
-/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10172,11 +9987,203 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
 
 /***/ }),
 
-/***/ 13:
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = initGDHeader;
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function initGDHeader() {
+
+    var $window = (0, _jquery2.default)(window).scrollTop(0),
+        $body = (0, _jquery2.default)('body'),
+        $header = (0, _jquery2.default)('.gds-header'),
+        $ripple = $header.children('.ripple'),
+        $navButtonsContainer = $header.find('.nav-items'),
+        $navButtons = $header.find('.nav-item'),
+        $navIndicator = $header.find('.nav-indicator'),
+        $rippleLayer = $header.find('.banner'),
+        $s = (0, _jquery2.default)('.gds-header-shadow'),
+        $pageTitle = $rippleLayer.children('.page-title');
+
+    // 判断是否移动端
+    var isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent);
+    if (isMobile) {
+        (0, _jquery2.default)('body').attr('id', 'mobile');
+    }
+
+    // 波纹扩散标识
+    var rippling = false;
+
+    // 修正.nav-items的宽度
+    var w = 0;
+    $navButtons.each(function () {
+        w += (0, _jquery2.default)(this).outerWidth();
+    });
+    $navButtonsContainer.width(w + 10);
+
+    var $navButtonClicked = null;
+
+    $header.on('mousedown', '.nav-item', function (evt) {
+        var $targetBtn = (0, _jquery2.default)(this);
+        if (!$targetBtn.hasClass('active')) {
+            $ripple.css({
+                // 直接从鼠标系事件中取得相对于页面的坐标
+                left: evt.pageX - 50,
+                // top 值要减掉窗口的垂直滚动偏移
+                top: evt.pageY - 50 - document.body.scrollTop
+            }).addClass('noneToCircle');
+            $navButtonClicked = $targetBtn.addClass('clicking');
+        }
+    }).on('click', '.nav-item', function (evt) {
+        var $targetBtn = (0, _jquery2.default)(this);
+        if (!$targetBtn.hasClass('active') && !rippling) {
+
+            rippling = true;
+
+            /*
+            按钮下划线动画
+            */
+            var $currentBtn = $navButtons.filter('.active').removeClass('active clicking');
+            var targetIsAtRight = $navButtons.index($targetBtn) > $navButtons.index($currentBtn) ? true : false;
+
+            var startX = void 0,
+                endX = void 0;
+
+            // 根据目标按钮和当前活动按钮的相对位置，求得提示条的目标起始点坐标
+            if (targetIsAtRight) {
+                startX = $currentBtn.position().left;
+                endX = $targetBtn.position().left + $targetBtn.innerWidth();
+            } else {
+                startX = $targetBtn.position().left;
+                endX = $currentBtn.position().left + $currentBtn.innerWidth();
+            }
+
+            $navIndicator.css({
+                left: startX,
+                right: endX,
+                width: endX - startX
+            });
+
+            $navButtons.removeClass('clicking');
+            $targetBtn.addClass('active');
+
+            // 动画结束时如果目标按钮在右侧，则left为终点坐标，反之为起点坐标
+            $navIndicator.animate({
+                width: 0,
+                left: [targetIsAtRight ? endX : startX]
+            }, function () {
+                $navIndicator.css({
+                    left: 0,
+                    width: 0,
+                    right: 'auto'
+                });
+            });
+
+            // 主题配色
+            changeColorTheme($targetBtn);
+
+            // 改变标题文字
+            $pageTitle.text($targetBtn.text());
+
+            // 移动端的波纹处理
+            if (isMobile) {
+                $ripple.css({
+                    // 从触摸系事件的changedTouches属性中取得相对于页面的坐标
+                    left: evt.pageX - 50,
+                    top: evt.pageY - 50 - document.body.scrollTop
+                }).animate({
+                    transform: 'scale(18)'
+                }, 700, function () {
+                    rippling = false;
+                    $ripple.css({
+                        transform: 'scale(0)'
+                    });
+                });
+            } else {
+                rippling = false;
+            }
+        }
+    });
+
+    $body.on('mouseup', function (evt) {
+        // 根据事件目标的话，只能判断 mousedown，无法判断 mouseup，因为后者的目标永远是波纹元素。
+        // 所以以波纹元素是否已有动画类为标准，决定如何处理
+        if ($ripple.hasClass('noneToCircle')) {
+            /*
+            波纹元素的扩大
+            */
+            $body.animate({
+                scrollTop: 0
+            }, 200, function () {
+                $ripple.css({
+                    'animation-play-state': 'paused'
+                }).removeClass('noneToCircle').addClass('toFullscreen').css({
+                    'animation-play-state': 'running'
+                });
+                setTimeout(function () {
+                    // 移除波纹元素的动画类
+                    $ripple.removeClass('noneToCircle toFullscreen');
+                }, 650);
+            });
+        }
+        //  如果 $navButtonClicked 不为 null，则在它上面触发 click 事件
+        if ($navButtonClicked !== null) {
+            $navButtonClicked.click();
+        }
+    });
+
+    $window.on('scroll', function (evt) {
+        var scTp = document.body.scrollTop;
+        var layerHeight = 192 - scTp;
+        layerHeight < 0 && (layerHeight = 0);
+        $rippleLayer.height(layerHeight);
+        // 大于一定值时渐隐标题
+        if (scTp > 30) {
+            $pageTitle.addClass('hidden');
+        } else {
+            $pageTitle.removeClass('hidden');
+        }
+        // 大于一定值时渐隐标题
+        if (scTp > 192) {
+            $s.addClass('fixed');
+        } else {
+            $s.removeClass('fixed');
+        }
+    });
+
+    function changeColorTheme($ele) {
+        var colorIndex = $navButtons.index($ele) % 5;
+        var pallete = ['blue', 'yellow', 'green', 'silver', 'red', 'gray'];
+        // 搜索按钮为特殊配色，其它按以上值循环配色
+        $ele.hasClass('search') ? $header.attr('data-theme', pallete[5]) : $header.attr('data-theme', pallete[colorIndex]);
+    }
+} /**
+  * 模仿 Google Design 好看的头部
+  * https://github.com/youknowznm/google-design-site-header
+  * @author youknowznm
+  */
+
+;
+
+/***/ }),
+
+/***/ 14:
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -10205,11 +10212,11 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ 14:
+/***/ 15:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1);
-module.exports = __webpack_require__(0);
+__webpack_require__(0);
+module.exports = __webpack_require__(1);
 
 
 /***/ })

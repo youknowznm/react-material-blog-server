@@ -2,18 +2,16 @@ const db = require('./db');
 const mongoose = db.mongoose;
 const base = db.base;
 
-let blogSchema = base.extend({
+let postSchema = base.extend({
     title: String,
     summary: String,
     content: String,
     viewCount: Number,
     liked: Number,
     tags: [String],
-    comments: [
-        {email: String},
-        {author: String},
-        {body: String},
-    ],
+    comments: [Object],
 });
 
-exports.BlogModel = mongoose.model('blog', blogSchema, 'blog');
+let PostModel = mongoose.model('post', postSchema, 'post');
+
+module.exports = postModel;

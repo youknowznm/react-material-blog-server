@@ -1,7 +1,7 @@
-/*
-模仿 Google Design 好看的头部
-https://github.com/youknowznm/google-design-site-header
-@youknowznm
+/**
+* 模仿 Google Design 好看的头部
+* https://github.com/youknowznm/google-design-site-header
+* @author youknowznm
 */
 
 import $ from '../common/jquery.js';
@@ -15,7 +15,8 @@ export default function initGDHeader() {
         $navButtonsContainer = $header.find('.nav-items'),
         $navButtons = $header.find('.nav-item'),
         $navIndicator = $header.find('.nav-indicator'),
-        $rippleLayer = $header.find('.ripple-layer'),
+        $rippleLayer = $header.find('.banner'),
+        $s = $('.gds-header-shadow'),
         $pageTitle = $rippleLayer.children('.page-title');
 
     // 判断是否移动端
@@ -179,6 +180,12 @@ export default function initGDHeader() {
             } else {
                 $pageTitle.removeClass('hidden');
             }
+            // 大于一定值时渐隐标题
+            if (scTp > 192) {
+                $s.addClass('fixed');
+            } else {
+                $s.removeClass('fixed');
+            }
         });
 
     function changeColorTheme($ele) {
@@ -187,9 +194,9 @@ export default function initGDHeader() {
             'blue',
             'yellow',
             'green',
+            'silver',
             'red',
             'gray',
-            'silver',
         ];
         // 搜索按钮为特殊配色，其它按以上值循环配色
         $ele.hasClass('search') ? $header.attr('data-theme', pallete[5]) :

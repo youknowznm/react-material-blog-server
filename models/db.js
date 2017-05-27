@@ -13,7 +13,6 @@ let base = new mongoose.Schema({
         unique: true,
     },
     created: Date,
-    modified: Date,
 });
 
 module.exports = {
