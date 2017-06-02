@@ -3,7 +3,7 @@ import $ from './jquery';
 
 export default function initMdInput() {
 
-    $('._input')
+    $('.md-input ._input')
         .on('focus', function() {
             let $this = $(this);
             if ($this.val() === '') {
@@ -23,7 +23,7 @@ export default function initMdInput() {
 
     function validate(inputEle) {
         let $this = $(inputEle);
-        let $wrap = $(inputEle).parent();
+        let $wrap = $this.parent();
         let valRegExpStr = $wrap.data('validatorRegExp');
         if (valRegExpStr !== undefined) {
             let valRegExp = new RegExp(valRegExpStr);
@@ -33,6 +33,26 @@ export default function initMdInput() {
                 $wrap.addClass('invalid');
             }
         }
+    }
+
+    $('.md-input.md-chip ._input')
+        .on('keyup', function(evt) {
+            let $this = $(this);
+            let $wrap = $this.parent();
+            let chipCount = 0;
+            if (evt.keyCode === 13) {
+                let val = $this.val();
+                if (/\S/.test(val) && chipCount < 4) {
+                    $wrap.append(
+                        $(`<span class="chip">${val}<i class="remove"></i></span>`)
+                    );
+                    chipCount++;
+                }
+            }
+        })
+
+    function getChip(chipContent) {
+
     }
 
 }
