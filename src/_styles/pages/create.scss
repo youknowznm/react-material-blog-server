@@ -8,7 +8,7 @@
 .row {
     font-family: "Roboto";
     position: relative;
-    width: 100%;
+    display: block;
     background-color: rgb(250, 250, 250);
     min-height: 110px;
     padding: 16px;
@@ -18,32 +18,10 @@
     }
 }
 
-.input-wrap {
-    position: relative;
-    margin: 18px 0;
-    padding: 2px;
-    > label {
-        position: absolute;
-        left: 3px;
-        top: 3px;
-    }
-    @keyframes g {
-        from {
-
-        }
-        to {
-            
-        }
-    }
+.md-input.title {
+    width: 30%;
 }
-._input {
-    min-width: 172px;
-    height: 26px;
-    line-height: 26px;
-    background: transparent;
-    color: rgba(#000, .87);
-    padding: 2px 2px 1px 2px;
-    border: 0;
-    border-bottom: 1px solid rgba(#000, .12);
-    font-size: 16px;
+
+.md-input.summary {
+    width: 65%;
 }
