@@ -101,3 +101,11 @@
     // 最小容器宽度
     // @media
 }
+
+.md-input.md-chip {
+    .chip {
+        position: absolute;
+        top: 8px;
+        left: 3px;
+    }
+}
