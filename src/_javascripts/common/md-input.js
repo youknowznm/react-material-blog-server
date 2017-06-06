@@ -35,24 +35,4 @@ export default function initMdInput() {
         }
     }
 
-    $('.md-input.md-chip ._input')
-        .on('keyup', function(evt) {
-            let $this = $(this);
-            let $wrap = $this.parent();
-            let chipCount = 0;
-            if (evt.keyCode === 13) {
-                let val = $this.val();
-                if (/\S/.test(val) && chipCount < 4) {
-                    $wrap.append(
-                        $(`<span class="chip">${val}<i class="remove"></i></span>`)
-                    );
-                    chipCount++;
-                }
-            }
-        })
-
-    function getChip(chipContent) {
-
-    }
-
 }
