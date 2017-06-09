@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-.md-input {
+.md-textarea {
     position: relative;
-    display: inline-block;
-    min-width: 172px;
+    display: block;
+    width: 100%;
     margin: 18px 0;
     padding: 2px;
     .placeholder {
@@ -11,7 +11,7 @@
         color: rgba(#000, .54);
         top: 8px;
         left: 3px;
-        transition: all .3s ease-out;
+        transition: all .2s ease-out;
     }
     ._input {
         width: 100%;
@@ -40,9 +40,8 @@
         top: 30px;
         height: 2px;
         width: 0;
-        transition: all .3s ease-out;
+        transition: all .2s ease-out;
         background-color: rgb(16, 108, 200);
-        transform: translateX(2px);
     }
     &:after {
         right: 50%;
@@ -78,7 +77,6 @@
             transform: translateY(0);
             opacity: 1;
         }
-        .char-counter,
         .placeholder {
             color: rgb(221, 44, 0) !important; //red
         }
@@ -108,17 +106,6 @@
                 color: rgb(255, 235, 59); //yellow
             }
         }
-    }
-    // 字数统计
-    .char-counter {
-        position: absolute;
-        font-size: 12px;
-        line-height: 14px;
-        color: rgba(#000, .87);
-        top: 36px;
-        right: 0;
-        font-weight: normal;
-        transition: all .3s;
     }
     // 最小容器宽度
     // @media
