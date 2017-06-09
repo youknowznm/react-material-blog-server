@@ -14,7 +14,7 @@
         color: rgba(#000, .54);
         top: 8px;
         left: 3px;
-        transition: all .2s ease-out;
+        transition: all .3s ease-out;
         cursor: text;
     }
     // 非空时
@@ -59,7 +59,7 @@
             color: rgb(66, 66, 66);
             padding: 0 24px 0 12px;
             margin-right: 8px;
-            transition: all .2s ease-out;
+            transition: all .3s ease-out;
             font-weight: 500;
             .btn-remove {
                 position: absolute;
@@ -89,7 +89,7 @@
             top: 41px;
             height: 2px;
             width: 0;
-            transition: all .2s ease-out;
+            transition: all .3s ease-out;
             background-color: rgb(16, 108, 200);
         }
         &:after {
@@ -119,8 +119,9 @@
         font-size: 12px;
         line-height: 14px;
         color: rgba(#000, .87);
-        top: 46px;
-        right: 6px;
+        top: 100%;
+        margin-top: 5px;
+        right: 5px;
         font-weight: normal;
         transition: all .3s;
     }

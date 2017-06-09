@@ -90,32 +90,13 @@
             background-color: rgb(221, 44, 0) !important; //red
         }
     }
-    // 深色主题
-    .dark & {
-        .placeholder {
-            color: rgba(#fff, .7);
-        }
-        ._input {
-            color: #fff;
-            border-bottom-color: rgba(#fff, .12);
-        }
-        &:after,
-        &:before {
-            background-color: rgb(255, 235, 59); //yellow
-        }
-        &.focused {
-            .placeholder {
-                color: rgb(255, 235, 59); //yellow
-            }
-        }
-    }
     // 字数统计
     .char-counter {
         position: absolute;
         font-size: 12px;
         line-height: 14px;
         color: rgba(#000, .87);
-        top: 36px;
+        top: 100%;
         right: 0;
         font-weight: normal;
         transition: all .3s;

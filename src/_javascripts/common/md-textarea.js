@@ -1,23 +1,23 @@
 // md输入框的初始化
 import $ from './jquery';
 
-export default function initMdInput() {
+export default function initMdTextarea() {
 
-    function initInput($mdInput) {
-        let $input = $mdInput.children('input');
-        let val = $input.attr('value');
-        $mdInput.toggleClass('non-empty', val !== undefined);
+    function initTextarea($mdTextarea) {
+        let $textarea = $mdTextarea.children('textarea');
+        let val = $textarea.text();
+        $mdTextarea.toggleClass('non-empty', val !== undefined);
         let currentCharCount = val ? val.length : 0;
-        let maxCharCount = $input.attr('maxlength');
-        $mdInput.find('.current').text(currentCharCount);
-        $mdInput.find('.maximum').text(maxCharCount);
+        let maxCharCount = $textarea.attr('maxlength');
+        $mdTextarea.find('.current').text(currentCharCount);
+        $mdTextarea.find('.maximum').text(maxCharCount);
     }
 
-    $('.md-input').each(function() {
-        initInput($(this));
+    $('.md-textarea').each(function() {
+        initTextarea($(this));
     });
 
-    $('.md-input ._input')
+    $('.md-textarea ._input')
         .on('focus', function() {
             let $this = $(this);
             let $wrap = $this.parent();
@@ -38,12 +38,6 @@ export default function initMdInput() {
     function validate(inputEle) {
         let $this = $(inputEle);
         let $wrap = $this.parent();
-        // 正则验证
-        let valRegExpStr = $wrap.data('validator');
-        if (valRegExpStr !== undefined) {
-            let valRegExp = new RegExp(valRegExpStr);
-            $wrap.toggleClass('invalid', !valRegExp.test($this.val()));
-        }
         // 字数验证
         let currentCount = $this.val().length;
         let currentCharCounter = $wrap.find('.current');
