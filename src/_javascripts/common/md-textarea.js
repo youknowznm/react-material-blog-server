@@ -6,7 +6,7 @@ export default function initMdTextarea() {
     function initTextarea($mdTextarea) {
         let $textarea = $mdTextarea.children('textarea');
         let val = $textarea.text();
-        $mdTextarea.toggleClass('non-empty', val !== undefined);
+        $mdTextarea.toggleClass('non-empty', val !== '');
         let currentCharCount = val ? val.length : 0;
         let maxCharCount = $textarea.attr('maxlength');
         $mdTextarea.find('.current').text(currentCharCount);

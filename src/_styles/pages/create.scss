@@ -19,13 +19,42 @@
 }
 
 .md-input.title {
+    float: left;
     width: 40%;
+    &.non-empty,
+    &.focused {
+        .placeholder {
+            left: 4px;
+        }
+    }
 }
 
 .md-input.summary {
-    width: 58%;
+    float: left;
+    width: 60%;
+    &.non-empty,
+    &.focused {
+        .placeholder {
+            left: 1px;
+        }
+    }
 }
 
 .md-chip.tags {
-    display: block;
+    clear: both;
+    &.non-empty,
+    &.focused {
+        .placeholder {
+            left: 4px;
+        }
+    }
+}
+
+.md-textarea.content {
+    &.non-empty,
+    &.focused {
+        .placeholder {
+            left: 3px;
+        }
+    }
 }

@@ -40,7 +40,7 @@ export default function initMdChip() {
         .on('keyup', function(evt) {
             let $this = $(this);
             let $mdChip = $this.parents('.md-chip');
-            let $error = $mdChip.children('.error');
+            let $error = $mdChip.find('.error');
             let chips = $mdChip.find('.chip');
             let chipCount = chips.length;
             if (evt.keyCode === 13) {

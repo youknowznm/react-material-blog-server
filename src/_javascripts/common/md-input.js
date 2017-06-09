@@ -4,7 +4,7 @@ import $ from './jquery';
 export default function initMdInput() {
 
     function initInput($mdInput) {
-        let $input = $mdInput.children('input');
+        let $input = $mdInput.find('input');
         let val = $input.attr('value');
         $mdInput.toggleClass('non-empty', val !== undefined);
         let currentCharCount = val ? val.length : 0;
@@ -20,13 +20,13 @@ export default function initMdInput() {
     $('.md-input ._input')
         .on('focus', function() {
             let $this = $(this);
-            let $wrap = $this.parent();
+            let $wrap = $this.parents('.md-input');
             $wrap.addClass('focused');
             $wrap.toggleClass('non-empty', $this.val() !== '');
         })
         .on('blur', function() {
             let $this = $(this);
-            let $wrap = $this.parent();
+            let $wrap = $this.parents('.md-input');
             $wrap.removeClass('focused');
             $wrap.toggleClass('non-empty', $this.val() !== '');
             validate(this);
@@ -37,7 +37,7 @@ export default function initMdInput() {
 
     function validate(inputEle) {
         let $this = $(inputEle);
-        let $wrap = $this.parent();
+        let $wrap = $this.parents('.md-input');
         // 正则验证
         let valRegExpStr = $wrap.data('validator');
         if (valRegExpStr !== undefined) {
