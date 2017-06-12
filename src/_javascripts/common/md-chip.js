@@ -1,4 +1,3 @@
-// md输入框的初始化
 import $ from './jquery';
 
 export default function initMdChip() {

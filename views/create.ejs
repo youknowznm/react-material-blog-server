@@ -10,7 +10,7 @@
             </a>
             <ul class="nav-items">
                 <li class="nav-item active">blogs</li>
-                <li class="nav-item">tools</li>
+                <li class="nav-item">products</li>
                 <li class="nav-item">messages</li>
                 <li class="nav-item">about</li>
                 <!-- <li class="nav-item search"></li> -->
@@ -27,49 +27,56 @@
 
 <div class="main-wrap">
 
-    <div class="create">
-        <div class="row">
-            <div class="md-input title">
-                <label class="placeholder" for="input_1">Title</label>
-                <input id="input_1" class="_input" maxlength="20" />
-                <p class="error"></p>
-                <h5 class="char-counter">
-                    <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
-                </h5>
-            </div>
-            <div class="md-input summary">
-                <label class="placeholder" for="input_2">Summary</label>
-                <input id="input_2" class="_input" maxlength="40" />
-                <p class="error"></p>
-                <h5 class="char-counter">
-                    <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
-                </h5>
-            </div>
-        </div>
-        <div class="row">
-            <div class="md-chip tags">
-                <label class="placeholder" for="input_3">Tags</label>
-                <div class="chip-wrap">
-                    <!-- <span class="chip">Apple(fruit)<i class="btn-remove"></i></span> -->
-                    <input id="input_3" class="_input" maxlength="15" placeholder="Enter a tag..."/>
-                </div>
-                <p class="error">sb</p>
-                <h5 class="char-counter">
-                    <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
-                </h5>
-            </div>
-        </div>
-        <div class="row">
-            <div class="md-textarea content">
-                <label class="placeholder" for="input_4">Content</label>
-                <textarea id="input_4" class="_input" maxlength="500"></textarea>
-                <p class="error"></p>
-                <h5 class="char-counter">
-                    <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
-                </h5>
-            </div>
+    <div class="row">
+        <div class="md-button">
+            <span class="text">submit</span>
+            <div class="ripple-container"><span class="ripple"></span></div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="md-input title">
+            <label class="placeholder" for="input_1">Title</label>
+            <input id="input_1" class="_input" maxlength="20" />
+            <p class="error"></p>
+            <h5 class="char-counter">
+                <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
+            </h5>
+        </div>
+        <div class="md-input summary">
+            <label class="placeholder" for="input_2">Summary</label>
+            <input id="input_2" class="_input" maxlength="40" />
+            <p class="error"></p>
+            <h5 class="char-counter">
+                <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="md-chip tags">
+            <label class="placeholder" for="input_3">Tags</label>
+            <div class="chip-wrap">
+                <!-- <span class="chip">Apple(fruit)<i class="btn-remove"></i></span> -->
+                <input id="input_3" class="_input" maxlength="15" placeholder="Enter a tag..."/>
+            </div>
+            <p class="error">sb</p>
+            <h5 class="char-counter">
+                <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="md-textarea content">
+            <label class="placeholder" for="input_4">Content (Markdown for blog. URL for product.)</label>
+            <textarea id="input_4" class="_input" maxlength="500"></textarea>
+            <p class="error"></p>
+            <h5 class="char-counter">
+                <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
+            </h5>
+        </div>
+    </div>
+
+
 
 </div>
 

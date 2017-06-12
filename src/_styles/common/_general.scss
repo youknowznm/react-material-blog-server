@@ -3,6 +3,7 @@
 @import "./md-input";
 @import "./md-chip";
 @import "./md-textarea";
+@import "./md-button";
 /*
 font
 */
@@ -11,8 +12,12 @@ font
     src: url("/fonts/RobotoMono-Regular.ttf");
 }
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Roboto Regular';
     src: url("/fonts/Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url("/fonts/Roboto-Medium.ttf");
 }
 /*
 colors

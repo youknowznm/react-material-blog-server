@@ -3,6 +3,7 @@ import initGDHeader from '../common/gds-header';
 import initMdInput from '../common/md-input';
 import initMdChip from '../common/md-chip';
 import initMdTextarea from '../common/md-textarea';
+import initMdButton from '../common/md-button';
 import '../../_styles/pages/create.scss';
 
 $(function() {
@@ -11,6 +12,7 @@ $(function() {
     initMdInput();
     initMdChip();
     initMdTextarea();
-
+    initMdButton();
+    
 });
 

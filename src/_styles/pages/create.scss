@@ -2,11 +2,11 @@
 @import '../common/gds-header/main';
 
 .main-wrap {
-    background-color: rgb(129, 229, 201);
+    // background-color: rgb(129, 229, 201);
 }
 
 .row {
-    font-family: "Roboto";
+    font-family: "Roboto Regular";
     position: relative;
     display: block;
     background-color: rgb(250, 250, 250);
@@ -54,7 +54,7 @@
     &.non-empty,
     &.focused {
         .placeholder {
-            left: 3px;
+            left: -24px;
         }
     }
 }
