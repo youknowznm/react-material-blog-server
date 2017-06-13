@@ -2,42 +2,42 @@ import $ from './jquery';
 
 export default function initMdButton() {
 
-    // function initMdButton($mdButton) {
-    //
-    // }
-    //
-    // $('.md-button').each(function() {
-    //     initbutton($(this));
-    // });
+    // 给予每个按钮下的波纹一定的初始宽度
+    function initMdButton($mdButton) {
+        let sideLength = $mdButton.innerWidth();
+        $mdButton.find('.ripple').css({
+            width: sideLength,
+            height: sideLength,
+        });
+    }
+
+    $('.md-button').each(function() {
+        initMdButton($(this));
+    });
 
     $('body')
         .on('mousedown', '.md-button', function(evt) {
             let $this = $(this);
 
             let $ripple = $this.find('.ripple');
-
             let x = evt.offsetX;
             let y = evt.offsetY;
             let width = $this.innerWidth();
-            let height = $this.innerHeight();
-            let sideLength = width * 2;
-
             $ripple.css({
                 left: x - width,
                 top: y - width,
-                width: sideLength,
-                height: sideLength,
-            })
-
+                width: width * 1.5,
+                height: width * 1.5,
+            });
             $this.addClass('mousedown');
-
         })
         .on('mouseup', '.md-button', function() {
-            let $this = $(this);
-            let $ripple = $this.find('.ripple');
-            $ripple.css('animation-play-state', 'paused');
-            $this.removeClass('mousedown')
-            $ripple.css('animation-pl÷ay-state', 'running');
+            // let $this = $(this);
+            // let $ripple = $this.find('.ripple');
+            // $this.removeClass('mousedown').addClass('mouseup');
+            // setTimeout(function() {
+            //     $this.removeClass('mouseup');
+            // },500)
         })
 
 
