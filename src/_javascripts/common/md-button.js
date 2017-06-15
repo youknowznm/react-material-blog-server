@@ -5,8 +5,8 @@ export default function initMdButton() {
     $('body')
         .on('mousedown', '.md-button', function(evt) {
             let $this = $(this);
-            if ($this.attr('data-animating') === 'false') {
-                $this.attr('data-clicked', 'true');
+            if ($this.data('animating') === false) {
+                $this.data('clicked', true);
                 let $ripple = $this.find('.ripple');
                 let _x = evt.offsetX;
                 let _y = evt.offsetY;
@@ -27,16 +27,24 @@ export default function initMdButton() {
         })
         .on('mouseup mouseout', '.md-button', function() {
             let $this = $(this);
-            if ($this.attr('data-animating') === 'false' && $this.attr('data-clicked') === 'true') {
-                $this.attr('data-animating', 'true');
-                $this.attr('data-clicked', 'false');
-                $this.removeClass('mousedown').addClass('mouseup');
+            if ($this.data('animating') === false && $this.data('clicked') === true) {
+
+                // 设置timeout，避免mousedown事件持续时间过短导致的闪烁
                 setTimeout(function() {
-                    $this.removeClass('mouseup');
-                    $this.attr('data-animating', 'false');
+
+                    $this.data({
+                        animating: true,
+                        clicked: false
+                    });
+                    $this.removeClass('mousedown').addClass('mouseup');
+                    setTimeout(function() {
+                        $this.removeClass('mouseup');
+                        $this.data('animating', false);
+                    }, 250);
+
                 }, 250);
+
             }
         })
-
 
 }

@@ -12674,8 +12674,8 @@ function initMdButton() {
 
     (0, _jquery2.default)('body').on('mousedown', '.md-button', function (evt) {
         var $this = (0, _jquery2.default)(this);
-        if ($this.attr('data-animating') === 'false') {
-            $this.attr('data-clicked', 'true');
+        if ($this.data('animating') === false) {
+            $this.data('clicked', true);
             var $ripple = $this.find('.ripple');
             var _x = evt.offsetX;
             var _y = evt.offsetY;
@@ -12695,13 +12695,20 @@ function initMdButton() {
         }
     }).on('mouseup mouseout', '.md-button', function () {
         var $this = (0, _jquery2.default)(this);
-        if ($this.attr('data-animating') === 'false' && $this.attr('data-clicked') === 'true') {
-            $this.attr('data-animating', 'true');
-            $this.attr('data-clicked', 'false');
-            $this.removeClass('mousedown').addClass('mouseup');
+        if ($this.data('animating') === false && $this.data('clicked') === true) {
+
+            // 设置timeout，避免mousedown事件持续时间过短导致的闪烁
             setTimeout(function () {
-                $this.removeClass('mouseup');
-                $this.attr('data-animating', 'false');
+
+                $this.data({
+                    animating: true,
+                    clicked: false
+                });
+                $this.removeClass('mousedown').addClass('mouseup');
+                setTimeout(function () {
+                    $this.removeClass('mouseup');
+                    $this.data('animating', false);
+                }, 250);
             }, 250);
         }
     });
