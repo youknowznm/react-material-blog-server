@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.md-button {
+.md-button-flat {
     display: inline-block;
     position: relative;
     margin: 16px 8px;
@@ -22,6 +22,8 @@
     letter-spacing: .01em;
     user-select: none;
     transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    .content {}
 
     .ripple-container {
         position: absolute;
@@ -71,11 +73,11 @@
     &.mouseup {
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
         .ripple-container {
-            animation: _container .25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: _container .55s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .ripple {
             display: none;
-            animation: _ripple .25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: _ripple .55s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         @keyframes _container {
             0% {
@@ -97,4 +99,75 @@
         }
     }
 
+
+
+}
+
+.md-button-round {
+    display: inline-block;
+    position: relative;
+    margin: 16px 8px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 50%;
+    border: 0 solid rgb(33, 33, 33);
+    color: rgb(33, 33, 33);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+    font-family: "Roboto Medium";
+    font-size: 14px;
+    background-color: #fff;
+    letter-spacing: .01em;
+    user-select: none;
+    transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    .content {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        // top: 50%;
+
+    }
+
+    &.mousedown {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .4);
+    }
+
+    &.small {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+}
+
+// 不同状态
+.md-button-flat._primary,
+.md-button-round._primary {
+    background-color: rgb(16, 108, 200);
+    color: #fff;
+    &:hover {
+        background-color: rgb(7, 96, 176);
+    }
+}
+
+.md-button-flat._disabled,
+.md-button-round._disabled {
+    background-color: rgba(0, 0, 0, .12);
+    color: rgba(0, 0, 0, .38);
+    box-shadow: none;
+    cursor: default;
+}
+
+.md-button-flat._warn,
+.md-button-round._warn {
+    background-color: rgb(255, 87, 34);
+    color: #fff;
+    &:hover {
+        background-color: rgb(244, 81, 30);
+    }
 }

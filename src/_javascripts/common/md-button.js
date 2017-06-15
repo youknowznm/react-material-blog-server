@@ -3,7 +3,7 @@ import $ from './jquery';
 export default function initMdButton() {
 
     $('body')
-        .on('mousedown', '.md-button', function(evt) {
+        .on('mousedown', '.md-button-flat:not(._disabled)', function(evt) {
             let $this = $(this);
             if ($this.data('animating') === false) {
                 $this.data('clicked', true);
@@ -25,7 +25,7 @@ export default function initMdButton() {
                 $this.addClass('mousedown');
             }
         })
-        .on('mouseup mouseout', '.md-button', function() {
+        .on('mouseup mouseout', '.md-button-flat:not(._disabled)', function() {
             let $this = $(this);
             if ($this.data('animating') === false && $this.data('clicked') === true) {
 
@@ -40,11 +40,19 @@ export default function initMdButton() {
                     setTimeout(function() {
                         $this.removeClass('mouseup');
                         $this.data('animating', false);
-                    }, 250);
+                    }, 550);
 
                 }, 250);
 
             }
+        })
+
+    $('body')
+        .on('mousedown', '.md-button-round', function(evt) {
+            $(this).addClass('mousedown');
+        })
+        .on('mouseup mouseout', '.md-button-round', function() {
+            $(this).removeClass('mousedown');
         })
 
 }

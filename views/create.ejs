@@ -28,6 +28,62 @@
 <div class="main-wrap">
 
     <div class="row">
+        <button class="md-button-flat" data-animating="false">
+            <span class="content">button</span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+        <button class="md-button-flat _primary" data-animating="false">
+            <span class="content">primary</span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+        <button class="md-button-flat _disabled" data-animating="false">
+            <span class="content">disabled</span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+        <button class="md-button-flat _warn" data-animating="false">
+            <span class="content">warn</span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+    </div>
+    <div class="row">
+        <button class="md-button-round" data-animating="false">
+            <span class="content"></span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+        <button class="md-button-round _primary" data-animating="false">
+            <span class="content"></span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+        <button class="md-button-round _disabled" data-animating="false">
+            <span class="content"></span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+        <button class="md-button-round _warn" data-animating="false">
+            <span class="content"></span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+    </div>
+    <div class="row">
+        <button class="md-button-round small" data-animating="false">
+            <span class="content"></span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+        <button class="md-button-round _primary small" data-animating="false">
+            <span class="content"></span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+        <button class="md-button-round _disabled small" data-animating="false">
+            <span class="content"></span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+        <button class="md-button-round _warn small" data-animating="false">
+            <span class="content"></span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+    </div>
+
+    <div class="row">
+        <!-- 标题 -->
         <div class="md-input title">
             <label class="placeholder" for="input_1">Title</label>
             <input id="input_1" class="_input" maxlength="20" />
@@ -36,6 +92,7 @@
                 <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
             </h5>
         </div>
+        <!-- 摘要 -->
         <div class="md-input summary">
             <label class="placeholder" for="input_2">Summary</label>
             <input id="input_2" class="_input" maxlength="40" />
@@ -46,6 +103,18 @@
         </div>
     </div>
     <div class="row">
+        <!-- 内容 -->
+        <div class="md-textarea content">
+            <label class="placeholder" for="input_4">Content (Markdown for blog. URL for product.)</label>
+            <textarea id="input_4" class="_input" maxlength="500"></textarea>
+            <p class="error"></p>
+            <h5 class="char-counter">
+                <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <!-- 标签 -->
         <div class="md-chip tags">
             <label class="placeholder" for="input_3">Tags</label>
             <div class="chip-wrap">
@@ -57,22 +126,11 @@
                 <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
             </h5>
         </div>
-    </div>
-    <div class="row">
-        <div class="md-textarea content">
-            <label class="placeholder" for="input_4">Content (Markdown for blog. URL for product.)</label>
-            <textarea id="input_4" class="_input" maxlength="500"></textarea>
-            <p class="error"></p>
-            <h5 class="char-counter">
-                <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
-            </h5>
-        </div>
-    </div>
-    <div class="row">
-        <div class="md-button" data-animating="false">
-            <span class="text">submit</span>
+        <!-- 提交按钮 -->
+        <button class="md-button-flat submit" data-animating="false">
+            <span class="content">submit</span>
             <div class="ripple-container"><span class="ripple"></span></div>
-        </div>
+        </button>
     </div>
 
 

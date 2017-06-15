@@ -2,7 +2,8 @@
 @import '../common/gds-header/main';
 
 .main-wrap {
-    // background-color: rgb(129, 229, 201);
+    background-color: rgb(250, 250, 250);
+    padding-top: 24px;
 }
 
 .row {
@@ -40,8 +41,22 @@
     }
 }
 
+.md-textarea.content {
+    ._input {
+        min-height: 300px;
+    }
+    &.non-empty,
+    &.focused {
+        .placeholder {
+            left: -24px;
+        }
+    }
+}
+
 .md-chip.tags {
-    clear: both;
+    display: block;
+    margin-right: 304px;
+    clear: right;
     &.non-empty,
     &.focused {
         .placeholder {
@@ -50,11 +65,10 @@
     }
 }
 
-.md-textarea.content {
-    &.non-empty,
-    &.focused {
-        .placeholder {
-            left: -24px;
-        }
-    }
+.md-button.submit {
+    position: absolute;
+    right: 110px;
+    top: 15px;
+
 }
+
