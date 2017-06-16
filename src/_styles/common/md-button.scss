@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.md-button-flat {
+.md-button {
     display: inline-block;
     position: relative;
     margin: 16px 8px;
@@ -52,7 +52,7 @@
     &.mousedown {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .4);
         .ripple-container {
-            background-color: rgba(33, 33, 33, .1);
+            background-color: rgba(33, 33, 33, .05);
         }
         .ripple {
             display: block;
@@ -81,7 +81,7 @@
         }
         @keyframes _container {
             0% {
-                background-color: rgba(33, 33, 33, .1);
+                background-color: rgba(33, 33, 33, .05);
             }
             100% {
                 background-color: transparent;
@@ -99,55 +99,10 @@
         }
     }
 
-
-
-}
-
-.md-button-round {
-    display: inline-block;
-    position: relative;
-    margin: 16px 8px;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    cursor: pointer;
-    font-weight: 500;
-    text-transform: uppercase;
-    text-align: center;
-    border-radius: 50%;
-    border: 0 solid rgb(33, 33, 33);
-    color: rgb(33, 33, 33);
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
-    font-family: "Roboto Medium";
-    font-size: 14px;
-    background-color: #fff;
-    letter-spacing: .01em;
-    user-select: none;
-    transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-    .content {
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        vertical-align: middle;
-        // top: 50%;
-
-    }
-
-    &.mousedown {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .4);
-    }
-
-    &.small {
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-    }
 }
 
 // 不同状态
-.md-button-flat._primary,
-.md-button-round._primary {
+.md-button._primary {
     background-color: rgb(16, 108, 200);
     color: #fff;
     &:hover {
@@ -155,19 +110,89 @@
     }
 }
 
-.md-button-flat._disabled,
-.md-button-round._disabled {
+.md-button._disabled {
     background-color: rgba(0, 0, 0, .12);
     color: rgba(0, 0, 0, .38);
     box-shadow: none;
     cursor: default;
 }
 
-.md-button-flat._warn,
-.md-button-round._warn {
-    background-color: rgb(255, 87, 34);
+.md-button._warn {
+    background-color: rgb(255, 82, 82);
     color: #fff;
     &:hover {
-        background-color: rgb(244, 81, 30);
+        background-color: rgb(213, 0, 0);
     }
 }
+
+// 不同形状
+.md-button._round {
+    width: 56px;
+    min-width: 0;
+    height: 56px;
+    line-height: 56px;
+    padding: 0;
+    border-radius: 50%;
+
+    .content {
+        position: relative;
+        display: inline-block;
+        width: 24px;
+        line-height: 24px;
+        height: 24px;
+        vertical-align: middle;
+        overflow: hidden;
+        .icon {
+            position: absolute;
+            display: block;
+            width: 24px;
+            height: 24px;
+            top: -24px;
+            left: 0;
+            filter: drop-shadow(rgb(118, 255, 3) 0 24px);
+            /*
+            http://www.zhangxinxu.com/wordpress/2016/06/png-icon-change-color-by-css/
+            Chrome下如果元素的主体部分【完全】不可见，则其drop-shadow不可见；
+            只要元素有【任何】部分可见，则其drop-shadow完全可见。
+            */
+            border-bottom: 24px solid transparent;
+        }
+    }
+
+    .ripple-container {
+        border-radius: 50%;
+    }
+
+    &._small {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+}
+
+.md-button._icon {
+    width: 24px;
+    min-width: 0;
+    height: 24px;
+    line-height: 24px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+
+    .content {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+    }
+
+    .ripple-container {
+        border-radius: 50%;
+        background-color: transparent;
+    }
+
+
+}
+
