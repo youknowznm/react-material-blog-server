@@ -13,6 +13,6 @@ $(function() {
     initMdChip()
     initMdTextarea()
     initMdButton()
-    
+
 })
 

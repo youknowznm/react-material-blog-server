@@ -33,7 +33,7 @@ z-index
     -moz-user-select: none;
     -webkit-user-select: none;
     z-index: 100;
-    transition: all .3s;
+    transition: all .3s cubic-bezier(0.25, 0.8, 0.25, 1);
     li, a {
         color: map-get($gen-colors, white);
     }
@@ -48,7 +48,7 @@ z-index
         width: 100%;
         height: 64px;
         line-height: 64px;
-        transition: background-color .3s;
+        transition: background-color .3s cubic-bezier(0.25, 0.8, 0.25, 1);
         z-index: 102;
         .site-title {
             display: inline-block;
@@ -80,14 +80,14 @@ z-index
         max-height: 64px;
         max-width: 500px;
         overflow-y: hidden;
-        animation: fadeIn 1s;
+        animation: fadeIn 1s cubic-bezier(0.25, 0.8, 0.25, 1);
         .nav-item {
             float: left;
             z-index: 102;
             padding: 27px 12px 21px;
             line-height: 1;
             border-bottom: 2px solid transparent;
-            transition: all .2s;
+            transition: all .2s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             text-transform: uppercase;
             &.active {
@@ -113,8 +113,8 @@ z-index
             font-weight: 300;
             line-height: 56px;
             text-transform: capitalize;
-            animation: popIn .8s;
-            transition: opacity .4s;
+            animation: popIn .8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: opacity .4s cubic-bezier(0.25, 0.8, 0.25, 1);
             z-index: 101;
             &.hidden {
                 opacity: 0;

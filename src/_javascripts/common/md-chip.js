@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import $ from './jquery'
 
 export default function initMdChip() {
@@ -46,7 +47,6 @@ export default function initMdChip() {
                 let val = $this.val().trim()
                 $this.val('')
                 if (/\S/.test(val)) {
-                    // 最大标签数量限制
                     if (chipCount === 3) {
                         showError($error, 'Maximum tags reached.')
                         return
