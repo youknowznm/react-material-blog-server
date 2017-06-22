@@ -2,7 +2,7 @@ const db = require('./db')
 const mongoose = db.mongoose
 const base = db.base
 
-let projectSchema = base.extend({
+let productSchema = base.extend({
     title: String,
     summary: String,
     content: String,
@@ -10,6 +10,6 @@ let projectSchema = base.extend({
     tags: [String],
 })
 
-let ProjectModel = mongoose.model('project', projectSchema, 'project')
+let ProductModel = mongoose.model('product', productSchema, 'product')
 
-// export ProjectModel;
+// export productModel;

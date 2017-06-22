@@ -1,17 +1,20 @@
-const db = require('./db')
-const mongoose = db.mongoose
-const base = db.base
+const mongoose = require('./db')
+const MessageModel = require('./message')
 
-let postSchema = base.extend({
+let postSchema = mongoose.Schema({
+    _id: {
+       type: String,
+       unique: true,
+    },
+    created: Date,
+
     title: String,
     summary: String,
     content: String,
     viewCount: Number,
     liked: Number,
     tags: [String],
-    comments: [Object],
+    comments: [MessageModel],
 })
 
-let PostModel = mongoose.model('post', postSchema, 'post')
-
-module.exports = postModel
+module.exports = exports = mongoose.model('post', postSchema)
