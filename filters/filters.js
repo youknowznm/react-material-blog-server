@@ -1,4 +1,4 @@
-const ejs = require('ejs');
+const ejs = require('ejs')
 
 ejs.filters.formatTitle = function(str) {
     // let arr = str.split(/\s+/);
