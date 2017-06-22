@@ -4,7 +4,7 @@ let gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     autoprefixer = require('gulp-autoprefixer'),
     imagemin = require('gulp-imagemin'),
-    livereload = require('gulp-livereload');
+    livereload = require('gulp-livereload')
 
 gulp.task('css', function() {
     return sass('src/_styles/pages/*.scss')
@@ -12,22 +12,22 @@ gulp.task('css', function() {
         .pipe(plumber())
         .pipe(cleanCSS())
         .pipe(gulp.dest('dist/styles/'))
-        .pipe(livereload());
-});
+        .pipe(livereload())
+})
 
 
 gulp.task('img', function() {
     return gulp.src('src/_images/**/*.*')
         .pipe(imagemin())
-        .pipe(gulp.dest('dist/images/'));
-});
+        .pipe(gulp.dest('dist/images/'))
+})
 
 gulp.task('default', ['css', 'img'], function() {
-    livereload.listen();
+    livereload.listen()
     gulp
         .watch('src/_styles/**/*.*', ['css'])
-        .on('change', livereload.changed);
+        .on('change', livereload.changed)
     gulp
         .watch('src/_images/**/*.*', ['img'])
-        .on('change', livereload.changed);
+        .on('change', livereload.changed)
 })

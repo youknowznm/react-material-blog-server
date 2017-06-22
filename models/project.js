@@ -1,6 +1,6 @@
-const db = require('./db');
-const mongoose = db.mongoose;
-const base = db.base;
+const db = require('./db')
+const mongoose = db.mongoose
+const base = db.base
 
 let projectSchema = base.extend({
     title: String,
@@ -8,8 +8,8 @@ let projectSchema = base.extend({
     content: String,
     githubLink: String,
     tags: [String],
-});
+})
 
-let ProjectModel = mongoose.model('project', projectSchema, 'project');
+let ProjectModel = mongoose.model('project', projectSchema, 'project')
 
-export ProjectModel;
+// export ProjectModel;

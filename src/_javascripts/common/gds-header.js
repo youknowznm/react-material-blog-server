@@ -4,7 +4,7 @@
 * @author youknowznm
 */
 
-import $ from '../common/jquery.js';
+import $ from '../common/jquery.js'
 
 export default function initGDHeader() {
 
@@ -17,29 +17,29 @@ export default function initGDHeader() {
         $navIndicator = $header.find('.nav-indicator'),
         $rippleLayer = $header.find('.banner'),
         $s = $('.gds-header-shadow'),
-        $pageTitle = $rippleLayer.children('.page-title');
+        $pageTitle = $rippleLayer.children('.page-title')
 
     // 判断是否移动端
-    let isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent);
+    let isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent)
     if (isMobile) {
-        $('body').attr('id', 'mobile');
+        $('body').attr('id', 'mobile')
     }
 
     // 波纹扩散标识
-    let rippling = false;
+    let rippling = false
 
     // 修正.nav-items的宽度
-    let w = 0;
+    let w = 0
     $navButtons.each(function() {
-        w += $(this).outerWidth();
-    });
-    $navButtonsContainer.width(w + 10);
+        w += $(this).outerWidth()
+    })
+    $navButtonsContainer.width(w + 10)
 
-    let $navButtonClicked = null;
+    let $navButtonClicked = null
 
     $header
         .on('mousedown', '.nav-item', function(evt) {
-            let $targetBtn = $(this);
+            let $targetBtn = $(this)
             if (!$targetBtn.hasClass('active')) {
                 $ripple
                     .css({
@@ -48,44 +48,44 @@ export default function initGDHeader() {
                         // top 值要减掉窗口的垂直滚动偏移
                         top: evt.pageY - 50 - document.body.scrollTop,
                     })
-                    .addClass('noneToCircle');
-                $navButtonClicked = $targetBtn.addClass('clicking');
+                    .addClass('noneToCircle')
+                $navButtonClicked = $targetBtn.addClass('clicking')
             }
         })
         .on('click', '.nav-item', function(evt) {
-            let $targetBtn = $(this);
+            let $targetBtn = $(this)
             if (!$targetBtn.hasClass('active') && !rippling) {
 
-                rippling = true;
+                rippling = true
 
                 /*
                 按钮下划线动画
                 */
                 let $currentBtn = $navButtons.filter('.active').removeClass(
-                    'active clicking');
+                    'active clicking')
                 let targetIsAtRight =
                     $navButtons.index($targetBtn) > $navButtons.index(
-                        $currentBtn) ? true : false;
+                        $currentBtn) ? true : false
 
-                let startX, endX;
+                let startX, endX
 
                 // 根据目标按钮和当前活动按钮的相对位置，求得提示条的目标起始点坐标
                 if (targetIsAtRight) {
-                    startX = $currentBtn.position().left;
-                    endX = $targetBtn.position().left + $targetBtn.innerWidth();
+                    startX = $currentBtn.position().left
+                    endX = $targetBtn.position().left + $targetBtn.innerWidth()
                 } else {
-                    startX = $targetBtn.position().left;
-                    endX = $currentBtn.position().left + $currentBtn.innerWidth();
+                    startX = $targetBtn.position().left
+                    endX = $currentBtn.position().left + $currentBtn.innerWidth()
                 }
 
                 $navIndicator.css({
                     left: startX,
                     right: endX,
                     width: endX - startX,
-                });
+                })
 
-                $navButtons.removeClass('clicking');
-                $targetBtn.addClass('active');
+                $navButtons.removeClass('clicking')
+                $targetBtn.addClass('active')
 
                 // 动画结束时如果目标按钮在右侧，则left为终点坐标，反之为起点坐标
                 $navIndicator.animate({
@@ -97,15 +97,15 @@ export default function initGDHeader() {
                             left: 0,
                             width: 0,
                             right: 'auto'
-                        });
+                        })
                     }
-                );
+                )
 
                 // 主题配色
-                changeColorTheme($targetBtn);
+                changeColorTheme($targetBtn)
 
                 // 改变标题文字
-                $pageTitle.text($targetBtn.text());
+                $pageTitle.text($targetBtn.text())
 
                 // 移动端的波纹处理
                 if (isMobile) {
@@ -120,17 +120,17 @@ export default function initGDHeader() {
                             },
                             700,
                             function() {
-                                rippling = false;
+                                rippling = false
                                 $ripple.css({
                                     transform: 'scale(0)',
-                                });
+                                })
                             }
-                        );
+                        )
                 } else {
-                    rippling = false;
+                    rippling = false
                 }
             }
-        });
+        })
 
     $body
         .on('mouseup', function(evt) {
@@ -151,45 +151,45 @@ export default function initGDHeader() {
                         .addClass('toFullscreen')
                         .css({
                             'animation-play-state': 'running',
-                        });
+                        })
                     setTimeout(function() {
                         // 移除波纹元素的动画类
                         $ripple.removeClass(
                             'noneToCircle toFullscreen'
-                        );
-                    }, 650);
-                });
+                        )
+                    }, 650)
+                })
 
             }
             //  如果 $navButtonClicked 不为 null，则在它上面触发 click 事件
             if ($navButtonClicked !== null) {
-                $navButtonClicked.click();
+                $navButtonClicked.click()
             }
-        });
+        })
 
 
     $window
         .on('scroll', function(evt) {
-            var scTp = document.body.scrollTop;
-            let layerHeight = 192 - scTp;
-            (layerHeight < 0) && (layerHeight = 0);
-            $rippleLayer.height(layerHeight);
+            var scTp = document.body.scrollTop
+            let layerHeight = 192 - scTp
+            ;(layerHeight < 0) && (layerHeight = 0)
+            $rippleLayer.height(layerHeight)
             // 大于一定值时渐隐标题
             if (scTp > 30) {
-                $pageTitle.addClass('hidden');
+                $pageTitle.addClass('hidden')
             } else {
-                $pageTitle.removeClass('hidden');
+                $pageTitle.removeClass('hidden')
             }
             // 大于一定值时渐隐标题
             if (scTp > 192) {
-                $s.addClass('fixed');
+                $s.addClass('fixed')
             } else {
-                $s.removeClass('fixed');
+                $s.removeClass('fixed')
             }
-        });
+        })
 
     function changeColorTheme($ele) {
-        let colorIndex = $navButtons.index($ele) % 5;
+        let colorIndex = $navButtons.index($ele) % 5
         let pallete = [
             'blue',
             'yellow',
@@ -197,10 +197,10 @@ export default function initGDHeader() {
             'silver',
             'red',
             'gray',
-        ];
+        ]
         // 搜索按钮为特殊配色，其它按以上值循环配色
         $ele.hasClass('search') ? $header.attr('data-theme', pallete[5]) :
-            $header.attr('data-theme', pallete[colorIndex]);
+            $header.attr('data-theme', pallete[colorIndex])
     }
 
-};
+}
