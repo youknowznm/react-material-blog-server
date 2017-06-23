@@ -1,83 +1,83 @@
 import $ from './jquery'
 
-export default function initMdChip() {
+export default function initMdTag() {
 
-    function initChip($mdChip) {
-        let chipsData = $mdChip.data('md-chips')
-        if ($mdChip.find('.chip').length > 0) {
-            $mdChip.addClass('non-empty')
+    function initTag($mdtag) {
+        let tagsData = $mdtag.data('md-tags')
+        if ($mdtag.find('.tag').length > 0) {
+            $mdtag.addClass('non-empty')
         }
-        let $input = $mdChip.find('._input')
+        let $input = $mdtag.find('._input')
         let currentCharCount = 0
         let maxCharCount = $input.attr('maxlength')
-        $mdChip.find('.current').text(currentCharCount)
-        $mdChip.find('.maximum').text(maxCharCount)
+        $mdtag.find('.current').text(currentCharCount)
+        $mdtag.find('.maximum').text(maxCharCount)
     }
 
-    $('.md-chip').each(function() {
-        initChip($(this))
+    $('.md-tag').each(function() {
+        initTag($(this))
     })
 
-    $('.md-chip ._input')
+    $('.md-tag ._input')
         .on('focus', function() {
             let $this = $(this)
-            let $mdChip = $this.parents('.md-chip')
+            let $mdtag = $this.parents('.md-tag')
             if ($this.val() === '') {
-                $mdChip.addClass('focused')
+                $mdtag.addClass('focused')
             }
         })
         .on('blur', function() {
             let $this = $(this)
-            let $mdChip = $this.parents('.md-chip')
+            let $mdtag = $this.parents('.md-tag')
             if ($this.val() === '') {
-                $mdChip.removeClass('focused')
+                $mdtag.removeClass('focused')
             }
-            if ($mdChip.find('.chip').length > 0) {
-                $mdChip.addClass('non-empty')
+            if ($mdtag.find('.tag').length > 0) {
+                $mdtag.addClass('non-empty')
             }
         })
         .on('keyup', function(evt) {
             let $this = $(this)
-            let $mdChip = $this.parents('.md-chip')
-            let $error = $mdChip.find('.error')
-            let chips = $mdChip.find('.chip')
-            let chipCount = chips.length
+            let $mdtag = $this.parents('.md-tag')
+            let $error = $mdtag.find('.error')
+            let tags = $mdtag.find('.tag')
+            let tagCount = tags.length
             if (evt.keyCode === 13) {
                 let val = $this.val().trim()
                 $this.val('')
                 if (/\S/.test(val)) {
-                    if (chipCount === 3) {
+                    if (tagCount === 3) {
                         showError($error, 'Maximum tags reached.')
                         return
                     }
                     // 同名标签限制
-                    for (let c of chips) {
+                    for (let c of tags) {
                         if (c.innerText === val) {
                             showError($error, 'Tag already exists.')
                             return
                         }
                     }
                     $this.before(
-                        $(`<span class="chip">${val}<i class="btn-remove"></i></span>`)
+                        $(`<span class="tag">${val}<i class="btn-remove"></i></span>`)
                     )
                 }
             }
             // 字数验证
             let currentCount = $this.val().length
-            let currentCharCounter = $mdChip.find('.current')
-            let maxCharCount = +$mdChip.find('.maximum').text()
+            let currentCharCounter = $mdtag.find('.current')
+            let maxCharCount = +$mdtag.find('.maximum').text()
             currentCharCounter.text(currentCount)
         })
 
-    $('.md-chip').on('click', function() {
+    $('.md-tag').on('click', function() {
         let $tar = $(this).find('._input')
         if (!$tar.is(':focus')) {
             $tar.focus()
         }
     })
 
-    $('.md-chip').on('click', '.btn-remove', function(evt) {
-        let $tar = $(evt.target).parent('.chip')
+    $('.md-tag').on('click', '.btn-remove', function(evt) {
+        let $tar = $(evt.target).parent('.tag')
         $tar.fadeOut(function() {
             $tar.remove()
         })

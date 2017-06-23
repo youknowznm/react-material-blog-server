@@ -51,7 +51,7 @@
         <!-- 内容 -->
         <div class="md-textarea content">
             <label class="placeholder" for="input_4">Content (Markdown for blog. URL for product.)</label>
-            <textarea id="input_4" class="_input" maxlength="500"></textarea>
+            <textarea id="input_4" class="_input" maxlength="5000"></textarea>
             <p class="error"></p>
             <h5 class="char-counter">
                 <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
@@ -60,22 +60,29 @@
     </div>
     <div class="row">
         <!-- 标签 -->
-        <div class="md-chip tags">
+        <div class="md-tag tags">
             <label class="placeholder" for="input_3">Tags</label>
-            <div class="chip-wrap">
-                <!-- <span class="chip">Apple(fruit)<i class="btn-remove"></i></span> -->
-                <input id="input_3" class="_input" maxlength="15" placeholder="Enter a tag..."/>
+            <div class="tag-wrap">
+                <!-- <span class="tag">Apple(fruit)<i class="btn-remove"></i></span> -->
+                <input id="input_3" class="_input" maxlength="8" placeholder="Enter a tag..."/>
             </div>
             <p class="error">sb</p>
             <h5 class="char-counter">
                 <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
             </h5>
         </div>
-        <!-- 提交按钮 -->
-        <button class="md-button submit" data-animating="false">
-            <span class="content">submit</span>
-            <div class="ripple-container"><span class="ripple"></span></div>
-        </button>
+        <!-- 按钮 -->
+        <div class="buttons">
+            <button class="md-button _primary submit">
+                <span class="content">submit</span>
+                <div class="ripple-container"><span class="ripple"></span></div>
+            </button>
+            <button class="md-button cancel">
+                <span class="content">cancel</span>
+                <div class="ripple-container"><span class="ripple"></span></div>
+            </button>
+        </div>
+
     </div>
 
 

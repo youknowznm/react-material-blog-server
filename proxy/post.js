@@ -1,5 +1,5 @@
 let PostModel = require('../postModels/post')
-let fs = requier('fs')
+let fs = require('fs')
 
 function savePost(params, cb) {
     let _id = params._id,
@@ -10,16 +10,16 @@ function savePost(params, cb) {
             tags: params.tags,
             created: params.created,
         })
-    PostModel.findById(_id, function(err, doc) {
-        if (err) {
-            return cb(err)
+    PostModel.findById(_id, function(e, doc) {
+        if (e) {
+            return cb(e)
         }
         if (!doc) {
             post._id = _id
             post.viewCount = post.liked = 0
-            post.save(function(err) {
-                if (err) {
-                    return cb(err)
+            post.save(function(e) {
+                if (e) {
+                    return cb(e)
                 }
                 return cb()
             })
@@ -27,9 +27,9 @@ function savePost(params, cb) {
             PostModel.update(
                 { _id },
                 post,
-                function(err) {
-                    if (err) {
-                        return cb(err)
+                function(e) {
+                    if (e) {
+                        return cb(e)
                     }
                     return cb()
                 }
@@ -38,19 +38,19 @@ function savePost(params, cb) {
     })
 }
 
-function readPostDir() {
-    let postNames = fs.readdirSync('../posts')
-    postNames.forEach(function(item) {
-        let title = item
-            postObj
-        fs.readFile(
-            __dirname + '../' + item,
-            'utf8',
-            function(err, data) {
-                if (err) {
-                    console.log(err)
-                }
-            }
-        )
-    })
-}
+// function readPostDir() {
+//     let postNames = fs.readdirSync('../posts')
+//     postNames.forEach(function(item) {
+//         let title = item
+//             postObj
+//         fs.readFile(
+//             __dirname + '../' + item,
+//             'utf8',
+//             function(e, data) {
+//                 if (e) {
+//                     console.log(e)
+//                 }
+//             }
+//         )
+//     })
+// }

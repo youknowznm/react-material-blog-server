@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.md-chip {
+.md-tag {
     position: relative;
     padding: 0 6px;
     box-sizing: border-box;
@@ -14,7 +14,7 @@
         color: rgba(#000, .54);
         top: 8px;
         left: 6px;
-        transition: all .3s ease-out;
+        transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
         cursor: text;
     }
     // 非空时
@@ -38,12 +38,12 @@
             color: rgb(16, 108, 200); //blue
             cursor: default;
         }
-        .chip-wrap:after,
-        .chip-wrap:before {
+        .tag-wrap:after,
+        .tag-wrap:before {
             width: calc(50% - 6px);
         }
     }
-    .chip-wrap {
+    .tag-wrap {
         width: 100%;
         height: 32px;
         line-height: 32px;
@@ -51,7 +51,7 @@
         border-bottom: 1px solid rgba(#000, .12);
         color: rgba(#000, .87);
         padding-bottom: 8px;
-        .chip {
+        .tag {
             position: relative;
             display: inline-block;
             background-color: rgb(224, 224, 224);
@@ -59,7 +59,7 @@
             color: rgb(66, 66, 66);
             padding: 0 24px 0 12px;
             margin-right: 8px;
-            transition: all .3s ease-out;
+            transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
             font-weight: 500;
             .btn-remove {
                 position: absolute;
@@ -89,7 +89,7 @@
             top: 39px;
             height: 2px;
             width: 0;
-            transition: all .3s ease-out;
+            transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
             background-color: rgb(16, 108, 200);
         }
         &:after {
@@ -107,7 +107,7 @@
         top: 50px;
         opacity: 0;
         transform: translateY(-10px);
-        transition: all .3s;
+        transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
         &.show {
             transform: translateY(0);
             opacity: 1;
@@ -119,10 +119,9 @@
         font-size: 12px;
         line-height: 14px;
         color: rgba(#000, .87);
-        top: 100%;
-        margin-top: 5px;
-        right: 0;
+        top: 46px;
+        right: 9px;
         font-weight: normal;
-        transition: all .3s;
+        transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 }

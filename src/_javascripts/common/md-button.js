@@ -2,6 +2,14 @@ import $ from './jquery'
 
 export default function initMdButton() {
 
+    function initButton($mdButton) {
+        $mdButton.data('animating', false)
+    }
+
+    $('.md-button').each(function() {
+        initButton($(this))
+    })
+
     $('body')
         .on('mousedown', '.md-button:not(._disabled)', function(evt) {
             let $this = $(this)
