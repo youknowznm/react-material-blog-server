@@ -17,8 +17,15 @@ $(function() {
     let $s_btn = $('.submit')
 
     // 非空验证
-    $('body').on('blur', '.md-input, .md-textarea', function() {
-        let $this = $(this)
+    $('body')
+        .on('blur', '.md-input, .md-textarea', function() {
+            checkIfEmpty($(this));
+        })
+        .on('keyup', '.md-input, .md-textarea', function() {
+            checkIfEmpty($(this));
+        })
+
+    function checkIfEmpty($this) {
         let val = $this.find('._input').val()
         if (/^\s*$/.test(val)) {
             $this.addClass('invalid').find('.error').text('This field is required.')
@@ -27,10 +34,12 @@ $(function() {
             $this.removeClass('invalid').find('.error').text('')
             $s_btn.removeClass('_disabled').addClass('_primary')
         }
-    })
+    }
 
     $s_btn.click(function() {
-        
+        $.ajax({
+
+        })
     })
 
 })

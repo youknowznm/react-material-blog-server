@@ -56,9 +56,7 @@
     // 获得焦点时
     &.focused {
         .placeholder {
-            transform: scale(0.8);
-            top: -15px;
-            left: 0;
+            transform: scale(0.8) translateY(-30px);
             color: rgb(16, 108, 200); //blue
         }
         &:after,
@@ -69,9 +67,7 @@
     // 非空
     &.non-empty {
         .placeholder {
-            transform: scale(0.8);
-            top: -15px;
-            left: 0;
+            transform: scale(0.8) translateY(-30px);
             color: rgb(16, 108, 200); //blue
         }
     }

@@ -25,7 +25,7 @@
     &.non-empty,
     &.focused {
         .placeholder {
-            left: 4px;
+            transform: scale(0.8) translateY(-30px) translateX(-4px);
         }
     }
 }
@@ -36,7 +36,7 @@
     &.non-empty,
     &.focused {
         .placeholder {
-            left: 1px;
+            transform: scale(0.8) translateY(-30px) translateX(-10px);
         }
     }
 }
@@ -48,7 +48,7 @@
     &.non-empty,
     &.focused {
         .placeholder {
-            left: -24px;
+            transform: scale(0.8) translateY(-30px) translateX(-42px);
         }
     }
 }
@@ -60,7 +60,7 @@
     &.non-empty,
     &.focused {
         .placeholder {
-            left: 4px;
+            transform: scale(0.8) translateY(-30px) translateX(-4px);
         }
     }
 }

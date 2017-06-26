@@ -21,9 +21,7 @@
     &.non-empty {
         .placeholder {
             opacity: 1;
-            transform: scale(0.8);
-            top: -15px;
-            left: 0;
+            transform: scale(0.8) translateY(-30px);
             color: rgb(16, 108, 200); //blue
             cursor: default;
         }
@@ -32,9 +30,7 @@
     &.focused {
         .placeholder {
             opacity: 1;
-            transform: scale(0.8);
-            top: -15px;
-            left: 0;
+            transform: scale(0.8) translateY(-30px);
             color: rgb(16, 108, 200); //blue
             cursor: default;
         }
