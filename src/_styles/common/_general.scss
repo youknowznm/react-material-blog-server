@@ -61,16 +61,19 @@ body {
 }
 body {
     position: relative;
-    height: 2000px;
 }
 .main-wrap {
     position: relative;
-    min-height: 1000px;
-    margin-top: -12px;
-    background: #eee;
+    width: 100%;
+    padding-bottom: 232px;
+    margin-top: 256px;
+    background: rgb(250, 250, 250);
     z-index: 99;
-    @include gds-responsive-wrap;
     animation: wrapPopIn .5s;
+}
+.main {
+    position: relative;
+    @include gds-responsive-wrap;
 }
 @keyframes wrapPopIn {
     from {

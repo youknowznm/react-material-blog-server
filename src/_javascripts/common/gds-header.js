@@ -170,22 +170,22 @@ export default function initGDHeader() {
 
     $window
         .on('scroll', function(evt) {
-            var scTp = document.body.scrollTop
-            let layerHeight = 192 - scTp
-            ;(layerHeight < 0) && (layerHeight = 0)
-            $rippleLayer.height(layerHeight)
+            let scTp = document.body.scrollTop
             // 大于一定值时渐隐标题
             if (scTp > 30) {
                 $pageTitle.addClass('hidden')
             } else {
                 $pageTitle.removeClass('hidden')
             }
-            // 大于一定值时渐隐标题
-            if (scTp > 192) {
-                $s.addClass('fixed')
-            } else {
-                $s.removeClass('fixed')
-            }
+            // 根据scrollTop调整banner高度和阴影top
+            $s.css(
+                'top',
+                (256 - scTp) < 64 ? 64 : (256 - scTp)
+            )
+            $rippleLayer.css(
+                'height',
+                (192 - scTp) < 0 ? 0 : (192 - scTp)
+            )
         })
 
     function changeColorTheme($ele) {

@@ -123,19 +123,13 @@ z-index
     }
 }
 .gds-header-shadow {
-    position: relative;
+    position: fixed;
     width: 100%;
-    margin-top: 256px;
-    top: 0;
+    top: 256px;
     height: 12px;
     z-index: 100;
     background: url('../../_images/gds-header-shadow.png') repeat-x;
     background-size: 1px 12px;
-    &.fixed {
-        position: fixed;
-        top: 64px;
-        margin-top: 0;
-    }
 }
 @keyframes fadeIn {
     from {
