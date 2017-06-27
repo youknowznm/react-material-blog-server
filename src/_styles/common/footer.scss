@@ -6,6 +6,24 @@ body > footer {
     height: 144px;
     line-height: 144px;
     background-color: #fff;
+    z-index: 100;
+
+    .logo {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: 'Roboto';
+        font-size: 34px;
+        line-height: 40px;
+        font-weight: 300;
+        opacity: .5;
+        transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
 
     ._social {
         position: absolute;
@@ -15,14 +33,24 @@ body > footer {
         line-height: 72px;
         background-color: transparent;
 
-        ._link  {
+        .link-container {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+        }
+
+        .link  {
             float: left;
             width: 24px;
             height: 24px;
-            margin-left: 24px;
+            margin-right: 24px;
             background-repeat: no-repeat;
             background-position: 0 0;
             background-size: 24px 24px;
+            opacity: .6;
+            transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
             &.wechat {
                 background-image: url("../../_images/footer/ic_wechat.png");
             }
@@ -30,10 +58,14 @@ body > footer {
                 background-image: url("../../_images/footer/ic_github.png");
             }
             &.mail {
-                background-image: url("../../_images/footer/ic_mail_outline.png");
+                opacity: .5;
+                background-image: url("../../_images/footer/ic_email.png");
             }
             &.zhihu {
                 background-image: url("../../_images/footer/ic_zhihu.png");
+            }
+            &:hover {
+                opacity: 1 !important;
             }
         }
 
