@@ -15,30 +15,76 @@ $(function() {
     initMdButton()
 
     let $s_btn = $('.submit')
+    let $mdi = $('.md-input, .md-textarea')
 
-    // 非空验证
     $('body')
         .on('blur', '.md-input, .md-textarea', function() {
-            checkIfEmpty($(this));
+            checkIfEmpty($(this))
+            setSubmitBtnStatus()
         })
         .on('keyup', '.md-input, .md-textarea', function() {
-            checkIfEmpty($(this));
+            checkIfEmpty($(this))
+            setSubmitBtnStatus()
         })
 
+    // 非空验证
     function checkIfEmpty($this) {
         let val = $this.find('._input').val()
         if (/^\s*$/.test(val)) {
             $this.addClass('invalid').find('.error').text('This field is required.')
-            $s_btn.removeClass('_primary').addClass('_disabled')
         } else {
             $this.removeClass('invalid').find('.error').text('')
+        }
+    }
+
+    // 全部非空时启用提交按钮
+    function setSubmitBtnStatus() {
+        let allValid = true
+        $mdi.each(function() {
+            let val = $(this).find('._input').val()
+            if (/^\s*$/.test(val)) {
+                allValid = false
+            }
+        })
+        if (allValid) {
             $s_btn.removeClass('_disabled').addClass('_primary')
+        } else {
+            $s_btn.removeClass('_primary').addClass('_disabled')
         }
     }
 
     $s_btn.click(function() {
+        if ($(this).is('._disabled')) {
+            return
+        }
+        let _id = $('.main-wrap').data('uid')
+        let title = $('._title ._input').val()
+        let summary = $('._summary ._input').val()
+        let content = $('._content ._input').val()
+        let created = new Date()
+        let tags = []
+        $('._tags').find('.tag-content').each(function() {
+            tags.push($(this).text())
+        })
+        console.log(tags)
         $.ajax({
-
+            dataType: 'json',
+            url: '/savePosts',
+            type: 'Post',
+            data: {
+                _id,
+                title,
+                summary,
+                content,
+                tags,
+                created,
+            },
+            success: function(data) {
+                console.log('s', data)
+            },
+            fail: function(data) {
+                console.log('f', data)
+            },
         })
     })
 

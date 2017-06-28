@@ -58,7 +58,7 @@ export default function initMdTag() {
                         }
                     }
                     $this.before(
-                        $(`<span class="tag">${val}<i class="btn-remove"></i></span>`)
+                        $(`<span class="tag"><span class="tag-content">${val}</span><i class="btn-remove"></i></span>`)
                     )
                 }
             }
@@ -84,9 +84,11 @@ export default function initMdTag() {
     })
 
     function showError($ele, str) {
+        $ele.closest('.md-tag').addClass('invalid')
         $ele.text(str).addClass('show')
         setTimeout(function() {
             $ele.removeClass('show')
+            $ele.closest('.md-tag').removeClass('invalid')
         }, 3000)
     }
 

@@ -1,9 +1,9 @@
-let PostModel = require('../postModels/post')
+let PostModel = require('../models/post')
 let fs = require('fs')
 
 function savePost(params, cb) {
     let _id = params._id,
-        post = new PostModel({
+        postDoc = new PostModel({
             title: params.title,
             summary: params.summary,
             content: params.content,
@@ -15,9 +15,9 @@ function savePost(params, cb) {
             return cb(e)
         }
         if (!doc) {
-            post._id = _id
-            post.viewCount = post.liked = 0
-            post.save(function(e) {
+            postDoc._id = _id
+            postDoc.viewCount = postDoc.liked = 0
+            postDoc.save(function(e) {
                 if (e) {
                     return cb(e)
                 }
@@ -26,7 +26,7 @@ function savePost(params, cb) {
         } else {
             PostModel.update(
                 { _id },
-                post,
+                postDoc,
                 function(e) {
                     if (e) {
                         return cb(e)
@@ -36,6 +36,10 @@ function savePost(params, cb) {
             )
         }
     })
+}
+
+module.exports = exports = {
+    savePost,
 }
 
 // function readPostDir() {

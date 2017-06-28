@@ -5,7 +5,8 @@ var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 
-var index = require('./routes/index')
+// var index = require('./routes/index')
+let routes = require('./routes')
 
 var app = express()
 
@@ -26,7 +27,9 @@ app.use(cookieParser())
 // 指定静态文件目录
 app.use(express.static(path.join(__dirname, '/dist/')))
 
-app.use('/', index)
+routes.forEach(function(router) {
+    app.use(router)
+})
 
 // 过滤器
 // var filter = require('./filters');

@@ -28,7 +28,7 @@ body {
     }
 }
 
-.md-input.title {
+._title {
     float: left;
     width: 40%;
     &.non-empty,
@@ -39,7 +39,7 @@ body {
     }
 }
 
-.md-input.summary {
+._summary {
     float: left;
     width: 60%;
     &.non-empty,
@@ -50,7 +50,7 @@ body {
     }
 }
 
-.md-textarea.content {
+._content {
     ._input {
         min-height: 300px;
     }
@@ -62,7 +62,7 @@ body {
     }
 }
 
-.md-tag.tags {
+._tags {
     display: block;
     margin-right: 264px;
     clear: right;

@@ -120,4 +120,22 @@
         font-weight: normal;
         transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
+    // 输入内容未通过验证时
+    &.invalid {
+        .error {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .char-counter,
+        .placeholder {
+            color: rgb(221, 44, 0) !important; //red
+        }
+        .tag-wrap {
+            border-bottom-color: rgb(221, 44, 0) !important; //red
+        }
+        .tag-wrap:after,
+        .tag-wrap:before {
+            background-color: rgb(221, 44, 0) !important; //red
+        }
+    }
 }

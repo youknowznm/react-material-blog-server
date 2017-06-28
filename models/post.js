@@ -14,7 +14,7 @@ let postSchema = mongoose.Schema({
     viewCount: Number,
     liked: Number,
     tags: [String],
-    comments: [MessageModel],
+    // comments: [MessageModel],
 })
 
 module.exports = exports = mongoose.model('post', postSchema)
