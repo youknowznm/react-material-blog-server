@@ -32,7 +32,7 @@
         top: 0;
         left: 0;
         background-color: transparent;
-        transition: all .55s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition: all .8s cubic-bezier(0.25, 0.8, 0.25, 1);
         overflow: hidden;
 
         .ripple {
@@ -44,7 +44,7 @@
             left: 0;
             background-color: rgba(0, 0, 0, .15);
             border-radius: 50%;
-            transition: all .55s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all .8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
     }
@@ -56,7 +56,7 @@
         }
         .ripple {
             display: block;
-            animation: rippling .55s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: rippling .8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         @keyframes rippling {
             0% {
@@ -73,11 +73,11 @@
     &.mouseup {
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
         .ripple-container {
-            animation: _container .55s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: _container .8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .ripple {
             display: none;
-            animation: _ripple .55s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: _ripple .8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         @keyframes _container {
             0% {
@@ -101,7 +101,7 @@
 
 }
 
-// 不同状态
+// 主要、禁用、警告三种状态
 .md-button._primary {
     background-color: rgb(16, 108, 200);
     color: #fff;
@@ -125,7 +125,7 @@
     }
 }
 
-// 不同形状
+// 不同形状 - 圆形
 .md-button._round {
     width: 56px;
     min-width: 0;
@@ -167,6 +167,37 @@
         width: 40px;
         height: 40px;
         line-height: 40px;
+    }
+}
+
+// 不同形状 - 扁平
+.md-button._flat {
+    box-shadow: none;
+    background-color: transparent;
+    color: rgba(#000, .87);
+
+    &:hover {
+        background-color: rgba(158, 158, 158, .1);
+    }
+    &._primary {
+        color: rgb(16, 108, 200);
+        &.mousedown .ripple {
+            background-color: rgba(16, 108, 200, .1) !important;
+        }
+    }
+    &._disabled {
+        cursor: default;
+        color: rgba(#000, .38);
+        &:hover,
+        &.mousedown .ripple {
+            background-color: transparent;
+        }
+    }
+    &._warn {
+        color: rgb(255, 82, 82);
+        &.mousedown .ripple {
+            background-color: rgba(255, 82, 82, .1);
+        }
     }
 }
 
@@ -228,7 +259,7 @@
             margin-top: -20px;
             transform: scale(0);
             background-color: transparent;
-            transition: all .55s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all .8s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
     }
 

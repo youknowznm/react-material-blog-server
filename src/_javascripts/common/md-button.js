@@ -48,9 +48,9 @@ export default function initMdButton() {
                     setTimeout(function() {
                         $this.removeClass('mouseup')
                         $this.data('animating', false)
-                    }, 550)
+                    }, 850)
 
-                }, 250)
+                }, 350)
 
             }
         })
