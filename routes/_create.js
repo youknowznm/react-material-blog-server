@@ -23,14 +23,14 @@ module.exports = function(router) {
             summary: req.body.summary,
             content: req.body.content,
             tags: req.body.tags,
-            created: req.body.created
+            created: req.body.created,
         }
         postProxy.savePost(params, function(e) {
             if (e) {
                 console.log('err: ', e)
                 next(e)
             } else {
-                res.end({data: 'success'})
+                res.end('success')
             }
         })
     })

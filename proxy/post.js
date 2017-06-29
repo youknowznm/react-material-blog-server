@@ -1,5 +1,22 @@
 let PostModel = require('../models/post')
-let fs = require('fs')
+
+// function getPosts(_id, cb) {
+//     PostModel.findById(_id, function(e, doc) {
+//         if (e) {
+//             console.error(e)
+//         }
+//         return cb(doc);
+//     })
+// }
+
+function getPosts(cb) {
+    PostModel.find({}, function(e, doc) {
+        if (e) {
+            console.error(e)
+        }
+        return cb(doc);
+    })
+}
 
 function savePost(params, cb) {
     let _id = params._id,
@@ -12,14 +29,14 @@ function savePost(params, cb) {
         })
     PostModel.findById(_id, function(e, doc) {
         if (e) {
-            return cb(e)
+            console.error(e)
         }
         if (!doc) {
             postDoc._id = _id
             postDoc.viewCount = postDoc.liked = 0
             postDoc.save(function(e) {
                 if (e) {
-                    return cb(e)
+                    console.error(e)
                 }
                 return cb()
             })
@@ -29,7 +46,7 @@ function savePost(params, cb) {
                 postDoc,
                 function(e) {
                     if (e) {
-                        return cb(e)
+                        console.error(e)
                     }
                     return cb()
                 }
@@ -40,21 +57,5 @@ function savePost(params, cb) {
 
 module.exports = exports = {
     savePost,
+    getPosts,
 }
-
-// function readPostDir() {
-//     let postNames = fs.readdirSync('../posts')
-//     postNames.forEach(function(item) {
-//         let title = item
-//             postObj
-//         fs.readFile(
-//             __dirname + '../' + item,
-//             'utf8',
-//             function(e, data) {
-//                 if (e) {
-//                     console.log(e)
-//                 }
-//             }
-//         )
-//     })
-// }

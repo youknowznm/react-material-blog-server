@@ -36,12 +36,19 @@ export default function initMdTag() {
                 $mdtag.addClass('non-empty')
             }
         })
+        .on('keydown', function() {
+            forbidSymbolInput($(this))
+        })
+        .on('input', function() {
+            forbidSymbolInput($(this))
+        })
         .on('keyup', function(evt) {
             let $this = $(this)
             let $mdtag = $this.parents('.md-tag')
             let $error = $mdtag.find('.error')
             let tags = $mdtag.find('.tag')
             let tagCount = tags.length
+            forbidSymbolInput($this)
             if (evt.keyCode === 13) {
                 let val = $this.val().trim()
                 $this.val('')
@@ -90,6 +97,11 @@ export default function initMdTag() {
             $ele.removeClass('show')
             $ele.closest('.md-tag').removeClass('invalid')
         }, 3000)
+    }
+
+    // 禁止输入中文、英文、数字、空格之外的字符
+    function forbidSymbolInput($this) {
+        $this.val($this.val().replace(/[^a-zA-Z0-9\s\u4E00-\u9FA5]/g, ''))
     }
 
 }

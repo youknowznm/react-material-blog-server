@@ -27,7 +27,7 @@ $(function() {
             setSubmitBtnStatus()
         })
 
-    // 非空验证
+    // 对每个输入容器进行非空验证
     function checkIfEmpty($this) {
         let val = $this.find('._input').val()
         if (/^\s*$/.test(val)) {
@@ -62,14 +62,13 @@ $(function() {
         let summary = $('._summary ._input').val()
         let content = $('._content ._input').val()
         let created = new Date()
-        let tags = []
+        let tags = ''
         $('._tags').find('.tag-content').each(function() {
-            tags.push($(this).text())
+            tags += '<&>' + $(this).text()
         })
-        console.log(tags)
         $.ajax({
             dataType: 'json',
-            url: '/savePosts',
+            url: '/savePost',
             type: 'Post',
             data: {
                 _id,

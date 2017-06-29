@@ -1,3 +1,5 @@
+let postProxy = require('../proxy/post')
+
 module.exports = function(router) {
 
     /*
@@ -5,10 +7,23 @@ module.exports = function(router) {
     博客
     */
     router.get(['/', '/blogs'], function(req, res, next) {
-        res.render('blogs', {
-            pageTitle: 'Blogs',
-            static: 'blogs'
+        postProxy.getPosts(function(data) {
+            console.log('d', data);
+            res.render('blogs', {
+                pageTitle: 'Blogs',
+                static: 'blogs',
+                data
+            })
         })
+
+        // {
+        // // router.get('/getPosts', function(data) {
+        //     res.render('blogs', {
+        //         pageTitle: 'Blogs',
+        //         static: 'blogs',
+        //         data
+        //     })
+        // })
     })
 
     return router;

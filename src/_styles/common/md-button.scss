@@ -32,7 +32,7 @@
         top: 0;
         left: 0;
         background-color: transparent;
-        transition: all .8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition: all .55s cubic-bezier(0.25, 0.8, 0.25, 1);
         overflow: hidden;
 
         .ripple {
@@ -44,7 +44,7 @@
             left: 0;
             background-color: rgba(0, 0, 0, .15);
             border-radius: 50%;
-            transition: all .8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all .55s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
     }
@@ -56,7 +56,7 @@
         }
         .ripple {
             display: block;
-            animation: rippling .8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: rippling .55s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         @keyframes rippling {
             0% {
@@ -73,11 +73,11 @@
     &.mouseup {
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
         .ripple-container {
-            animation: _container .8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: _container .55s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .ripple {
             display: none;
-            animation: _ripple .8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: _ripple .55s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         @keyframes _container {
             0% {
@@ -259,7 +259,7 @@
             margin-top: -20px;
             transform: scale(0);
             background-color: transparent;
-            transition: all .8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all .55s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
     }
 

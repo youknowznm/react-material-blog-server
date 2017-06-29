@@ -1,8 +1,28 @@
 @import '../common/_general';
 @import '../common/gds-header/main';
+@import '../common/footer';
 
 body {
 
+}
 
+.no-posts {
+    position: absolute;
+    width: 100%;
+    top: 256px;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    font-family: 'Roboto';
+    color: #666;
+    > h1 {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+        user-select: none;
+        cursor: default;
+    }
 }
 
