@@ -12676,7 +12676,99 @@ module.exports = function(module) {
 
 /***/ }),
 /* 18 */,
-/* 19 */,
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = initMdButton;
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function initMdButton() {
+
+    function initButton($mdButton) {
+        $mdButton.data('animating', false);
+    }
+
+    (0, _jquery2.default)('.md-button').each(function () {
+        initButton((0, _jquery2.default)(this));
+    });
+
+    (0, _jquery2.default)('body').on('mousedown', '.md-button:not(._disabled)', function (evt) {
+        var $this = (0, _jquery2.default)(this);
+        if ($this.data('animating') === false) {
+            $this.data('clicked', true);
+            var $ripple = $this.find('.ripple');
+            var _x = evt.offsetX;
+            var _y = evt.offsetY;
+            var _width = $this.innerWidth();
+            var _height = $this.innerHeight();
+            // 根据事件坐标和按钮水平中点的距离，获取波纹的直径
+            var offsetToHorizontalCenter = _width / 2 - _x;
+            var offsetToVerticalCenter = _height / 2 - _y;
+            var sideLength = _width + Math.abs(offsetToHorizontalCenter) * 2 + _width / 10;
+            $ripple.css({
+                width: sideLength,
+                height: sideLength,
+                left: (_width - sideLength) / 2 - offsetToHorizontalCenter,
+                top: (_height - sideLength) / 2 - offsetToVerticalCenter
+            });
+            $this.addClass('mousedown');
+        }
+    }).on('mouseup mouseout', '.md-button:not(._disabled)', function () {
+        var $this = (0, _jquery2.default)(this);
+        if ($this.data('animating') === false && $this.data('clicked') === true) {
+
+            // 设置timeout，避免mousedown事件持续时间过短导致的闪烁
+            setTimeout(function () {
+
+                $this.data({
+                    animating: true,
+                    clicked: false
+                });
+                $this.removeClass('mousedown').addClass('mouseup');
+                setTimeout(function () {
+                    $this.removeClass('mouseup');
+                    $this.data('animating', false);
+                }, 550);
+            }, 250);
+        }
+    });
+
+    (0, _jquery2.default)('body').on('mousedown', '.md-icon-button:not(._disabled)', function (evt) {
+        var $this = (0, _jquery2.default)(this);
+        if ($this.data('animating') === false) {
+            $this.data('clicked', true);
+            var $ripple = $this.find('.ripple');
+            var _x = evt.offsetX;
+            var _y = evt.offsetY;
+            var _width = $this.innerWidth();
+            var _height = $this.innerHeight();
+            // 根据事件坐标和按钮水平中点的距离，获取波纹的直径
+            var offsetToHorizontalCenter = _width / 2 - _x;
+            var offsetToVerticalCenter = _height / 2 - _y;
+            var sideLength = _width + Math.abs(offsetToHorizontalCenter) * 2 + _width / 10;
+            $ripple.css({
+                width: sideLength,
+                height: sideLength,
+                left: (_width - sideLength) / 2 - offsetToHorizontalCenter,
+                top: (_height - sideLength) / 2 - offsetToVerticalCenter
+            });
+            $this.addClass('mousedown');
+        }
+    });
+}
+
+/***/ }),
 /* 20 */,
 /* 21 */,
 /* 22 */,
@@ -12721,6 +12813,10 @@ var _gdsHeader = __webpack_require__(2);
 
 var _gdsHeader2 = _interopRequireDefault(_gdsHeader);
 
+var _mdButton = __webpack_require__(19);
+
+var _mdButton2 = _interopRequireDefault(_mdButton);
+
 __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -12728,6 +12824,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _jquery2.default)(function () {
 
     (0, _gdsHeader2.default)();
+    (0, _mdButton2.default)();
 
     // let $posts = $('.post')
     // resizePostWraps()
