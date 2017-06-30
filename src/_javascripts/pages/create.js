@@ -58,14 +58,15 @@ $(function() {
             return
         }
         let _id = $('.main-wrap').data('uid')
-        let title = $('._title ._input').val()
-        let summary = $('._summary ._input').val()
-        let content = $('._content ._input').val()
-        let created = new Date()
+        let title = encodeURIComponent($('._title ._input').val())
+        let summary = encodeURIComponent($('._summary ._input').val())
+        let content = encodeURIComponent($('._content ._input').val())
+        let created = new Date().toString()
         let tags = ''
         $('._tags').find('.tag-content').each(function() {
             tags += '<&>' + $(this).text()
         })
+        tags = encodeURIComponent(tags)
         $.ajax({
             dataType: 'json',
             url: '/savePost',
