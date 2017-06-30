@@ -38,8 +38,9 @@ body {
     height: 0;
     padding-bottom: 33.3%;
     cursor: pointer;
-    transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: box-shadow .2s ease-out;
     user-select: none;
+
     &:nth-child(2) {
         background-color: rgb(11, 92, 156);
     }
@@ -89,6 +90,32 @@ body {
             .md-button {
                 margin: 0;
             }
+        }
+    }
+
+    .statistics {
+        position: absolute;
+        left: 16px;
+        bottom: 70px;
+        height: 40px;
+        line-height: 40px;
+        > li {
+            float: left;
+        }
+        .md-icon-button {
+            margin: 0;
+        }
+        .liked .content {
+
+            background-image: url("../../_images/footer/ic_favorite.png");
+        }
+        .icon {
+            // filter: drop-shadow(rgb(16, 108, 200) 0 24px);
+
+            background-size: 24px 24px;
+        }
+        .comments .content {
+            background-image: url("../../_images/footer/ic_github.png");
         }
     }
 
