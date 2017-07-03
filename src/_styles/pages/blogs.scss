@@ -44,10 +44,10 @@ body {
     &:nth-child(2) {
         background-color: rgb(11, 92, 156);
     }
-    &:nth-child(3) {
+    &:nth-child(4) {
         background-color: rgb(253, 101, 108);
     }
-    &:nth-child(4) {
+    &:nth-child(3) {
         background-color: rgb(102, 70, 236);
     }
 
@@ -93,31 +93,29 @@ body {
         }
     }
 
-    .statistics {
-        position: absolute;
-        left: 16px;
-        bottom: 70px;
-        height: 40px;
-        line-height: 40px;
-        > li {
-            float: left;
-        }
-        .md-icon-button {
-            margin: 0;
-        }
-        .liked .content {
-
-            background-image: url("../../_images/footer/ic_favorite.png");
-        }
-        .icon {
-            // filter: drop-shadow(rgb(16, 108, 200) 0 24px);
-
-            background-size: 24px 24px;
-        }
-        .comments .content {
-            background-image: url("../../_images/footer/ic_github.png");
-        }
-    }
+    // .statistics {
+    //     position: absolute;
+    //     left: 16px;
+    //     bottom: 70px;
+    //     height: 40px;
+    //     line-height: 40px;
+    //     > li {
+    //         float: left;
+    //     }
+    //     .md-icon-button {
+    //         margin: 0;
+    //     }
+    //     .liked .content {
+    //         background-image: url("../../_images/footer/ic_favorite.png");
+    //     }
+    //     .icon {
+    //         // filter: drop-shadow(rgb(16, 108, 200) 0 24px);
+    //         background-size: 24px 24px;
+    //     }
+    //     .comments .content {
+    //         background-image: url("../../_images/footer/ic_github.png");
+    //     }
+    // }
 
     &:hover {
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, .2),
@@ -130,5 +128,14 @@ body {
             padding-bottom: 50%;
         }
     }
+}
 
+.fixed-panel {
+    .create-new .icon {
+        // background-image: url("../../_images/ic_arrow_up.png");
+        filter: drop-shadow(green 0 24px);
+    }
+    .create-new .content {
+        background-image: url("../../_images/ic_arrow_up.png");
+    }
 }

@@ -59,37 +59,21 @@
                             <div class="ripple-container"><span class="ripple"></span></div>
                         </button>
                     </li>
-                </ul>
-                <ul class="statistics">
-                    <!-- <li class="liked">
-                        <button class="md-button _round _small" data-animating="false">
-                            <span class="content"><i class="icon"></i></span>
+                    <li class="tag">
+                        <button class="md-button">
+                            <span class="content">JavaScript</span>
                             <div class="ripple-container"><span class="ripple"></span></div>
                         </button>
-                        <span class="count"></span>
                     </li>
-                    <li class="commments">
-                        <button class="md-button _round _small" data-animating="false">
-                            <span class="content"><i class="icon"></i></span>
-                            <div class="ripple-container"><span class="ripple"></span></div>
-                        </button>
-                        <span class="count"></span>
-                    </li> -->
+                </ul>
+                <!-- <ul class="statistics">
                     <li class="liked">
-                        <button class="md-icon-button" data-animating="false">
-                            <span class="content"><i class="icon"></i></span>
-                            <div class="ripple-container"><span class="ripple"></span></div>
-                        </button>
                         <span class="count"></span>
                     </li>
-                    <li class="commments">
-                        <button class="md-icon-button" data-animating="false">
-                            <span class="content"><i class="icon"></i></span>
-                            <div class="ripple-container"><span class="ripple"></span></div>
-                        </button>
+                    <li class="liked">
                         <span class="count"></span>
                     </li>
-                </ul>
+                </ul> -->
             </div>
 
             <div class="post">
@@ -210,8 +194,23 @@
             </div>
         <% } %>
 
+        <ul class="fixed-panel">
+            <li class="create-new">
+                <button class="md-button _round _warn">
+                    <span class="content"><i class="icon"></i></span>
+                    <div class="ripple-container"><span class="ripple"></span></div>
+                </button>
+            </li>
+            <li class="to-top">
+                <button class="md-button _round _warn">
+                    <span class="content"></span>
+                    <div class="ripple-container"><span class="ripple"></span></div>
+                </button>
+            </li>
+        </ul>
 
     </div>
+
 </div>
 
 <% include ./common/page-footer.ejs %>

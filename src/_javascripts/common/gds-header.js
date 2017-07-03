@@ -16,8 +16,11 @@ export default function initGDHeader() {
         $navButtons = $header.find('.nav-item'),
         $navIndicator = $header.find('.nav-indicator'),
         $rippleLayer = $header.find('.banner'),
-        $s = $('.gds-header-shadow'),
-        $pageTitle = $rippleLayer.children('.page-title')
+        $pageTitle = $rippleLayer.children('.page-title'),
+        $shadow = $('.gds-header-shadow')
+
+    let $main = $('.main'),
+        $fixedPanel = $('.fixed-panel')
 
     // 判断是否移动端
     let isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent)
@@ -178,13 +181,19 @@ export default function initGDHeader() {
                 $pageTitle.removeClass('hidden')
             }
             // 根据scrollTop调整banner高度和阴影top
-            $s.css(
+            $shadow.css(
                 'top',
                 (256 - scTp) < 64 ? 64 : (256 - scTp)
             )
             $rippleLayer.css(
                 'height',
                 (192 - scTp) < 0 ? 0 : (192 - scTp)
+            )
+            // 浮动控件top调整
+            let _h = $main.height() - 80;
+            $fixedPanel.css(
+                'top',
+                (scTp + 300) > _h ? _h : scTp + 300
             )
         })
 

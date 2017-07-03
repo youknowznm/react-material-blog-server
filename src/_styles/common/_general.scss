@@ -76,20 +76,26 @@ body {
     &.no-margin-top {
         margin-top: 0;
     }
+    @keyframes wrapPopIn {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transition: translateY(0);
+        }
+    }
 }
 .main {
     position: relative;
     height: 100%;
     padding-bottom: 232px;
     @include gds-responsive-wrap;
-}
-@keyframes wrapPopIn {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transition: translateY(0);
+    .fixed-panel {
+        position: absolute;
+        top: 300px;
+        right: 0;
+        z-index: 110;
     }
 }
