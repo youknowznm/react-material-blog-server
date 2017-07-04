@@ -11,7 +11,7 @@ module.exports = function(router) {
             console.log('d', docs[0]);
             // console.log('f', encodeURIComponent(docs[0].content));
             res.render('blogs', {
-                pageTitle: 'Blogs',
+                pageTitle: 'blogs',
                 static: 'blogs',
                 docs: docs,
             })

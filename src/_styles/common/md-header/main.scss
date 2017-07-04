@@ -16,19 +16,19 @@ https://github.com/youknowznm/google-design-site-header
 /*
 z-index
 
-100 .gds-header; .gds-header-shadow;
+100 .md-header; .md-header-shadow;
 101 .current-title;
-102 .gds-header-content; nav;
+102 .md-header-content; nav;
 103 .ripple;
 104 .nav-indicator;
 */
 
-.gds-header {
+.md-header {
     position: fixed;
     overflow: hidden;
     width: 100%;
     top: 0;
-    background-color: nth($gds-header-colors, 1);
+    background-color: nth($md-header-colors, 1);
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -38,8 +38,8 @@ z-index
         color: map-get($gen-colors, white);
     }
 }
-.gds-header-content {
-    @include gds-responsive-wrap;
+.md-header-content {
+    @include mds-responsive-wrap;
     margin: 0 auto;
     overflow: hidden;
     z-index: 102;
@@ -122,13 +122,13 @@ z-index
         }
     }
 }
-.gds-header-shadow {
+.md-header-shadow {
     position: fixed;
     width: 100%;
     top: 256px;
     height: 12px;
     z-index: 100;
-    background: url('../../_images/gds-header-shadow.png') repeat-x;
+    background: url('../../_images/md-header-shadow.png') repeat-x;
     background-size: 1px 12px;
 }
 @keyframes fadeIn {

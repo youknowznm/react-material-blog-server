@@ -6,18 +6,18 @@
 
 import $ from '../common/jquery.js'
 
-export default function initGDHeader() {
+export default function initMDHeader() {
 
     let $window = $(window).scrollTop(0),
         $body = $('body'),
-        $header = $('.gds-header'),
+        $header = $('.md-header'),
         $ripple = $header.children('.ripple'),
         $navButtonsContainer = $header.find('.nav-items'),
         $navButtons = $header.find('.nav-item'),
         $navIndicator = $header.find('.nav-indicator'),
         $rippleLayer = $header.find('.banner'),
         $pageTitle = $rippleLayer.children('.page-title'),
-        $shadow = $('.gds-header-shadow')
+        $shadow = $('.md-header-shadow')
 
     let $main = $('.main'),
         $fixedPanel = $('.fixed-panel')

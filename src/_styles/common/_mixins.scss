@@ -2,8 +2,8 @@
 /*
 mixins
 */
-// 参考gds数值的响应式宽度控制
-@mixin gds-responsive-wrap {
+// 参考mds数值的响应式宽度控制
+@mixin mds-responsive-wrap {
     width: 1680px;
     min-width: 970px;
     margin-left: auto;

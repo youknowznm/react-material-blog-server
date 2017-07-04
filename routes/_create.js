@@ -8,7 +8,7 @@ module.exports = function(router) {
     */
     router.get('/create', function(req, res, next) {
         res.render('create', {
-            pageTitle: 'Create',
+            pageTitle: 'create',
             static: 'create',
             uid: shortid.generate(),
         })

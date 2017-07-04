@@ -1,5 +1,5 @@
 @import '../common/_general';
-@import '../common/gds-header/main';
+@import '../common/md-header/main';
 @import '../common/footer';
 
 body {
@@ -127,16 +127,5 @@ body {
             width: 50%;
             padding-bottom: 50%;
         }
-    }
-}
-
-.fixed-panel {
-    .create-new .icon {
-        background: url("../../_images/ic_create.png") no-repeat;
-        filter: drop-shadow(#fff 0 24px);
-    }
-    .to-top .icon {
-        background: url("../../_images/ic_arrow_up.png") no-repeat;
-        filter: drop-shadow(#fff 0 24px);
     }
 }

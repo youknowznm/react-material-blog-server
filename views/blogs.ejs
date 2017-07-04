@@ -1,7 +1,7 @@
 <% include ./common/page-header.ejs %>
 
-<header class="gds-header" data-theme="blue">
-    <div class="gds-header-content">
+<header class="md-header" data-theme="blue">
+    <div class="md-header-content">
         <nav>
             <a class="site-title" href="javacript:;">
                 <span class="single-word">Rh</span>
@@ -23,7 +23,7 @@
     </div>
     <div class="ripple"></div>
 </header>
-<div class="gds-header-shadow"></div>
+<div class="md-header-shadow"></div>
 
 <div class="main-wrap <% if (docs[0] === undefined) {%>no-margin-top<%}%>">
     <div class="main">
@@ -194,20 +194,7 @@
             </div>
         <% } %>
 
-        <ul class="fixed-panel">
-            <li class="create-new">
-                <button class="md-button _round _warn">
-                    <span class="content"><i class="icon"></i></span>
-                    <div class="ripple-container"><span class="ripple"></span></div>
-                </button>
-            </li>
-            <li class="to-top">
-                <button class="md-button _round _warn">
-                    <span class="content"><i class="icon"></i></span>
-                    <div class="ripple-container"><span class="ripple"></span></div>
-                </button>
-            </li>
-        </ul>
+        <% include ./common/fixed-panel.ejs %>
 
     </div>
 

@@ -1,14 +1,7 @@
 import $ from '../common/jquery'
-// import initRhaego from '../common/common'
-
 import '../../_styles/pages/blogs.scss'
 
 $(function() {
-
-    // initRhaego()
-    //
-    // initGDHeader()
-    // initMdButton()
 
     // let $posts = $('.post')
     // resizePostWraps()

@@ -1,18 +1,7 @@
 import $ from '../common/jquery'
-import initGDHeader from '../common/gds-header'
-import initMdInput from '../common/md-input'
-import initMdTag from '../common/md-tag'
-import initMdTextarea from '../common/md-textarea'
-import initMdButton from '../common/md-button'
 import '../../_styles/pages/create.scss'
 
 $(function() {
-
-    initGDHeader()
-    initMdInput()
-    initMdTag()
-    initMdTextarea()
-    initMdButton()
 
     let $s_btn = $('.submit')
     let $mdi = $('.md-input, .md-textarea')

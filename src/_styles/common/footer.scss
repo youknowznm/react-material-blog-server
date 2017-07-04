@@ -2,7 +2,7 @@
 
 body > footer {
     position: relative;
-    @include gds-responsive-wrap;
+    @include mds-responsive-wrap;
     height: 144px;
     line-height: 144px;
     background-color: #fff;
