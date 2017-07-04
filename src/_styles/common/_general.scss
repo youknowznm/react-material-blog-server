@@ -97,6 +97,10 @@ body {
         top: 300px;
         right: 24px;
         z-index: 110;
+        .md-button {
+            transform: scale(1);
+            animation: zoomIn .4s ease;
+        }
         .create-new .icon {
             background: url("../../_images/ic_create.png") no-repeat;
             filter: drop-shadow(#fff 0 24px);
@@ -105,5 +109,14 @@ body {
             background: url("../../_images/ic_arrow_up.png") no-repeat;
             filter: drop-shadow(#fff 0 24px);
         }
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
     }
 }

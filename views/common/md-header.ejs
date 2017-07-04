@@ -1,0 +1,24 @@
+<header class="md-header" data-theme="blue">
+    <div class="md-header-content">
+        <nav>
+            <a class="site-title" href="javacript:;">
+                <span class="single-word">Rh</span>
+                <span class="single-word">ae</span>
+                <span class="single-word">go</span>
+            </a>
+            <ul class="nav-items">
+                <li class="nav-item <% if (/^blogs|create$/.test(pageTitle)) {%> active <%}%>">blogs</li>
+                <li class="nav-item <% if (pageTitle === 'products') {%> active <%}%>">products</li>
+                <li class="nav-item <% if (pageTitle === 'messages') {%> active <%}%>">messages</li>
+                <li class="nav-item <% if (pageTitle === 'about') {%> active <%}%>">about</li>
+                <!-- <li class="nav-item search"></li> -->
+                <li class="nav-indicator"></li>
+            </ul>
+        </nav>
+        <div class="banner">
+            <h1 class="page-title"><%= pageTitle %></h1>
+        </div>
+    </div>
+    <div class="ripple"></div>
+</header>
+<div class="md-header-shadow"></div>

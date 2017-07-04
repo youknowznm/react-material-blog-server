@@ -1,29 +1,5 @@
-<% include ./common/page-header.ejs %>
-
-<header class="md-header" data-theme="blue">
-    <div class="md-header-content">
-        <nav>
-            <a class="site-title" href="javacript:;">
-                <span class="single-word">Rh</span>
-                <span class="single-word">ae</span>
-                <span class="single-word">go</span>
-            </a>
-            <ul class="nav-items">
-                <li class="nav-item active">blogs</li>
-                <li class="nav-item">products</li>
-                <li class="nav-item">messages</li>
-                <li class="nav-item">about</li>
-                <!-- <li class="nav-item search"></li> -->
-                <li class="nav-indicator"></li>
-            </ul>
-        </nav>
-        <div class="banner">
-            <h1 class="page-title"><%= pageTitle %></h1>
-        </div>
-    </div>
-    <div class="ripple"></div>
-</header>
-<div class="md-header-shadow"></div>
+<% include ./common/header-tags.ejs %>
+<% include ./common/md-header.ejs %>
 
 <div class="main-wrap <% if (docs[0] === undefined) {%>no-margin-top<%}%>">
     <div class="main">
@@ -200,4 +176,4 @@
 
 </div>
 
-<% include ./common/page-footer.ejs %>
+<% include ./common/footer-tags.ejs %>

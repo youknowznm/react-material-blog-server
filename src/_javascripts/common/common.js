@@ -13,27 +13,32 @@ $(function() {
     initMdTextarea()
     initMdButton()
 
-    // 对包含点击动画的按钮点击时，在点击结束后触发指定的事件监听
-    $.fn.extend({
-        mdDelayedClick: function(clickHandler) {
-            return this.each(() => {
-                this.on('click', function(evt) {
-                    setTimeout(function() {
-                        clickHandler(evt)
-                    }, 400)
-                })
-            })
-        }
+    // 在点击动画结束后调用函数
+    function mdDelay(fn) {
+        setTimeout(function() {
+            fn()
+        }, 400)
+    }
+
+    // 新建按钮
+    $('.fixed-panel .create-new').click(function() {
+        mdDelay(function() {
+            location.pathname = '/create'
+        })
     })
 
-    $('.fixed-panel .create-new').mdDelayedClick(function() {
-        location.pathname = '/create'
-    })
-
-    $('.fixed-panel .to-top').mdDelayedClick(function() {
+    // 回顶部按钮
+    $('.fixed-panel .to-top').click(function() {
         $('body').animate({
             'scrollTop': 0
         }, 200)
+    })
+
+    // 主导航按钮
+    $('.md-header').on('click', ' .nav-item:not(.active)', function(evt) {
+        mdDelay(function() {
+            location.pathname = '/' + evt.target.innerHTML
+        })
     })
 
 })
