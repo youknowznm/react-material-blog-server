@@ -1,0 +1,8 @@
+@import "./create";
+
+._round._primary {
+    .icon {
+        background: url("../../_images/ic_arrow_up.png") no-repeat;
+        filter: drop-shadow(#fff 0 24px);
+    }
+}

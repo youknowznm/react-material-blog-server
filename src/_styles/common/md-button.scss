@@ -149,12 +149,12 @@
             height: 24px;
             top: -24px;
             left: 0;
-            filter: drop-shadow(rgb(16, 108, 200) 0 24px);
             /*
             http://www.zhangxinxu.com/wordpress/2016/06/png-icon-change-color-by-css/
             Chrome下如果元素的主体部分【完全】不可见，则其drop-shadow不可见；
             只要元素有【任何】部分可见，则其drop-shadow完全可见。
             */
+            // filter: drop-shadow(rgb(16, 108, 200) 0 24px);
             border-bottom: 24px solid transparent;
         }
     }
@@ -278,4 +278,3 @@
     }
 
 }
-

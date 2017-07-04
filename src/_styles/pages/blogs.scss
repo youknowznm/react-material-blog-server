@@ -132,10 +132,11 @@ body {
 
 .fixed-panel {
     .create-new .icon {
-        // background-image: url("../../_images/ic_arrow_up.png");
-        filter: drop-shadow(green 0 24px);
+        background: url("../../_images/ic_create.png") no-repeat;
+        filter: drop-shadow(#fff 0 24px);
     }
-    .create-new .content {
-        background-image: url("../../_images/ic_arrow_up.png");
+    .to-top .icon {
+        background: url("../../_images/ic_arrow_up.png") no-repeat;
+        filter: drop-shadow(#fff 0 24px);
     }
 }

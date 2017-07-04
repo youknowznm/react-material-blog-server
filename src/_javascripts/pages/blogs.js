@@ -1,13 +1,14 @@
 import $ from '../common/jquery'
-import initGDHeader from '../common/gds-header'
-import initMdButton from '../common/md-button'
+// import initRhaego from '../common/common'
 
 import '../../_styles/pages/blogs.scss'
 
 $(function() {
 
-    initGDHeader()
-    initMdButton()
+    // initRhaego()
+    //
+    // initGDHeader()
+    // initMdButton()
 
     // let $posts = $('.post')
     // resizePostWraps()
@@ -22,6 +23,8 @@ $(function() {
     //         $(this).height(w)
     //     })
     // }
+
+    // $('')
 
 })
 

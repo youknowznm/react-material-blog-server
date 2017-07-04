@@ -7,6 +7,8 @@ function addRouter(path) {
     module.exports.push(require(path)(router))
 }
 
+addRouter('./_demo')
+
 addRouter('./_blogs')
 addRouter('./_create')
 
