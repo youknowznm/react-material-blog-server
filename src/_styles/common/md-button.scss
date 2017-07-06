@@ -99,6 +99,10 @@
         }
     }
 
+    &:hover {
+        background-color: rgba(#fff, .7);
+    }
+
 }
 
 // 主要、禁用、警告三种状态

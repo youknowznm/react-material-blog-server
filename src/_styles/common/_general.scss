@@ -5,6 +5,7 @@
 @import "./md-textarea";
 @import "./md-button";
 @import "./md-background";
+@import "./md-dialog";
 /*
 font
 */
@@ -94,6 +95,7 @@ body {
     padding-bottom: 232px;
     @include mds-responsive-wrap;
     .fixed-panel {
+        display: none;
         position: absolute;
         top: 300px;
         right: 24px;

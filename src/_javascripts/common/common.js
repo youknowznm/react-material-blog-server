@@ -4,6 +4,7 @@ import initMdButton from './md-button'
 import initMdInput from './md-input'
 import initMdTag from './md-tag'
 import initMdTextarea from './md-textarea'
+import initMdDialog from './md-dialog'
 import generateMaterialBackground from './md-background'
 
 $(function() {
@@ -13,6 +14,7 @@ $(function() {
     initMdTag()
     initMdTextarea()
     initMdButton()
+    initMdDialog()
 
     // 在点击动画结束后调用函数
     function mdDelay(fn) {
@@ -35,6 +37,11 @@ $(function() {
             'scrollTop': 0
         }, 200)
     })
+
+    // 过后显示控制板
+    setTimeout(function() {
+        $('.fixed-panel').show()
+    }, 1000)
 
     // 主导航按钮
     $('.md-header').on('click', ' .nav-item:not(.active)', function(evt) {

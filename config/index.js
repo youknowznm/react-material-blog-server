@@ -1,5 +1,5 @@
 const CONFIG = {
-    siteName: 'Rhaego',
+    siteName: 'rhaego',
     dbPath: "mongodb://localhost/rhaego",
 }
 

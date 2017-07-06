@@ -3,14 +3,15 @@ import '../../_styles/pages/create.scss'
 
 $(function() {
 
+    // 动画banner的top值和内容输入框高度
     $('body').animate(
         {
-            'scrollTop': 190
+            'scrollTop': 210
         },
         function() {
             $('#input_4').animate(
                 {
-                    'height': window.innerHeight - 380
+                    'height': window.innerHeight - 360
                 },
             )
         }
@@ -19,6 +20,7 @@ $(function() {
     let $s_btn = $('.submit')
     let $mdi = $('.md-input, .md-textarea')
 
+    // 检查输入内容，控制提交按钮样式
     $('body')
         .on('blur', '.md-input, .md-textarea', function() {
             checkIfEmpty($(this))
