@@ -1,7 +1,7 @@
 import $ from "./jquery"
 
 // 从MD的调色板内选取搭配浅色字体的背景色若干组，每组含深色和浅色
-// https://material.io/guidelines/style/color.html?gclid=CNywz8Oq79QCFU9gfgodk78BQg#color-color-palette
+// https://material.io/guidelines/style/color.html#color-color-palette
 const MD_COLOR_PALETTE = [
     ['#F44336', '#F44336'], // red
     ['#E91E63', '#C2185B'], // pink

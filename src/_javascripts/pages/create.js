@@ -3,6 +3,19 @@ import '../../_styles/pages/create.scss'
 
 $(function() {
 
+    $('body').animate(
+        {
+            'scrollTop': 190
+        },
+        function() {
+            $('#input_4').animate(
+                {
+                    'height': window.innerHeight - 380
+                },
+            )
+        }
+    )
+
     let $s_btn = $('.submit')
     let $mdi = $('.md-input, .md-textarea')
 

@@ -98,23 +98,29 @@ body {
         top: 300px;
         right: 24px;
         z-index: 110;
-        .md-button {
-            transform: scale(1);
+        > li {
+            display: block;
             animation: zoomIn .4s ease;
+            &.zoom-out {
+                display: none;
+                animation: zoomIn .4s ease reverse;
+            }
         }
-        .create-new .icon {
+        ._create-new .icon {
             background: url("../../_images/ic_create.png") no-repeat;
             filter: drop-shadow(#fff 0 24px);
         }
-        .to-top .icon {
+        ._to-top .icon {
             background: url("../../_images/ic_arrow_up.png") no-repeat;
             filter: drop-shadow(#fff 0 24px);
         }
         @keyframes zoomIn {
             from {
+                display: none;
                 transform: scale(0);
             }
             to {
+                display: block;
                 transform: scale(1);
             }
         }

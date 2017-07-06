@@ -22,14 +22,15 @@ $(function() {
     }
 
     // 新建按钮
-    $('.fixed-panel .create-new').click(function() {
+    $('._create-new').click(function() {
         mdDelay(function() {
             location.pathname = '/create'
         })
     })
 
     // 回顶部按钮
-    $('.fixed-panel .to-top').click(function() {
+    let $toTopBtn = $('._to-top')
+    $toTopBtn.click(function() {
         $('body').animate({
             'scrollTop': 0
         }, 200)
@@ -42,6 +43,7 @@ $(function() {
         })
     })
 
+    // 生成md背景
     generateMaterialBackground('.post')
 
 })
