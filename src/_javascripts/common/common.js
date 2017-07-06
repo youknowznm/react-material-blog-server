@@ -4,6 +4,7 @@ import initMdButton from './md-button'
 import initMdInput from './md-input'
 import initMdTag from './md-tag'
 import initMdTextarea from './md-textarea'
+import generateMaterialBackground from './md-background'
 
 $(function() {
 
@@ -40,5 +41,7 @@ $(function() {
             location.pathname = '/' + evt.target.innerHTML
         })
     })
+
+    generateMaterialBackground('.post')
 
 })

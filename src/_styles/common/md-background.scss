@@ -1,11 +1,14 @@
 .md-bg-wrap {
     position: absolute;
+    display: none;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     overflow: hidden;
-    z-index: 15;
+    z-index: 1 !important;
+    background-color: #3F51B5;
+
 
     .md-bg-block {
         position: absolute;
@@ -14,6 +17,7 @@
         background-color: #303F9F;
         transform: rotate(7deg);
         top: -100%;
+        z-index: 1 !important;
 
         &.md-shadow-light {
           box-shadow: 0 10px 20px rgba(0, 0, 0, .19),
