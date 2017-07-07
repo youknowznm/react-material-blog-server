@@ -5,6 +5,9 @@ var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 
+// 过滤器
+var filter = require('./filters')
+
 // var index = require('./routes/index')
 let routes = require('./routes')
 
@@ -30,9 +33,6 @@ app.use(express.static(path.join(__dirname, '/dist/')))
 routes.forEach(function(router) {
     app.use(router)
 })
-
-// 过滤器
-// var filter = require('./filters');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

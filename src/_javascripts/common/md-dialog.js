@@ -42,7 +42,6 @@ export default function showMdDialog(options) {
                 $body.removeClass('no-scroll')
                 $wrap.remove()
             }, 400)
-            console.log(type);
             switch (type) {
                 case 'confirm':
                     if (typeof options.onConfirm === 'function') {
