@@ -16,7 +16,7 @@
     border: 0 solid rgb(33, 33, 33);
     color: rgb(33, 33, 33);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
-    font-family: "Roboto Medium";
+    font-family: "Roboto Medium" !important;
     font-size: 14px;
     background-color: #fff;
     letter-spacing: .01em;
@@ -181,7 +181,7 @@
     color: rgba(#000, .87);
 
     &:hover {
-        background-color: rgba(158, 158, 158, .1);
+        background-color: rgba(158, 158, 158, .2);
     }
     &._primary {
         color: rgb(16, 108, 200);

@@ -64,6 +64,15 @@ body {
     -webkit-font-smoothing: antialiased;
     position: relative;
     height: 100%;
+    &.no-scroll {
+        overflow: hidden;
+        // 设置右内边距以填充滚动条的空位
+        padding-right: 15px;
+        // 设置右外边距以填充导航条的空位
+        .nav-items {
+            margin-right: 15px;
+        }
+    }
 }
 .main-wrap {
     position: relative;

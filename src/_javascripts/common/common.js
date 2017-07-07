@@ -4,7 +4,7 @@ import initMdButton from './md-button'
 import initMdInput from './md-input'
 import initMdTag from './md-tag'
 import initMdTextarea from './md-textarea'
-import initMdDialog from './md-dialog'
+import showMdDialog from './md-dialog'
 import generateMaterialBackground from './md-background'
 
 $(function() {
@@ -14,7 +14,8 @@ $(function() {
     initMdTag()
     initMdTextarea()
     initMdButton()
-    initMdDialog()
+    
+    window.showMdDialog = showMdDialog
 
     // 在点击动画结束后调用函数
     function mdDelay(fn) {
@@ -22,6 +23,8 @@ $(function() {
             fn()
         }, 400)
     }
+
+    window.mdDelay = mdDelay
 
     // 新建按钮
     $('._create-new').click(function() {

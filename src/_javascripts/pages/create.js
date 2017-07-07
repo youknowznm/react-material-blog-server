@@ -92,5 +92,15 @@ $(function() {
         })
     })
 
+    $('.cancel').click(function() {
+        showMdDialog({
+            title: 'Leave this page?',
+            content: 'Blog content shall be discarded.',
+            onConfirm: function() {
+                location.pathname = '/blogs'    
+            }
+        })
+    })
+
 })
 
