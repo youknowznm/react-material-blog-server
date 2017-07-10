@@ -70,6 +70,8 @@ module.exports = {
             filename: 'common.js',
             minChunks: Infinity,
         }),
+        new webpack.HotModuleReplacementPlugin(),
+
         // new webpack.optimize.UglifyJsPlugin({
         //     sourceMap: true,
         //     compress: {
@@ -77,4 +79,9 @@ module.exports = {
         //     },
         // }),
     ],
+    devServer: {
+        hot: true, // Tell the dev-server we're using HMR
+        // contentBase: path.resolve(__dirname, 'dist'),
+        // publicPath: '/'
+    }
 }

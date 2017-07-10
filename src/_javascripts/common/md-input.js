@@ -2,6 +2,8 @@ import $ from './jquery'
 
 export default function initMdInput() {
 
+    console.log('HMR!!!')
+
     function initInput($mdInput) {
         let $input = $mdInput.find('input')
         let val = $input.attr('value')

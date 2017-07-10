@@ -22,12 +22,9 @@ gulp.task('img', function() {
         .pipe(gulp.dest('dist/images/'))
 })
 
-gulp.task('default', ['css', 'img'], function() {
+gulp.task('default', function() {
     livereload.listen()
     gulp
-        .watch('src/_styles/**/*.*', ['css'])
-        .on('change', livereload.changed)
-    gulp
-        .watch('src/_images/**/*.*', ['img'])
+        .watch('dist/javascripts/*.js')
         .on('change', livereload.changed)
 })

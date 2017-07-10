@@ -36,19 +36,19 @@ export default function initMdTag() {
                 $mdtag.addClass('non-empty')
             }
         })
-        .on('keydown', function() {
-            forbidSymbolInput($(this))
-        })
-        .on('input', function() {
-            forbidSymbolInput($(this))
-        })
+        // .on('keydown', function() {
+        //     forbidSymbolInput($(this))
+        // })
+        // .on('input', function() {
+        //     forbidSymbolInput($(this))
+        // })
         .on('keyup', function(evt) {
             let $this = $(this)
             let $mdtag = $this.parents('.md-tag')
             let $error = $mdtag.find('.error')
             let tags = $mdtag.find('.tag')
             let tagCount = tags.length
-            forbidSymbolInput($this)
+            // forbidSymbolInput($this)
             if (evt.keyCode === 13) {
                 let val = $this.val().trim()
                 $this.val('')

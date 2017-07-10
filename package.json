@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "s": "nodemon ./bin/www",
-    "w": "./node_modules/.bin/webpack --display-error-details",
-    "g": "gulp"
+    "server": "nodemon ./bin/www",
+    "dev-server": "webpack-dev-server --env development",
+    "webpack": "./node_modules/.bin/webpack --display-error-details",
+    "gulp": "gulp"
   },
   "dependencies": {
     "babel-core": "^6.24.1",

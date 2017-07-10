@@ -1,4 +1,5 @@
 import $ from './jquery'
+import initMdButton from './md-button'
 
 /**
 @param options {object} title(String) content(String) onConfirm(Function?) onCancel(Function?)
@@ -23,6 +24,7 @@ export default function showMdDialog(options) {
                 </div>
             </div>`
     $('body').append($(mdDialogHTML))
+    initMdButton()
 
     let $body = $('body')
     let $dialog = $('.md-dialog')
