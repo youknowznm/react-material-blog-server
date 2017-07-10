@@ -2,8 +2,6 @@ import $ from './jquery'
 
 export default function initMdInput() {
 
-    console.log('HMR!!!')
-
     function initInput($mdInput) {
         let $input = $mdInput.find('input')
         let val = $input.attr('value')
@@ -50,7 +48,6 @@ export default function initMdInput() {
         let currentCharCounter = $wrap.find('.current')
         let maxCharCount = +$wrap.find('.maximum').text()
         currentCharCounter.text(currentCount)
-        // $wrap.toggleClass('invalid', currentCount === maxCharCount);
     }
 
 }

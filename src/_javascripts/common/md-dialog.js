@@ -39,11 +39,7 @@ export default function showMdDialog(options) {
     $dialog.on('click', function(evt) {
         mdDelay(function() {
             let type = $(evt.target).closest('.md-button').data('buttonType')
-            $wrap.removeClass('show')
-            setTimeout(function() {
-                $body.removeClass('no-scroll')
-                $wrap.remove()
-            }, 400)
+            // 未点击二按钮之一时无操作
             switch (type) {
                 case 'confirm':
                     if (typeof options.onConfirm === 'function') {
@@ -58,6 +54,11 @@ export default function showMdDialog(options) {
                 default:
                     return
             }
+            $wrap.removeClass('show')
+            setTimeout(function() {
+                $body.removeClass('no-scroll')
+                $wrap.remove()
+            }, 400)
         })
     })
 

@@ -18,36 +18,64 @@ $(function() {
     )
 
     let $s_btn = $('.submit')
-    let $mdi = $('.md-input, .md-textarea')
+    let $mdInputElements = $('.md-input, .md-textarea, .md-tag')
 
-    // 检查输入内容，控制提交按钮样式
-    $('body')
-        .on('blur', '.md-input, .md-textarea', function() {
+    // md-tag元素的内容验证比较复杂。故使用计时器验证
+    setInterval(function() {
+        $mdInputElements.each(function() {
             checkIfEmpty($(this))
-            setSubmitBtnStatus()
         })
-        .on('keyup', '.md-input, .md-textarea', function() {
-            checkIfEmpty($(this))
-            setSubmitBtnStatus()
-        })
+        setSubmitBtnStatus()
+    }, 200)
 
     // 对每个输入容器进行非空验证
     function checkIfEmpty($this) {
-        let val = $this.find('._input').val()
-        if (/^\s*$/.test(val)) {
-            $this.addClass('invalid').find('.error').text('This field is required.')
-        } else {
-            $this.removeClass('invalid').find('.error').text('')
+        // 根据输入类型的不同分别处理
+        switch ($this.is('.md-tag')) {
+            case false:
+
+                let val = $this.find('._input').val()
+                if (/^\s*$/.test(val)) {
+                    $this.addClass('invalid').find('.error').text('This field is required.')
+                } else {
+                    $this.removeClass('invalid').find('.error').text('')
+                }
+                break
+
+            case true:
+
+                let $tagInputEle = $this.find('._input')
+                if ($tagInputEle.siblings('.tag').length === 0) {
+                    $this.addClass('invalid').find('.error').text('At least 1 tag is required.')
+                } else {
+                    $this.removeClass('invalid').find('.error').text('')
+                }
+                break
         }
     }
 
     // 全部非空时启用提交按钮
     function setSubmitBtnStatus() {
         let allValid = true
-        $mdi.each(function() {
-            let val = $(this).find('._input').val()
-            if (/^\s*$/.test(val)) {
-                allValid = false
+        $mdInputElements.each(function() {
+            let $this = $(this)
+            // 根据输入类型的不同分别处理
+            switch ($this.is('.md-tag')) {
+                case false:
+
+                    let val = $this.find('._input').val()
+                    if (/^\s*$/.test(val)) {
+                        allValid = false
+                    }
+                    break
+
+                case true:
+
+                    let tagCount = $this.find('.tag').length
+                    if (tagCount === 0) {
+                        allValid = false
+                    }
+                    break
             }
         })
         if (allValid) {
@@ -57,32 +85,33 @@ $(function() {
         }
     }
 
+    // 提交
     $s_btn.click(function() {
         if ($(this).is('._disabled')) {
             return
         }
         let _id = $('.main-wrap').data('uid')
-        let title = encodeURIComponent($('._title ._input').val())
-        let summary = encodeURIComponent($('._summary ._input').val())
-        let content = encodeURIComponent($('._content ._input').val())
+        let title = $('._title ._input').val()
+        let summary = $('._summary ._input').val()
+        let content = $('._content ._input').val()
         let created = new Date().toString()
-        let tags = ''
+        let tags = []
         $('._tags').find('.tag-content').each(function() {
-            tags += '<&>' + $(this).text()
+            tags.push($(this).text())
         })
-        tags = encodeURIComponent(tags)
+        let data = JSON.stringify({
+            _id,
+            title,
+            summary,
+            content,
+            tags,
+            created,
+        })
         $.ajax({
-            dataType: 'json',
+            contentType: 'application/json',
             url: '/savePost',
             type: 'Post',
-            data: {
-                _id,
-                title,
-                summary,
-                content,
-                tags,
-                created,
-            },
+            data,
             success: function(data) {
                 console.log('s', data)
             },
@@ -97,7 +126,7 @@ $(function() {
             title: 'Leave this page?',
             content: 'Blog content shall be discarded.',
             onConfirm: function() {
-                location.pathname = '/blogs'    
+                location.pathname = '/blogs'
             }
         })
     })

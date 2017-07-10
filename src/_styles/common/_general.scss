@@ -78,15 +78,11 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: calc(100% - 256px - 144px + 24px);
     margin-top: 256px;
     padding-bottom: 232px;
     background: rgb(250, 250, 250);
     z-index: 99;
     animation: wrapPopIn .5s;
-    &.no-margin-top {
-        margin-top: 0;
-    }
     @keyframes wrapPopIn {
         from {
             opacity: 0;
@@ -97,11 +93,36 @@ body {
             transition: translateY(0);
         }
     }
+    &.empty {
+        margin-top: 0;
+        height: calc(100% - 256px - 144px + 24px);
+        .main {
+            position: absolute;
+        }
+    }
+    .empty-msg-wrap {
+        position: absolute;
+        width: 100%;
+        top: 256px;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        font-family: 'Roboto';
+        color: #666;
+        .empty-msg {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            user-select: none;
+            cursor: default;
+        }
+    }
 }
 .main {
     position: relative;
     height: 100%;
-    padding-bottom: 232px;
     @include mds-responsive-wrap;
     .fixed-panel {
         display: none;
