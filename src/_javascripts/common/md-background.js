@@ -33,7 +33,7 @@ let generateMaterialBackground = function(selector) {
     $(selector).each(function(i) {
 
         // 在以上色板内随机选取一组配色。小于16个目标元素时，禁止产生相同的配色
-        let paletteIndex;
+        let paletteIndex
         paletteIndex = Math.floor(Math.random() * 15)
         if (usedPaletteIndexes.length < 16) {
             while (true) {
@@ -49,7 +49,8 @@ let generateMaterialBackground = function(selector) {
         // 生成背景色块的容器元素，设置其背景颜色为指定配色，旋转 0 | 90 | 180 | 270 度
         let wrapRotateAngle = Math.floor(Math.random() * 4) * 90
         let wrapHTML = `<div class="md-bg-wrap"
-                             style="transform: rotate(${wrapRotateAngle}deg); background-color: ${MD_COLOR_PALETTE[paletteIndex][0]};">
+                             style="transform: rotate(${wrapRotateAngle}deg);
+                                    background-color: ${MD_COLOR_PALETTE[paletteIndex][0]};">
                         </div>`
         let $mdBgWrap = $(wrapHTML)
 
@@ -61,7 +62,9 @@ let generateMaterialBackground = function(selector) {
             let width = Math.floor(Math.random() * 300 + 100)
             let rotateAngle = Math.floor(Math.random() * 180 + 1)
             blocksHTML += `<div class="md-bg-block md-shadow-${shadowStrength}"
-                                style="width: ${width}px; transform: rotate(${rotateAngle}deg); background-color: ${MD_COLOR_PALETTE[paletteIndex][1]}">
+                                style="width: ${width}px;
+                                       transform: rotate(${rotateAngle}deg);
+                                       background-color: ${MD_COLOR_PALETTE[paletteIndex][1]}">
                            </div>`
         }
 
