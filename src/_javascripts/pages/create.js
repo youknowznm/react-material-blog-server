@@ -21,7 +21,7 @@ $(function() {
     let $mdInputElements = $('.md-input, .md-textarea, .md-tag')
 
     // md-tag元素的内容验证比较复杂。故使用计时器验证
-    // 减产所有产生过blur事件的md组件
+    // 检查所有产生过blur事件的md组件
     setInterval(function() {
         $mdInputElements.each(function() {
             let $this = $(this)
@@ -130,7 +130,7 @@ $(function() {
             title: 'Leave this page?',
             content: 'Blog content shall be discarded.',
             onConfirm: function() {
-                location.pathname = '/blogs'
+                location.pathname = '/posts'
             }
         })
     })

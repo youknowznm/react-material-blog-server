@@ -1,0 +1,22 @@
+<% include ./common/header-tags.ejs %>
+<% include ./common/md-header.ejs %>
+
+<div class="main-wrap">
+    <div class="main">
+        <div class="post">
+            <div class="heading">
+                <h1 class="title">
+                    <%-: doc.title | breakToSpans %>
+                </h1>
+                <!-- <p class="summary">
+                    <%= doc.summary %>
+                </p> -->
+            </div>
+        </div>
+    </div>
+
+    <% include ./common/fixed-panel.ejs %>
+
+</div>
+
+<% include ./common/footer-tags.ejs %>

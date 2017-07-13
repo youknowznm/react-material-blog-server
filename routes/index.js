@@ -9,6 +9,6 @@ function addRouter(path) {
 
 addRouter('./_demo')
 
-addRouter('./_blogs')
+addRouter('./_posts')
 addRouter('./_create')
 

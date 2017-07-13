@@ -55,7 +55,17 @@ function savePost(params, cb) {
     })
 }
 
+function findPostById(_id, cb) {
+    PostModel.findById(_id, function(e, doc) {
+        if (e) {
+            console.error(e)
+        }
+        return cb(doc)
+    })
+}
+
 module.exports = exports = {
     savePost,
     getPosts,
+    findPostById,
 }

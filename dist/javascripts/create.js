@@ -2573,8 +2573,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 18 */,
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)(undefined);
@@ -2588,17 +2587,17 @@ exports.push([module.i, "@charset \"UTF-8\";\n/*\nmixins\n*/\n.md-input {\n  pos
 
 
 /***/ }),
+/* 19 */,
 /* 20 */,
 /* 21 */,
 /* 22 */,
-/* 23 */,
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(19);
+var content = __webpack_require__(18);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(9)(content, {});
@@ -2607,8 +2606,8 @@ if(content.locals) module.exports = content.locals;
 if(true) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept(19, function() {
-			var newContent = __webpack_require__(19);
+		module.hot.accept(18, function() {
+			var newContent = __webpack_require__(18);
 			if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
 			update(newContent);
 		});
@@ -2618,6 +2617,7 @@ if(true) {
 }
 
 /***/ }),
+/* 24 */,
 /* 25 */,
 /* 26 */,
 /* 27 */,
@@ -2625,8 +2625,7 @@ if(true) {
 /* 29 */,
 /* 30 */,
 /* 31 */,
-/* 32 */,
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2636,7 +2635,7 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-__webpack_require__(24);
+__webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2655,7 +2654,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     var $mdInputElements = (0, _jquery2.default)('.md-input, .md-textarea, .md-tag');
 
     // md-tag元素的内容验证比较复杂。故使用计时器验证
-    // 减产所有产生过blur事件的md组件
+    // 检查所有产生过blur事件的md组件
     setInterval(function () {
         $mdInputElements.each(function () {
             var $this = (0, _jquery2.default)(this);
@@ -2764,11 +2763,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             title: 'Leave this page?',
             content: 'Blog content shall be discarded.',
             onConfirm: function onConfirm() {
-                location.pathname = '/blogs';
+                location.pathname = '/posts';
             }
         });
     });
 });
 
 /***/ })
-],[33]);
+],[32]);
