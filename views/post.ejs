@@ -3,14 +3,20 @@
 
 <div class="main-wrap">
     <div class="main">
-        <div class="post">
+        <div class="post-specific">
             <div class="heading">
-                
+                <h1 class="title">
+                    <%-: doc.title | breakToSpans %>
+                </h1>
+                <!-- <p class="summary">
+                    <%= doc.summary %>
+                </p> -->
             </div>
         </div>
-    </div>
 
-    <% include ./common/fixed-panel.ejs %>
+        <% include ./common/fixed-panel.ejs %>
+
+    </div>
 
 </div>
 

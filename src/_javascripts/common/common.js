@@ -14,7 +14,7 @@ $(function() {
     initMdTag()
     initMdTextarea()
     initMdButton()
-    
+
     window.showMdDialog = showMdDialog
 
     // 在点击动画结束后调用函数
@@ -47,7 +47,7 @@ $(function() {
     }, 1000)
 
     // 主导航按钮
-    $('.md-header').on('click', ' .nav-item:not(.active)', function(evt) {
+    $('.md-header').on('click', 'nav-item', function(evt) {
         mdDelay(function() {
             location.pathname = '/' + evt.target.innerHTML
         })

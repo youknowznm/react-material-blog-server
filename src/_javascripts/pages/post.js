@@ -1,5 +1,6 @@
 import $ from '../common/jquery'
 import '../../_styles/pages/post.scss'
+import generateMaterialBackground from '../common/md-background'
 
 $(function() {
 

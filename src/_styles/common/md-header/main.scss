@@ -56,19 +56,10 @@ z-index
             line-height: 64px;
             height: 64px;
             padding-left: 20px;
-            .single-word {
-                float: left;
-                &::after {
-                    content: '·';
-                    opacity: .4;
-                }
-                &:last-of-type:after {
-                    content: '¬';
-                }
-            }
         }
     }
     .nav-items {
+        display: none;
         position: relative;
         float: right;
         font-size: 14px;
@@ -147,5 +138,17 @@ z-index
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+// md风格的span伪元素
+.single-word {
+    float: left;
+    &::after {
+        content: '·';
+        opacity: .4;
+    }
+    &:last-of-type:after {
+        content: '¬';
     }
 }

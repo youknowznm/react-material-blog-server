@@ -31,13 +31,6 @@ export default function initMDHeader() {
     // 波纹扩散标识
     let rippling = false
 
-    // 修正.nav-items的宽度
-    let w = 0
-    $navButtons.each(function() {
-        w += $(this).outerWidth()
-    })
-    $navButtonsContainer.width(w + 10)
-
     let $navButtonClicked = null
 
     $header
@@ -99,7 +92,7 @@ export default function initMDHeader() {
                         $navIndicator.css({
                             left: 0,
                             width: 0,
-                            right: 'auto'
+                            right: 'auto',
                         })
                     }
                 )
@@ -197,6 +190,19 @@ export default function initMDHeader() {
             )
         })
 
+
+    // 修正.nav-items的宽度
+    let w = 0
+    $navButtons.each(function() {
+        w += $(this).outerWidth()
+    })
+    $navButtonsContainer.width(w + 10)
+
+    // TODO
+    setTimeout(function() {
+        $navButtonsContainer.fadeIn()
+    }, 500)
+
     function changeColorTheme($ele) {
         let colorIndex = $navButtons.index($ele) % 5
         let pallete = [
@@ -211,5 +217,8 @@ export default function initMDHeader() {
         $ele.hasClass('search') ? $header.attr('data-theme', pallete[5]) :
             $header.attr('data-theme', pallete[colorIndex])
     }
+
+
+
 
 }
