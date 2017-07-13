@@ -10,6 +10,11 @@ export default function initMdInput() {
         let maxCharCount = $input.attr('maxlength')
         $mdInput.find('.current').text(currentCharCount)
         $mdInput.find('.maximum').text(maxCharCount)
+        // ‘未点击’状态的标识。在输入框产生初次blur后修改
+        $mdInput.data('edited', false)
+        $input.one('blur', function() {
+            $mdInput.data('edited', true)
+        })
     }
 
     $('.md-input').each(function() {

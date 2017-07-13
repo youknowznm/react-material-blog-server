@@ -1,17 +1,22 @@
 import $ from './jquery'
 
-export default function initMdTag() {
+export default function initmdTag() {
 
-    function initTag($mdtag) {
-        let tagsData = $mdtag.data('md-tags')
-        if ($mdtag.find('.tag').length > 0) {
-            $mdtag.addClass('non-empty')
+    function initTag($mdTag) {
+        let tagsData = $mdTag.data('md-tags')
+        if ($mdTag.find('.tag').length > 0) {
+            $mdTag.addClass('non-empty')
         }
-        let $input = $mdtag.find('._input')
+        let $input = $mdTag.find('._input')
         let currentCharCount = 0
         let maxCharCount = $input.attr('maxlength')
-        $mdtag.find('.current').text(currentCharCount)
-        $mdtag.find('.maximum').text(maxCharCount)
+        $mdTag.find('.current').text(currentCharCount)
+        $mdTag.find('.maximum').text(maxCharCount)
+        // ‘未点击’状态的标识。在输入框产生初次blur后修改
+        $mdTag.data('edited', false)
+        $input.one('blur', function() {
+            $mdTag.data('edited', true)
+        })
     }
 
     $('.md-tag').each(function() {
@@ -21,26 +26,26 @@ export default function initMdTag() {
     $('.md-tag ._input')
         .on('focus', function() {
             let $this = $(this)
-            let $mdtag = $this.parents('.md-tag')
+            let $mdTag = $this.parents('.md-tag')
             if ($this.val() === '') {
-                $mdtag.addClass('focused')
+                $mdTag.addClass('focused')
             }
         })
         .on('blur', function() {
             let $this = $(this)
-            let $mdtag = $this.parents('.md-tag')
+            let $mdTag = $this.parents('.md-tag')
             if ($this.val() === '') {
-                $mdtag.removeClass('focused')
+                $mdTag.removeClass('focused')
             }
-            if ($mdtag.find('.tag').length > 0) {
-                $mdtag.addClass('non-empty')
+            if ($mdTag.find('.tag').length > 0) {
+                $mdTag.addClass('non-empty')
             }
         })
         .on('keyup', function(evt) {
             let $this = $(this)
-            let $mdtag = $this.parents('.md-tag')
-            let $error = $mdtag.find('.error')
-            let tags = $mdtag.find('.tag')
+            let $mdTag = $this.parents('.md-tag')
+            let $error = $mdTag.find('.error')
+            let tags = $mdTag.find('.tag')
             let tagCount = tags.length
             if (evt.keyCode === 13) {
                 let val = $this.val().trim()
@@ -64,8 +69,8 @@ export default function initMdTag() {
             }
             // 字数验证
             let currentCount = $this.val().length
-            let currentCharCounter = $mdtag.find('.current')
-            let maxCharCount = +$mdtag.find('.maximum').text()
+            let currentCharCounter = $mdTag.find('.current')
+            let maxCharCount = +$mdTag.find('.maximum').text()
             currentCharCounter.text(currentCount)
         })
 

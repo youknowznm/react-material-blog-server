@@ -1,4 +1,4 @@
-webpackJsonp([1],[
+webpackJsonp([2],[
 /* 0 */,
 /* 1 */
 /***/ (function(module, exports) {
@@ -2655,9 +2655,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     var $mdInputElements = (0, _jquery2.default)('.md-input, .md-textarea, .md-tag');
 
     // md-tag元素的内容验证比较复杂。故使用计时器验证
+    // 减产所有产生过blur事件的md组件
     setInterval(function () {
         $mdInputElements.each(function () {
-            checkIfEmpty((0, _jquery2.default)(this));
+            var $this = (0, _jquery2.default)(this);
+            if ($this.data('edited') === true) {
+                checkIfEmpty((0, _jquery2.default)(this));
+            }
         });
         setSubmitBtnStatus();
     }, 200);

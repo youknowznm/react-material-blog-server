@@ -21,9 +21,13 @@ $(function() {
     let $mdInputElements = $('.md-input, .md-textarea, .md-tag')
 
     // md-tag元素的内容验证比较复杂。故使用计时器验证
+    // 减产所有产生过blur事件的md组件
     setInterval(function() {
         $mdInputElements.each(function() {
-            checkIfEmpty($(this))
+            let $this = $(this)
+            if ($this.data('edited') === true) {
+                checkIfEmpty($(this))
+            }
         })
         setSubmitBtnStatus()
     }, 200)

@@ -10,6 +10,11 @@ export default function initMdTextarea() {
         let maxCharCount = $textarea.attr('maxlength')
         $mdTextarea.find('.current').text(currentCharCount)
         $mdTextarea.find('.maximum').text(maxCharCount)
+        // ‘未点击’状态的标识。在输入框产生初次blur后修改
+        $mdTextarea.data('edited', false)
+        $textarea.one('blur', function() {
+            $mdTextarea.data('edited', true)
+        })
     }
 
     $('.md-textarea').each(function() {
