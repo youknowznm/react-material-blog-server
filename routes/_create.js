@@ -8,6 +8,7 @@ module.exports = function(router) {
     */
     router.get('/create', function(req, res, next) {
         res.render('create', {
+            navType: 0,
             pageTitle: 'create',
             static: 'create',
             uid: shortid.generate(),

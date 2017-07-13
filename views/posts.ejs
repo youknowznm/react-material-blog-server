@@ -14,54 +14,55 @@
 
             <% for (let d of docs) {%>
                 <div class="post-wrap">
-                    <div class="post">
-                        <div class="heading">
-                            <h1 class="title">
-                                <%-: d.title | breakToSpans %>
-                            </h1>
-                            <p class="summary">
-                                <%= d.summary %>
-                            </p>
+                    <a class="post-link" href="/posts/<%= d._id %>">
+                        <div class="post">
+                            <div class="heading">
+                                <h1 class="title">
+                                    <%-: d.title | breakToSpans %>
+                                </h1>
+                                <p class="summary">
+                                    <%= d.summary %>
+                                </p>
+                            </div>
+
+                            <ul class="statistics">
+                                <% if (d.liked > 0) {%>
+                                <li class="liked">
+                                    <span class="content"><i class="icon"></i></span>
+                                    <span class="count"><%= d.liked %></span>
+                                </li>
+                                <%}%>
+                                <% if (d.comments > 0) {%>
+                                <li class="comments">
+                                    <span class="content"><i class="icon"></i></span>
+                                    <span class="count"><%= d.comments %></span>
+                                </li>
+                                <%}%>
+                            </ul>
+
+                            <ul class="tags">
+                                <% for (let t of d.tags) {}%>
+                                <li class="tag">
+                                    <button class="md-button">
+                                        <span class="content">javascript</span>
+                                        <div class="ripple-container"><span class="ripple"></span></div>
+                                    </button>
+                                </li>
+                                <li class="tag">
+                                    <button class="md-button">
+                                        <span class="content">mongodb</span>
+                                        <div class="ripple-container"><span class="ripple"></span></div>
+                                    </button>
+                                </li>
+                                <li class="tag">
+                                    <button class="md-button">
+                                        <span class="content">web</span>
+                                        <div class="ripple-container"><span class="ripple"></span></div>
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
-
-                        <ul class="statistics">
-                            <% if (d.liked > 0) {%>
-                            <li class="liked">
-                                <span class="content"><i class="icon"></i></span>
-                                <span class="count"><%= d.liked %></span>
-                            </li>
-                            <%}%>
-                            <% if (d.comments > 0) {%>
-                            <li class="comments">
-                                <span class="content"><i class="icon"></i></span>
-                                <span class="count"><%= d.comments %></span>
-                            </li>
-                            <%}%>
-                        </ul>
-
-                        <ul class="tags">
-                            <% for (let t of d.tags) {}%>
-                            <li class="tag">
-                                <button class="md-button">
-                                    <span class="content">javascript</span>
-                                    <div class="ripple-container"><span class="ripple"></span></div>
-                                </button>
-                            </li>
-                            <li class="tag">
-                                <button class="md-button">
-                                    <span class="content">mongodb</span>
-                                    <div class="ripple-container"><span class="ripple"></span></div>
-                                </button>
-                            </li>
-                            <li class="tag">
-                                <button class="md-button">
-                                    <span class="content">web</span>
-                                    <div class="ripple-container"><span class="ripple"></span></div>
-                                </button>
-                            </li>
-                        </ul>
-
-                    </div>
+                    </a>
                 </div>
 
                 <!-- <div class="post-wrap">

@@ -7,10 +7,10 @@
                 <span class="single-word">go</span>
             </a>
             <ul class="nav-items">
-                <li class="nav-item <% if (/^posts|create$/.test(pageTitle)) {%> active <%}%>">posts</li>
-                <li class="nav-item <% if (pageTitle === 'products') {%> active <%}%>">products</li>
-                <li class="nav-item <% if (pageTitle === 'messages') {%> active <%}%>">messages</li>
-                <li class="nav-item <% if (pageTitle === 'about') {%> active <%}%>">about</li>
+                <li class="nav-item <% if (navType === 0) {%> active <%}%>">posts</li>
+                <li class="nav-item <% if (navType === 1) {%> active <%}%>">products</li>
+                <li class="nav-item <% if (navType === 2) {%> active <%}%>">messages</li>
+                <li class="nav-item <% if (navType === 3) {%> active <%}%>">about</li>
                 <!-- <li class="nav-item search"></li> -->
                 <li class="nav-indicator"></li>
             </ul>
