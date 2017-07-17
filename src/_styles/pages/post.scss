@@ -12,12 +12,25 @@ body {
 .post-specific {
     position: relative;
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 24px 200px 24px 24px;
     background: #fff;
     font-family: 'Roboto Regular';
 
+    // 小页面宽度时内容宽度的重置
+    @media (max-width: 1150px) {
+        & {
+            max-width: 700px;
+        }
+    }
+
+    // 重置第一个子元素的上外边距
+    > *:first-child {
+        margin-top: 0 !important;
+    }
+
+    // 导航元素
     .post-nav {
         position: absolute;
         width: 156px;
@@ -31,11 +44,7 @@ body {
         }
     }
 
-    // 重置第一个子元素的上外边距
-    > *:first-child {
-        margin-top: 0 !important;
-    }
-
+    // md元素
     p {
         color: #212121;
         font-size: 16px;
