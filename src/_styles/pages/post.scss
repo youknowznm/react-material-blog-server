@@ -7,26 +7,28 @@ body {
 }
 
 .main {
-    height: 100%;
 }
 
 .post-specific {
     position: relative;
     width: 100%;
     max-width: 800px;
-    height: 100%;
     margin: 0 auto;
     padding: 24px 200px 24px 24px;
     background: #fff;
-    font-family: 'Roboto';
+    font-family: 'Roboto Regular';
 
-    .nav {
+    .post-nav {
         position: absolute;
-        width: 160px;
+        width: 156px;
         right: 0;
         top: 24px;
         height: 200px;
         border-left: 4px solid #1e88e5;
+        &.fixed {
+            position: fixed;
+            top: 300px;
+        }
     }
 
     // 重置第一个子元素的上外边距
@@ -93,7 +95,6 @@ body {
         font-family: 'Roboto Mono';
         font-size: 14px;
         line-height: 14px;
-        font-weight: 600;
         background-color: #f7f7f7;
         padding: 0 4px;
     }

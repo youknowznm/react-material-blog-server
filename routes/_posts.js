@@ -9,12 +9,12 @@ module.exports = function(router) {
     router.get(['/', '/posts'], function(req, res, next) {
         postProxy.getPosts(function(docs) {
             console.log('d', docs[0])
-            // console.log('f', encodeURIComponent(docs[0].content))
             res.render('posts', {
                 navType: 0,
                 pageTitle: 'posts',
                 static: 'posts',
-                docs: docs,
+                // docs: [],
+                docs,
             })
         })
 

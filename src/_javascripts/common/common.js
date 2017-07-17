@@ -54,4 +54,19 @@ $(function() {
     // 生成md背景
     generateMaterialBackground('.post')
 
+
+    // 滚动时处理控制面板样式
+    let $main = $('.main'),
+        $fixedPanel = $('.fixed-panel')
+
+    $(window).on('scroll', function() {
+        // 浮动控件top调整
+        let _h = $main.height() - 80,
+            scTp = document.body.scrollTop
+        $fixedPanel.css(
+            'top',
+            (scTp + 300) > _h ? _h : scTp + 300
+        )
+    })
+
 })

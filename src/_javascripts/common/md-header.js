@@ -19,9 +19,6 @@ export default function initMDHeader() {
         $pageTitle = $rippleLayer.children('.page-title'),
         $shadow = $('.md-header-shadow')
 
-    let $main = $('.main'),
-        $fixedPanel = $('.fixed-panel')
-
     // 判断是否移动端
     let isMobile = /Android|iPhone|Windows Phone|iPad/i.test(window.navigator.userAgent)
     if (isMobile) {
@@ -187,14 +184,7 @@ export default function initMDHeader() {
                 'height',
                 (192 - scTp) < 0 ? 0 : (192 - scTp)
             )
-            // 浮动控件top调整
-            let _h = $main.height() - 80;
-            $fixedPanel.css(
-                'top',
-                (scTp + 300) > _h ? _h : scTp + 300
-            )
         })
-
 
     // 修正.nav-items的宽度
     let w = 0
@@ -217,8 +207,5 @@ export default function initMDHeader() {
         $ele.hasClass('search') ? $header.attr('data-theme', pallete[5]) :
             $header.attr('data-theme', pallete[colorIndex])
     }
-
-
-
 
 }
