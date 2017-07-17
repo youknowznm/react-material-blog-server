@@ -100,8 +100,8 @@ z-index
         height: 192px;
         .page-title {
             position: absolute;
-            bottom: 80px;
             display: block;
+            bottom: 80px;
             color: map-get($gen-colors, white);
             height: 56px;
             padding-left: 20px;

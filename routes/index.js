@@ -10,5 +10,6 @@ function addRouter(path) {
 addRouter('./_demo')
 
 addRouter('./_posts')
+addRouter('./_post')
 addRouter('./_create')
 
