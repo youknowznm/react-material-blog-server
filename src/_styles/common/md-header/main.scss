@@ -59,7 +59,7 @@ z-index
         }
     }
     .nav-items {
-        display: none;
+        // TODO 桌面端没问题 注意移动端的宽度修改要求
         position: relative;
         float: right;
         font-size: 14px;
@@ -78,9 +78,11 @@ z-index
             padding: 27px 12px 21px;
             line-height: 1;
             border-bottom: 2px solid transparent;
-            transition: all .2s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             text-transform: uppercase;
+            // 透明，初始化时渐显
+            opacity: 0;
             &.active {
                 border-color: map-get($gen-colors, white);
             }
@@ -88,6 +90,9 @@ z-index
             &:not(.active):hover {
                 border-color: map-get($gen-colors, translucent-white);
             }
+        }
+        &.show .nav-item {
+            opacity: 1;
         }
     }
     .banner {

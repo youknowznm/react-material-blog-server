@@ -5,6 +5,7 @@ module.exports = function(router) {
     */
     router.get('/d', function(req, res, next) {
         res.render('demo', {
+            navType: 0,
             pageTitle: 'demo',
             static: 'demo',
         })

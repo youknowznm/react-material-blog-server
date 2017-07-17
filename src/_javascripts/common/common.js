@@ -18,13 +18,11 @@ $(function() {
     window.showMdDialog = showMdDialog
 
     // 在点击动画结束后调用函数
-    function mdDelay(fn) {
+    window.mdDelay = function(fn) {
         setTimeout(function() {
             fn()
         }, 400)
     }
-
-    window.mdDelay = mdDelay
 
     // 新建按钮
     $('._create-new').click(function() {
@@ -41,13 +39,13 @@ $(function() {
         }, 200)
     })
 
-    // 过后显示控制板
+    // 推迟显示控制板
     setTimeout(function() {
         $('.fixed-panel').show()
     }, 1000)
 
     // 主导航按钮
-    $('.md-header').on('click', 'nav-item', function(evt) {
+    $('.md-header').on('click', '.nav-item', function(evt) {
         mdDelay(function() {
             location.pathname = '/' + evt.target.innerHTML
         })

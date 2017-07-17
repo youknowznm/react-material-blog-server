@@ -33,6 +33,11 @@ export default function initMDHeader() {
 
     let $navButtonClicked = null
 
+    // 渐显导航按钮组
+    setTimeout(function() {
+        $navButtonsContainer.addClass('show')
+    }, 550)
+
     $header
         .on('mousedown', '.nav-item', function(evt) {
             let $targetBtn = $(this)
@@ -197,11 +202,6 @@ export default function initMDHeader() {
         w += $(this).outerWidth()
     })
     $navButtonsContainer.width(w + 10)
-
-    // TODO
-    setTimeout(function() {
-        $navButtonsContainer.fadeIn()
-    }, 500)
 
     function changeColorTheme($ele) {
         let colorIndex = $navButtons.index($ele) % 5
