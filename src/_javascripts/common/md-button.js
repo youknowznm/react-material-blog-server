@@ -6,7 +6,7 @@ export default function initMdButton() {
         $mdButton.data('animating', false)
     }
 
-    $('.md-button').each(function() {
+    $('.md-button, .md-icon-button').each(function() {
         initButton($(this))
     })
 
@@ -59,23 +59,22 @@ export default function initMdButton() {
         .on('mousedown', '.md-icon-button:not(._disabled)', function(evt) {
             let $this = $(this)
             if ($this.data('animating') === false) {
-                $this.data('clicked', true)
+                $this.data('animating', true)
                 let $ripple = $this.find('.ripple')
-                let _x = evt.offsetX
-                let _y = evt.offsetY
-                let _width = $this.innerWidth()
-                let _height = $this.innerHeight()
-                // 根据事件坐标和按钮水平中点的距离，获取波纹的直径
-                let offsetToHorizontalCenter = _width / 2 - _x
-                let offsetToVerticalCenter = _height / 2 - _y
-                let sideLength = _width + Math.abs(offsetToHorizontalCenter) * 2 + (_width / 10)
                 $ripple.css({
-                    width: sideLength,
-                    height: sideLength,
-                    left: (_width - sideLength) / 2 - offsetToHorizontalCenter,
-                    top: (_height - sideLength) / 2 - offsetToVerticalCenter,
+                    width: '40px',
+                    height: '40px',
+                    left: '20px',
+                    top: '20px',
                 })
                 $this.addClass('mousedown')
+                setTimeout(function() {
+                    $this.removeClass('mousedown').addClass('mouseup')
+                    setTimeout(function() {
+                        $this.removeClass('mouseup')
+                        $this.data('animating', false)
+                    }, 300)
+                }, 300)
             }
         })
 

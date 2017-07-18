@@ -51,7 +51,7 @@ export default function initmdTag() {
                 let val = $this.val().trim()
                 $this.val('')
                 if (/\S/.test(val)) {
-                    if (tagCount === 3) {
+                    if (tagCount === 2) {
                         showError($error, 'Maximum tags reached.')
                         return
                     }

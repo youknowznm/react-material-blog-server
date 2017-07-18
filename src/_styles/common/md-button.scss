@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/*
+***** 常规 ****
+*/
 .md-button {
     display: inline-block;
     position: relative;
@@ -105,7 +108,7 @@
 
 }
 
-// 主要、禁用、警告三种状态
+// 主要、禁用、警告三种主题
 .md-button._primary {
     background-color: rgb(16, 108, 200);
     color: #fff;
@@ -129,7 +132,10 @@
     }
 }
 
-// 不同形状 - 圆形
+/*
+***** 圆形 ****
+*/
+
 .md-button._round {
     width: 56px;
     min-width: 0;
@@ -174,7 +180,10 @@
     }
 }
 
-// 不同形状 - 扁平
+/*
+***** 扁平 ****
+*/
+
 .md-button._flat {
     box-shadow: none;
     background-color: transparent;
@@ -205,6 +214,10 @@
     }
 }
 
+/*
+***** 图标按钮 ****
+*/
+
 .md-icon-button {
     position: relative;
     width: 40px;
@@ -234,7 +247,7 @@
             height: 24px;
             top: -24px;
             left: 0;
-            filter: drop-shadow(rgb(16, 108, 200) 0 24px);
+            filter: drop-shadow(rgba(#000, .54) 0 24px);
             /*
             http://www.zhangxinxu.com/wordpress/2016/06/png-icon-change-color-by-css/
             Chrome下如果元素的主体部分【完全】不可见，则其drop-shadow不可见；
@@ -263,13 +276,13 @@
             margin-top: -20px;
             transform: scale(0);
             background-color: transparent;
-            transition: all .55s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all .3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
     }
 
     &.mousedown {
         .ripple {
-            background-color: rgba(16, 108, 200, .2);
+            background-color: rgba(#000, .1);
             transform: scale(1);
         }
     }
@@ -278,6 +291,33 @@
         .ripple {
             background-color: transparent;
             transform: scale(1);
+        }
+    }
+    // 不同主题
+    &._primary {
+        .icon {
+            filter: drop-shadow(rgb(16, 108, 200) 0 24px);
+        }
+        &.mousedown .ripple {
+            background-color: rgba(16, 108, 200, .2);
+        }
+    }
+    &._disabled {
+        cursor: default;
+        .icon {
+            filter: drop-shadow(rgba(#000, .38) 0 24px);
+        }
+        &:hover,
+        &.mousedown .ripple {
+            background-color: transparent;
+        }
+    }
+    &._warn {
+        .icon {
+            filter: drop-shadow(rgb(255, 82, 82) 0 24px);
+        }
+        &.mousedown .ripple {
+            background-color: rgba(255, 82, 82, .2);
         }
     }
 

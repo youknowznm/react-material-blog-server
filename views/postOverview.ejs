@@ -31,16 +31,16 @@
 
                             <ul class="statistics">
                                 <% if (d.liked > 0) {%>
-                                <li class="liked">
-                                    <span class="content"><i class="icon"></i></span>
-                                    <span class="count"><%= d.liked %></span>
-                                </li>
+                                    <li class="liked">
+                                        <span class="content"><i class="icon"></i></span>
+                                        <span class="count"><%= d.liked %></span>
+                                    </li>
                                 <%}%>
                                 <% if (d.comments > 0) {%>
-                                <li class="comments">
-                                    <span class="content"><i class="icon"></i></span>
-                                    <span class="count"><%= d.comments %></span>
-                                </li>
+                                    <li class="comments">
+                                        <span class="content"><i class="icon"></i></span>
+                                        <span class="count"><%= d.comments | 0%></span>
+                                    </li>
                                 <%}%>
                             </ul>
 
