@@ -18,7 +18,7 @@ module.exports = function(router) {
                 res.render('post', {
                     navType: 0,
                     pageTitle: doc.title,
-                    static: 'post',
+                    static: 'postDetail',
                     doc,
                 })
             }

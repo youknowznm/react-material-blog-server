@@ -12,7 +12,7 @@ module.exports = function(router) {
             res.render('posts', {
                 navType: 0,
                 pageTitle: 'posts',
-                static: 'posts',
+                static: 'postOverview',
                 // docs: [],
                 docs,
             })
