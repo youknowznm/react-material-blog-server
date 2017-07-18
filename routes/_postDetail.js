@@ -15,7 +15,7 @@ module.exports = function(router) {
                 })
             } else {
                 console.log(doc.tags);
-                res.render('post', {
+                res.render('postDetail', {
                     navType: 0,
                     pageTitle: doc.title,
                     static: 'postDetail',

@@ -9,7 +9,7 @@ module.exports = function(router) {
     router.get(['/', '/posts'], function(req, res, next) {
         postProxy.getPosts(function(docs) {
             console.log('d', docs[0])
-            res.render('posts', {
+            res.render('postOverview', {
                 navType: 0,
                 pageTitle: 'posts',
                 static: 'postOverview',
