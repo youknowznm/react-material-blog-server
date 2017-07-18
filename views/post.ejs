@@ -105,14 +105,10 @@
 
             </div>
 
-            <!-- <p class="summary">
-                <%= doc.summary %>
-            </p> -->
-
             <div class="content-footer">
-                <% for (let t in doc.tags) {%>
+                <% for (let i = 0; i < doc.tags.length; i++) {%>
                     <button class="md-button _flat _primary">
-                        <span class="content"><%= t %></span>
+                        <span class="content"><%= doc.tags[i] %></span>
                         <div class="ripple-container"><span class="ripple"></span></div>
                     </button>
                 <%}%>
