@@ -14,22 +14,24 @@ $(function() {
         )
     })
 
-    // let $posts = $('.post')
-    // resizePostWraps()
-    //
-    // $(window).on('resize', function() {
-    //     resizePostWraps()
-    // })
-    //
-    // function resizePostWraps() {
-    //     let w = $posts.eq(0).width()
-    //     $posts.each(function() {
-    //         $(this).height(w)
-    //     })
-    // }
+    // 取得博客内容的直接header元素，生成内容导航
+    let $headers = $('.markdown-parsed').children(':header')
+    let postContentNavHTML = '<li>Contents</li>'
+    Array.prototype.forEach.call($headers, function(item, index, array) {
+        item.setAttribute('data-index', index)
+        postContentNavHTML += `<li data-index="${index}">${item.innerHTML}</li>`
+    })
+    // 点击非‘目录’的li时，页面滚动至对应的左侧header
+    $postContentNav.on('click', 'li', function() {
+        let $this = $(this),
+            index = $this.data('index')
+        if ($this.is(':first-child')) {
+            $('body').animate({'scrollTop': 192}, 'fast')
+        } else {
+            scrollIntoTargetElement($headers[index])
+        }
+    })
+    $postContentNav.html(postContentNavHTML)
 
-    // $('')
 
 })
-
-

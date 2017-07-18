@@ -4,104 +4,132 @@
 <div class="main-wrap">
     <div class="main">
         <div class="post-specific">
-            <p>
-                您可以将 GitHub 身份验证集成到您的应用中，让您的用户可使用自己的 GitHub 帐户进行 Firebase 身份验证。 您可以使用 Firebase SDK 实施登录流程，或者手动实施 GitHub OAuth 2.0 流程，并将得到的访问令牌传输至 Firebase，从而集成 GitHub 身份验证。
-            </p>
-            <h2>
-                开始前的准备工作
-            </h2>
-            <p>
-                在<a href="">GitHub</a>上以开发者应用的形式注册您的应用，并获取应用的 OAuth 2.0 客户端 ID 和客户端密钥。
-            </p>
-            <ol>
-                <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
-                <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
-                <li>
-                    启用“电子邮件地址/密码”登录方法：
-                    <ul>
-                        <li>在 Firebase 控制台中，打开身份验证部分。</li>
-                        <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。
-                            <pre>
-                                <code class="lang-javascript">
-firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-// Handle Errors here.
-var errorCode = error.code;
-var errorMessage = error.message;
-// ...
-});
-                                </code>
-                            </pre>
-                        </li>
-                    </ul>
-                </li>
-            </ol>
+            <div class="markdown-parsed">
+                <p>
+                    您可以将 GitHub 身份验证集成到您的应用中，让您的用户可使用自己的 GitHub 帐户进行 Firebase 身份验证。 您可以使用 Firebase SDK 实施登录流程，或者手动实施 GitHub OAuth 2.0 流程，并将得到的访问令牌传输至 Firebase，从而集成 GitHub 身份验证。
+                </p>
+                <h2 id="f">
+                    开始前的准备工作开始前的准备工作
+                </h2>
+                <h2 id="g">
+                    大师傅
+                </h2>
+                <h1 id="d">
+                    大斧沟沟壑壑
+                </h1>
+                <p>
+                    在<a href="">GitHub</a>上以开发者应用的形式注册您的应用，并获取应用的 OAuth 2.0 客户端 ID 和客户端密钥。
+                </p>
+                <ol>
+                    <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
+                    <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
+                    <li>
+                        启用“电子邮件地址/密码”登录方法：
+                        <ul>
+                            <li>在 Firebase 控制台中，打开身份验证部分。</li>
+                            <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。
+                                <pre>
+                                    <code class="lang-javascript">
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+    });
+                                    </code>
+                                </pre>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
 
-            <ul>
-                <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
-                <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
-                <li>
-                    启用“电子邮件地址/密码”登录方法：
-                    <ol>
-                        <li>在 Firebase 控制台中，打开身份验证部分。</li>
-                        <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
-                    </ol>
-                </li>
-            </ul>
+                <ul>
+                    <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
+                    <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
+                    <li>
+                        启用“电子邮件地址/密码”登录方法：
+                        <ol>
+                            <li>在 Firebase 控制台中，打开身份验证部分。</li>
+                            <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
+                        </ol>
+                    </li>
+                </ul>
 
-            <ul>
-                <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
-                <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
-                <li>
-                    启用“电子邮件地址/密码”登录方法：
-                    <ol>
-                        <li>在 Firebase 控制台中，打开身份验证部分。</li>
-                        <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
-                    </ol>
-                </li>
-            </ul>
+                <ul>
+                    <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
+                    <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
+                    <li>
+                        启用“电子邮件地址/密码”登录方法：
+                        <ol>
+                            <li>在 Firebase 控制台中，打开身份验证部分。</li>
+                            <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
+                        </ol>
+                    </li>
+                </ul>
 
-            <ul>
-                <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
-                <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
-                <li>
-                    启用“电子邮件地址/密码”登录方法：
-                    <ol>
-                        <li>在 Firebase 控制台中，打开身份验证部分。</li>
-                        <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
-                    </ol>
-                </li>
-            </ul>
+                <ul>
+                    <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
+                    <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
+                    <li>
+                        启用“电子邮件地址/密码”登录方法：
+                        <ol>
+                            <li>在 Firebase 控制台中，打开身份验证部分。</li>
+                            <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
+                        </ol>
+                    </li>
+                </ul>
 
-            <ul>
-                <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
-                <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
-                <li>
-                    启用“电子邮件地址/密码”登录方法：
-                    <ol>
-                        <li>在 Firebase 控制台中，打开身份验证部分。</li>
-                        <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
-                    </ol>
-                </li>
-            </ul>
+                <ul>
+                    <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
+                    <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
+                    <li>
+                        启用“电子邮件地址/密码”登录方法：
+                        <ol>
+                            <li>在 Firebase 控制台中，打开身份验证部分。</li>
+                            <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
+                        </ol>
+                    </li>
+                </ul>
 
-            <ul>
-                <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
-                <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
-                <li>
-                    启用“电子邮件地址/密码”登录方法：
-                    <ol>
-                        <li>在 Firebase 控制台中，打开身份验证部分。</li>
-                        <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
-                    </ol>
-                </li>
-            </ul>
+                <ul>
+                    <li>将 <code>Firebase</code> 添加到您的 JavaScript 项目。</li>
+                    <li>如果您尚未将自己的应用关联到您的 Firebase 项目，请在 Firebase 控制台中进行关联。</li>
+                    <li>
+                        启用“电子邮件地址/密码”登录方法：
+                        <ol>
+                            <li>在 Firebase 控制台中，打开身份验证部分。</li>
+                            <li>在登录方法标签中，启用电子邮件地址/密码登录方法，然后点击保存。</li>
+                        </ol>
+                    </li>
+                </ul>
+
+            </div>
+
             <!-- <p class="summary">
                 <%= doc.summary %>
             </p> -->
 
-            <div class="post-nav">
-
+            <div class="content-footer">
+                <% for (let t in doc.tags) {%>
+                    <button class="md-button _flat _primary">
+                        <span class="content"><%= t %></span>
+                        <div class="ripple-container"><span class="ripple"></span></div>
+                    </button>
+                <%}%>
+                <ul class="statistics">
+                    <li class="liked">
+                        <span class="content"><i class="icon"></i></span>
+                        <span class="count">321</span>
+                    </li>
+                    <li class="comments">
+                        <span class="content"><i class="icon"></i></span>
+                        <span class="count">321</span>
+                    </li>
+                </ul>
             </div>
+
+            <ul class="post-nav"></ul>
+
         </div>
 
         <% include ./common/fixed-panel.ejs %>

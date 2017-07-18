@@ -12,7 +12,7 @@ body {
 .post-specific {
     position: relative;
     width: 100%;
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 24px 200px 24px 24px;
     background: #fff;
@@ -33,17 +33,48 @@ body {
     // 导航元素
     .post-nav {
         position: absolute;
-        width: 156px;
+        box-sizing: border-box;
+        width: 160px;
         right: 0;
         top: 24px;
-        height: 200px;
+        min-height: 120px;
         border-left: 4px solid #1e88e5;
+        padding: 0 0 0 12px !important;
+        li {
+            list-style: none !important;
+            margin: 8px 0 0 !important;
+            width: 9em;
+            font-size: 13px;
+            line-height: 16px;
+            color: #212121;
+            cursor: pointer;
+            transition: color .2s ease-out;
+            &:first-child {
+                margin: 0 !important;
+                color: #757575;
+            }
+            &.active,
+            &:hover {
+                color: #039be5;
+            }
+        }
         &.fixed {
             position: fixed;
             top: 300px;
         }
     }
 
+    .content-footer {
+        width: 100%;
+        margin-top: 40px;
+        border-top: rgb(235, 235, 235) 1px solid;
+        color: #757575;
+    }
+
+}
+
+// md解析出的文章
+.markdown-parsed {
     // md元素
     p {
         color: #212121;
@@ -118,5 +149,4 @@ body {
             font-weight: normal;
         }
     }
-
 }

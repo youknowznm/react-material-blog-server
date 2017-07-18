@@ -7,6 +7,9 @@ import initMdTextarea from './md-textarea'
 import showMdDialog from './md-dialog'
 import generateMaterialBackground from './md-background'
 
+import globalMethods from './_globalMethods'
+
+// 每页的公用逻辑
 $(function() {
 
     initMDHeader()
@@ -14,15 +17,6 @@ $(function() {
     initMdTag()
     initMdTextarea()
     initMdButton()
-
-    window.showMdDialog = showMdDialog
-
-    // 在点击动画结束后调用函数
-    window.mdDelay = function(fn) {
-        setTimeout(function() {
-            fn()
-        }, 400)
-    }
 
     // 新建按钮
     $('._create-new').click(function() {
@@ -53,7 +47,6 @@ $(function() {
 
     // 生成md背景
     generateMaterialBackground('.post')
-
 
     // 滚动时处理控制面板样式
     let $main = $('.main'),

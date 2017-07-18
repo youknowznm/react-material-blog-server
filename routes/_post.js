@@ -14,6 +14,7 @@ module.exports = function(router) {
                     url: req.path
                 })
             } else {
+                console.log(doc.tags);
                 res.render('post', {
                     navType: 0,
                     pageTitle: doc.title,
