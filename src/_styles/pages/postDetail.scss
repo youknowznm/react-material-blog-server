@@ -72,7 +72,7 @@ body {
 
         .statistics {
             position: absolute;
-            top: 22px;
+            top: 14px;
             right: 0;
             > li {
                 float: left;
@@ -85,7 +85,7 @@ body {
                     margin-left: 6px;
                     line-height: 24px;
                     font-size: 12px;
-                    color: rgba(#000, .54);
+                    color: #ff5252;
                 }
             }
             .liked .icon {
