@@ -31,46 +31,17 @@ body {
 ._title {
     float: left;
     width: 40%;
-    &.non-empty,
-    &.focused {
-        .placeholder {
-            transform: scale(0.8) translateY(-30px) translateX(-4px);
-        }
-    }
 }
 
 ._summary {
     float: left;
     width: 60%;
-    &.non-empty,
-    &.focused {
-        .placeholder {
-            transform: scale(0.8) translateY(-30px) translateX(-10px);
-        }
-    }
-}
-
-._content {
-    ._input {
-    }
-    &.non-empty,
-    &.focused {
-        .placeholder {
-            transform: scale(0.8) translateY(-30px) translateX(-42px);
-        }
-    }
 }
 
 ._tags {
     display: block;
     margin-right: 264px;
     clear: right;
-    &.non-empty,
-    &.focused {
-        .placeholder {
-            transform: scale(0.8) translateY(-30px) translateX(-4px);
-        }
-    }
 }
 
 .buttons {
