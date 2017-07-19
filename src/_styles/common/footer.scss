@@ -94,7 +94,7 @@ body > footer {
             background-position: 0 0;
             background-size: 24px 24px;
             opacity: .6;
-            transition: opacity .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: opacity .4s ease;
             cursor: pointer;
             > a {
                 position: absolute;
@@ -115,7 +115,7 @@ body > footer {
                     position: absolute;
                     width: 267px;
                     height: 376px;
-                    background: url("../../_images/qr_wechat.png") 0 0 no-repeat #fff;
+                    background: url("../../_images/qr.png") 0 0 no-repeat #fff;
                     background-size: 267px 376px;
                     left: 50%;
                     margin-left: -133px;
@@ -124,7 +124,7 @@ body > footer {
                     transform: scale(0);
                     opacity: 0;
                     transform-origin: bottom;
-                    transition: all .2s ease-out;
+                    transition: all .2s ease;
                 }
             }
             &.mail {
@@ -144,7 +144,7 @@ body > footer {
                     transform: scale(0);
                     opacity: 0;
                     transform-origin: bottom;
-                    transition: all .2s ease-out;
+                    transition: all .2s ease;
                 }
             }
             &:hover {
