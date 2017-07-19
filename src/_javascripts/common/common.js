@@ -62,4 +62,15 @@ $(function() {
         )
     })
 
+    /*
+    footer逻辑
+    */
+    let $footer = $('body').children('footer')
+
+    $footer.on('click', '.source', function() {
+        mdDelay(function() {
+            window.open('https://github.com/youknowznm/rhaego')
+        })
+    })
+
 })
