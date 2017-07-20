@@ -52,6 +52,7 @@ body > footer {
         .info-link {
             cursor: pointer;
             padding: 8px 0;
+            font-weight: bold;
             border-bottom: 2px solid transparent;
             transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
             &:hover {
@@ -132,6 +133,7 @@ body > footer {
                 background-image: url("../../_images/footer/ic_email.png");
                 .hover-content {
                     position: absolute;
+                    background: #fff;
                     white-space: nowrap;
                     height: 24px;
                     line-height: 24px;

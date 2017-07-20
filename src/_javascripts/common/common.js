@@ -58,7 +58,7 @@ $(function() {
             scTp = document.body.scrollTop
         $fixedPanel.css(
             'top',
-            (scTp + 300) > _h ? _h : scTp + 300
+            (scTp + 200) > _h ? _h : scTp + 200
         )
     })
 
