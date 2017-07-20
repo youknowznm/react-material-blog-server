@@ -3,7 +3,7 @@ const smtpAuthCode = require('../config').smtpAuthCode
 
 /**
 从固定发件邮箱发送邮件
-@param optionsArg {Object} to, subject, html 收件人、主题、标记内容
+@param optionsArg {Object} to(String) subject(String) html(String)
 */
 function sendmail(optionsArg) {
 
@@ -11,7 +11,7 @@ function sendmail(optionsArg) {
         || typeof optionsArg.subject !== 'String'
         || typeof optionsArg.html !== 'String'
     ) {
-        throw new Error('must provide TO, SUBJECT and HTML')
+        throw new Error('Invalid arguments.')
     }
 
     let smtpConfig = {

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+@import "./_mixins";
+
+.md-snackbar {
+    position: fixed;
+    @include mds-responsive-wrap;
+    bottom: 0;
+    height: 65px;
+    line-height: 65px;
+    background: rgb(2, 168, 243);
+}
