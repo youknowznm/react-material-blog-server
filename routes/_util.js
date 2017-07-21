@@ -1,5 +1,29 @@
 const nodemailer = require('nodemailer')
-const smtpAuthCode = require('../config').smtpAuthCode
+const smtpAuthKey = require('../config').smtpAuthKey
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+
+const userProxy = require('../proxy/user')
+
+passport.use(new LocalStrategy(
+    {
+        emailField: 'Email',
+        passwordField: 'Password',
+    },
+    function(email, password, cb) {
+
+    }
+))
+
+/**
+@param optionsArg {Object} to(String) subject(String) html(String)
+*/
+function auth(optionsArg) {
+
+
+
+}
+
 
 /**
 从固定发件邮箱发送邮件
@@ -19,7 +43,7 @@ function sendmail(optionsArg) {
         port: 465,
         auth: {
             user: 'rhaego@126.com',
-            pass: smtpAuthCode
+            pass: smtpAuthKey
         }
     }
 

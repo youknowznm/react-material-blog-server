@@ -1,7 +1,8 @@
 const CONFIG = {
     siteName: 'rhaego',
     dbPath: 'mongodb://localhost/rhaego',
-    smtpAuthCode: 'shouquanma123',
+    smtpAuthKey: 'shouquanma123',
+    userVerifyKey: 'verifyUser',
 }
 
 module.exports = CONFIG

@@ -4,9 +4,9 @@
 .md-snackbar {
     position: fixed;
     @include mds-responsive-wrap;
-    bottom: -48px;
+    bottom: -145px;
     height: 145px;
-    background: rgba(#000, .87);
+    background: #000;
     margin: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -15,9 +15,11 @@
     cursor: pointer;
     z-index: 200;
     text-align: center;
+    opacity: .87;
 
     ._title {
-        color: rgb(255, 64, 129);
+        // color: rgb(255, 64, 129);
+        color: rgb(255, 235, 59);
         font-size: 16px;
         height: 48px;
         line-height: 48px;
@@ -38,12 +40,7 @@
             float: left;
             margin-left: 12px;
             margin-right: 12px;
-            &.email {
-                width: 300px;
-            }
-            &.password {
-                width: 250px;
-            }
+            width: 300px;
         }
 
         .buttons {
@@ -58,7 +55,6 @@
             margin: 8px 8px;
         }
 
-
     }
 
     &.show-partial {
@@ -68,6 +64,7 @@
     &.show-full {
         bottom: 0 !important;
         cursor: default !important;
+        opacity: 1 !important;
     }
 
 }
