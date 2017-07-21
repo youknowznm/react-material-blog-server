@@ -4,7 +4,7 @@ import initMdButton from './md-button'
 import initMdInput from './md-input'
 import initMdTag from './md-tag'
 import initMdTextarea from './md-textarea'
-import showMdDialog from './md-dialog'
+import showMdSnackbar from './md-snackbar'
 import generateMaterialBackground from './md-background'
 
 import globalMethods from './_globalMethods'
@@ -17,6 +17,8 @@ $(function() {
     initMdTag()
     initMdTextarea()
     initMdButton()
+
+    showMdSnackbar()
 
     // 新建按钮
     $('._create-new').click(function() {

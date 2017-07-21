@@ -4,8 +4,70 @@
 .md-snackbar {
     position: fixed;
     @include mds-responsive-wrap;
-    bottom: 0;
-    height: 65px;
-    line-height: 65px;
-    background: rgb(2, 168, 243);
+    bottom: -48px;
+    height: 145px;
+    background: rgba(#000, .87);
+    margin: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, .2);
+    transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    z-index: 200;
+    text-align: center;
+
+    ._title {
+        color: rgb(255, 64, 129);
+        font-size: 16px;
+        height: 48px;
+        line-height: 48px;
+        transition: all .3s ease-out;
+        font-family: "Roboto Regular";
+        text-transform: uppercase;
+        letter-spacing: .05rem;
+        .strong {
+            font-weight: bold;
+        }
+    }
+
+    ._content {
+        display: inline-block;
+        height: 72px;
+
+        .md-input {
+            float: left;
+            margin-left: 12px;
+            margin-right: 12px;
+            &.email {
+                width: 300px;
+            }
+            &.password {
+                width: 250px;
+            }
+        }
+
+        .buttons {
+            position: relative;
+            display: inline-block;
+            margin-left: 12px;
+            margin-top: 10px;
+        }
+
+        .md-button {
+            width: 120px;
+            margin: 8px 8px;
+        }
+
+
+    }
+
+    &.show-partial {
+        bottom: -97px;
+    }
+
+    &.show-full {
+        bottom: 0 !important;
+        cursor: default !important;
+    }
+
 }

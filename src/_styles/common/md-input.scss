@@ -102,6 +102,47 @@
         font-weight: normal;
         transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    // 最小容器宽度
-    // @media
+    // 深色主题
+    &.dark {
+        .placeholder {
+            color: rgba(#fff, .7);
+        }
+        .char-counter,
+        ._input {
+            color: #fff;
+            border-bottom-color: rgba(#fff, .12);
+        }
+        &:after,
+        &:before {
+            background-color: rgb(255, 235, 59); //yellow
+        }
+        &.focused {
+            .placeholder {
+                color: rgb(255, 235, 59); //yellow
+            }
+        }
+    }
+    // 小尺寸
+    &.small {
+        margin: 10px 0;
+        .placeholder {
+            font-size: 12px;
+            line-height: 14px;
+
+        }
+        ._input {
+            font-size: 12px;
+            line-height: 14px;
+
+        }
+        .char-counter {
+            line-height: 12px;
+        }
+        &.focused,
+        &.non-empty {
+            .placeholder {
+                transform: scale(0.9) translateY(-15px);
+            }
+        }
+    }
 }

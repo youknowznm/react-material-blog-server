@@ -1,11 +1,26 @@
 import $ from './jquery'
 import initMdButton from './md-button'
-import initMdButton from './md-input'
+import initMdInput from './md-input'
 
 /**
 @param options {object} title(String) content(String) onConfirm(Function?) onCancel(Function?)
 */
 export default function showMdSnackbar(options) {
+
+    let $mdSnackbar = $('.md-snackbar')
+    let $mdSnackbarTitle = $mdSnackbar.children('.title')
+    let $mdSnackbarContent = $mdSnackbar.children('.content')
+    let $body = $('body')
+
+    $body.on('click', function(e) {
+        let $this = $(e.target)
+        $mdSnackbar.toggleClass('show-full', $this.closest('.md-snackbar').length !== 0)
+    })
+
+    let mdSnackbarHTML =
+        `
+
+        `
 
     // let mdDialogHTML =
     //         `<div class="md-dialog-wrap">

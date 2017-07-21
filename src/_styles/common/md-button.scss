@@ -106,6 +106,13 @@
         background-color: rgba(#fff, .7);
     }
 
+    // 常规 - 小尺寸
+    &.small {
+        height: 30px !important;
+        line-height: 30px !important;
+        font-size: 13px !important;
+    }
+
 }
 
 // 主要、禁用、警告三种主题
