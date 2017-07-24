@@ -8,6 +8,7 @@ import initMdInput from './md-input'
 export default function showMdSnackbar() {
 
     let $mdSnackbar = $('.md-snackbar')
+    let $contents = $mdSnackbar.children('._content')
 
     //
     $('body').on('click', function(e) {
@@ -23,16 +24,13 @@ export default function showMdSnackbar() {
     // 登录注册的元素显隐切换
     $mdSnackbar
         .on('click', '._to-register', function() {
-            $mdSnackbar.children('._content').fadeIn().removeClass('show')
-                .filter('._register').addClass('show')
+            $contents.removeClass('show').filter('._register').addClass('show')
         })
         .on('click', '._to-login', function() {
-            $mdSnackbar.children('._content').fadeIn().removeClass('show')
-                .filter('._login').addClass('show')
+            $contents.removeClass('show').filter('._login').addClass('show')
         })
         .on('click', '.send-mail', function() {
-            $mdSnackbar.children('._content').fadeIn().removeClass('show')
-                .filter('._notification').addClass('show')
+            $contents.removeClass('show').filter('._notification').addClass('show')
         })
 
 

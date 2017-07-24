@@ -39,7 +39,6 @@
         opacity: 0;
         top: 12px;
         left: 0;
-        // height: 72px;
         transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
         .md-input {
@@ -84,7 +83,14 @@
             }
         }
 
-        // 全尺寸的提示信息
+        // 提示检查邮件
+        &._register {
+            .md-input {
+                width: 140px;
+            }
+        }
+
+        // 提示检查邮件
         &._notification {
             line-height: 145px;
             top: 0;
@@ -116,9 +122,9 @@
     ._register,
     ._login,
     ._notification {
-        display: none  !important;
+        display: none;
         &.show {
-            display: block !important;
+            display: block;
         }
     }
 
