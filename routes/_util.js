@@ -23,8 +23,19 @@ function auth(optionsArg) {
 
 
 }
-
-
+// 邮件配置
+let smtpConfig = {
+    host: 'smtp.126.com',
+    port: 465,
+    auth: {
+        user: 'rhaego@126.com',
+        pass: smtpAuthKey
+    }
+}
+let defaultMailOptions = {
+    from: "Rhaego Support <rhaego@126.com>"
+}
+let transporter = nodemailer.createTransport(smtpConfig)
 /**
 从固定发件邮箱发送邮件
 @param optionsArg {Object} to(String) subject(String) html(String)
@@ -38,23 +49,7 @@ function sendmail(optionsArg) {
         throw new Error('Invalid arguments.')
     }
 
-    let smtpConfig = {
-        host: 'smtp.126.com',
-        port: 465,
-        auth: {
-            user: 'rhaego@126.com',
-            pass: smtpAuthKey
-        }
-    }
-
-    let transporter = nodemailer.createTransport(smtpConfig)
-
-    let options = Object.assign(
-        {
-            from: "Rhaego Support <rhaego@126.com>"
-        },
-        optionsArg
-    )
+    let options = Object.assign(defaultMailOptions, optionsArg)
 
     transporter.sendMail(options, function(error, response) {
         if (error) {

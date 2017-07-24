@@ -77,8 +77,5 @@ $(function() {
 
     // $('.mail.')
 
-    setTimeout(function() {
-        $('.md-snackbar').addClass('show-partial')
-    }, 0)
 
 })

@@ -44,7 +44,13 @@ function saveUser(params, cb) {
 }
 
 function sendVerifyEmail(email) {
-    
+    util.sendVerifyEmail{
+        to: email,
+        subject: 'Rhaego Account Verification',
+        html: `
+            Please click here
+        `,
+    }
 }
 
 module.exports = exports = {

@@ -1,8 +1,11 @@
 <div class="md-snackbar">
+
     <p class="_title">
-        <span class="strong">Log in</span> for better experiences.
+        Log in for better experiences.
     </p>
-    <div class="_content">
+
+    <!-- 登录开始 -->
+    <div class="_content _login show">
         <div class="md-input dark email">
             <label class="placeholder" for="">Email</label>
             <input id="" class="_input" maxlength="20" />
@@ -24,10 +27,49 @@
                 <span class="content">log in</span>
                 <div class="ripple-container"><span class="ripple"></span></div>
             </button>
-            <button class="md-button register">
-                <span class="content">register</span>
+        </div>
+        <p class="_hint">
+            <span class="link _to-register">Register</span> if you haven't got an account yet.
+        </p>
+    </div>
+
+    <!-- 登录结束 -->
+
+    <!-- 注册开始 -->
+    <div class="_content _register">
+        <div class="md-input dark email">
+            <label class="placeholder" for="">Email</label>
+            <input id="" class="_input" maxlength="20" />
+            <p class="error"></p>
+            <h5 class="char-counter">
+                <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
+            </h5>
+        </div>
+        <div class="md-input dark nickname">
+            <label class="placeholder" for="">Nickname</label>
+            <input id="" class="_input" maxlength="20" />
+            <p class="error"></p>
+            <h5 class="char-counter">
+                <span class="current"></span>&nbsp;/&nbsp;<span class="maximum"></span>
+            </h5>
+        </div>
+        <div class="buttons">
+            <button class="md-button send-mail">
+                <span class="content">verify</span>
                 <div class="ripple-container"><span class="ripple"></span></div>
             </button>
         </div>
+        <p class="_hint">
+            <span class="link _to-login">Log in</span> if you've got an account.
+        </p>
     </div>
+
+    <!-- 注册结束 -->
+
+    <!-- 提示开始 -->
+    <div class="_content _notification">
+        Please <span class="highlighted">check the verification mail</span> just sent to your mailbox.
+    </div>
+    <!-- 提示结束 -->
+
 </div>
