@@ -61,31 +61,27 @@ $(function() {
     // 全部非空时启用提交按钮
     function setSubmitBtnStatus() {
         let allValid = true
-        $mdInputElements.each(function() {
-            let $this = $(this)
+        for (let ele of $mdInputElements) {
+            let $this = $(ele)
             // 根据输入类型的不同分别处理
-            switch ($this.is('.md-tag')) {
-                case false:
+            if ($this.is('.md-tag')) {
 
-                    let val = $this.find('._input').val()
-                    if (/^\s*$/.test(val)) {
-                        allValid = false
-                        // 返回false以终止对该jQ对象的遍历
-                        return false
-                    }
+                let tagCount = $this.find('.tag').length
+                if (tagCount === 0) {
+                    allValid = false
                     break
+                }
 
-                case true:
+            } else {
 
-                    let tagCount = $this.find('.tag').length
-                    if (tagCount === 0) {
-                        allValid = false
-                        return false
-                    }
+                let val = $this.find('._input').val()
+                if (/^\s*$/.test(val)) {
+                    allValid = false
                     break
+                }
+
             }
-            console.log(233,allValid);
-        })
+        }
         if (allValid) {
             $s_btn.removeClass('_disabled').addClass('_primary')
         } else {

@@ -2706,31 +2706,47 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     // 全部非空时启用提交按钮
     function setSubmitBtnStatus() {
         var allValid = true;
-        $mdInputElements.each(function () {
-            var $this = (0, _jquery2.default)(this);
-            // 根据输入类型的不同分别处理
-            switch ($this.is('.md-tag')) {
-                case false:
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
-                    var val = $this.find('._input').val();
-                    if (/^\s*$/.test(val)) {
-                        allValid = false;
-                        // 返回false以终止对该jQ对象的遍历
-                        return false;
-                    }
-                    break;
+        try {
+            for (var _iterator = $mdInputElements[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var ele = _step.value;
 
-                case true:
+                var $this = (0, _jquery2.default)(ele);
+                // 根据输入类型的不同分别处理
+                if ($this.is('.md-tag')) {
 
                     var tagCount = $this.find('.tag').length;
                     if (tagCount === 0) {
                         allValid = false;
-                        return false;
+                        break;
                     }
-                    break;
+                } else {
+
+                    var val = $this.find('._input').val();
+                    if (/^\s*$/.test(val)) {
+                        allValid = false;
+                        break;
+                    }
+                }
             }
-            console.log(233, allValid);
-        });
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
         if (allValid) {
             $s_btn.removeClass('_disabled').addClass('_primary');
         } else {
