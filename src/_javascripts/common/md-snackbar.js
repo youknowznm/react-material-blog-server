@@ -37,11 +37,27 @@ export default function showMdSnackbar() {
         // 登录注册的客户端逻辑
         .on('click', '.register', function() {
             rhaegoUtil.mdDelay(function() {
-                let allValid = true;
-                $registerInputs.each(function() {
-                    $(this)
-                })
+                for (let ele of $registerInputs) {
+                    let $this = $(ele)
+                    let val = $this.find('._input').val()
+                    $this.toggleClass('invalid', /^\s*$/.test(val))
+                }
             })
         })
+        .on('click', '.login', function() {
+            rhaegoUtil.mdDelay(function() {
+                for (let ele of $loginInputs) {
+                    let $this = $(ele)
+                    let val = $this.find('._input').val()
+                    $this.toggleClass('invalid', /^\s*$/.test(val))
+                }
+            })
+        })
+        // 输入时的判断
+        .on('input', '._input', function() {
+            let $this = $(this)
+            $this.closest('.md-input').toggleClass('invalid', /^\s*$/.test($this.val()))
+        })
+
 
 }

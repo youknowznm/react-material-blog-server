@@ -86,7 +86,19 @@
         // 注册
         &._register {
             .md-input {
-                width: 140px;
+                min-width: 0;
+                &.email {
+                    width: 200px;
+                }
+                &.nickname {
+                    width: 150px;
+                }
+                &.password {
+                    width: 130px;
+                }
+                &.confirm-password {
+                    width: 170px;
+                }
             }
         }
 
