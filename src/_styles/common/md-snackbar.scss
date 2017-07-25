@@ -43,8 +43,8 @@
 
         .md-input {
             display: inline-block;
-            margin-left: 12px;
-            margin-right: 12px;
+            margin-left: 6px;
+            margin-right: 6px;
             margin-top: 6px;
             width: 300px;
         }
@@ -83,7 +83,7 @@
             }
         }
 
-        // 提示检查邮件
+        // 注册
         &._register {
             .md-input {
                 width: 140px;
@@ -93,11 +93,14 @@
         // 提示检查邮件
         &._notification {
             line-height: 145px;
-            top: 0;
+            top: -20px;
             color: #fff;
-            font-size: 20px;
+            font-size: 18px;
             .highlighted {
                 color: #ffeb3b;
+            }
+            ._hint {
+                margin-top: -25px;
             }
         }
     }
