@@ -9,8 +9,14 @@ export default function showMdSnackbar() {
 
     let $mdSnackbar = $('.md-snackbar')
     let $contents = $mdSnackbar.children('._content')
+
     let $loginInputs = $contents.filter('._login').children('.md-input')
+
     let $registerInputs = $contents.filter('._register').children('.md-input')
+    let $registerInputPassword = $registerInputs.filter('.password')
+    let $registerInputConfirmPassword = $registerInputs.filter('.confirm-password')
+
+    let emailRegExp = /^([a-zA-Z\d]+)\w@(\w+)(\.[a-zA-Z]{1,4}){1,2}$/
 
     //
     $('body').on('click', function(e) {
@@ -36,8 +42,6 @@ export default function showMdSnackbar() {
         })
         // 登录的客户端逻辑
         .on('click', '.login', function() {
-            // 样式和输入验证
-
             // 先去掉invalid类再给予，闪烁一下
             $loginInputs.removeClass('invalid')
             setTimeout(function() {
@@ -45,20 +49,16 @@ export default function showMdSnackbar() {
                     let $this = $(ele)
                     let val = $this.find('._input').val()
                     if ($this.is('.email')) {
-                        $this.toggleClass('invalid', !/^([a-zA-Z\d]+)\w@(\w+)(\.[a-zA-Z]{1,4}){1,2}$/.test(val))
+                        $this.toggleClass('invalid', !emailRegExp.test(val))
                     } else {
                         $this.toggleClass('invalid', /^\s*$/.test(val))
                     }
                 }
-            }, 400)
 
-            rhaegoUtil.mdDelay(function() {
-            })
+            }, 400)
         })
         // 注册的客户端逻辑
         .on('click', '.register', function() {
-            // 样式和输入验证
-
             // 先去掉invalid类再给予，闪烁一下
             $registerInputs.removeClass('invalid')
             setTimeout(function() {
@@ -66,23 +66,47 @@ export default function showMdSnackbar() {
                     let $this = $(ele)
                     let val = $this.find('._input').val()
                     if ($this.is('.email')) {
-                        $this.toggleClass('invalid', !/^([a-zA-Z\d]+)\w@(\w+)(\.[a-zA-Z]{1,4}){1,2}$/.test(val))
+                        // 邮件
+                        $this.toggleClass('invalid', !emailRegExp.test(val))
                     } else {
+                        // 普通
                         $this.toggleClass('invalid', /^\s*$/.test(val))
                     }
                 }
+                let pwd1 = $registerInputPassword.children('._input').val()
+                let pwd2 = $registerInputConfirmPassword.children('._input').val()
+                // 两个密码框均为非空时，进行一致性判断。
+                if (pwd1 !== '' && pwd2 !== '') {
+                    if (pwd1 !== pwd2) {
+                        $registerInputConfirmPassword.find('.error').text('Password typo.').end().addClass('invalid')
+                    } else {
+                        $registerInputConfirmPassword.find('.error').text('Required.').end().removeClass('invalid')
+                    }
+                }
+                // if ($registerInputs.find('.invalid').length === 0) {
+                //     let data = {
+                //
+                //     }
+                //     $.ajax({
+                //         contentType: 'application/json',
+                //         url: '/register',
+                //         type: 'Post',
+                //         data,
+                //         success: function(data) {
+                //             console.log('s', data)
+                //         },
+                //         fail: function(data) {
+                //             console.log('f', data)
+                //         },
+                //     })
+                // }
             }, 400)
-
-            rhaegoUtil.mdDelay(function() {
-
-            })
         })
         // 输入时的判断
         .on('input', '._input', function() {
             let $this = $(this)
-            let $parentMdInput = $this.closest('.md-input')
-            $parentMdInput.toggleClass('invalid', /^\s*$/.test($this.val()))
-            // if ($parentMdInput)
+            let $p = $this.closest('.md-input')
+            $p.toggleClass('invalid', /^\s*$/.test($this.val()))
         })
 
 
