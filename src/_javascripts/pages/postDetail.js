@@ -28,7 +28,7 @@ $(function() {
         if ($this.is(':first-child')) {
             $('body').animate({'scrollTop': 192}, 'fast')
         } else {
-            scrollIntoTargetElement($headers[index])
+            rhaegoUtil.scrollIntoTargetElement($headers[index])
         }
     })
     $postContentNav.html(postContentNavHTML)

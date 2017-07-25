@@ -22,7 +22,7 @@ $(function() {
 
     // 新建按钮
     $('._create-new').click(function() {
-        mdDelay(function() {
+        rhaegoUtil.mdDelay(function() {
             location.pathname = '/create'
         })
     })
@@ -42,7 +42,7 @@ $(function() {
 
     // 主导航按钮
     $('.md-header').on('click', '.nav-item', function(evt) {
-        mdDelay(function() {
+        rhaegoUtil.mdDelay(function() {
             location.pathname = '/' + evt.target.innerHTML
         })
     })
@@ -70,7 +70,7 @@ $(function() {
     let $footer = $('body').children('footer')
 
     $footer.on('click', '.source', function() {
-        mdDelay(function() {
+        rhaegoUtil.mdDelay(function() {
             window.open('https://github.com/youknowznm/rhaego')
         })
     })

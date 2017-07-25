@@ -9,6 +9,8 @@ export default function showMdSnackbar() {
 
     let $mdSnackbar = $('.md-snackbar')
     let $contents = $mdSnackbar.children('._content')
+    let $loginInputs = $contents.filter('._login').children('.md-input')
+    let $registerInputs = $contents.filter('._register').children('.md-input')
 
     //
     $('body').on('click', function(e) {
@@ -21,8 +23,8 @@ export default function showMdSnackbar() {
     }, 10)
 
 
-    // 登录注册的元素显隐切换
     $mdSnackbar
+        // 登录注册的元素显隐切换
         .on('click', '._to-register', function() {
             $contents.removeClass('show').filter('._register').addClass('show')
         })
@@ -32,6 +34,14 @@ export default function showMdSnackbar() {
         .on('click', '.send-mail', function() {
             $contents.removeClass('show').filter('._notification').addClass('show')
         })
-
+        // 登录注册的客户端逻辑
+        .on('click', '.register', function() {
+            rhaegoUtil.mdDelay(function() {
+                let allValid = true;
+                $registerInputs.each(function() {
+                    $(this)
+                })
+            })
+        })
 
 }

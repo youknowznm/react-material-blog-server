@@ -1,16 +1,18 @@
 import $ from '../common/jquery'
 import showMdDialog from './md-dialog'
 
+let rhaegoUtil = {}
+window.rhaegoUtil = rhaegoUtil
 
 /*
 * 定义全局方法
 */
 
 //
-window.showMdDialog = showMdDialog
+rhaegoUtil.showMdDialog = showMdDialog
 
 // 在点击动画结束后调用函数
-window.mdDelay = function(fn) {
+rhaegoUtil.mdDelay = function(fn) {
     setTimeout(function() {
         fn()
     }, 400)
@@ -21,7 +23,7 @@ window.mdDelay = function(fn) {
 @param ele {Node} 目标元素
 @param cb {function?} 滚动完成的回调
 */
-window.scrollIntoTargetElement = function(ele, cb) {
+rhaegoUtil.scrollIntoTargetElement = function(ele, cb) {
     let bodyPaddingTop = parseInt($('body').css('padding-top'))
     let targetEleScrollTop = ele.offsetTop
     let targetBodyScrollTop = targetEleScrollTop - bodyPaddingTop + 175

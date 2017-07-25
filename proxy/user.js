@@ -1,6 +1,41 @@
 let UserModel = require('../models/user')
-let util = require('../routes/_util')
+let nodemailer = require('nodemailer')
+let jshashes = require('jshashes')
 
+let userVerifyKey = require('../config').userVerifyKey
+let smtpAuthKey = require('../config').smtpAuthKey
+
+// 邮件配置
+const SMTP_CONFIG = {
+    host: 'smtp.126.com',
+    port: 465,
+    auth: {
+        user: 'rhaego@126.com',
+        pass: smtpAuthKey
+    }
+}
+const DEFAULT_OPTIONS = {
+    from: "Rhaego Support <rhaego@126.com>"
+}
+let transporter = nodemailer.createTransport(SMTP_CONFIG)
+
+/**
+从固定发件邮箱发送邮件
+@param optionsArg {Object} to(String) subject(String) html(String)
+*/
+function sendEmail(optionsArg) {
+    let options = Object.assign(DEFAULT_OPTIONS, optionsArg)
+    console.log('--- sending email --- : ', options);
+    transporter.sendMail(options, function(error, response) {
+        if (error) {
+            console.log("Sending email failed: " + error)
+        } else {
+            console.log("success: " + response.messageID)
+        }
+    })
+}
+
+// 根据email取得用户doc
 function getUserByEmail(email, cb) {
     UserModel.findOne(
         { email },
@@ -13,10 +48,12 @@ function getUserByEmail(email, cb) {
     )
 }
 
+// 保存用户doc
 function saveUser(params, cb) {
     let email = params.email
     let userDoc = new UserModel({
         email,
+        nickname: params.nickname,
         password: params.password,
         verified: params.verified,
     })
@@ -43,16 +80,31 @@ function saveUser(params, cb) {
     })
 }
 
-function sendVerifyEmail(email) {
-    util.sendVerifyEmail{
+//
+function sendVerifyEmail(doc) {
+    if (!doc) {
+        return false;
+    }
+    let hash = new jshashes.b64_hmac(
+        userVerifyKey,
+        doc.nickname + doc.email
+    )
+    sendEmail{
         to: email,
         subject: 'Rhaego Account Verification',
         html: `
-            Please click here
+            <h3>
+                <a href="https://www.rhaego.com/verify/${hash}">Click here</a> to verify your Rhaego account <strong>${doc.username}</strong>.
+                <br />
+                Please ignore this mail if you haven't registered at Rhaego.
+            </h3>
         `,
     }
+    return true;
 }
 
 module.exports = exports = {
     getUserByEmail,
+    saveUser,
+    sendVerifyEmail,
 }

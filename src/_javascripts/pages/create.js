@@ -18,7 +18,7 @@ $(function() {
     )
 
     let $s_btn = $('.submit')
-    let $mdInputElements = $('.md-input, .md-textarea, .md-tag')
+    let $mdInputElements = $('.main').find('.md-input, .md-textarea, .md-tag')
 
     // md-tag元素的内容验证比较复杂。故使用计时器验证
     // 检查所有产生过blur事件的md组件
@@ -70,6 +70,8 @@ $(function() {
                     let val = $this.find('._input').val()
                     if (/^\s*$/.test(val)) {
                         allValid = false
+                        // 返回false以终止对该jQ对象的遍历
+                        return false
                     }
                     break
 
@@ -78,9 +80,11 @@ $(function() {
                     let tagCount = $this.find('.tag').length
                     if (tagCount === 0) {
                         allValid = false
+                        return false
                     }
                     break
             }
+            console.log(233,allValid);
         })
         if (allValid) {
             $s_btn.removeClass('_disabled').addClass('_primary')

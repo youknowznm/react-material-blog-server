@@ -37,7 +37,7 @@ export default function showMdDialog(options) {
     }, 400)
 
     $dialog.on('click', function(evt) {
-        mdDelay(function() {
+        rhaegoUtil.mdDelay(function() {
             let type = $(evt.target).closest('.md-button').data('buttonType')
             // 未点击二按钮之一时无操作
             switch (type) {
