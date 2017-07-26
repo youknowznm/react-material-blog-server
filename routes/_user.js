@@ -21,6 +21,21 @@ module.exports = function(router) {
         })
     })
 
+    /*
+
+    */
+    router.get(/^\/verify\/\S+/, function(req, res, next) {
+        let key = /^\/verify\/(\S+)/.exec(req.path)[1]
+        userProxy.verifyEmail(key, function(result) {
+            if (result === true) {
+                res.end('1')
+            } else {
+                res.end('0')
+
+            }
+        })
+    })
+
     return router
 
 }

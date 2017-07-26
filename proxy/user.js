@@ -40,7 +40,7 @@ const sendEmail = (function(optionsArg) {
 
 })()
 
-// 根据email取得用户doc
+// 根据email取得用户文档
 function getUserByEmail(email, cb) {
     UserModel.findOne(
         { email },
@@ -53,7 +53,7 @@ function getUserByEmail(email, cb) {
     )
 }
 
-// 保存用户doc
+// 保存用户文档
 function saveUser(params, cb) {
     let email = params.email
     let userDoc = new UserModel({
@@ -78,33 +78,53 @@ function saveUser(params, cb) {
     })
 }
 
-//
+// 生产加盐的密钥，作为验证邮箱url的pathname，发送至该邮箱
 function sendVerifyEmail(doc) {
-    let _nickname = doc.nickname
-    let _email = doc.email
-    let key = new Hashes.SHA1().hex_hmac(
-        emailVerificationKey,
-        _nickname + _email
-    )
+    let email = doc.email
+    let key = new Hashes.SHA1().hex_hmac(emailVerificationKey, email) + '!' + email
     sendEmail({
-        to: _email,
+        to: email,
         subject: 'Rhaego Account Verification',
         html: `
             <h3>
-                Dear <strong>${_nickname}</strong>,
-                <br />
+                Dear ${doc.nickname},
             </h3>
             <p>
-                <a href="https://www.rhaego.com/verify/${key}">Click here</a> to verify your Rhaego account.
-                <br />
+                <a href="http://localhost:5000/verify/${key}">Click here</a> to verify your Rhaego account.
+            </p>
+            <p>
                 Please ignore this mail if you haven't registered at Rhaego.
             </p>
         `,
     })
 }
 
+// 验证邮箱
+function verifyEmail(key, cb) {
+    let _hash = key.split('!')[0]
+    let _email = key.split('!')[1]
+    let _key = new Hashes.SHA1().hex_hmac(emailVerificationKey + _email) + '!' + _email
+    console.log(_key);
+    console.log(key);
+    if (_key === key) {
+        getUserByEmail(_email, function(doc) {
+            UserModel.update(
+                doc,
+                {verified: true},
+                function() {
+                    console.log('改完了');
+                    cb(true)
+                }
+            )
+        })
+    } else {
+        cb(false)
+    }
+}
+
 module.exports = exports = {
     getUserByEmail,
     saveUser,
     sendVerifyEmail,
+    verifyEmail,
 }
