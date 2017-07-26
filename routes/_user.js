@@ -12,7 +12,6 @@ module.exports = function(router) {
             password: req.body.password,
             verified: false,
         }
-        console.log('pr',params);
         userProxy.saveUser(params, function(result) {
             if (result === true) {
                 res.end('save user done')

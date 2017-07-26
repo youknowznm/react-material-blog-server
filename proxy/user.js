@@ -42,28 +42,29 @@ const sendEmail = (function(optionsArg) {
 
 // 根据email取得用户doc
 function getUserByEmail(email, cb) {
-    UserModel.findById(email, function(e, doc) {
-        if (e) {
-            console.error(e)
+    UserModel.findOne(
+        { email },
+        function(e, doc) {
+            if (e) {
+                console.error(e)
+            }
+            cb(doc)
         }
-        cb(doc)
-    })
+    )
 }
 
 // 保存用户doc
 function saveUser(params, cb) {
     let email = params.email
     let userDoc = new UserModel({
-        // 把邮箱地址用作_id
-        _id: email,
+        _id: shortid.generate(),
+        email: params.email,
         nickname: params.nickname,
         password: params.password,
         verified: params.verified,
     })
     getUserByEmail(email, function(doc) {
         if (doc === null) {
-            // userDoc._id = email
-            console.log('cn',userDoc);
             userDoc.save(function(e) {
                 if (e) {
                     console.error(e)
@@ -72,7 +73,6 @@ function saveUser(params, cb) {
                 cb(true)
             })
         } else {
-            console.log('--- save failed --- : email already exists')
             cb(false)
         }
     })
@@ -81,7 +81,7 @@ function saveUser(params, cb) {
 //
 function sendVerifyEmail(doc) {
     let _nickname = doc.nickname
-    let _email = doc._id
+    let _email = doc.email
     let key = new Hashes.SHA1().hex_hmac(
         emailVerificationKey,
         _nickname + _email

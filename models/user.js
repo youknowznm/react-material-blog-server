@@ -6,9 +6,9 @@ let userSchema = mongoose.Schema({
         unique: true,
     },
     email: {
-        tyep: String,
+        type: String,
         unique: true,
-    }
+    },
     nickname: String,
     password: String,
     verified: Boolean,
