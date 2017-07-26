@@ -2,10 +2,14 @@ const mongoose = require('./db')
 
 let userSchema = mongoose.Schema({
     _id: {
-       type: String,
-       unique: true,
+        type: String,
+        unique: true,
     },
-    email: String,
+    email: {
+        tyep: String,
+        unique: true,
+    }
+    nickname: String,
     password: String,
     verified: Boolean,
 })

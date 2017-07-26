@@ -13,6 +13,8 @@ export default function showMdSnackbar() {
     let $loginInputs = $contents.filter('._login').children('.md-input')
 
     let $registerInputs = $contents.filter('._register').children('.md-input')
+    let $registerInputEmail = $registerInputs.filter('.email')
+    let $registerInputNickname = $registerInputs.filter('.nickname')
     let $registerInputPassword = $registerInputs.filter('.password')
     let $registerInputConfirmPassword = $registerInputs.filter('.confirm-password')
 
@@ -25,7 +27,7 @@ export default function showMdSnackbar() {
     })
 
     setTimeout(function() {
-        $('.md-snackbar').addClass('show-partial')
+        $('.md-snackbar').addClass('show-full')
     }, 10)
 
 
@@ -83,23 +85,26 @@ export default function showMdSnackbar() {
                         $registerInputConfirmPassword.find('.error').text('Required.').end().removeClass('invalid')
                     }
                 }
-                // if ($registerInputs.find('.invalid').length === 0) {
-                //     let data = {
-                //
-                //     }
-                //     $.ajax({
-                //         contentType: 'application/json',
-                //         url: '/register',
-                //         type: 'Post',
-                //         data,
-                //         success: function(data) {
-                //             console.log('s', data)
-                //         },
-                //         fail: function(data) {
-                //             console.log('f', data)
-                //         },
-                //     })
-                // }
+                if ($registerInputs.filter('.invalid').length === 0) {
+                    let data = {
+                        email: $registerInputEmail.children('._input').val(),
+                        nickname: $registerInputNickname.children('._input').val().trim(),
+                        password: $registerInputConfirmPassword.children('._input').val(),
+                    }
+                    console.log(data);
+                    $.ajax({
+                        // contentType: 'application/json',
+                        url: '/register',
+                        type: 'Post',
+                        data,
+                        success: function(data) {
+                            console.log('s', data)
+                        },
+                        fail: function(data) {
+                            console.log('f', data)
+                        },
+                    })
+                }
             }, 400)
         })
         // 输入时的判断

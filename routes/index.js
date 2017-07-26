@@ -9,6 +9,7 @@ function addRouter(path) {
 
 addRouter('./_demo')
 
+addRouter('./_user')
 addRouter('./_postOverview')
 addRouter('./_postDetail')
 addRouter('./_create')

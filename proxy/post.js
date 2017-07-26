@@ -31,7 +31,7 @@ function savePost(params, cb) {
         if (e) {
             console.error(e)
         }
-        if (!doc) {
+        if (doc === null) {
             postDoc._id = _id
             postDoc.viewCount = postDoc.liked = 0
             postDoc.save(function(e) {
