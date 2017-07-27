@@ -103,16 +103,14 @@ function sendVerifyEmail(doc) {
 function verifyEmail(key, cb) {
     let _hash = key.split('!')[0]
     let _email = key.split('!')[1]
-    let _key = new Hashes.SHA1().hex_hmac(emailVerificationKey + _email) + '!' + _email
-    console.log(_key);
-    console.log(key);
-    if (_key === key) {
+    let targetKey = new Hashes.SHA1().hex_hmac(emailVerificationKey, _email) + '!' + _email
+    if (targetKey === key) {
         getUserByEmail(_email, function(doc) {
             UserModel.update(
                 doc,
                 {verified: true},
                 function() {
-                    console.log('改完了');
+                    console.log('--- verified ---');
                     cb(true)
                 }
             )

@@ -80,9 +80,11 @@ export default function showMdSnackbar() {
                 // 两个密码框均为非空时，进行一致性判断。
                 if (pwd1 !== '' && pwd2 !== '') {
                     if (pwd1 !== pwd2) {
-                        $registerInputConfirmPassword.find('.error').text('Password typo.').end().addClass('invalid')
+                        $registerInputConfirmPassword.find('.error').text('Password typo.')
+                            .end().addClass('invalid')
                     } else {
-                        $registerInputConfirmPassword.find('.error').text('Required.').end().removeClass('invalid')
+                        $registerInputConfirmPassword.find('.error').text('Required.')
+                            .end().removeClass('invalid')
                     }
                 }
                 if ($registerInputs.filter('.invalid').length === 0) {
