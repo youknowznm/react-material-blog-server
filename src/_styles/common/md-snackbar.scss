@@ -47,6 +47,14 @@
             margin-right: 6px;
             margin-top: 6px;
             width: 300px;
+            .char-counter {
+                .current {
+                    margin-right: 4px;
+                }
+                .maximum {
+                    margin-left: 4px;
+                }
+            }
         }
 
         .buttons {

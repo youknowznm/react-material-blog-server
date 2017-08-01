@@ -103,10 +103,10 @@
         font-weight: normal;
         transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
         .current {
-            margin-right: 3px;
+            margin-right: .5em;
         }
         .maximum {
-            margin-left: 3px;
+            margin-left: .5em;
         }
     }
     // 深色主题
