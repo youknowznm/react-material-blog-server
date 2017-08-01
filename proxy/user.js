@@ -120,9 +120,45 @@ function verifyEmail(key, cb) {
     }
 }
 
+// 登录
+// 0 该邮箱尚未注册
+// 1 登陆成功
+// 2 密码错误
+// 3 尚未验证该邮箱
+// 4 服务器错误
+function login(email, password, cb) {
+    UserModel.findOne(
+        { email },
+        function(e, doc) {
+            if (e) {
+                console.error(e)
+            } else {
+                if (doc === null) {
+                    // 该邮箱尚未注册
+                    cb(0)
+                } else {
+                    if (doc.password !== password) {
+                        // 密码错误
+                        cb(2)
+                    } else {
+                        if (doc.verified === false) {
+                            // 尚未验证该邮箱
+                            cb(3)
+                        } else {
+                            // 登陆成功
+                            cb(1)
+                        }
+                    }
+                }
+            }
+        }
+    )
+}
+
 module.exports = {
     getUserByEmail,
     saveUser,
     sendVerifyEmail,
     verifyEmail,
+    login,
 }

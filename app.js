@@ -4,26 +4,38 @@ var favicon = require('serve-favicon')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
-var passport = require('passport')
+var session = require('express-session')
+var FileStore = require('session-file-store')(session)
+
+// 初始化应用
+var app = express()
 
 // 过滤器
 var filter = require('./filters')
 
-// var index = require('./routes/index')
+// 获取所有已定义的路由数组，use之
 let routes = require('./routes')
-
-var app = express()
+routes.forEach(function(router) {
+    app.use(router)
+})
 
 // 全局变量
 app.locals = require('./config')
 
-// view engine setup
+// 模板引擎
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-// passport
-app.use(passport.initialize());
-app.use(passport.session());
+// session
+app.use(session({
+    secret: app.locals.sessionKey,
+    store: new FileStore(),
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: 24 * 60 * 60 * 1000,
+    },
+}))
 
 // favicon
 app.use(favicon(path.join(__dirname, '/dist/images', 'favicon.ico')))
@@ -35,10 +47,6 @@ app.use(cookieParser())
 
 // 指定静态文件目录
 app.use(express.static(path.join(__dirname, '/dist/')))
-
-routes.forEach(function(router) {
-    app.use(router)
-})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -14,7 +14,7 @@ module.exports = function(router) {
         }
         userProxy.saveUser(params, function(result) {
             // 注册成功返回真，邮件已被注册返回假
-            res.end(JSON.stringify({'registerSuccessful': result}))
+            res.json({'registerSuccessful': result}))
         })
     })
 
@@ -25,7 +25,31 @@ module.exports = function(router) {
         let key = /^\/verify\/(\S+)/.exec(req.path)[1]
         userProxy.verifyEmail(key, function(result) {
             // 通过query成功验证账户返回真，否则返回假
-            res.end(JSON.stringify({'verifySuccessful': result}))
+            res.json({'verifySuccessful': result}))
+        })
+    })
+
+    /*
+
+    */
+    router.post('/login', function(req, res, next) {
+        let session = req.session
+        let email = req.body.email
+        let password = req.body.password
+        userProxy.login(email, password, function(resCode) {
+            switch (resCode) {
+                case 1:
+                    session.regenerate(function(e) {
+                        if (e) {
+                            return res.json({ret_code: 5})
+                        }
+                        session.loginUser = email
+                        return res.json({ret_code: 1})
+                    })
+                    break;
+                default:
+                    return res.json({ret_code: resCode})
+            }
         })
     })
 

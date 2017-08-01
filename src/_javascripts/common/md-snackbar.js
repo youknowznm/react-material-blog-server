@@ -18,9 +18,7 @@ export default function showMdSnackbar() {
     let $registerInputPassword = $registerInputs.filter('.password')
     let $registerInputConfirmPassword = $registerInputs.filter('.confirm-password')
 
-
-
-    //
+    // snackbar整体的显隐切换
     $('body').on('click', function(e) {
         let $this = $(e.target)
         $mdSnackbar.toggleClass('show-full', $this.closest('.md-snackbar').length !== 0)
@@ -34,7 +32,6 @@ export default function showMdSnackbar() {
     function validateMdInput($mdInput) {
         let emailRegExp = /^([a-zA-Z\d]+)\w@(\w+)(\.[a-zA-Z]{1,4}){1,2}$/
         let passwordRegExp = /^.{6,}$/
-        let generalRegExp = /^.*$/
         let val = $mdInput.find('._input').val()
         switch (true) {
             case $mdInput.is('.email'):
@@ -95,7 +92,6 @@ export default function showMdSnackbar() {
                         nickname: $registerInputNickname.children('._input').val().trim(),
                         password: $registerInputConfirmPassword.children('._input').val(),
                     }
-                    console.log(data);
                     $.ajax({
                         url: '/register',
                         type: 'Post',
@@ -104,7 +100,7 @@ export default function showMdSnackbar() {
                             if (JSON.parse(data).registerSuccessful === true) {
                                 // 若注册成功，则显示查看邮件的提示
                                 $contents.removeClass('show').filter('._notification')
-                                    .children('.hightlighted').text(data.email)
+                                    .children('.highlighted').text(data.email)
                                     .end().addClass('show')
                             } else {
                                 // 若该邮箱已注册则提示，稍后移除提示
