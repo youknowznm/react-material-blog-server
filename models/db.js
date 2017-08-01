@@ -7,4 +7,4 @@ mongoose.connection.on('error', function(e) {
     console.log('-- db connection error --\n' + e)
 })
 
-module.exports = exports = mongoose;
+module.exports = mongoose;

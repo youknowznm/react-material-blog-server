@@ -14,4 +14,4 @@ let userSchema = mongoose.Schema({
     verified: Boolean,
 })
 
-module.exports = exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model('user', userSchema)

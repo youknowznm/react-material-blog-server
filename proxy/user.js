@@ -120,7 +120,7 @@ function verifyEmail(key, cb) {
     }
 }
 
-module.exports = exports = {
+module.exports = {
     getUserByEmail,
     saveUser,
     sendVerifyEmail,

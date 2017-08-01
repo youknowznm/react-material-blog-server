@@ -67,7 +67,7 @@ function findPostById(_id, cb) {
     })
 }
 
-module.exports = exports = {
+module.exports = {
     savePost,
     getPosts,
     findPostById,

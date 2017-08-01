@@ -12,4 +12,4 @@ let messageSchema = mongoose.Schema({
     content: String,
 })
 
-module.exports = exports = mongoose.model('message', messageSchema)
+module.exports = mongoose.model('message', messageSchema)
