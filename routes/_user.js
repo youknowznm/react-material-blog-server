@@ -13,11 +13,8 @@ module.exports = function(router) {
             verified: false,
         }
         userProxy.saveUser(params, function(result) {
-            if (result === true) {
-                res.end('save user done')
-            } else {
-                res.end('save user fail')
-            }
+            // 注册成功返回真，邮件已被注册返回假
+            res.end(JSON.stringify({'registerSuccessful': result}))
         })
     })
 
@@ -27,12 +24,8 @@ module.exports = function(router) {
     router.get(/^\/verify\/\S+/, function(req, res, next) {
         let key = /^\/verify\/(\S+)/.exec(req.path)[1]
         userProxy.verifyEmail(key, function(result) {
-            if (result === true) {
-                res.end('1')
-            } else {
-                res.end('0')
-
-            }
+            // 通过query成功验证账户返回真，否则返回假
+            res.end(JSON.stringify({'verifySuccessful': result}))
         })
     })
 

@@ -126,7 +126,7 @@ $(function() {
     })
 
     $('.cancel').click(function() {
-        showMdDialog({
+        rhaegoUtil.showMdDialog({
             title: 'Leave this page?',
             content: 'Blog content shall be discarded.',
             onConfirm: function() {

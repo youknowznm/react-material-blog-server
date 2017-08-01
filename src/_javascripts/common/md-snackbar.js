@@ -18,7 +18,7 @@ export default function showMdSnackbar() {
     let $registerInputPassword = $registerInputs.filter('.password')
     let $registerInputConfirmPassword = $registerInputs.filter('.confirm-password')
 
-    let emailRegExp = /^([a-zA-Z\d]+)\w@(\w+)(\.[a-zA-Z]{1,4}){1,2}$/
+
 
     //
     $('body').on('click', function(e) {
@@ -27,9 +27,29 @@ export default function showMdSnackbar() {
     })
 
     setTimeout(function() {
-        $('.md-snackbar').addClass('show-full')
+        $('.md-snackbar').addClass('show-partial')
     }, 10)
 
+    // 根据不同输入框，以不同的正则判断内容的有效性，切换invalid类
+    function validateMdInput($mdInput) {
+        let emailRegExp = /^([a-zA-Z\d]+)\w@(\w+)(\.[a-zA-Z]{1,4}){1,2}$/
+        let passwordRegExp = /^.{6,}$/
+        let generalRegExp = /^.*$/
+        let val = $mdInput.find('._input').val()
+        switch (true) {
+            case $mdInput.is('.email'):
+                // 邮件
+                $mdInput.toggleClass('invalid', !emailRegExp.test(val))
+                break;
+            case $mdInput.is('.password') || $mdInput.is('.confirm-password'):
+                // 密码
+                $mdInput.toggleClass('invalid', !passwordRegExp.test(val))
+                break;
+            default:
+                // 普通
+                $mdInput.toggleClass('invalid', /^\s*$/.test(val))
+        }
+    }
 
     $mdSnackbar
         // 登录注册的元素显隐切换
@@ -39,24 +59,14 @@ export default function showMdSnackbar() {
         .on('click', '._to-login', function() {
             $contents.removeClass('show').filter('._login').addClass('show')
         })
-        .on('click', '.send-mail', function() {
-            $contents.removeClass('show').filter('._notification').addClass('show')
-        })
         // 登录的客户端逻辑
         .on('click', '.login', function() {
             // 先去掉invalid类再给予，闪烁一下
             $loginInputs.removeClass('invalid')
             setTimeout(function() {
                 for (let ele of $loginInputs) {
-                    let $this = $(ele)
-                    let val = $this.find('._input').val()
-                    if ($this.is('.email')) {
-                        $this.toggleClass('invalid', !emailRegExp.test(val))
-                    } else {
-                        $this.toggleClass('invalid', /^\s*$/.test(val))
-                    }
+                    validateMdInput($(ele))
                 }
-
             }, 400)
         })
         // 注册的客户端逻辑
@@ -65,15 +75,7 @@ export default function showMdSnackbar() {
             $registerInputs.removeClass('invalid')
             setTimeout(function() {
                 for (let ele of $registerInputs) {
-                    let $this = $(ele)
-                    let val = $this.find('._input').val()
-                    if ($this.is('.email')) {
-                        // 邮件
-                        $this.toggleClass('invalid', !emailRegExp.test(val))
-                    } else {
-                        // 普通
-                        $this.toggleClass('invalid', /^\s*$/.test(val))
-                    }
+                    validateMdInput($(ele))
                 }
                 let pwd1 = $registerInputPassword.children('._input').val()
                 let pwd2 = $registerInputConfirmPassword.children('._input').val()
@@ -95,15 +97,27 @@ export default function showMdSnackbar() {
                     }
                     console.log(data);
                     $.ajax({
-                        // contentType: 'application/json',
                         url: '/register',
                         type: 'Post',
                         data,
                         success: function(data) {
-                            console.log('s', data)
+                            if (JSON.parse(data).registerSuccessful === true) {
+                                // 若注册成功，则显示查看邮件的提示
+                                $contents.removeClass('show').filter('._notification')
+                                    .children('.hightlighted').text(data.email)
+                                    .end().addClass('show')
+                            } else {
+                                // 若该邮箱已注册则提示，稍后移除提示
+                                $registerInputEmail.children('.error').text('Email registered.')
+                                    .end().addClass('invalid')
+                                setTimeout(function() {
+                                    $registerInputEmail.removeClass('invalid')
+                                        .children('.error').text('Invalid email.')
+                                }, 3000)
+                            }
                         },
                         fail: function(data) {
-                            console.log('f', data)
+                            console.log('failed', data)
                         },
                     })
                 }

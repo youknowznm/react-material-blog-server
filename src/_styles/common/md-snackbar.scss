@@ -87,18 +87,7 @@
         &._register {
             .md-input {
                 min-width: 0;
-                &.email {
-                    width: 200px;
-                }
-                &.nickname {
-                    width: 150px;
-                }
-                &.password {
-                    width: 130px;
-                }
-                &.confirm-password {
-                    width: 170px;
-                }
+                width: 180px;
             }
         }
 
