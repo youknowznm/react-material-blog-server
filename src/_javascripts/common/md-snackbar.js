@@ -11,6 +11,8 @@ export default function showMdSnackbar() {
     let $contents = $mdSnackbar.children('._content')
 
     let $loginInputs = $contents.filter('._login').children('.md-input')
+    let $loginInputEmail = $loginInputs.filter('.email')
+    let $loginInputPassword = $loginInputs.filter('.password')
 
     let $registerInputs = $contents.filter('._register').children('.md-input')
     let $registerInputEmail = $registerInputs.filter('.email')
@@ -25,7 +27,7 @@ export default function showMdSnackbar() {
     })
 
     setTimeout(function() {
-        $('.md-snackbar').addClass('show-partial')
+        $('.md-snackbar').addClass('show-full')
     }, 10)
 
     // 根据不同输入框，以不同的正则判断内容的有效性，切换invalid类
@@ -56,18 +58,51 @@ export default function showMdSnackbar() {
         .on('click', '._to-login', function() {
             $contents.removeClass('show').filter('._login').addClass('show')
         })
-        // 登录的客户端逻辑
+        // 点击登录按钮
         .on('click', '.login', function() {
+            /*
+            *
+            * 登录输入验证
+            *
+            */
             // 先去掉invalid类再给予，闪烁一下
             $loginInputs.removeClass('invalid')
             setTimeout(function() {
-                for (let ele of $loginInputs) {
-                    validateMdInput($(ele))
-                }
+                // for (let ele of $loginInputs) {
+                //     validateMdInput($(ele))
+                // }
+                // if ($loginInputs.filter('.invalid').length === 0) {
+                    /*
+                    *
+                    * 发送登录请求
+                    *
+                    */
+                    let data = {
+                        email: $loginInputEmail.children('._input').val(),
+                        password: $loginInputPassword.children('._input').val(),
+                    }
+                    console.log(data);
+                    $.ajax({
+                        url: '/login',
+                        type: 'Post',
+                        data,
+                        success: function(result) {
+                            console.log(result);
+                        },
+                        fail: function(result) {
+                            console.log('failed', result)
+                        },
+                    })
+                // }
             }, 400)
         })
-        // 注册的客户端逻辑
+        // 点击注册按钮
         .on('click', '.register', function() {
+            /*
+            *
+            * 注册输入验证
+            *
+            */
             // 先去掉invalid类再给予，闪烁一下
             $registerInputs.removeClass('invalid')
             setTimeout(function() {
@@ -87,17 +122,23 @@ export default function showMdSnackbar() {
                     }
                 }
                 if ($registerInputs.filter('.invalid').length === 0) {
+                    /*
+                    *
+                    * 发送注册请求
+                    *
+                    */
                     let data = {
                         email: $registerInputEmail.children('._input').val(),
                         nickname: $registerInputNickname.children('._input').val().trim(),
                         password: $registerInputConfirmPassword.children('._input').val(),
                     }
+                    console.log(data);
                     $.ajax({
                         url: '/register',
                         type: 'Post',
                         data,
-                        success: function(data) {
-                            if (JSON.parse(data).registerSuccessful === true) {
+                        success: function(result) {
+                            if (JSON.parse(result).registerSuccessful === true) {
                                 // 若注册成功，则显示查看邮件的提示
                                 $contents.removeClass('show').filter('._notification')
                                     .children('.highlighted').text(data.email)
@@ -112,8 +153,8 @@ export default function showMdSnackbar() {
                                 }, 3000)
                             }
                         },
-                        fail: function(data) {
-                            console.log('failed', data)
+                        fail: function(result) {
+                            console.log('failed', result)
                         },
                     })
                 }
