@@ -33,7 +33,6 @@ module.exports = function(router) {
 
     */
     router.post('/login', function(req, res, next) {
-        console.log('r',req);
         let session = req.session
         let email = req.body.email
         let password = req.body.password

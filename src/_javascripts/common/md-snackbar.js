@@ -68,10 +68,10 @@ export default function showMdSnackbar() {
             // 先去掉invalid类再给予，闪烁一下
             $loginInputs.removeClass('invalid')
             setTimeout(function() {
-                // for (let ele of $loginInputs) {
-                //     validateMdInput($(ele))
-                // }
-                // if ($loginInputs.filter('.invalid').length === 0) {
+                for (let ele of $loginInputs) {
+                    validateMdInput($(ele))
+                }
+                if ($loginInputs.filter('.invalid').length === 0) {
                     /*
                     *
                     * 发送登录请求
@@ -93,7 +93,7 @@ export default function showMdSnackbar() {
                             console.log('failed', result)
                         },
                     })
-                // }
+                }
             }, 400)
         })
         // 点击注册按钮
@@ -132,7 +132,7 @@ export default function showMdSnackbar() {
                         nickname: $registerInputNickname.children('._input').val().trim(),
                         password: $registerInputConfirmPassword.children('._input').val(),
                     }
-                    console.log(data);
+                    console.log('sbsb',data);
                     $.ajax({
                         url: '/register',
                         type: 'Post',
