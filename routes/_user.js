@@ -39,13 +39,8 @@ module.exports = function(router) {
         userProxy.login(email, password, function(resCode) {
             switch (resCode) {
                 case 1:
-                    session.regenerate(function(e) {
-                        if (e) {
-                            return res.json({ret_code: 5})
-                        }
-                        session.loginUser = email
-                        return res.json({ret_code: 1})
-                    })
+                    session.loginUser = email
+                    return res.json({ret_code: 1})
                     break;
                 default:
                     return res.json({ret_code: resCode})

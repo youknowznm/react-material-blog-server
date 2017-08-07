@@ -132,13 +132,12 @@ export default function showMdSnackbar() {
                         nickname: $registerInputNickname.children('._input').val().trim(),
                         password: $registerInputConfirmPassword.children('._input').val(),
                     }
-                    console.log('sbsb',data);
                     $.ajax({
                         url: '/register',
                         type: 'Post',
                         data,
                         success: function(result) {
-                            if (JSON.parse(result).registerSuccessful === true) {
+                            if (result.registerSuccessful === true) {
                                 // 若注册成功，则显示查看邮件的提示
                                 $contents.removeClass('show').filter('._notification')
                                     .children('.highlighted').text(data.email)

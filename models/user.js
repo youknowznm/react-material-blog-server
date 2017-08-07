@@ -1,4 +1,4 @@
-const mongoose = require('./db')
+const mongoose = require('mongoose')
 
 let userSchema = mongoose.Schema({
     _id: {

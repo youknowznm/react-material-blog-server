@@ -6,22 +6,43 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 // 获取注册的全部路由
 var routes = require('./routes')
-// session和session存储
+// 数据库和session相关
+var dbPath = require('./config').dbPath
 var session = require('express-session')
-var FileStore = require('session-file-store')(session)
-
+var sessionKey = require('./config').sessionKey
+var mongoose = require('mongoose')
+var MongoStore = require('connect-mongo')(session)
 // 过滤器
 var filter = require('./filters')
 
+// 生成应用
 var app = express()
 
 // 全局变量
 app.locals = require('./config')
 
+mongoose.connect(dbPath)
+mongoose.connection.on('error', function(e) {
+    console.log('-- db connection error --\n' + e)
+})
+
+// session
+app.use(session({
+    name: 'rhaegoSession',
+    secret: sessionKey,
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection
+    }),
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: 24 * 60 * 60 * 1000,
+    },
+}))
+
 // 模板引擎
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
-
 
 // favicon
 app.use(favicon(path.join(__dirname, '/dist/images', 'favicon.ico')))
@@ -34,16 +55,6 @@ app.use(cookieParser())
 // 指定静态文件目录
 app.use(express.static(path.join(__dirname, '/dist/')))
 
-// session
-app.use(session({
-    secret: app.locals.sessionKey,
-    store: new FileStore(),
-    saveUninitialized: false,
-    resave: false,
-    cookie: {
-        maxAge: 24 * 60 * 60 * 1000,
-    },
-}))
 
 
 // 使用获取的路由

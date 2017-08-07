@@ -1,4 +1,4 @@
-const mongoose = require('./db')
+const mongoose = require('mongoose')
 
 let messageSchema = mongoose.Schema({
     _id: {
