@@ -28,8 +28,9 @@
         text-transform: uppercase;
         letter-spacing: .05rem;
         user-select: none;
-        .strong {
-            font-weight: bold;
+        .underlined {
+            border-bottom: 1px solid rgb(255, 235, 59);
+            padding-bottom: 3px;
         }
     }
 

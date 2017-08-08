@@ -61,6 +61,12 @@ routes.forEach(function(router) {
     app.use(router)
 })
 
+// 检查登录状态
+app.use(function(req, res, next) {
+    console.log('!!!!!!',res.session.loginUser === undefined);
+    next()
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found')
