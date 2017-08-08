@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "server": "nodemon ./bin/www",
-    "dev-server": "webpack-dev-server --env development",
     "webpack": "./node_modules/.bin/webpack --display-error-details",
     "gulp": "gulp"
   },

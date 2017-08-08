@@ -21,12 +21,13 @@ var app = express()
 // 全局变量
 app.locals = require('./config')
 
+// 连接mongodb
 mongoose.connect(dbPath)
 mongoose.connection.on('error', function(e) {
     console.log('-- db connection error --\n' + e)
 })
 
-// session
+// session中间件
 app.use(session({
     name: 'rhaegoSession',
     secret: sessionKey,
@@ -54,8 +55,6 @@ app.use(cookieParser())
 
 // 指定静态文件目录
 app.use(express.static(path.join(__dirname, '/dist/')))
-
-
 
 // 使用获取的路由
 routes.forEach(function(router) {

@@ -27,7 +27,7 @@ export default function showMdSnackbar() {
     })
 
     setTimeout(function() {
-        $('.md-snackbar').addClass('show-full')
+        $('.md-snackbar').addClass('show-partial')
     }, 10)
 
     // 根据不同输入框，以不同的正则判断内容的有效性，切换invalid类
