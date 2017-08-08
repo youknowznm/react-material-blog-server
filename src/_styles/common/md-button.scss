@@ -25,6 +25,7 @@
     letter-spacing: .01em;
     user-select: none;
     transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 90;
 
     .content {}
 
@@ -238,6 +239,7 @@
     border: 0;
     box-shadow: none;
     cursor: pointer;
+    z-index: 90;
 
     .content {
         position: relative;
@@ -327,5 +329,55 @@
             background-color: rgba(255, 82, 82, .2);
         }
     }
+
+}
+
+/*
+***** 提示条 ****
+*/
+.md-tooltip {
+    display: block;
+    position: absolute;
+    width: 58px;
+    top: 50%;
+    left: 50%;
+    color: rgba(#fff, .87);
+    background: rgb(97, 97, 97);
+    border-radius: 4px;
+    line-height: 22px;
+    font-size: 12px;
+    padding: 0 4px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 89;
+    transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-transform: capitalize;
+    transform: scale(0);
+    &.show {
+        transform: scale(1);
+        opacity: .9;
+    }
+    &.to-show-at-top {
+        margin-left: -33px;
+        margin-top: -63px;
+        transform-origin: bottom;
+    }
+    &.to-show-at-right {
+        margin-left: 42px;
+        margin-top: -9px;
+        transform-origin: left;
+    }
+    &.to-show-at-bottom {
+        margin-left: -33px;
+        margin-top: 38px;
+        transform-origin: top;
+    }
+    &.to-show-at-left {
+        margin-left: -105px;
+        margin-top: -11px;
+        transform-origin: right;
+    }
+
+
 
 }

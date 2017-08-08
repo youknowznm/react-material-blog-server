@@ -5,6 +5,7 @@
         <button class="md-button _round _warn">
             <span class="content"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
+            <p class="md-tooltip to-show-at-left">new post</p>
         </button>
     </li>
     <%}%>
@@ -14,15 +15,27 @@
         <button class="md-button _round _warn">
             <span class="content"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
+            <p class="md-tooltip to-show-at-left">edit post</p>
         </button>
     </li>
     <%}%>
 
-    <li class="_to-top">
+    <% if (static === 'postDetail') {%>
+    <li class="_logout">
         <button class="md-button _round _warn">
             <span class="content"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
+            <p class="md-tooltip to-show-at-left">log out</p>
         </button>
     </li>
+    <%}%>
+
+    <!-- TODO: 高度上空间有点紧张，有时间看有没有解决方案 -->
+    <!-- <li class="_to-top">
+        <button class="md-button _round _primary">
+            <span class="content"><i class="icon"></i></span>
+            <div class="ripple-container"><span class="ripple"></span></div>
+        </button>
+    </li> -->
 
 </ul>

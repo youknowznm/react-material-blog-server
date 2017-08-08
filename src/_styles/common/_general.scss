@@ -144,6 +144,10 @@ body {
                 animation: zoomIn .4s ease reverse;
             }
         }
+        ._logout .icon {
+            background: url("../../_images/ic_logout.png") no-repeat;
+            filter: drop-shadow(#fff 0 24px);
+        }
         ._create-new .icon {
             background: url("../../_images/ic_create.png") no-repeat;
             filter: drop-shadow(#fff 0 24px);
