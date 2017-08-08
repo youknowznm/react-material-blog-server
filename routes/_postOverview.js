@@ -7,7 +7,14 @@ module.exports = function(router) {
     全部博客
     */
     router.get(['/', '/posts'], function(req, res, next) {
+        if (req.session && req.session.loginUser) {
+            req.fuk = true
+        }
+        next()
+    },
+    function(req, res, next) {
         console.log('--- session ---: ', req.session);
+        console.log('fuk', req.fuk);
         postProxy.getPosts(function(docs) {
             res.render('postOverview', {
                 navType: 0,
