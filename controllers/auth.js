@@ -7,7 +7,7 @@ module.exports = {
     getAuthLevel(req) {
         let currentUserEmail = req.session.currentUserEmail
         let authLevel = 0
-        if (currentUserEmail !== undefined) {
+        if (currentUserEmail !== undefined && currentUserEmail !== '') {
             authLevel = 1
             if (currentUserEmail === ownerEmail) {
                 authLevel = 2

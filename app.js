@@ -39,6 +39,7 @@ app.use(session({
     cookie: {
         maxAge: 24 * 60 * 60 * 1000,
     },
+    currentUserEmail: '',
 }))
 
 // 模板引擎
