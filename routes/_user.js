@@ -39,7 +39,7 @@ module.exports = function(router) {
         userProxy.login(email, password, function(resCode) {
             switch (resCode) {
                 case 1:
-                    session.loginUser = email
+                    session.currentUserEmail = email
                     return res.json({ret_code: 1})
                     break;
                 default:

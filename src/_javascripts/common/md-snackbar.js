@@ -20,15 +20,17 @@ export default function showMdSnackbar() {
     let $registerInputPassword = $registerInputs.filter('.password')
     let $registerInputConfirmPassword = $registerInputs.filter('.confirm-password')
 
-    // snackbar整体的显隐切换
+    // 根据body的authLeval控制登录控件的显隐
+    setTimeout(function() {
+        // if ()
+        $('.md-snackbar').addClass('show-partial')
+    }, 200)
+
+    // 登录控件整体的显隐切换
     $('body').on('click', function(e) {
         let $this = $(e.target)
         $mdSnackbar.toggleClass('show-full', $this.closest('.md-snackbar').length !== 0)
     })
-
-    setTimeout(function() {
-        $('.md-snackbar').addClass('show-partial')
-    }, 10)
 
     // 根据不同输入框，以不同的正则判断内容的有效性，切换invalid类
     function validateMdInput($mdInput) {

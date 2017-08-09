@@ -1,3 +1,7 @@
+/**
+ejs模板过滤器
+*/
+
 const ejs = require('ejs')
 
 ejs.filters.formatTitle = function(str) {

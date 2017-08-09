@@ -1,4 +1,5 @@
 let postProxy = require('../proxy/post')
+let auth = require('../controllers/auth')
 
 module.exports = function(router) {
 
@@ -14,11 +15,12 @@ module.exports = function(router) {
                     url: req.path
                 })
             } else {
-                console.log(doc.tags);
+                // console.log(doc.tags);
                 res.render('postDetail', {
                     navType: 0,
                     pageTitle: doc.title,
                     static: 'postDetail',
+                    authLevel: auth.getAuthLevel(req),
                     doc,
                 })
             }

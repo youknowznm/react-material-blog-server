@@ -12,8 +12,8 @@ var session = require('express-session')
 var sessionKey = require('./config').sessionKey
 var mongoose = require('mongoose')
 var MongoStore = require('connect-mongo')(session)
-// 过滤器
-var filter = require('./filters')
+// ejs模板过滤器
+require('./controllers/filters')
 
 // 生成应用
 var app = express()
