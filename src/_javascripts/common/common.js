@@ -37,7 +37,7 @@ $(function() {
 
     // 推迟显示控制板
     setTimeout(function() {
-        $('.fixed-panel').show()
+        $('.controll-panel').show()
     }, 1000)
 
     // 主导航按钮
@@ -52,13 +52,13 @@ $(function() {
 
     // 滚动时处理控制面板样式
     let $main = $('.main'),
-        $fixedPanel = $('.fixed-panel')
+        $controllPanel = $('.controll-panel')
 
     $(window).on('scroll', function() {
         // 浮动控件top调整
         let _h = $main.height() - 80,
             scTp = document.body.scrollTop
-        $fixedPanel.css(
+        $controllPanel.css(
             'top',
             (scTp + 200) > _h ? _h : scTp + 200
         )

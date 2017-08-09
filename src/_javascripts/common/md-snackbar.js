@@ -22,9 +22,10 @@ export default function showMdSnackbar() {
 
     // 根据body的authLeval控制登录控件的显隐
     setTimeout(function() {
-        // if ()
-        $('.md-snackbar').addClass('show-partial')
-    }, 200)
+        if ($('body').data('authLevel') === 0) {
+            $('.md-snackbar').addClass('show-partial')
+        }
+    }, 1000)
 
     // 登录控件整体的显隐切换
     $('body').on('click', function(e) {

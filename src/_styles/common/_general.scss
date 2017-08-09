@@ -130,7 +130,7 @@ body {
 .main {
     position: relative;
     @include mds-responsive-wrap;
-    .fixed-panel {
+    .controll-panel {
         display: none;
         position: absolute;
         top: 200px;
