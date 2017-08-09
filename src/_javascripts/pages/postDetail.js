@@ -14,7 +14,7 @@ $(function() {
         )
     })
 
-    // 取得博客内容的直接header元素，生成内容导航
+    // 取得文章内容的直接header元素，生成内容导航
     let $headers = $('.markdown-parsed').children(':header')
     let postContentNavHTML = '<li>Contents</li>'
     Array.prototype.forEach.call($headers, function(item, index, array) {

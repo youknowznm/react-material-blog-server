@@ -5,7 +5,7 @@ module.exports = function(router) {
 
     /*
     主页
-    全部博客
+    全部文章
     */
     router.get(['/', '/posts'], function(req, res, next) {
         postProxy.getPosts(function(docs) {

@@ -1,8 +1,9 @@
 <ul class="controll-panel">
 
-    <% if (static !== 'create') {%>
+    <!-- 仅在登录者为站长且位于非新建文章页时显示 -->
+    <% if (static !== 'create' && authLevel === 2) {%>
     <li class="_create-new">
-        <button class="md-button _round _warn">
+        <button class="md-button _round _primary">
             <span class="content"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">new post</p>
@@ -10,9 +11,10 @@
     </li>
     <%}%>
 
-    <% if (static === 'postDetail') {%>
+    <!-- 仅在登录者为站长且位于文章详情页时显示 -->
+    <% if (static === 'postDetail' && authLevel === 2) {%>
     <li class="_edit">
-        <button class="md-button _round _warn">
+        <button class="md-button _round _primary">
             <span class="content"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">edit post</p>
@@ -20,7 +22,8 @@
     </li>
     <%}%>
 
-    <% if (static === 'postDetail') {%>
+    <!-- 仅在已登录时显示 -->
+    <% if (authLevel !== 0) {%>
     <li class="_logout">
         <button class="md-button _round _warn">
             <span class="content"><i class="icon"></i></span>

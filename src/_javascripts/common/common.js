@@ -20,19 +20,26 @@ $(function() {
 
     showMdSnackbar()
 
-    // 新建按钮
+
+    // 新建文章
     $('._create-new').click(function() {
         rhaegoUtil.mdDelay(function() {
             location.pathname = '/create'
         })
     })
 
-    // 回顶部按钮
-    let $toTopBtn = $('._to-top')
-    $toTopBtn.click(function() {
-        $('body').animate({
-            'scrollTop': 0
-        }, 200)
+    // 注销登录
+    $('._logout').click(function() {
+        rhaegoUtil.mdDelay(function() {
+            $.ajax({
+                url: '/logout',
+                type: 'Get',
+                data: '',
+                success() {
+                    location.reload()
+                }
+            })
+        })
     })
 
     // 推迟显示控制板

@@ -29,7 +29,7 @@ mongoose.connection.on('error', function(e) {
 
 // session中间件
 app.use(session({
-    name: 'rhaegoSession',
+    name: 'rhaegoSessionKey',
     secret: sessionKey,
     store: new MongoStore({
         mongooseConnection: mongoose.connection

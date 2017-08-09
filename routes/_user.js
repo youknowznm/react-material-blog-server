@@ -48,6 +48,14 @@ module.exports = function(router) {
         })
     })
 
+    /*
+    */
+    router.get('/logout', function(req, res, next) {
+        req.session.currentUserEmail = ''
+        res.clearCookie('rhaegoSessionKey')
+        res.redirect('/')
+    })
+
 
     return router
 

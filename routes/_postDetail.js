@@ -4,7 +4,7 @@ let auth = require('../controllers/auth')
 module.exports = function(router) {
 
     /*
-    单个博客 - 以博客uid为标识
+    单个文章 - 以文章uid为标识
     */
     router.get(/^\/posts\/\S+/, function(req, res, next) {
         let _id = /^\/posts\/(\S+)/.exec(req.path)[1]
