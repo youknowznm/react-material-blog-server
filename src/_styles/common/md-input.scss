@@ -61,6 +61,7 @@
         .placeholder {
             transform: scale(0.8) translateY(-30px);
             color: rgb(16, 108, 200); //blue
+            cursor: default;
         }
         &:after,
         &:before {
@@ -72,6 +73,7 @@
         .placeholder {
             transform: scale(0.8) translateY(-30px);
             color: rgb(16, 108, 200); //blue
+            cursor: default;
         }
     }
     // 输入内容未通过验证时
