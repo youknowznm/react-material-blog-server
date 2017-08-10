@@ -30,15 +30,19 @@ $(function() {
 
     // 注销登录
     $('._logout').click(function() {
-        rhaegoUtil.mdDelay(function() {
-            $.ajax({
-                url: '/logout',
-                type: 'Get',
-                data: '',
-                success() {
-                    location.reload()
-                }
-            })
+        rhaegoUtil.showMdDialog({
+            title: 'Log out?',
+            content: 'Only logged-in users are able to comment or like posts.',
+            onConfirm() {
+                $.ajax({
+                    url: '/logout',
+                    type: 'Get',
+                    data: '',
+                    success() {
+                        location.reload()
+                    }
+                })
+            }
         })
     })
 
@@ -64,9 +68,7 @@ $(function() {
     /*
     footer逻辑
     */
-    let $footer = $('body').children('footer')
-
-    $footer.on('click', '.source', function() {
+    $('footer').on('click', '.source', function() {
         rhaegoUtil.mdDelay(function() {
             window.open('https://github.com/youknowznm/rhaego')
         })
