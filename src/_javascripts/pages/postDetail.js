@@ -33,5 +33,4 @@ $(function() {
     })
     $postContentNav.html(postContentNavHTML)
 
-
 })

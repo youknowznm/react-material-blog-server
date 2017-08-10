@@ -3,7 +3,7 @@
     <!-- 仅在登录者为站长且位于非新建文章页时显示 -->
     <% if (static !== 'create' && authLevel === 2) {%>
     <li class="_create-new">
-        <button class="md-button _round _primary">
+        <button class="md-button _round _warn">
             <span class="content"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">new post</p>
@@ -14,7 +14,7 @@
     <!-- 仅在登录者为站长且位于文章详情页时显示 -->
     <% if (static === 'postDetail' && authLevel === 2) {%>
     <li class="_edit">
-        <button class="md-button _round _primary">
+        <button class="md-button _round _warn">
             <span class="content"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">edit post</p>
@@ -35,7 +35,7 @@
 
     <!-- TODO: 高度上空间有点紧张，有时间看有没有解决方案 -->
     <!-- <li class="_to-top">
-        <button class="md-button _round _primary">
+        <button class="md-button _round _warn">
             <span class="content"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
         </button>
