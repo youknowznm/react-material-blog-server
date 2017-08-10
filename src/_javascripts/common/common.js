@@ -61,15 +61,15 @@ $(function() {
     let $main = $('.main'),
         $controllPanel = $('.controll-panel')
 
-    $(window).on('scroll', function() {
-        // 浮动控件top调整
-        let _h = $main.height() - 80,
-            scTp = document.body.scrollTop
-        $controllPanel.css(
-            'top',
-            (scTp + 200) > _h ? _h : scTp + 200
-        )
-    })
+    // $(window).on('scroll', function() {
+    //     // 浮动控件top调整
+    //     let _h = $main.height() - 80,
+    //         scTp = document.body.scrollTop
+    //     $controllPanel.css(
+    //         'top',
+    //         (scTp + 200) > _h ? _h : scTp + 200
+    //     )
+    // })
 
     /*
     footer逻辑
@@ -82,7 +82,10 @@ $(function() {
         })
     })
 
-    // $('.mail.')
+    $('.controll-panel').css('left',  $main.width() + $main.offset().left - 75)
+    $(window).on('resize', function() {
+        $('.controll-panel').css('left',  $main.width() + $main.offset().left - 75)
+    })
 
 
 })

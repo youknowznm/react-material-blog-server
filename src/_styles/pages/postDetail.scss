@@ -19,11 +19,11 @@ body {
     font-family: 'Roboto Regular';
 
     // 小页面宽度时内容宽度的重置
-    @media (max-width: 1150px) {
-        & {
-            max-width: 700px;
-        }
-    }
+    // @media (max-width: 1150px) {
+    //     & {
+    //         max-width: 700px;
+    //     }
+    // }
 
     // 重置第一个子元素的上外边距
     > *:first-child {

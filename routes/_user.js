@@ -13,7 +13,7 @@ module.exports = function(router) {
             verified: false,
         }
         userProxy.saveUser(params, function(result) {
-            // 注册成功返回真，邮件已被注册返回假
+            // 注册成功返回真，邮箱已被注册返回假
             res.json({'registerSuccessful': result})
         })
     })

@@ -25,7 +25,7 @@ export default function showMdSnackbar() {
         if ($('body').data('authLevel') === 0) {
             $('.md-snackbar').addClass('show-partial')
         }
-    }, 1000)
+    }, 1500)
 
     // 登录控件整体的显隐切换
     $('body').on('click', function(e) {
