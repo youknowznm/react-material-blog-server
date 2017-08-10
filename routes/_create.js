@@ -1,4 +1,5 @@
 let shortid = require('shortid')
+let auth = require('../controllers/auth')
 let postProxy = require('../proxy/post')
 
 module.exports = function(router) {
@@ -12,6 +13,7 @@ module.exports = function(router) {
             pageTitle: 'create',
             static: 'create',
             uid: shortid.generate(),
+            authLevel: auth.getAuthLevel(req),
         })
     })
 

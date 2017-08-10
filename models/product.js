@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const MessageModel = require('./message')
 
 let productSchema = mongoose.Schema({
     _id: {
@@ -10,12 +11,7 @@ let productSchema = mongoose.Schema({
     title: String,
     summary: String,
     content: String,
-    viewCount: Number,
-    liked: Number,
     tags: [String],
-    // comments: [MessageModel],
 })
 
-let ProductModel = mongoose.model('product', productSchema, 'product')
-
-// export productModel;
+module.exports = mongoose.model('product', productSchema)

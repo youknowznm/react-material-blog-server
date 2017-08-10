@@ -120,6 +120,8 @@
         top: 46px;
         right: 9px;
         font-weight: normal;
+        user-select: none;
+        cursor: default;
         transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
         .current {
             margin-right: .5em;
