@@ -111,24 +111,43 @@ $(function() {
             tags,
             created,
         })
-        $.ajax({
-            contentType: 'application/json',
-            url: '/savePost',
-            type: 'Post',
-            data,
-            success: function(data) {
-                console.log('s', data)
-            },
-            fail: function(data) {
-                console.log('f', data)
-            },
-        })
+        // TODO
+        switch (/^\s*[http\:\/\/|https\:\/\/]\S{1,5}\s*$/.test(content)) {
+            case true:
+                $.ajax({
+                    contentType: 'application/json',
+                    url: '/savePost',
+                    type: 'Post',
+                    data,
+                    success: function(data) {
+                        console.log('s', data)
+                    },
+                    fail: function(data) {
+                        console.log('f', data)
+                    },
+                })
+                break;
+            case false:
+                $.ajax({
+                    contentType: 'application/json',
+                    url: '/savePost',
+                    type: 'Post',
+                    data,
+                    success: function(data) {
+                        console.log('s', data)
+                    },
+                    fail: function(data) {
+                        console.log('f', data)
+                    },
+                })
+                break;
+        }
     })
 
     $('.cancel').click(function() {
         rhaegoUtil.showMdDialog({
             title: 'Leave this page?',
-            content: 'Blog content shall be discarded.',
+            content: 'Unsaved content will be discarded.',
             onConfirm: function() {
                 location.pathname = '/posts'
             }

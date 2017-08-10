@@ -2782,24 +2782,43 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             tags: tags,
             created: created
         });
-        _jquery2.default.ajax({
-            contentType: 'application/json',
-            url: '/savePost',
-            type: 'Post',
-            data: data,
-            success: function success(data) {
-                console.log('s', data);
-            },
-            fail: function fail(data) {
-                console.log('f', data);
-            }
-        });
+        // TODO
+        switch (/^\s*[http\:\/\/|https\:\/\/]\S{1,5}\s*$/.test(content)) {
+            case true:
+                _jquery2.default.ajax({
+                    contentType: 'application/json',
+                    url: '/savePost',
+                    type: 'Post',
+                    data: data,
+                    success: function success(data) {
+                        console.log('s', data);
+                    },
+                    fail: function fail(data) {
+                        console.log('f', data);
+                    }
+                });
+                break;
+            case false:
+                _jquery2.default.ajax({
+                    contentType: 'application/json',
+                    url: '/savePost',
+                    type: 'Post',
+                    data: data,
+                    success: function success(data) {
+                        console.log('s', data);
+                    },
+                    fail: function fail(data) {
+                        console.log('f', data);
+                    }
+                });
+                break;
+        }
     });
 
     (0, _jquery2.default)('.cancel').click(function () {
         rhaegoUtil.showMdDialog({
             title: 'Leave this page?',
-            content: 'Blog content shall be discarded.',
+            content: 'Unsaved content will be discarded.',
             onConfirm: function onConfirm() {
                 location.pathname = '/posts';
             }
