@@ -6,7 +6,7 @@ function getPostsByTag(tag, cb) {
         if (e) {
             console.error(e)
         }
-        return cb(doc);
+        return cb(docs);
     })
 }
 
