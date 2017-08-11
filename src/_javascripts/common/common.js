@@ -21,10 +21,8 @@ $(function() {
     /*
     控制面板
     */
-
     let $main = $('.main')
     let $controllPanel = $('.controll-panel')
-
     $controllPanel
         // left值初始化
         .css('left',  $main.width() + $main.offset().left - 75)
@@ -51,12 +49,10 @@ $(function() {
                 }
             })
         })
-
     // 位置随窗口响应变化
     $(window).on('resize', function() {
         $controllPanel.css('left',  $main.width() + $main.offset().left - 75)
     })
-
     // 推迟显示
     setTimeout(function() {
         $controllPanel.show()
