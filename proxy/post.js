@@ -1,13 +1,14 @@
 let PostModel = require('../models/post')
 
-// function getPosts(_id, cb) {
-//     PostModel.findById(_id, function(e, doc) {
-//         if (e) {
-//             console.error(e)
-//         }
-//         return cb(doc);
-//     })
-// }
+// 取得某标签下的所有文章文档
+function getPostsByTag(tag, cb) {
+    PostModel.find({tag: 'DASF'}, function(e, docs) {
+        if (e) {
+            console.error(e)
+        }
+        return cb(doc);
+    })
+}
 
 // 取得所有文章文档
 function getPosts(cb) {
@@ -58,7 +59,7 @@ function savePost(params, cb) {
 }
 
 // 根据文章_id查找
-function findPostById(_id, cb) {
+function getPostById(_id, cb) {
     PostModel.findById(_id, function(e, doc) {
         if (e) {
             console.error(e)
@@ -70,5 +71,6 @@ function findPostById(_id, cb) {
 module.exports = {
     savePost,
     getPosts,
-    findPostById,
+    getPostById,
+    getPostsByTag,
 }

@@ -65,16 +65,14 @@ routes.forEach(function(router) {
 
 // 404
 app.use(function(req, res, next) {
-    res.status(404)
-    res.render('common/404', {
+    res.status(404).render('common/404', {
         url: req.path
     })
 })
 
 // 500
 app.use(function(err, req, res, next) {
-    res.status(500)
-    res.render('common/500', {
+    res.status(500).render('common/500', {
         url: req.path
     })
 })

@@ -18,15 +18,23 @@ module.exports = function(router) {
                 docs,
             })
         })
+    })
 
-        // {
-        // // router.get('/getPosts', function(docs) {
-        //     res.render('posts', {
-        //         pageTitle: 'posts',
-        //         static: 'posts',
-        //         docs
-        //     })
-        // })
+    /*
+    某标签下的文章
+    */
+    router.get('/^\/posts?tag=\S+/', function(req, res, next) {
+        let tag = /^\/posts?tag=(\S+)/.exec(req.path)[1]
+        postProxy.getPostsByTag(tag, function(docs) {
+            res.render('postOverview', {
+                navType: 0,
+                pageTitle: 'posts',
+                static: 'postAndProductOverview',
+                authLevel: auth.getAuthLevel(req),
+                // docs: [],
+                docs,
+            })
+        })
     })
 
     return router
