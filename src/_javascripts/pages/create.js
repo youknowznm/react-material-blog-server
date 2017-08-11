@@ -95,13 +95,13 @@ $(function() {
             return
         }
         let _id = $('.main-wrap').data('uid')
-        let title = $('._title ._input').val()
-        let summary = $('._summary ._input').val()
-        let content = $('._content ._input').val()
+        let title = $('._title ._input').val().trim()
+        let summary = $('._summary ._input').val().trim()
+        let content = $('._content ._input').val().trim()
         let created = new Date().toString()
         let tags = []
         $('._tags').find('.tag-content').each(function() {
-            tags.push($(this).text())
+            tags.push($(this).text().trim())
         })
         let data = JSON.stringify({
             _id,
@@ -111,8 +111,12 @@ $(function() {
             tags,
             created,
         })
-        // TODO
-        switch (/^\s*[http\:\/\/|https\:\/\/]\S{1,5}\s*$/.test(content)) {
+        /*
+        常规URL的正则匹配：
+        开始 + 可选的http或https协议名 + 一个以上的（一个以上的字母或数字或'-' + '.'） + 一个以上的字母或数字 + 一个以上的（'/' + 一个以上的非空格字符 ） + 结尾
+         */
+        switch (/^(http:\/\/|https:\/\/)?([\w-]+\.)+[\w-]+(\/\S+)+$/.test(content)) {
+            // 当content元素的value符合URL正则时，发送储存为product（产品）的请求
             case true:
                 $.ajax({
                     contentType: 'application/json',
@@ -120,13 +124,14 @@ $(function() {
                     type: 'Post',
                     data,
                     success: function(data) {
-                        console.log('s', data)
+                        console.log('--- save as PRODUCT success --- \n', data)
                     },
                     fail: function(data) {
-                        console.log('f', data)
+                        console.log('--- save as PRODUCT fail --- \n', data)
                     },
                 })
                 break;
+            // 否则发送储存为post（文章）的请求
             case false:
                 $.ajax({
                     contentType: 'application/json',
@@ -134,10 +139,10 @@ $(function() {
                     type: 'Post',
                     data,
                     success: function(data) {
-                        console.log('s', data)
+                        console.log('--- save as POST success --- \n', data)
                     },
                     fail: function(data) {
-                        console.log('f', data)
+                        console.log('--- save as POST fail --- \n', data)
                     },
                 })
                 break;
@@ -147,7 +152,7 @@ $(function() {
     $('.cancel').click(function() {
         rhaegoUtil.showMdDialog({
             title: 'Leave this page?',
-            content: 'Unsaved content will be discarded.',
+            content: 'Unsaved contents will be discarded.',
             onConfirm: function() {
                 location.pathname = '/posts'
             }

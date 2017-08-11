@@ -28,12 +28,12 @@ const sendEmail = (function(optionsArg) {
 
     return function(optionsArg) {
         let options = Object.assign(DEFAULT_OPTIONS, optionsArg)
-        console.log('--- sending email --- : ', options)
+        console.log('--- sending email --- \n', options)
         transporter.sendMail(options, function(error, response) {
             if (error) {
-                console.log("Sending email failed: " + error)
+                console.log("--- sending email fail --- \n" + error)
             } else {
-                console.log("success: " + response.messageID)
+                console.log("--- sending email success --- \n" + response.messageID)
             }
         })
     }
@@ -110,7 +110,7 @@ function verifyEmail(key, cb) {
                 doc,
                 {verified: true},
                 function() {
-                    console.log('--- verified ---');
+                    console.log('--- verified --- \n');
                     cb(true)
                 }
             )

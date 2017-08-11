@@ -90,11 +90,11 @@ export default function showMdSnackbar() {
                         type: 'Post',
                         data,
                         success: function(result) {
-                            console.log('--- login success ---', result);
+                            console.log('--- login success --- \n', result);
                             location.reload()
                         },
                         fail: function(result) {
-                            console.log('--- login fail ---', result);
+                            console.log('--- login fail --- \n', result);
                         },
                     })
                 }

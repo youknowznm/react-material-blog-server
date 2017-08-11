@@ -2766,13 +2766,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             return;
         }
         var _id = (0, _jquery2.default)('.main-wrap').data('uid');
-        var title = (0, _jquery2.default)('._title ._input').val();
-        var summary = (0, _jquery2.default)('._summary ._input').val();
-        var content = (0, _jquery2.default)('._content ._input').val();
+        var title = (0, _jquery2.default)('._title ._input').val().trim();
+        var summary = (0, _jquery2.default)('._summary ._input').val().trim();
+        var content = (0, _jquery2.default)('._content ._input').val().trim();
         var created = new Date().toString();
         var tags = [];
         (0, _jquery2.default)('._tags').find('.tag-content').each(function () {
-            tags.push((0, _jquery2.default)(this).text());
+            tags.push((0, _jquery2.default)(this).text().trim());
         });
         var data = JSON.stringify({
             _id: _id,
@@ -2782,8 +2782,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             tags: tags,
             created: created
         });
-        // TODO
-        switch (/^\s*[http\:\/\/|https\:\/\/]\S{1,5}\s*$/.test(content)) {
+        /*
+        常规URL的正则匹配：
+        开始 + 可选的http或https协议名 + 一个以上的（一个以上的字母或数字或'-' + '.'） + 一个以上的字母或数字 + 一个以上的（'/' + 一个以上的非空格字符 ） + 结尾
+         */
+        switch (/^(http:\/\/|https:\/\/)?([\w-]+\.)+[\w-]+(\/\S+)+$/.test(content)) {
+            // 当content元素的value符合URL正则时，发送储存为product（产品）的请求
             case true:
                 _jquery2.default.ajax({
                     contentType: 'application/json',
@@ -2791,13 +2795,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                     type: 'Post',
                     data: data,
                     success: function success(data) {
-                        console.log('s', data);
+                        console.log('--- save as PRODUCT success --- \n', data);
                     },
                     fail: function fail(data) {
-                        console.log('f', data);
+                        console.log('--- save as PRODUCT fail --- \n', data);
                     }
                 });
                 break;
+            // 否则发送储存为post（文章）的请求
             case false:
                 _jquery2.default.ajax({
                     contentType: 'application/json',
@@ -2805,10 +2810,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                     type: 'Post',
                     data: data,
                     success: function success(data) {
-                        console.log('s', data);
+                        console.log('--- save as POST success --- \n', data);
                     },
                     fail: function fail(data) {
-                        console.log('f', data);
+                        console.log('--- save as POST fail --- \n', data);
                     }
                 });
                 break;
@@ -2818,7 +2823,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     (0, _jquery2.default)('.cancel').click(function () {
         rhaegoUtil.showMdDialog({
             title: 'Leave this page?',
-            content: 'Unsaved content will be discarded.',
+            content: 'Unsaved contents will be discarded.',
             onConfirm: function onConfirm() {
                 location.pathname = '/posts';
             }
