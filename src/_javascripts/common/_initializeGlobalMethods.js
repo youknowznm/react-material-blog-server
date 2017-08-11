@@ -54,4 +54,4 @@ rhaegoUtil.scrollIntoTargetElement = function(ele, cb) {
     }
 }
 
-export default 'globalMethods'
+export default 'initializedGlobalMethods'
