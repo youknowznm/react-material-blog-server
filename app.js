@@ -13,7 +13,7 @@ var sessionKey = require('./config').sessionKey
 var mongoose = require('mongoose')
 var MongoStore = require('connect-mongo')(session)
 // ejs模板过滤器
-require('./controllers/filters')
+require('./utils/filters')
 
 // 生成应用
 var app = express()

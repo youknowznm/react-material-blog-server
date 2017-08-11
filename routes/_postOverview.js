@@ -1,5 +1,5 @@
 let postProxy = require('../proxy/post')
-let auth = require('../controllers/auth')
+let auth = require('../utils/auth')
 
 module.exports = function(router) {
 

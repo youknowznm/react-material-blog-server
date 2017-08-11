@@ -1,5 +1,5 @@
 let productProxy = require('../proxy/product')
-let auth = require('../controllers/auth')
+let auth = require('../utils/auth')
 
 module.exports = function(router) {
 
