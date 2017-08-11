@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const MessageModel = require('./message')
 
 let productSchema = mongoose.Schema({
-    _id: {
+    _id: { 
        type: String,
        unique: true,
     },

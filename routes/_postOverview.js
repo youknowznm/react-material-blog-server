@@ -12,7 +12,7 @@ module.exports = function(router) {
             res.render('postOverview', {
                 navType: 0,
                 pageTitle: 'posts',
-                static: 'postOverview',
+                static: 'postAndProductOverview',
                 authLevel: auth.getAuthLevel(req),
                 // docs: [],
                 docs,

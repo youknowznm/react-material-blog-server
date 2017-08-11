@@ -7,26 +7,17 @@ module.exports = function(router) {
     全部产品
     */
     router.get('/products', function(req, res, next) {
+
         productProxy.getProducts(function(docs) {
-            res.json(docs)
-            // res.render('productOverview', {
-            //     navType: 0,
-            //     pageTitle: 'products',
-            //     static: 'productOverview',
-            //     authLevel: auth.getAuthLevel(req),
-            //     // docs: [],
-            //     docs,
-            // })
+            res.render('productOverview', {
+                navType: 1,
+                pageTitle: 'products',
+                static: 'postAndProductOverview',
+                authLevel: auth.getAuthLevel(req),
+                docs,
+            })
         })
 
-        // {
-        // // router.get('/getproducts', function(docs) {
-        //     res.render('products', {
-        //         pageTitle: 'products',
-        //         static: 'products',
-        //         docs
-        //     })
-        // })
     })
 
     return router

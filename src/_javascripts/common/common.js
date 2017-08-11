@@ -53,8 +53,11 @@ $(function() {
 
     // 主导航按钮
     $('.md-header').on('click', '.nav-item', function(evt) {
+        let targetPath = '/' + evt.target.innerHTML
         rhaegoUtil.mdDelay(function() {
-            location.pathname = '/' + evt.target.innerHTML
+            if (location.pathname !== targetPath) {
+                location.pathname = targetPath
+            }
         })
     })
 

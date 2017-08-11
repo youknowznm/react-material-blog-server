@@ -24,3 +24,7 @@ ejs.filters.capitalize = function(str) {
         return s.toUpperCase()
     })
 }
+
+ejs.filters.getThemeColor = function(navType) {
+    return ['blue', 'yellow', 'green', 'silver'][navType]
+}
