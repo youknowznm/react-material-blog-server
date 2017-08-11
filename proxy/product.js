@@ -25,6 +25,7 @@ function saveProduct(params, cb) {
             console.error(e)
         }
         if (doc === null) {
+            productDoc._id = _id
             productDoc.save(function(e) {
                 if (e) {
                     console.error(e)

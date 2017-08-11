@@ -2787,11 +2787,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
         开始 + 可选的http或https协议名 + 一个以上的（一个以上的字母或数字或'-' + '.'） + 一个以上的字母或数字 + 一个以上的（'/' + 一个以上的非空格字符 ） + 结尾
          */
         switch (/^(http:\/\/|https:\/\/)?([\w-]+\.)+[\w-]+(\/\S+)+$/.test(content)) {
-            // 当content元素的value符合URL正则时，发送储存为product（产品）的请求
+            // 当content元素的value符合URL格式时，发送储存为product（产品）的请求
             case true:
                 _jquery2.default.ajax({
                     contentType: 'application/json',
-                    url: '/savePost',
+                    url: '/saveProduct',
                     type: 'Post',
                     data: data,
                     success: function success(data) {

@@ -8,7 +8,6 @@ module.exports = function(router) {
     全部文章
     */
     router.get(['/', '/posts'], function(req, res, next) {
-        console.log(req.session);
         postProxy.getPosts(function(docs) {
             res.render('postOverview', {
                 navType: 0,

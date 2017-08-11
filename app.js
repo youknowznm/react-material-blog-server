@@ -22,9 +22,10 @@ var app = express()
 app.locals = require('./config')
 
 // 连接mongodb
+mongoose.Promise = require('bluebird')
 mongoose.connect(dbPath)
 mongoose.connection.on('error', function(e) {
-    console.log('-- db connection error --\n' + e)
+    console.log('--- db connection error --- \n' + e)
 })
 
 // session中间件

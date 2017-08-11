@@ -1,6 +1,7 @@
 let shortid = require('shortid')
 let auth = require('../utils/auth')
 let postProxy = require('../proxy/post')
+let productProxy = require('../proxy/product')
 
 module.exports = function(router) {
 
@@ -33,7 +34,28 @@ module.exports = function(router) {
                 console.log('err: ', e)
                 next(e)
             } else {
-                res.end('success')
+                res.end('--- save POST success --- \n')
+            }
+        })
+    })
+
+    /*
+    */
+    router.post('/saveProduct', function(req, res, next) {
+        let params = {
+            _id: req.body._id,
+            title: req.body.title,
+            summary: req.body.summary,
+            content: req.body.content,
+            tags: req.body.tags,
+            created: req.body.created,
+        }
+        productProxy.saveProduct(params, function(e) {
+            if (e) {
+                console.log('err: ', e)
+                next(e)
+            } else {
+                res.end('--- save PRODUCT success --- \n')
             }
         })
     })
