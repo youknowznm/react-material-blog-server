@@ -10,8 +10,7 @@ module.exports = function(router) {
         let _id = /^\/posts\/(\S+)/.exec(req.path)[1]
         postProxy.getPostById(_id, function(doc) {
             if (doc === null) {
-                res.status(404)
-                res.render('common/404', {
+                res.status(404).render('common/404', {
                     url: req.path
                 })
             } else {

@@ -2,7 +2,7 @@ let PostModel = require('../models/post')
 
 // 取得某标签下的所有文章文档
 function getPostsByTag(tag, cb) {
-    PostModel.find({tag: 'DASF'}, function(e, docs) {
+    PostModel.find({tags: tag}, function(e, docs) {
         if (e) {
             console.error(e)
         }
