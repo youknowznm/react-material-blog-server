@@ -10,6 +10,16 @@ function getProducts(cb) {
     })
 }
 
+// 取得某标签下的所有产品文档
+function getProductsByTag(tag, cb) {
+    ProductModel.find({tags: tag}, function(e, docs) {
+        if (e) {
+            console.error(e)
+        }
+        return cb(docs);
+    })
+}
+
 // 保存产品文档
 function saveProduct(params, cb) {
     let _id = params._id,
@@ -50,4 +60,5 @@ function saveProduct(params, cb) {
 module.exports = {
     getProducts,
     saveProduct,
+    getProductsByTag,
 }

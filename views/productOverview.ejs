@@ -6,7 +6,7 @@
     <% if (docs[0] === undefined) {%>
 
         <div class="empty-msg-wrap">
-            <h1 class="empty-msg">No products have been written yet.</h1>
+            <h1 class="empty-msg">No products found.</h1>
         </div>
         <div class="main">
             <% include ./common/controll-panel.ejs %>
@@ -15,7 +15,6 @@
     <%} else {%>
 
         <div class="main">
-
             <% for (let d of docs) {%>
                 <div class="product-wrap">
                     <!-- 与post不同#1：post指向本站上的文章地址，而product直接通往外链 -->

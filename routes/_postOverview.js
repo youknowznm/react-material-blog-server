@@ -11,7 +11,7 @@ module.exports = function(router) {
     })
 
     /*
-    全部文章 或 某标签下的文章
+    全部文章或某带有某标签的文章
     */
     router.get('/posts', function(req, res, next) {
         let targetTag = req.query.tag

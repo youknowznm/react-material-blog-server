@@ -21,7 +21,7 @@ module.exports = {
     */
     render404(req, res, next) {
         res.status(404).render('common/404', {
-            url: req.path
+            url: req._parsedOriginalUrl._raw
         })
     },
 }
