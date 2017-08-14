@@ -3,7 +3,7 @@
 @import '../common/footer';
 
 body {
-    
+
 }
 
 .main-wrap {
@@ -14,6 +14,7 @@ body {
     height: 100%;
 }
 
+.product-wrap,
 .post-wrap {
     position: relative;
     float: left;
@@ -28,19 +29,14 @@ body {
     }
 }
 
-.post-link {
+.product,
+.post {
     position: absolute;
     display: block;
     left: 6px;
     top: 6px;
     bottom: 6px;
     right: 6px;
-}
-
-.post {
-    position: absolute;
-    width: 100%;
-    height: 100%;
     cursor: pointer;
     user-select: none;
     transition: box-shadow .2s ease-out;
