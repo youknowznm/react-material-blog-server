@@ -18,7 +18,7 @@
             <% for (let d of docs) {%>
                 <div class="product-wrap">
                     <!-- 与post不同#1：post指向本站上的文章地址，而product直接通往外链 -->
-                    <div class="product" data-out-link="<%= d.content %>">
+                    <div class="product" data-ext-link="<%= d.content %>">
                         <div class="heading">
                             <h1 class="title">
                                 <%-: d.title | breakToSpans %>
@@ -38,6 +38,9 @@
                                 </li>
                             <% } %>
                         </ul>
+                        <span class="bg-icon-wrap">
+                            <span class="bg-icon _product"></span>
+                        </span>
                     </div>
                 </div>
             <%}%>

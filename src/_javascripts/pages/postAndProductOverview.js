@@ -26,8 +26,8 @@ $(function() {
     $('.product')
         // 点击产品的大部分区域，在新标签页中打开该产品的外链
         .on('click', function() {
-            let productOutLink = $(this).attr('data-out-link')
-            window.open(productOutLink)
+            let productExtLink = $(this).attr('data-ext-link')
+            window.open(productExtLink)
         })
         // 点击产品的任一标签，跳转至含该标签的所有产品
         .on('click', '.tag', function(evt) {

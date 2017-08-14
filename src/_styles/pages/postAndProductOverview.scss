@@ -136,6 +136,40 @@ body {
         }
     }
 
+    .bg-icon-wrap {
+        position: absolute;
+        display: block;
+        width: 36px;
+        line-height: 36px;
+        height: 36px;
+        overflow: hidden;
+        bottom: 16px;
+        right: 16px;
+        z-index: 11;
+        .bg-icon {
+            position: absolute;
+            display: block;
+            width: 36px;
+            height: 36px;
+            top: -36px;
+            left: 0;
+            /*
+            http://www.zhangxinxu.com/wordpress/2016/06/png-icon-change-color-by-css/
+            Chrome下如果元素的主体部分【完全】不可见，则其drop-shadow不可见；
+            只要元素有【任何】部分可见，则其drop-shadow完全可见。
+            */
+            border-bottom: 36px solid transparent;
+            filter: drop-shadow(rgba(#fff, .87) 0 36px);
+            background-size: 36px 36px;
+            &._post {
+                background: url("../../_images/ic_arrow_right.png") 0 0 no-repeat;
+            }
+            &._product {
+                background: url("../../_images/ic_ext_link.png") 0 0 no-repeat;
+            }
+        }
+    }
+
     div,
     p,
     h1,
@@ -143,6 +177,5 @@ body {
     ul {
         z-index: 10;
     }
-
 
 }
