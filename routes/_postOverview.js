@@ -4,11 +4,16 @@ let auth = require('../utils/auth')
 module.exports = function(router) {
 
     /*
-    主页
-    全部文章
-    某标签下的文章
+    主页（重定向至全部文章页）
     */
-    router.get(['/', '/posts'], function(req, res, next) {
+    router.get('/', function(req, res, next) {
+        res.redirect('/posts')
+    })
+
+    /*
+    全部文章 或 某标签下的文章
+    */
+    router.get('/posts', function(req, res, next) {
         let targetTag = req.query.tag
         switch (targetTag === undefined) {
             // 提供标签的查询字符串时，获取该标签下的所有文章，无文章时返回404
