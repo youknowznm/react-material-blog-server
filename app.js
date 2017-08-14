@@ -14,6 +14,8 @@ var mongoose = require('mongoose')
 var MongoStore = require('connect-mongo')(session)
 // ejs模板过滤器
 require('./utils/filters')
+// 控制器
+var controllers = require('./utils/controllers')
 
 // 生成应用
 var app = express()
@@ -64,11 +66,7 @@ routes.forEach(function(router) {
 })
 
 // 404
-app.use(function(req, res, next) {
-    res.status(404).render('common/404', {
-        url: req.path
-    })
-})
+app.use(controllers.render404)
 
 // 500
 app.use(function(err, req, res, next) {

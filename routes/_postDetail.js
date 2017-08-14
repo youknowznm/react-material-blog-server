@@ -1,5 +1,5 @@
 let postProxy = require('../proxy/post')
-let auth = require('../utils/auth')
+let controllers = require('../utils/controllers')
 
 module.exports = function(router) {
 
@@ -10,16 +10,14 @@ module.exports = function(router) {
         let _id = /^\/posts\/(\S+)/.exec(req.path)[1]
         postProxy.getPostById(_id, function(doc) {
             if (doc === null) {
-                res.status(404).render('common/404', {
-                    url: req.path
-                })
+                controllers.render404(req, res, next)
             } else {
                 // console.log(doc.tags);
                 res.render('postDetail', {
                     navType: 0,
                     pageTitle: doc.title,
                     static: 'postDetail',
-                    authLevel: auth.getAuthLevel(req),
+                    authLevel: controllers.getAuthLevel(req),
                     doc,
                 })
             }

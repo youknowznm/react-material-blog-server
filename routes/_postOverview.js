@@ -1,5 +1,5 @@
 let postProxy = require('../proxy/post')
-let auth = require('../utils/auth')
+let controllers = require('../utils/controllers')
 
 module.exports = function(router) {
 
@@ -24,14 +24,12 @@ module.exports = function(router) {
                             navType: 0,
                             pageTitle: 'posts',
                             static: 'postAndProductOverview',
-                            authLevel: auth.getAuthLevel(req),
+                            authLevel: controllers.getAuthLevel(req),
                             // docs: [],
                             docs,
                         })
                     } else {
-                        res.status(404).render('common/404', {
-                            url: req.path
-                        })
+                        controllers.render404(req, res, next)
                     }
                 })
                 break
@@ -42,7 +40,7 @@ module.exports = function(router) {
                         navType: 0,
                         pageTitle: 'posts',
                         static: 'postAndProductOverview',
-                        authLevel: auth.getAuthLevel(req),
+                        authLevel: controllers.getAuthLevel(req),
                         // docs: [],
                         docs,
                     })

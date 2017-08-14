@@ -1,5 +1,5 @@
 let productProxy = require('../proxy/product')
-let auth = require('../utils/auth')
+let controllers = require('../utils/controllers')
 
 module.exports = function(router) {
 
@@ -13,7 +13,7 @@ module.exports = function(router) {
                 navType: 1,
                 pageTitle: 'products',
                 static: 'postAndProductOverview',
-                authLevel: auth.getAuthLevel(req),
+                authLevel: controllers.getAuthLevel(req),
                 docs,
             })
         })
