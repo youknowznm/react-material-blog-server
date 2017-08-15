@@ -3,24 +3,19 @@
 @import '../common/footer';
 
 body {
-
-}
-
-.main-wrap {
-    height: 100%;
-}
-
-.main {
-    height: 100%;
+    background: #fafafa;
 }
 
 .product-wrap,
 .post-wrap {
     position: relative;
     float: left;
-    width: 33.3%;
+    // IDEA: 为了达到随窗口宽度响应变化该类元素宽高的目的，使用一个包裹元素，对其设置33.3%宽度，0高度，33.3%下内边距的做法，避免再占用js的资源
+    // 'It works because margin/padding-top/bottom, when specified as a percentage, is determined according to the width of the containing element.'
+    // https://stackoverflow.com/questions/5445491/height-equal-to-dynamic-width-css-fluid-layout
+    width: 33.333%;
     height: 0;
-    padding-bottom: 33.3%;
+    padding-bottom: 33.333%;
     @media (max-width: 1150px) {
         & {
             width: 50%;

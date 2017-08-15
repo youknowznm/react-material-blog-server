@@ -45,12 +45,12 @@ html {
     min-height: 750px;
 }
 body {
+    position: relative;
     height: 100%;
     font-family: "Roboto Mono", "Helvetica Neue",
                  "PingFang SC", "Microsoft YaHei",
                  "微软雅黑", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    position: relative;
     &.no-scroll {
         overflow: hidden;
         // 设置右内边距以填充滚动条的空位
@@ -64,9 +64,9 @@ body {
 .main-wrap {
     position: relative;
     width: 100%;
+    height: 100%;
     margin-top: 256px;
-    padding-bottom: 232px;
-    background: rgb(250, 250, 250);
+    background: #fafafa;
     z-index: 99;
     animation: wrapPopIn .5s;
     @keyframes wrapPopIn {
@@ -111,7 +111,9 @@ body {
 }
 .main {
     position: relative;
+    height: 100%;
     @include mds-responsive-wrap;
+    z-index: 99;
 }
 
 .controll-panel {
@@ -119,9 +121,8 @@ body {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    // right: 100px;
     left: 0;
-    z-index: 110;
+    z-index: 199;
     > li {
         display: block;
         animation: zoomIn .4s ease;

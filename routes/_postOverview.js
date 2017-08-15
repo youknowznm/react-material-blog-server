@@ -36,23 +36,13 @@ module.exports = function(router) {
             // 否则返回所有文章。未发表任何文章时的提示已在模板内写好
             case true:
                 postProxy.getPosts(function(docs) {
-                    let _docs = []
-                    for (let d of docs) {
-                        _docs.push(d)
-                    }
-                    for (let d of docs) {
-                        _docs.push(d)
-                    }
-                    for (let d of docs) {
-                        _docs.push(d)
-                    }
                     res.render('postOverview', {
                         navType: 0,
                         pageTitle: 'posts',
                         static: 'postAndProductOverview',
                         authLevel: controllers.getAuthLevel(req),
-                        // docs: [],
-                        docs: _docs,
+                        docs: [],
+                        // docs,
                     })
                 })
                 break
