@@ -196,12 +196,12 @@ export default function initMDHeader() {
     function changeColorTheme($ele) {
         let colorIndex = $navButtons.index($ele) % 5
         let pallete = [
-            'blue',
-            'yellow',
-            'green',
             'silver',
-            'red',
             'gray',
+            'yellow',
+            'red',
+            'blue',
+            'green',
         ]
         // 搜索按钮为特殊配色，其它按以上值循环配色
         $ele.hasClass('search') ? $header.attr('data-theme', pallete[5]) :

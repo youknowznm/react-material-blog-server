@@ -26,5 +26,5 @@ ejs.filters.capitalize = function(str) {
 }
 
 ejs.filters.getThemeColor = function(navType) {
-    return ['blue', 'yellow', 'green', 'silver'][navType]
+    return ['silver', 'gray', 'yellow', 'red'][navType]
 }
