@@ -6,8 +6,8 @@ body {
     background: #fafafa;
 }
 
-.product-wrap,
-.post-wrap {
+.product,
+.post {
     position: relative;
     float: left;
     // IDEA: 为了达到随窗口宽度响应变化该类元素宽高的目的，使用一个包裹元素，对其设置33.3%宽度，0高度，33.3%下内边距的做法，避免再占用js的资源
@@ -22,16 +22,6 @@ body {
             padding-bottom: 50%;
         }
     }
-}
-
-.product,
-.post {
-    position: absolute;
-    display: block;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
     cursor: pointer;
     user-select: none;
     transition: box-shadow .3s cubic-bezier(0.25, 0.8, 0.25, 1);

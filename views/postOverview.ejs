@@ -5,9 +5,7 @@
 
     <% if (docs[0] === undefined) {%>
 
-        <div class="empty-msg-wrap">
-            <h1 class="empty-msg">No posts found.</h1>
-        </div>
+        <h1 class="empty-msg">No posts found.</h1>
         <div class="main">
             <% include ./common/controll-panel.ejs %>
         </div>
@@ -17,47 +15,45 @@
         <div class="main">
 
             <% for (let d of docs) {%>
-                <div class="post-wrap">
-                    <div class="post" data-id="<%= d._id %>">
-                        <div class="heading">
-                            <h1 class="title">
-                                <%-: d.title | breakToSpans %>
-                            </h1>
-                            <p class="summary">
-                                <%= d.summary %>
-                            </p>
-                        </div>
-
-                        <ul class="statistics">
-                            <% if (d.liked > 0) {%>
-                                <li class="liked">
-                                    <span class="content"><i class="icon"></i></span>
-                                    <span class="count"><%= d.liked %></span>
-                                </li>
-                            <%}%>
-                            <% if (d.comments > 0) {%>
-                                <li class="comments">
-                                    <span class="content"><i class="icon"></i></span>
-                                    <span class="count"><%= d.comments | 0%></span>
-                                </li>
-                            <%}%>
-                        </ul>
-
-                        <ul class="tags">
-                            <% for (let tag of d.tags) {%>
-                                <li class="tag" data-origin-tag="<%= tag %>">
-                                    <button class="md-button">
-                                        <span class="content"><%= tag %></span>
-                                        <div class="ripple-container"><span class="ripple"></span></div>
-                                    </button>
-                                </li>
-                            <% } %>
-                        </ul>
-
-                        <span class="bg-icon-wrap">
-                            <span class="bg-icon _post"></span>
-                        </span>
+                <div class="post _block" data-id="<%= d._id %>">
+                    <div class="heading">
+                        <h1 class="title">
+                            <%-: d.title | breakToSpans %>
+                        </h1>
+                        <p class="summary">
+                            <%= d.summary %>
+                        </p>
                     </div>
+
+                    <ul class="statistics">
+                        <% if (d.liked > 0) {%>
+                            <li class="liked">
+                                <span class="content"><i class="icon"></i></span>
+                                <span class="count"><%= d.liked %></span>
+                            </li>
+                        <%}%>
+                        <% if (d.comments > 0) {%>
+                            <li class="comments">
+                                <span class="content"><i class="icon"></i></span>
+                                <span class="count"><%= d.comments | 0%></span>
+                            </li>
+                        <%}%>
+                    </ul>
+
+                    <ul class="tags">
+                        <% for (let tag of d.tags) {%>
+                            <li class="tag" data-origin-tag="<%= tag %>">
+                                <button class="md-button">
+                                    <span class="content"><%= tag %></span>
+                                    <div class="ripple-container"><span class="ripple"></span></div>
+                                </button>
+                            </li>
+                        <% } %>
+                    </ul>
+
+                    <span class="bg-icon-wrap">
+                        <span class="bg-icon _post"></span>
+                    </span>
                 </div>
             <%}%>
             <% include ./common/controll-panel.ejs %>

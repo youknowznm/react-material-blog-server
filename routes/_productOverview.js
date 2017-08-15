@@ -34,8 +34,8 @@ module.exports = function(router) {
                         pageTitle: 'products',
                         static: 'postAndProductOverview',
                         authLevel: controllers.getAuthLevel(req),
-                        // docs: [],
-                        docs,
+                        docs: [],
+                        // docs,
                     })
                 })
                 break

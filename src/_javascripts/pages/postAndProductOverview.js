@@ -5,8 +5,12 @@ import generateMaterialBackground from '../common/md-background'
 $(function() {
 
     // 生成md背景
-    generateMaterialBackground('.post')
-    generateMaterialBackground('.product')
+    generateMaterialBackground('._block')
+
+    let $emptyMsg = $('.empty-msg')
+    setTimeout(function() {
+        $emptyMsg.toggleClass('show', $emptyMsg.length > 0)
+    }, 1500)
 
     $('.post')
         // 点击博客的大部分区域，跳转至该博客id的路由
