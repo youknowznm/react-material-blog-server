@@ -8,6 +8,8 @@ $(function() {
     generateMaterialBackground('.post')
     generateMaterialBackground('.product')
 
+    $('.')
+
     $('.post')
         // 点击博客的大部分区域，跳转至该博客id的路由
         .on('click', function() {
