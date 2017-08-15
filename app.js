@@ -71,7 +71,10 @@ app.use(controllers.render404)
 // 500
 app.use(function(err, req, res, next) {
     res.status(500).render('common/500', {
-        url: req.path
+        url: req.path,
+        isDev: req.app.get('env') === 'development',
+        siteName: req.app.locals.siteName,
+        err,
     })
 })
 

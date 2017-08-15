@@ -1,14 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html class="full-height">
     <head>
         <meta charset="utf-8">
-        <title>404 Not Found</title>
+        <title>Not Found · <%-: siteName | capitalize %></title>
+        <style>
+            h1,
+            h2,
+            p {
+                text-align: center;
+            }
+            .highlighted {
+                font-weight: bold;
+                border-bottom: 2px solid #000;
+                padding-bottom: 4px;
+            }
+            .align-lt {
+                text-align: left;
+            }
+            .full-height {
+                height: 100%;
+            }
+            .main {
+                margin: 0;
+                background: #fafafa;
+                height: 100%;
+            }
+            .all-center {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translateY(-50%) translateX(-50%);
+            }
+        </style>
     </head>
-    <body style="margin: 0; background: #fafafa;">
-        <div style="position: absolute; width: 100%; top: 50%; transform: translateY(-50%); text-align: center;">
+    <body class="main">
+        <div class="all-center">
             <h1>Not Found.</h1>
             <p>
-                The requested URL <span style="font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 4px;"><%= url %></span> was not found on server.
+                The requested URL <span class="highlighted"><%= url %></span> was not found on server.
             </p>
         </div>
     </body>
