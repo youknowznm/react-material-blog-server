@@ -58,8 +58,8 @@ module.exports = function(router) {
                         static: 'postAndProductOverview',
                         authLevel: controllers.getAuthLevel(req),
                         // docs: [],
-                        // docs: _docs,
-                        docs,
+                        docs: _docs,
+                        // docs,
                     })
                 })
                 break

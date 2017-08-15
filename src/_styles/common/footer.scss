@@ -27,9 +27,9 @@
 
                 .link-container {
                     position: absolute;
+                    right: 0;
                     top: 50%;
                     transform: translateY(-50%);
-                    right: 0;
                 }
 
                 .link  {
@@ -61,16 +61,16 @@
                         background-image: url("../../_images/footer/ic_wechat.png");
                         .hover-content {
                             position: absolute;
-                            width: 200px;
-                            height: 200px;
+                            width: 160px;
+                            height: 160px;
                             background: url("../../_images/qr.png") 0 0 no-repeat #fff;
-                            background-size: 200px 200px;
-                            left: -220px;
-                            top: -88px;
+                            background-size: 160px 160px;
+                            left: -68px;
+                            top: -170px;
                             box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
                             transform: scale(0);
                             opacity: 0;
-                            transform-origin: right;
+                            transform-origin: bottom;
                             transition: all .2s ease;
                         }
                     }

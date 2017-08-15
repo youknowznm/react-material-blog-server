@@ -10,7 +10,7 @@ mixins
     margin-right: auto;
     // 小于800单列，否则双列
     @media (max-width: 1280px) {
-        width: 100%;
+        width: 970px;
     }
     @media (min-width: 1280px) and (max-width: 1600px) {
         width: 1280px;

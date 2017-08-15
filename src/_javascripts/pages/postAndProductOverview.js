@@ -7,10 +7,11 @@ $(function() {
     // 生成md背景
     generateMaterialBackground('._block')
 
+    // 若有无内容提示则稍候显示
     let $emptyMsg = $('.empty-msg')
     setTimeout(function() {
         $emptyMsg.toggleClass('show', $emptyMsg.length > 0)
-    }, 1500)
+    }, 1200)
 
     $('.post')
         // 点击博客的大部分区域，跳转至该博客id的路由

@@ -6,6 +6,37 @@ body {
     background: #fafafa;
 }
 
+.main-wrap.empty {
+    margin-top: 0;
+    min-height: 0;
+    height: calc(100% - 256px - 144px + 24px);
+    .main {
+        position: absolute;
+        min-height: 0;
+    }
+    ._to-top {
+        display: none;
+    }
+    .empty-msg {
+        position: fixed;
+        width: 100%;
+        top: 50%;
+        margin-top: 32px;
+        transform: translateY(-50%);
+        font-size: 18px;
+        user-select: none;
+        cursor: default;
+        text-align: center;
+        font-family: 'Roboto';
+        color: #666;
+        opacity: 0;
+        transition: opacity .3s ease-out;
+        &.show {
+            opacity: 1;
+        }
+    }
+}
+
 .product,
 .post {
     position: relative;
