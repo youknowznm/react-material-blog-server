@@ -3,8 +3,8 @@ let nodemailer = require('nodemailer')
 let Hashes= require('jshashes')
 let shortid = require('shortid')
 
-let emailVerificationKey = require('../config').emailVerificationKey
-let smtpAuthKey = require('../config').smtpAuthKey
+let accountVerificationKey = require('../config').accountVerificationKey
+let smtpConfig = require('../config').smtpConfig
 
 /**
 从固定发件邮箱发送邮件
@@ -14,15 +14,12 @@ const sendEmail = (function(optionsArg) {
 
     // 邮件配置
     const SMTP_CONFIG = {
-        host: 'smtp.126.com',
-        port: 465,
-        auth: {
-            user: 'rhaego@126.com',
-            pass: smtpAuthKey
-        }
+        host: smtpConfig.host,
+        port: smtpConfig.port,
+        auth: smtpConfig.auth
     }
     const DEFAULT_OPTIONS = {
-        from: "Rhaego Support <rhaego@126.com>"
+        from: smtpConfig.senderInfo
     }
     let transporter = nodemailer.createTransport(SMTP_CONFIG)
 
@@ -81,7 +78,7 @@ function saveUser(params, cb) {
 // 生产加盐的密钥，作为验证邮箱url的pathname，发送至该邮箱
 function sendVerifyEmail(doc) {
     let email = doc.email
-    let key = new Hashes.SHA1().hex_hmac(emailVerificationKey, email) + '!' + email
+    let key = new Hashes.SHA1().hex_hmac(accountVerificationKey, email) + '!' + email
     sendEmail({
         to: email,
         subject: 'Rhaego Account Verification',
@@ -103,7 +100,7 @@ function sendVerifyEmail(doc) {
 function verifyEmail(key, cb) {
     let _hash = key.split('!')[0]
     let _email = key.split('!')[1]
-    let targetKey = new Hashes.SHA1().hex_hmac(emailVerificationKey, _email) + '!' + _email
+    let targetKey = new Hashes.SHA1().hex_hmac(accountVerificationKey, _email) + '!' + _email
     if (targetKey === key) {
         getUserByEmail(_email, function(doc) {
             UserModel.update(
