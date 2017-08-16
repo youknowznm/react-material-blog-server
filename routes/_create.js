@@ -29,13 +29,8 @@ module.exports = function(router) {
             tags: req.body.tags,
             created: req.body.created,
         }
-        postProxy.savePost(params, function(e) {
-            if (e) {
-                console.log('err: ', e)
-                next(e)
-            } else {
-                res.end('--- save POST success --- \n')
-            }
+        postProxy.savePost(params, function(saveResult) {
+            res.json(saveResult)
         })
     })
 

@@ -124,10 +124,16 @@ $(function() {
                     type: 'Post',
                     data,
                     success: function(data) {
-                        console.log('--- save as PRODUCT success --- \n', data)
+                        console.log('--- save PRODUCT success --- \n', data)
+                        let productId = data._id
+                        if (productId !== undefined) {
+                            location.assign(`/products/${productId}`)
+                        } else {
+                            // TODO 保存失败
+                        }
                     },
                     fail: function(data) {
-                        console.log('--- save as PRODUCT fail --- \n', data)
+                        console.log('--- save PRODUCT fail --- \n', data)
                     },
                 })
                 break;
@@ -139,10 +145,16 @@ $(function() {
                     type: 'Post',
                     data,
                     success: function(data) {
-                        console.log('--- save as POST success --- \n', data)
+                        console.log('--- save POST success --- \n', data)
+                        let postId = data._id
+                        if (postId !== undefined) {
+                            location.assign(`/posts/${postId}`)
+                        } else {
+                            // TODO 保存失败
+                        }
                     },
                     fail: function(data) {
-                        console.log('--- save as POST fail --- \n', data)
+                        console.log('--- save POST fail --- \n', data)
                     },
                 })
                 break;
@@ -154,7 +166,7 @@ $(function() {
             title: 'Leave this page?',
             content: 'Unsaved contents will be discarded.',
             onConfirm: function() {
-                location.pathname = '/posts'
+                location.assign('/posts')
             }
         })
     })

@@ -33,6 +33,8 @@ function savePost(params, cb) {
     PostModel.findById(_id, function(e, doc) {
         if (e) {
             console.error(e)
+            // 保存失败时返回空json
+            return cb({})
         }
         if (doc === null) {
             postDoc._id = _id
@@ -40,8 +42,10 @@ function savePost(params, cb) {
             postDoc.save(function(e) {
                 if (e) {
                     console.error(e)
+                    return cb({})
                 }
-                return cb()
+                // 无论新文章还是编辑文章的保存成功，都返回该文章的_id
+                return cb({ _id })
             })
         } else {
             PostModel.update(
@@ -50,8 +54,10 @@ function savePost(params, cb) {
                 function(e) {
                     if (e) {
                         console.error(e)
+                        return cb({})
                     }
-                    return cb()
+                    // 无论新文章还是编辑文章的保存成功，都返回该文章的_id
+                    return cb({ _id })
                 }
             )
         }

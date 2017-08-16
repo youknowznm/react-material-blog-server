@@ -2795,10 +2795,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                     type: 'Post',
                     data: data,
                     success: function success(data) {
-                        console.log('--- save as PRODUCT success --- \n', data);
+                        console.log('--- save PRODUCT success --- \n', data);
+                        var productId = data._id;
+                        if (productId !== undefined) {
+                            location.assign('/products/' + productId);
+                        } else {
+                            // TODO 保存失败
+                        }
                     },
                     fail: function fail(data) {
-                        console.log('--- save as PRODUCT fail --- \n', data);
+                        console.log('--- save PRODUCT fail --- \n', data);
                     }
                 });
                 break;
@@ -2810,10 +2816,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                     type: 'Post',
                     data: data,
                     success: function success(data) {
-                        console.log('--- save as POST success --- \n', data);
+                        console.log('--- save POST success --- \n', data);
+                        var postId = data._id;
+                        if (postId !== undefined) {
+                            location.assign('/posts/' + postId);
+                        } else {
+                            // TODO 保存失败
+                        }
                     },
                     fail: function fail(data) {
-                        console.log('--- save as POST fail --- \n', data);
+                        console.log('--- save POST fail --- \n', data);
                     }
                 });
                 break;
@@ -2825,7 +2837,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             title: 'Leave this page?',
             content: 'Unsaved contents will be discarded.',
             onConfirm: function onConfirm() {
-                location.pathname = '/posts';
+                location.assign('/posts');
             }
         });
     });
