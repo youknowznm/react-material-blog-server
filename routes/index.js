@@ -1,3 +1,4 @@
+let fs = require('fs')
 let express = require('express')
 let router = express.Router()
 
@@ -7,11 +8,11 @@ function addRouter(path) {
     module.exports.push(require(path)(router))
 }
 
-addRouter('./_demo')
+// 自动读取route目录，添加路由
+let routeNameArr = fs.readdirSync('./routes')
 
-addRouter('./_user')
-addRouter('./_postOverview')
-addRouter('./_productOverview')
-addRouter('./_postDetail')
-addRouter('./_create')
-
+for (let routeName of routeNameArr) {
+    if (!/^(\.DS_Store|index\.js)$/.test(routeName)) {
+        addRouter('./' + routeName)
+    }
+}

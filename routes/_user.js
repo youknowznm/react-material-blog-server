@@ -2,9 +2,7 @@ let userProxy = require('../proxy/user')
 
 module.exports = function(router) {
 
-    /*
-
-    */
+    // 用户注册
     router.post('/register', function(req, res, next) {
         let params = {
             email: req.body.email,
@@ -18,9 +16,7 @@ module.exports = function(router) {
         })
     })
 
-    /*
-
-    */
+    // 用户验证
     router.get(/^\/verify\/\S+/, function(req, res, next) {
         let key = /^\/verify\/(\S+)/.exec(req.path)[1]
         userProxy.verifyEmail(key, function(result) {
@@ -29,9 +25,7 @@ module.exports = function(router) {
         })
     })
 
-    /*
-
-    */
+    // 用户登录
     router.post('/login', function(req, res, next) {
         let session = req.session
         let email = req.body.email
@@ -48,14 +42,12 @@ module.exports = function(router) {
         })
     })
 
-    /*
-    */
+    // 用户注销
     router.get('/logout', function(req, res, next) {
         req.session.currentUserEmail = ''
         res.clearCookie('rhaegoSessionKey')
         res.redirect('/')
     })
-
 
     return router
 

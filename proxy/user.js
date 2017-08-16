@@ -8,9 +8,10 @@ let smtpConfig = require('../config').smtpConfig
 
 /**
 从固定发件邮箱发送邮件
-@param optionsArg {Object} to(String) subject(String) html(String)
+@param optionsArg {Object} 参数对象，包含to(收件邮箱)、subject(主题)、html(内容)
+@param cb {function?} 可选的发送完成回调，成功传入true，失败传入false
 */
-const sendEmail = (function(optionsArg) {
+const sendEmail = (function(optionsArg, cb) {
 
     // 邮件配置
     const SMTP_CONFIG = {
@@ -29,15 +30,25 @@ const sendEmail = (function(optionsArg) {
         transporter.sendMail(options, function(error, response) {
             if (error) {
                 console.log("--- sending email fail --- \n" + error)
+                if (typeof cb === 'function') {
+                    cb(true)
+                }
             } else {
                 console.log("--- sending email success --- \n" + response.messageID)
+                if (typeof cb === 'function') {
+                    cb(false)
+                }
             }
         })
     }
 
 })()
 
-// 根据email取得用户文档
+/**
+根据email取得用户文档
+@param email {string} 目标账户的邮箱
+@param cb {function} 查找完成回调，传入找到的文档
+*/
 function getUserByEmail(email, cb) {
     UserModel.findOne(
         { email },
@@ -50,7 +61,11 @@ function getUserByEmail(email, cb) {
     )
 }
 
-// 保存用户文档
+/**
+保存用户文档
+@param params {object} 参数对象，包含_id、邮箱、昵称、密码、是否已验证
+@param cb {function} 保存行为的回调，成功保存传入true，邮箱已存在传入false
+*/
 function saveUser(params, cb) {
     let email = params.email
     let userDoc = new UserModel({
@@ -75,7 +90,10 @@ function saveUser(params, cb) {
     })
 }
 
-// 生产加盐的密钥，作为验证邮箱url的pathname，发送至该邮箱
+/**
+生产加盐的密钥，作为验证邮箱url的pathname，发送至该邮箱
+@param doc {object} 目标用户的文档
+*/
 function sendVerifyEmail(doc) {
     let email = doc.email
     let key = new Hashes.SHA1().hex_hmac(accountVerificationKey, email) + '!' + email
@@ -96,7 +114,11 @@ function sendVerifyEmail(doc) {
     })
 }
 
-// 验证邮箱
+/**
+验证账户邮箱
+@param key {string} 从邮件提供的url中取得的字符串
+@param cb {function} 验证完成的回调，成功传入true，失败传入false
+*/
 function verifyEmail(key, cb) {
     let _hash = key.split('!')[0]
     let _email = key.split('!')[1]
@@ -105,7 +127,7 @@ function verifyEmail(key, cb) {
         getUserByEmail(_email, function(doc) {
             UserModel.update(
                 doc,
-                {verified: true},
+                { verified: true },
                 function() {
                     console.log('--- verified --- \n');
                     cb(true)
@@ -119,12 +141,14 @@ function verifyEmail(key, cb) {
 
 /**
 登录
-回调参数映射：
-0 该邮箱尚未注册
-1 登陆成功
-2 密码错误
-3 尚未验证该邮箱
-4 服务器错误
+@param email {string} 用户邮箱
+@param password {string} 用户密码
+@param cb {function} 登录回调，参数说明：
+                        0 该邮箱尚未注册
+                        1 登陆成功
+                        2 密码错误
+                        3 尚未验证该邮箱
+                        4 服务器错误
 */
 function login(email, password, cb) {
     UserModel.findOne(
@@ -132,6 +156,7 @@ function login(email, password, cb) {
         function(e, doc) {
             if (e) {
                 console.error(e)
+                // 服务器错误
                 cb(4)
             } else {
                 if (doc === null) {

@@ -3,16 +3,12 @@ let controllers = require('../utils/controllers')
 
 module.exports = function(router) {
 
-    /*
-    主页（重定向至全部文章页）
-    */
+    // 主页（重定向至全部文章页）
     router.get('/', function(req, res, next) {
         res.redirect('/posts')
     })
 
-    /*
-    全部文章或某带有某标签的文章
-    */
+    // 全部文章页或某带有某标签的全部文章页
     router.get('/posts', function(req, res, next) {
         let targetTag = req.query.tag
         switch (targetTag === undefined) {

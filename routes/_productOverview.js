@@ -3,9 +3,7 @@ let controllers = require('../utils/controllers')
 
 module.exports = function(router) {
 
-    /*
-    全部产品或带有某标签的产品
-    */
+    // 全部产品页或带有某标签的全部产品页
     router.get('/products', function(req, res, next) {
         let targetTag = req.query.tag
         switch (targetTag === undefined) {
