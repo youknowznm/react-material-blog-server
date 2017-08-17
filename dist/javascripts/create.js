@@ -2807,7 +2807,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                         console.log('--- save PRODUCT fail --- \n', data);
                     }
                 });
-                break;
+                return;
             // 否则发送储存为post（文章）的请求
             case false:
                 _jquery2.default.ajax({
@@ -2828,7 +2828,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                         console.log('--- save POST fail --- \n', data);
                     }
                 });
-                break;
+                return;
         }
     });
 

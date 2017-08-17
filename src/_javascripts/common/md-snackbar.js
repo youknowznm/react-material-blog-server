@@ -2,9 +2,6 @@ import $ from './jquery'
 import initMdButton from './md-button'
 import initMdInput from './md-input'
 
-/**
-@param
-*/
 export default function showMdSnackbar() {
 
     let $mdSnackbar = $('.md-snackbar')

@@ -1,0 +1,70 @@
+<% include ./common/header-tags.ejs %>
+<% include ./common/md-header.ejs %>
+<!-- TODO -->
+<div class="main-wrap" data-uid="<%=uid%>">
+    <div class="main">
+
+        <div class="row">
+            <!-- 标题 -->
+            <div class="md-input _title">
+                <label class="placeholder" for="input_1">Title</label>
+                <input id="input_1" class="_input" maxlength="20" value="<%= title %>"/>
+                <p class="error"></p>
+                <h5 class="char-counter">
+                    <span class="current"></span>/<span class="maximum"></span>
+                </h5>
+            </div>
+            <!-- 摘要 -->
+            <div class="md-input _summary">
+                <label class="placeholder" for="input_2">Summary</label>
+                <input id="input_2" class="_input" maxlength="40" />
+                <p class="error"></p>
+                <h5 class="char-counter">
+                    <span class="current"></span>/<span class="maximum"></span>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <!-- 内容 -->
+            <div class="md-textarea _content">
+                <label class="placeholder" for="input_4">Content (Markdown for post. URL for product.)</label>
+                <textarea id="input_4" class="_input" maxlength="5000"></textarea>
+                <p class="error"></p>
+                <h5 class="char-counter">
+                    <span class="current"></span>/<span class="maximum"></span>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <!-- 标签 -->
+            <div class="md-tag _tags">
+                <label class="placeholder" for="input_3">Tags</label>
+                <div class="tag-wrap">
+                    <!-- <span class="tag">Apple(fruit)<i class="btn-remove"></i></span> -->
+                    <input id="input_3" class="_input" maxlength="10" placeholder="Type and press Enter.."/>
+                </div>
+                <p class="error">sb</p>
+                <h5 class="char-counter">
+                    <span class="current"></span>/<span class="maximum"></span>
+                </h5>
+            </div>
+            <!-- 按钮 -->
+            <div class="buttons">
+                <button class="md-button _disabled submit">
+                    <span class="content">submit</span>
+                    <div class="ripple-container"><span class="ripple"></span></div>
+                </button>
+                <button class="md-button cancel">
+                    <span class="content">cancel</span>
+                    <div class="ripple-container"><span class="ripple"></span></div>
+                </button>
+            </div>
+
+        </div>
+
+        <% include ./common/controll-panel.ejs %>
+
+    </div>
+</div>
+
+<% include ./common/footer-tags.ejs %>
