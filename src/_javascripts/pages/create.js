@@ -3,6 +3,23 @@ import '../../_styles/pages/create.scss'
 
 $(function() {
 
+    let $mdInputElements = $('.main').find('.md-input, .md-textarea, .md-tag')
+    let $s_btn = $('.submit')
+
+    // 检查几个输入元素，非空则在外层添加nom-empty类
+    $mdInputElements.each(function() {
+        let $this = $(this)
+        if ($this.is('.md-tag')) {
+            if ($this.find('.tag').length > 0) {
+                $this.addClass('non-empty')
+            }
+        } else {
+            if (!/^\s*$/.test($this.find('._input').val())) {
+                $this.addClass('non-empty')
+            }
+        }
+    })
+
     // 动画banner的top值和内容输入框高度
     $('body').animate(
         {
@@ -16,9 +33,6 @@ $(function() {
             )
         }
     )
-
-    let $s_btn = $('.submit')
-    let $mdInputElements = $('.main').find('.md-input, .md-textarea, .md-tag')
 
     // md-tag元素的内容验证比较复杂。故使用计时器验证
     // 检查所有产生过blur事件的md组件
@@ -129,7 +143,11 @@ $(function() {
                         if (productId !== undefined) {
                             location.assign(`/products/${productId}`)
                         } else {
-                            // TODO 保存失败
+                            rhaegoUtil.showMdModal({
+                                isDialog: false,
+                                title: 'Save product failed.',
+                                content: 'An error occurred during saving. Please try agin later.'
+                            })
                         }
                     },
                     fail: function(data) {
@@ -150,7 +168,11 @@ $(function() {
                         if (postId !== undefined) {
                             location.assign(`/posts/${postId}`)
                         } else {
-                            // TODO 保存失败
+                            rhaegoUtil.showMdModal({
+                                isDialog: false,
+                                title: 'Save post failed.',
+                                content: 'An error occurred during saving. Please try agin later.'
+                            })
                         }
                     },
                     fail: function(data) {
