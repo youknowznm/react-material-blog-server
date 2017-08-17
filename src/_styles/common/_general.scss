@@ -5,7 +5,7 @@
 @import "./md-textarea";
 @import "./md-button";
 @import "./md-background";
-@import "./md-dialog";
+@import "./md-modal";
 @import "./md-snackbar";
 /*
 font
@@ -53,12 +53,6 @@ body {
     -webkit-font-smoothing: antialiased;
     &.no-scroll {
         overflow: hidden;
-        // 设置右内边距以填充滚动条的空位
-        padding-right: 15px;
-        // 设置右外边距以填充导航条的空位
-        .nav-items {
-            margin-right: 15px;
-        }
     }
 }
 .main-wrap {

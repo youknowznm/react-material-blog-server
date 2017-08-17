@@ -162,7 +162,8 @@ $(function() {
     })
 
     $('.cancel').click(function() {
-        rhaegoUtil.showMdDialog({
+        rhaegoUtil.showMdModal({
+            isDialog: true,
             title: 'Leave this page?',
             content: 'Unsaved contents will be discarded.',
             onConfirm: function() {

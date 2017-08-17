@@ -1,6 +1,5 @@
 import $ from '../common/jquery'
-import showMdDialog from './md-dialog'
-import showMdToast from './md-toast'
+import showMdModal from './md-modal'
 
 let rhaegoUtil = {}
 window.rhaegoUtil = rhaegoUtil
@@ -10,8 +9,7 @@ window.rhaegoUtil = rhaegoUtil
 */
 
 //
-rhaegoUtil.showMdDialog = showMdDialog
-rhaegoUtil.showMdToast = showMdToast
+rhaegoUtil.showMdModal = showMdModal
 
 // 在点击动画结束后调用函数
 rhaegoUtil.mdDelay = function(fn) {

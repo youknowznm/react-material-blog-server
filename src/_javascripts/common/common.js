@@ -34,7 +34,8 @@ $(function() {
         })
         // 注销登录
         .on('click', '._logout', function() {
-            rhaegoUtil.showMdDialog({
+            rhaegoUtil.showMdModal({
+                isDialog: true,
                 title: 'Log out?',
                 content: 'Only logged-in users are able to comment or like posts.',
                 onConfirm() {
