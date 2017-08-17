@@ -1,5 +1,5 @@
 import $ from '../common/jquery'
-import '../../_styles/pages/create.scss'
+import '../../_styles/pages/createAndEdit.scss'
 
 $(function() {
 

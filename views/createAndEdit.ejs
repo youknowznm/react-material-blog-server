@@ -1,7 +1,7 @@
 <% include ./common/header-tags.ejs %>
 <% include ./common/md-header.ejs %>
 
-<div class="main-wrap" data-uid="<%=uid%>">
+<div class="main-wrap" data-uid="<%= uid || doc.uid%>" data-doc-type-"<%=  %>">
     <div class="main">
 
         <div class="row">
@@ -27,7 +27,7 @@
         <div class="row">
             <!-- 内容 -->
             <div class="md-textarea _content">
-                <label class="placeholder" for="input_4">Content (Markdown for post. URL for product.)</label>
+                <label class="placeholder" for="input_4">Content (Markdown for <strong>post</strong>. URL for <strong>product</strong>.)</label>
                 <textarea id="input_4" class="_input" maxlength="5000"></textarea>
                 <p class="error"></p>
                 <h5 class="char-counter">

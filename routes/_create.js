@@ -7,10 +7,10 @@ module.exports = function(router) {
 
     // 新建文章/产品页
     router.get('/create', function(req, res, next) {
-        res.render('create', {
+        res.render('createAndEdit', {
             navType: 0,
             pageTitle: 'create',
-            static: 'create',
+            static: 'createAndEdit',
             uid: shortid.generate(),
             authLevel: controllers.getAuthLevel(req),
         })
@@ -49,6 +49,45 @@ module.exports = function(router) {
                 res.end('--- save PRODUCT success --- \n')
             }
         })
+    })
+
+    // 编辑文章/产品页
+    router.get(/^\/edit\/(posts|products)\S+/, function(req, res, next) {
+        let parsedRegExpr = /^\/edit\/(\S+)/.exec(req.path)
+        let _type = parsedRegExpr[1]
+        let _id = parsedRegExpr[2]
+        switch (_type) {
+            case 'posts':
+                postProxy.getPostById(_id, function(doc) {
+                    if (doc === null) {
+                        controllers.render404(req, res, next)
+                    } else {
+                        res.render('createAndEdit', {
+                            navType: 0,
+                            docType: 'post',
+                            pageTitle: 'edit',
+                            static: 'createAndEdit',
+                            authLevel: controllers.getAuthLevel(req),
+                        })
+                    }
+                })
+                break;
+            case 'products':
+                productProxy.getProductById(_id, function(doc) {
+                    if (doc === null) {
+                        controllers.render404(req, res, next)
+                    } else {
+                        res.render('createAndEdit', {
+                            navType: 0,
+                            docType: 'product',
+                            pageTitle: 'edit',
+                            static: 'createAndEdit',
+                            authLevel: controllers.getAuthLevel(req),
+                        })
+                    }
+                })
+                break;
+        }
     })
 
     return router
