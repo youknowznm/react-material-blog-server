@@ -4,6 +4,7 @@ import initMdButton from './md-button'
 import initMdInput from './md-input'
 import initMdTag from './md-tag'
 import initMdTextarea from './md-textarea'
+import initMdRadio from './md-radio'
 import showMdSnackbar from './md-snackbar'
 
 import globalMethods from './_initializeGlobalMethods'
@@ -16,6 +17,7 @@ $(function() {
     initMdTag()
     initMdTextarea()
     initMdButton()
+    initMdRadio()
     showMdSnackbar()
 
     /*

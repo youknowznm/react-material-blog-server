@@ -27,18 +27,26 @@
 
     ._title {
         float: left;
-        width: 40%;
+        width: 200px;
     }
 
     ._summary {
         float: left;
-        width: 60%;
+        width: 200px;
+    }
+
+    ._type {
+        float: left;
+        // width: 200px;
     }
 
     ._tags {
         display: block;
         margin-right: 264px;
         clear: right;
+        #input_3 {
+            width: 210px;
+        }
     }
 
     .buttons {

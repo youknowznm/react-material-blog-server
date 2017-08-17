@@ -1,7 +1,7 @@
 <% include ./common/header-tags.ejs %>
 <% include ./common/md-header.ejs %>
 
-<div class="main-wrap" data-uid="<%= uid || doc.uid%>" data-doc-type-"<%=  %>">
+<div class="main-wrap" data-uid="<%= uid || doc.uid%>">
     <div class="main">
 
         <div class="row">
@@ -23,6 +23,22 @@
                     <span class="current"></span>/<span class="maximum"></span>
                 </h5>
             </div>
+            <div class="md-radio-group _type">
+                <div class="md-radio">
+                    <div class="shadow"></div>
+                    <div class="_outer">
+                        <div class="_inner"></div>
+                    </div>
+                    <span class="label">Apple</span>
+                </div>
+                <div class="md-radio _warn">
+                    <div class="shadow"></div>
+                    <div class="_outer">
+                        <div class="_inner"></div>
+                    </div>
+                    <span class="label">Banana</span>
+                </div>
+            </div>
         </div>
         <div class="row">
             <!-- 内容 -->
@@ -41,7 +57,7 @@
                 <label class="placeholder" for="input_3">Tags</label>
                 <div class="tag-wrap">
                     <!-- <span class="tag">Apple(fruit)<i class="btn-remove"></i></span> -->
-                    <input id="input_3" class="_input" maxlength="10" placeholder="Type and press Enter.."/>
+                    <input id="input_3" class="_input" maxlength="10" placeholder="Type tags and press Enter."/>
                 </div>
                 <p class="error">sb</p>
                 <h5 class="char-counter">

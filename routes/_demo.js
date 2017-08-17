@@ -6,6 +6,7 @@ module.exports = function(router) {
             navType: 0,
             pageTitle: 'demo',
             static: 'demo',
+            authLevel: 0,
         })
     })
 
