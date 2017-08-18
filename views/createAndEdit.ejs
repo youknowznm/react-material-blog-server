@@ -4,7 +4,7 @@
 <div class="main-wrap" data-uid="<%= uid || doc.uid%>">
     <div class="main">
 
-        <div class="row">
+        <div class="row flex-row-space-between">
             <!-- 标题 -->
             <div class="md-input _title">
                 <label class="placeholder" for="input_1">Title</label>
@@ -24,26 +24,26 @@
                 </h5>
             </div>
             <div class="md-radio-group _type">
-                <div class="md-radio">
+                <div class="md-radio" data-name="post" data-selected="true">
                     <div class="shadow"></div>
                     <div class="_outer">
                         <div class="_inner"></div>
                     </div>
-                    <span class="label">Apple</span>
+                    <span class="label">Post</span>
                 </div>
-                <div class="md-radio _warn">
+                <div class="md-radio" data-name="product">
                     <div class="shadow"></div>
                     <div class="_outer">
                         <div class="_inner"></div>
                     </div>
-                    <span class="label">Banana</span>
+                    <span class="label">Product</span>
                 </div>
             </div>
         </div>
         <div class="row">
             <!-- 内容 -->
             <div class="md-textarea _content">
-                <label class="placeholder" for="input_4">Content (Markdown for <strong>post</strong>. URL for <strong>product</strong>.)</label>
+                <label class="placeholder" for="input_4">Markdown Content</label>
                 <textarea id="input_4" class="_input" maxlength="5000"></textarea>
                 <p class="error"></p>
                 <h5 class="char-counter">

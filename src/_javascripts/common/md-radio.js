@@ -8,8 +8,8 @@ export default function initMdRadio() {
         let $this = $(this)
         if ($this.data('animating') !== true) {
             let $shadow = $this.find('.shadow')
-            $this.siblings().removeClass('selected')
-                .end().addClass('selected')
+            $this.siblings().attr('data-selected', 'false')
+                .end().attr('data-selected', 'true')
             $shadow.addClass('clicked')
             $this.data('animating', true)
             setTimeout(function() {

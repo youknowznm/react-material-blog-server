@@ -2,15 +2,17 @@
 
 .md-radio-group {
     position: relative;
-
+    line-height: 30px;
+    margin: 18px 0;
     .md-radio {
         position: relative;
         display: inline-block;
-        width: 120px;
-        height: 24px;
-        line-height: 24px;
+        min-width: 60px;
+        height: 20px;
+        line-height: 20px;
+        margin: 0 10px;
         cursor: pointer;
-
+        vertical-align: sub;
         ._outer {
             position: relative;
             float: left;
@@ -19,10 +21,9 @@
             box-sizing: border-box;
             border: 2px solid rgba(0, 0, 0, .54);
             border-radius: 50%;
-            margin: 1px 10px 0 0;
+            margin-right: 12px;
             transition: all .28s ease;
             z-index: 9;
-
             ._inner {
                 position: absolute;
                 width: 10px;
@@ -34,20 +35,17 @@
                 border-radius: 50%;
                 transition: all .28s ease;
             }
-
         }
-
         .shadow {
             position: absolute;
             width: 40px;
             height: 40px;
             left: -10px;
-            top: -8px;
+            top: -10px;
             border-radius: 50%;
             background-color: rgb(189, 213, 237);
             transform: scale(0);
             z-index: 8;
-
             &.clicked {
                 animation: ripple-out .5s ease;
                 @keyframes ripple-out {
@@ -65,14 +63,13 @@
                     }
                 }
             }
-
         }
-
         .label {
             float: left;
             user-select: none;
+            color: rgba(0, 0, 0, 0.87);
+            font-size: 14px;
         }
-
         // 不同颜色主题
         &._warn {
             .shadow {
@@ -82,8 +79,7 @@
                 background-color: rgba(255, 82, 82, 0.87);
             }
         }
-
-        &.selected {
+        &[data-selected=true] {
             ._outer {
                 border-color: rgba(16, 108, 200, 0.87) !important;
             }
@@ -94,7 +90,5 @@
                 transform: scale(1) !important;
             }
         }
-
     }
-
 }

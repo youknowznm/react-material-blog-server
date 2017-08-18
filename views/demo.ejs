@@ -115,6 +115,44 @@
         </div>
 
     </div>
+
+    <div class="row">
+        <!-- 标题 -->
+        <div class="md-input _title">
+            <label class="placeholder" for="input_1">Title</label>
+            <input id="input_1" class="_input" maxlength="20" />
+            <p class="error"></p>
+            <h5 class="char-counter">
+                <span class="current"></span>/<span class="maximum"></span>
+            </h5>
+        </div>
+        <!-- 摘要 -->
+        <div class="md-input _summary">
+            <label class="placeholder" for="input_2">Summary</label>
+            <input id="input_2" class="_input" maxlength="40" />
+            <p class="error"></p>
+            <h5 class="char-counter">
+                <span class="current"></span>/<span class="maximum"></span>
+            </h5>
+        </div>
+        <div class="md-radio-group _type">
+            <div class="md-radio" data-name="post">
+                <div class="shadow"></div>
+                <div class="_outer">
+                    <div class="_inner"></div>
+                </div>
+                <span class="label">Post</span>
+            </div>
+            <div class="md-radio" data-name="product">
+                <div class="shadow"></div>
+                <div class="_outer">
+                    <div class="_inner"></div>
+                </div>
+                <span class="label">Product</span>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <% include ./common/footer-tags.ejs %>
