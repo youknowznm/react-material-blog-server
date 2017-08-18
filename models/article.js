@@ -7,13 +7,13 @@ let articleSchema = mongoose.Schema({
        unique: true,
     },
     created: Date,
+    viewCount: Number,
+    liked: Number,
 
     type: String,
     title: String,
     summary: String,
     content: String,
-    viewCount: Number,
-    liked: Number,
     tags: [String],
     // comments: [MessageModel],
 })
