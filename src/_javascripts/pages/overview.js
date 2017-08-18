@@ -22,9 +22,9 @@ $(function() {
         // 点击博客的任一标签，跳转至含该标签的所有博客
         .on('click', '.tag', function(evt) {
             evt.stopPropagation()
-            let targetTag = $(this).data('originTag')
+            let href = $(this).data('href')
             rhaegoUtil.mdDelay(function(){
-                location.assign('/articles?tag=' + targetTag)
+                location.assign(href)
             })
         })
 

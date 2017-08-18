@@ -42,7 +42,7 @@
 
                     <ul class="tags">
                         <% for (let tag of d.tags) {%>
-                            <li class="tag" data-origin-tag="<%= tag %>">
+                            <li class="tag" data-href="/<%= pageTitle %>s?tag=<%= tag %>">
                                 <button class="md-button">
                                     <span class="content"><%= tag %></span>
                                     <div class="ripple-container"><span class="ripple"></span></div>

@@ -124,7 +124,7 @@ $(function() {
                 console.log('--- save success --- \n', data)
                 let articleId = data._id
                 if (articleId !== undefined) {
-                    location.assign(`/articles/${articleId}`)
+                    location.assign(`/${type}s/${articleId}`)
                 } else {
                     rhaegoUtil.showMdModal({
                         isDialog: false,
