@@ -1,7 +1,7 @@
 <ul class="controll-panel">
 
     <!-- 仅在登录者为站长且位于非新建文章页时显示 -->
-    <% if (static !== 'createAndEdit' && authLevel === 2) {%>
+    <% if (static !== 'edit' && authLevel === 2) {%>
     <li class="_create-new">
         <button class="md-button _round _warn">
             <span class="content"><i class="icon"></i></span>
@@ -12,7 +12,7 @@
     <%}%>
 
     <!-- 仅在登录者为站长且位于文章详情页时显示 -->
-    <% if (static === 'postDetail' && authLevel === 2) {%>
+    <% if (static === 'detail' && authLevel === 2) {%>
     <li class="_edit">
         <button class="md-button _round _warn">
             <span class="content"><i class="icon"></i></span>

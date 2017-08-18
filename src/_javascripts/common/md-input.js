@@ -3,10 +3,11 @@ import $ from './jquery'
 export default function initMdInput() {
 
     function initInput($mdInput) {
-        let $input = $mdInput.find('input')
-        let val = $input.attr('value')
-        $mdInput.toggleClass('non-empty', val !== undefined)
-        let currentCharCount = val ? val.length : 0
+        let $input = $mdInput.children('input')
+        let val = $input.val()
+        // 若input子元素的value非空，则添加non-empty类
+        $mdInput.toggleClass('non-empty', /\S/.test(val))
+        let currentCharCount = val.length
         let maxCharCount = $input.attr('maxlength')
         $mdInput.find('.current').text(currentCharCount)
         $mdInput.find('.maximum').text(maxCharCount)

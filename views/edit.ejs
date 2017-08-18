@@ -43,8 +43,8 @@
         <div class="row">
             <!-- 内容 -->
             <div class="md-textarea _content">
-                <label class="placeholder" for="input_4">Markdown Content</label>
-                <textarea id="input_4" class="_input" maxlength="5000"></textarea>
+                <label class="placeholder" for="input_3">Content in Markdown</label>
+                <textarea id="input_3" class="_input" maxlength="10000"></textarea>
                 <p class="error"></p>
                 <h5 class="char-counter">
                     <span class="current"></span>/<span class="maximum"></span>
@@ -54,10 +54,10 @@
         <div class="row">
             <!-- 标签 -->
             <div class="md-tag _tags">
-                <label class="placeholder" for="input_3">Tags</label>
+                <label class="placeholder" for="input_4">Tags</label>
                 <div class="tag-wrap">
                     <!-- <span class="tag">Apple(fruit)<i class="btn-remove"></i></span> -->
-                    <input id="input_3" class="_input" maxlength="10" placeholder="Type tags and press Enter."/>
+                    <input id="input_4" class="_input" maxlength="10" placeholder="Type tags and press Enter."/>
                 </div>
                 <p class="error">sb</p>
                 <h5 class="char-counter">
@@ -66,11 +66,11 @@
             </div>
             <!-- 按钮 -->
             <div class="buttons">
-                <button class="md-button _disabled submit">
+                <button id="submit" class="md-button _primary _disabled">
                     <span class="content">submit</span>
                     <div class="ripple-container"><span class="ripple"></span></div>
                 </button>
-                <button class="md-button cancel">
+                <button id="cancel" class="md-button">
                     <span class="content">cancel</span>
                     <div class="ripple-container"><span class="ripple"></span></div>
                 </button>

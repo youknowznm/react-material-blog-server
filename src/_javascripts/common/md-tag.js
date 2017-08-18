@@ -4,6 +4,7 @@ export default function initmdTag() {
 
     function initTag($mdTag) {
         let tagsData = $mdTag.data('md-tags')
+        // 若有一个以上的tag子元素，则添加non-empty类
         if ($mdTag.find('.tag').length > 0) {
             $mdTag.addClass('non-empty')
         }

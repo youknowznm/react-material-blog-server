@@ -4,9 +4,10 @@ export default function initMdTextarea() {
 
     function initTextarea($mdTextarea) {
         let $textarea = $mdTextarea.children('textarea')
-        let val = $textarea.text()
-        $mdTextarea.toggleClass('non-empty', val !== '')
-        let currentCharCount = val ? val.length : 0
+        let val = $textarea.val()
+        // 若textarea内容非空，则添加non-empty类
+        $mdTextarea.toggleClass('non-empty', /\S/.test(val))
+        let currentCharCount = val.length
         let maxCharCount = $textarea.attr('maxlength')
         $mdTextarea.find('.current').text(currentCharCount)
         $mdTextarea.find('.maximum').text(maxCharCount)

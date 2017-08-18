@@ -36,8 +36,7 @@ body {
     }
 }
 
-.product,
-.post {
+.article {
     position: relative;
     float: left;
     // IDEA: 为了达到随窗口宽度响应变化该类元素宽高的目的，使用一个包裹元素，对其设置33.3%宽度，0高度，33.3%下内边距的做法，避免再占用js的资源
@@ -178,12 +177,6 @@ body {
             border-bottom: 24px solid transparent;
             filter: drop-shadow(rgba(#fff, .87) 0 24px);
             background-size: 24px 24px;
-            &._post {
-                background: url("../../_images/ic_arrow_right.png") 0 0 no-repeat;
-            }
-            &._product {
-                background: url("../../_images/ic_ext_link.png") 0 0 no-repeat;
-            }
         }
     }
 

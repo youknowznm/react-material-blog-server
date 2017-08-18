@@ -1,5 +1,5 @@
 import $ from '../common/jquery'
-import '../../_styles/pages/postDetail.scss'
+import '../../_styles/pages/detail.scss'
 
 $(function() {
 

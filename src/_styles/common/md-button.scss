@@ -116,7 +116,7 @@
 
 }
 
-// 主要、禁用、警告三种主题
+// 主要、禁用、警告三种状态
 .md-button._primary {
     background-color: rgb(16, 108, 200);
     color: #fff;
@@ -124,14 +124,6 @@
         background-color: rgb(7, 96, 176);
     }
 }
-
-.md-button._disabled {
-    background-color: rgba(0, 0, 0, .12);
-    color: rgba(0, 0, 0, .38);
-    box-shadow: none;
-    cursor: default;
-}
-
 .md-button._warn {
     background-color: rgb(255, 82, 82);
     color: #fff;
@@ -139,6 +131,13 @@
         background-color: rgb(213, 0, 0);
     }
 }
+.md-button._disabled {
+    background-color: rgba(0, 0, 0, .12) !important;
+    color: rgba(0, 0, 0, .38) !important;
+    box-shadow: none !important;
+    cursor: default !important;
+}
+
 
 /*
 ***** 圆形 ****
@@ -196,7 +195,6 @@
     box-shadow: none;
     background-color: transparent;
     color: rgba(#000, .87);
-
     &:hover {
         background-color: rgba(158, 158, 158, .2);
     }
@@ -206,18 +204,19 @@
             background-color: rgba(16, 108, 200, .1) !important;
         }
     }
-    &._disabled {
-        cursor: default;
-        color: rgba(#000, .38);
-        &:hover,
-        &.mousedown .ripple {
-            background-color: transparent;
-        }
-    }
+
     &._warn {
         color: rgb(255, 82, 82);
         &.mousedown .ripple {
             background-color: rgba(255, 82, 82, .1);
+        }
+    }
+    &._disabled {
+        cursor: default !important;
+        color: rgba(#000, .38) !important;
+        &:hover,
+        &.mousedown .ripple {
+            background-color: transparent !important;
         }
     }
 }
@@ -302,23 +301,13 @@
             transform: scale(1);
         }
     }
-    // 不同主题
+    // 不同状态
     &._primary {
         .icon {
             filter: drop-shadow(rgb(16, 108, 200) 0 24px);
         }
         &.mousedown .ripple {
             background-color: rgba(16, 108, 200, .2);
-        }
-    }
-    &._disabled {
-        cursor: default;
-        .icon {
-            filter: drop-shadow(rgba(#000, .38) 0 24px);
-        }
-        &:hover,
-        &.mousedown .ripple {
-            background-color: transparent;
         }
     }
     &._warn {
@@ -329,7 +318,16 @@
             background-color: rgba(255, 82, 82, .2);
         }
     }
-
+    &._disabled {
+        cursor: default !important;
+        .icon {
+            filter: drop-shadow(rgba(#000, .38) 0 24px) !important;
+        }
+        &:hover,
+        &.mousedown .ripple {
+            background-color: transparent !important;
+        }
+    }
 }
 
 /*

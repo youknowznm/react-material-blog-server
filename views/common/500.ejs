@@ -31,6 +31,9 @@
                 top: 50%;
                 transform: translateY(-50%) translateX(-50%);
             }
+            .msg {
+                white-space: nowrap;
+            }
         </style>
     </head>
     <body class="main">
@@ -51,7 +54,7 @@
             <% } else {%>
 
                 <h1>Internal Server Error.</h1>
-                <p>
+                <p class="msg">
                     An error occurred when accessing <span class="highlighted"><%= url %></span>. Please try again later.
                 </p>
 
