@@ -12,7 +12,8 @@ body {
 .post-specific {
     position: relative;
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
+    box-sizing: border-box;
     margin: 0 auto;
     padding: 24px 200px 24px 24px;
     background: #fff;

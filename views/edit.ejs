@@ -57,7 +57,10 @@
                 <label class="placeholder" for="input_4">Tags</label>
                 <div class="tag-wrap">
                     <% for (let tag of doc.tags) {%>
-                        <span class="tag"><%= tag %><i class="btn-remove"></i></span>
+                        <span class="tag">
+                            <span class="tag-content"><%= tag %></span>
+                            <i class="btn-remove"></i>
+                        </span>
                     <%}%>
                     <!-- <span class="tag">Apple(fruit)<i class="btn-remove"></i></span> -->
                     <input id="input_4" class="_input" maxlength="10" placeholder="Type tags and press Enter."/>
