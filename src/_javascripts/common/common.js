@@ -34,6 +34,12 @@ $(function() {
                 location.pathname = '/create'
             })
         })
+        // 编辑文章
+        .on('click', '._edit', function() {
+            rhaegoUtil.mdDelay(function() {
+                location.assign(location.href + '?editing=true')
+            })
+        })
         // 注销登录
         .on('click', '._logout', function() {
             rhaegoUtil.showMdModal({

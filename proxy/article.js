@@ -37,19 +37,18 @@ function getArticles(type, tag, cb) {
 
 /**
 保存文档
-@param params {object} 参数对象，包含_id、标题、简介、内容、标签、创建时间
-@param cb {function} 完成的回调，保存失败时返回空json，无论新还是编辑保存成功，都返回该的_id
+@param params {object} 参数对象，包含_id、标题、简介、内容、标签、类型
+@param cb {function} 完成的回调，保存失败时返回空json，无论新还是编辑保存成功，都返回该文章的_id
 */
 function saveArticle(params, cb) {
-    let _id = params._id,
-        articleDoc = new ArticleModel({
-            title: params.title,
-            type: params.type,
-            summary: params.summary,
-            content: params.content,
-            tags: params.tags,
-            created: params.created,
-        })
+    let _id = params._id
+    let articleDoc = new ArticleModel({
+        title: params.title,
+        type: params.type,
+        summary: params.summary,
+        content: params.content,
+        tags: params.tags,
+    })
     ArticleModel.findById(_id, function(e, doc) {
         if (e) {
             console.error(e)
@@ -58,6 +57,7 @@ function saveArticle(params, cb) {
         if (doc === null) {
             articleDoc._id = _id
             articleDoc.viewCount = articleDoc.liked = 0
+            articleDoc.created = new Date().toString()
             articleDoc.save(function(e) {
                 if (e) {
                     console.error(e)

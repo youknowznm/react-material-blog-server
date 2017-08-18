@@ -100,7 +100,6 @@ $(function() {
         let title = $titleInput.val().trim()
         let summary = $summaryInput.val().trim()
         let content = $contentInput.val().trim()
-        let created = new Date().toString()
         let type = $('[data-selected=true]').data('name')
         let tags = []
         $('._tags').find('.tag-content').each(function() {
@@ -112,7 +111,6 @@ $(function() {
             summary,
             content,
             tags,
-            created,
             type,
         })
         $.ajax({
@@ -124,7 +122,7 @@ $(function() {
                 console.log('--- save success --- \n', data)
                 let articleId = data._id
                 if (articleId !== undefined) {
-                    location.assign(`/${type}s/${articleId}`)
+                    location.assign(`/articles/${articleId}`)
                 } else {
                     rhaegoUtil.showMdModal({
                         isDialog: false,
@@ -145,7 +143,7 @@ $(function() {
             title: 'Leave this page?',
             content: 'Unsaved contents will be discarded.',
             onConfirm: function() {
-                location.assign('/articles')
+                window.history.go(-1)
             }
         })
     })

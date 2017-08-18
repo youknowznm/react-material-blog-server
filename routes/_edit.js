@@ -10,8 +10,15 @@ module.exports = function(router) {
             navType: 0,
             pageTitle: 'create',
             static: 'edit',
-            uid: shortid.generate(),
             authLevel: controllers.getAuthLevel(req),
+            doc: {
+                _id: shortid.generate(),
+                title: '',
+                summary: '',
+                content: '',
+                type: 'post',
+                tags: [],
+            }
         })
     })
 
@@ -30,45 +37,6 @@ module.exports = function(router) {
             res.json(saveResult)
         })
     })
-
-    // // 编辑文章/产品页
-    // router.get(/^\/edit\/(articles|products)\S+/, function(req, res, next) {
-    //     let parsedRegExpr = /^\/edit\/(\S+)/.exec(req.path)
-    //     let _type = parsedRegExpr[1]
-    //     let _id = parsedRegExpr[2]
-    //     switch (_type) {
-    //         case 'articles':
-    //             articleProxy.getArticleById(_id, function(doc) {
-    //                 if (doc === null) {
-    //                     controllers.render404(req, res, next)
-    //                 } else {
-    //                     res.render('edit', {
-    //                         navType: 0,
-    //                         docType: 'article',
-    //                         pageTitle: 'edit',
-    //                         static: 'edit',
-    //                         authLevel: controllers.getAuthLevel(req),
-    //                     })
-    //                 }
-    //             })
-    //             break;
-    //         case 'products':
-    //             productProxy.getProductById(_id, function(doc) {
-    //                 if (doc === null) {
-    //                     controllers.render404(req, res, next)
-    //                 } else {
-    //                     res.render('edit', {
-    //                         navType: 0,
-    //                         docType: 'product',
-    //                         pageTitle: 'edit',
-    //                         static: 'edit',
-    //                         authLevel: controllers.getAuthLevel(req),
-    //                     })
-    //                 }
-    //             })
-    //             break;
-    //     }
-    // })
 
     return router
 
