@@ -69,12 +69,12 @@ export default function showMdModal(options) {
                     if (typeof options.onConfirm === 'function') {
                         options.onConfirm()
                     }
-                    break;
+                    break
                 case 'cancel':
                     if (typeof options.onCancel === 'function') {
                         options.onCancel()
                     }
-                    break;
+                    break
                 default:
                     return
             }

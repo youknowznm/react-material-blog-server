@@ -360,13 +360,13 @@ jQuery.extend( {
 			length = obj.length;
 			for ( ; i < length; i++ ) {
 				if ( callback.call( obj[ i ], i, obj[ i ] ) === false ) {
-					break;
+					break
 				}
 			}
 		} else {
 			for ( i in obj ) {
 				if ( callback.call( obj[ i ], i, obj[ i ] ) === false ) {
-					break;
+					break
 				}
 			}
 		}
@@ -1857,7 +1857,7 @@ Expr = Sizzle.selectors = {
 								// When found, cache indexes on `parent` and break
 								if ( node.nodeType === 1 && ++diff && node === elem ) {
 									uniqueCache[ type ] = [ dirruns, nodeIndex, diff ];
-									break;
+									break
 								}
 							}
 
@@ -1903,7 +1903,7 @@ Expr = Sizzle.selectors = {
 										}
 
 										if ( node === elem ) {
-											break;
+											break
 										}
 									}
 								}
@@ -2219,7 +2219,7 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 		}
 
 		if ( !matched ) {
-			break;
+			break
 		}
 	}
 
@@ -2481,7 +2481,7 @@ function matcherFromTokens( tokens ) {
 				j = ++i;
 				for ( ; j < len; j++ ) {
 					if ( Expr.relative[ tokens[j].type ] ) {
-						break;
+						break
 					}
 				}
 				return setMatcher(
@@ -2536,7 +2536,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 					while ( (matcher = elementMatchers[j++]) ) {
 						if ( matcher( elem, context || document, xml) ) {
 							results.push( elem );
-							break;
+							break
 						}
 					}
 					if ( outermost ) {
@@ -2688,7 +2688,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 
 			// Abort if we hit a combinator
 			if ( Expr.relative[ (type = token.type) ] ) {
-				break;
+				break
 			}
 			if ( (find = Expr.find[ type ]) ) {
 				// Search, expanding context for leading sibling combinators
@@ -2705,7 +2705,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 						return results;
 					}
 
-					break;
+					break
 				}
 			}
 		}
@@ -2813,7 +2813,7 @@ var dir = function( elem, dir, until ) {
 	while ( ( elem = elem[ dir ] ) && elem.nodeType !== 9 ) {
 		if ( elem.nodeType === 1 ) {
 			if ( truncate && jQuery( elem ).is( until ) ) {
-				break;
+				break
 			}
 			matched.push( elem );
 		}
@@ -3109,7 +3109,7 @@ jQuery.fn.extend( {
 							jQuery.find.matchesSelector( cur, selectors ) ) ) {
 
 						matched.push( cur );
-						break;
+						break
 					}
 				}
 			}
@@ -8632,7 +8632,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		for ( type in contents ) {
 			if ( contents[ type ] && contents[ type ].test( ct ) ) {
 				dataTypes.unshift( type );
-				break;
+				break
 			}
 		}
 	}
@@ -8646,7 +8646,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		for ( type in responses ) {
 			if ( !dataTypes[ 0 ] || s.converters[ type + " " + dataTypes[ 0 ] ] ) {
 				finalDataType = type;
-				break;
+				break
 			}
 			if ( !firstDataType ) {
 				firstDataType = type;
@@ -8737,7 +8737,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 									current = tmp[ 0 ];
 									dataTypes.unshift( tmp[ 1 ] );
 								}
-								break;
+								break
 							}
 						}
 					}

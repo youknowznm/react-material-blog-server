@@ -27,6 +27,7 @@ module.exports = function(router) {
                             authLevel: controllers.getAuthLevel(req),
                             // docs: [],
                             docs,
+                            promptLogin: req.promptLogin,
                         })
                     } else {
                         controllers.render404(req, res, next)
@@ -43,6 +44,7 @@ module.exports = function(router) {
                         authLevel: controllers.getAuthLevel(req),
                         // docs: [],
                         docs,
+                        promptLogin: req.promptLogin,
                     })
                 })
                 break

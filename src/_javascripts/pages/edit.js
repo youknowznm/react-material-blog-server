@@ -118,12 +118,24 @@ $(function() {
             url: '/saveArticle',
             type: 'Post',
             data,
-            success: function(data) {
-                console.log('--- save success --- \n', data)
-                let articleId = data._id
+            success: function(result) {
+                console.log('--- save success --- \n', result)
+                let articleId = result._id
                 if (articleId !== undefined) {
+                    // 保存成功
                     location.assign(`/articles/${articleId}`)
+                } else if (result.unauthorized === true) {
+                    // 对话过期，保存失败
+                    rhaegoUtil.showMdModal({
+                        isDialog: false,
+                        title: 'Login session expired.',
+                        content: 'Please re-login.',
+                        onCancel() {
+                            location.reload()
+                        },
+                    })
                 } else {
+                    // 其它原因导致的保存失败
                     rhaegoUtil.showMdModal({
                         isDialog: false,
                         title: 'Save article failed.',
@@ -131,8 +143,8 @@ $(function() {
                     })
                 }
             },
-            fail: function(data) {
-                console.log('--- save fail --- \n', data)
+            fail: function(result) {
+                console.log('--- save fail --- \n', result)
             },
         })
     })
@@ -142,9 +154,9 @@ $(function() {
             isDialog: true,
             title: 'Leave this page?',
             content: 'Unsaved contents will be discarded.',
-            onConfirm: function() {
+            onConfirm() {
                 window.history.go(-1)
-            }
+            },
         })
     })
 

@@ -39,11 +39,11 @@ export default function showMdSnackbar() {
             case $mdInput.is('.email'):
                 // 邮件
                 $mdInput.toggleClass('invalid', !emailRegExp.test(val))
-                break;
+                break
             case $mdInput.is('.password') || $mdInput.is('.confirm-password'):
                 // 密码
                 $mdInput.toggleClass('invalid', !passwordRegExp.test(val))
-                break;
+                break
             default:
                 // 普通
                 $mdInput.toggleClass('invalid', /^\s*$/.test(val))
@@ -81,14 +81,28 @@ export default function showMdSnackbar() {
                         email: $loginInputEmail.children('._input').val(),
                         password: $loginInputPassword.children('._input').val(),
                     }
-                    console.log(data);
                     $.ajax({
                         url: '/login',
                         type: 'Post',
                         data,
                         success: function(result) {
-                            console.log('--- login success --- \n', result);
-                            location.reload()
+                            console.log('--- login result --- \n', result);
+                            let code = result.loginResultCode
+                            if (code === 1) {
+                                location.reload()
+                            } else {
+                                const NOTIFICATIONS = {
+                                    0: 'Unregistered email address.',
+                                    2: 'Wrong password.',
+                                    3: 'Check the verification mail.',
+                                    4: 'Internal server error. Please try later.'
+                                }
+                                rhaegoUtil.showMdModal({
+                                    isDialog: false,
+                                    title: 'Login failed.',
+                                    content: NOTIFICATIONS[code],
+                                })
+                            }
                         },
                         fail: function(result) {
                             console.log('--- login fail --- \n', result);
@@ -163,8 +177,8 @@ export default function showMdSnackbar() {
         // 输入时的判断
         .on('input', '._input', function() {
             let $this = $(this)
-            let $p = $this.closest('.md-input')
-            $p.toggleClass('invalid', /^\s*$/.test($this.val()))
+            let $parent = $this.closest('.md-input')
+            $parent.toggleClass('invalid', /^\s*$/.test($this.val()))
         })
 
 

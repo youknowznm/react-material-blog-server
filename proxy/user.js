@@ -117,7 +117,7 @@ function sendVerifyEmail(doc) {
 /**
 验证账户邮箱
 @param key {string} 从邮件提供的url中取得的字符串
-@param cb {function} 验证完成的回调，成功传入true，失败传入false
+@param cb {function} 验证完成的回调，成功传入该邮箱字符串，失败不传参
 */
 function verifyEmail(key, cb) {
     let _hash = key.split('!')[0]
@@ -130,12 +130,12 @@ function verifyEmail(key, cb) {
                 { verified: true },
                 function() {
                     console.log('--- verified --- \n');
-                    cb(true)
+                    cb(_email)
                 }
             )
         })
     } else {
-        cb(false)
+        cb()
     }
 }
 

@@ -19,9 +19,15 @@ module.exports = function(router) {
     // 用户验证
     router.get(/^\/verify\/\S+/, function(req, res, next) {
         let key = /^\/verify\/(\S+)/.exec(req.path)[1]
-        userProxy.verifyEmail(key, function(result) {
-            // 通过query成功验证账户返回真，否则返回假
-            res.json({'verifySuccessful': result})
+        userProxy.verifyEmail(key, function(verifiedEmail) {
+            if (typeof verifiedEmail === 'string') {
+                // 通过query成功验证账户则写session，重定向至首页
+                req.session.currentUserEmail = verifiedEmail
+                res.redirect('/')
+            } else {
+                // 否则返回404
+                controller.render404(req)
+            }
         })
     })
 
@@ -34,10 +40,10 @@ module.exports = function(router) {
             switch (resCode) {
                 case 1:
                     session.currentUserEmail = email
-                    return res.json({ret_code: 1})
-                    break;
+                    return res.json({loginResultCode: 1})
+                    break
                 default:
-                    return res.json({ret_code: resCode})
+                    return res.json({loginResultCode: resCode})
             }
         })
     })
