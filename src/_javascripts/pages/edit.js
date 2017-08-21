@@ -128,7 +128,7 @@ $(function() {
                     // 对话过期，保存失败
                     rhaegoUtil.showMdModal({
                         isDialog: false,
-                        title: 'Login session expired.',
+                        title: 'Authentication expired.',
                         content: 'Please re-login.',
                         onCancel() {
                             location.reload()

@@ -33,7 +33,7 @@ export default function initMDHeader() {
     // 渐显导航按钮组
     setTimeout(function() {
         $navButtonsContainer.addClass('show')
-    }, 550)
+    }, 0)
 
     $header
         .on('mousedown', '.nav-item', function(evt) {

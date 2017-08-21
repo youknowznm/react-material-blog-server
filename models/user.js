@@ -11,7 +11,10 @@ let userSchema = mongoose.Schema({
     },
     nickname: String,
     password: String,
-    verified: Boolean,
+    verified: {
+        type: Boolean,
+        default: false,
+    },
 })
 
 module.exports = mongoose.model('user', userSchema)

@@ -8,7 +8,6 @@ module.exports = function(router) {
             email: req.body.email,
             nickname: req.body.nickname,
             password: req.body.password,
-            verified: false,
         }
         userProxy.saveUser(params, function(result) {
             // 注册成功返回真，邮箱已被注册返回假

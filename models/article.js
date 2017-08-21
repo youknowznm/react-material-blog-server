@@ -6,16 +6,15 @@ let articleSchema = mongoose.Schema({
        type: String,
        unique: true,
     },
-    created: Date,
-    viewCount: Number,
-    liked: Number,
-
     type: String,
     title: String,
     summary: String,
     content: String,
     tags: [String],
-    // comments: [MessageModel],
+    created: Date,
+    viewCount: Number,
+    liked: Number,
+    comments: [ ],
 })
 
 module.exports = mongoose.model('article', articleSchema)

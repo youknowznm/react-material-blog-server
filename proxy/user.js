@@ -73,7 +73,6 @@ function saveUser(params, cb) {
         email: params.email,
         nickname: params.nickname,
         password: params.password,
-        verified: params.verified,
     })
     getUserByEmail(email, function(doc) {
         if (doc === null) {

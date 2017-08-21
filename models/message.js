@@ -6,7 +6,6 @@ let messageSchema = mongoose.Schema({
        unique: true,
     },
     created: Date,
-
     author: String,
     email: String,
     content: String,
