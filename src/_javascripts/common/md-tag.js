@@ -45,6 +45,7 @@ export default function initmdTag() {
         .on('keyup', function(evt) {
             let $this = $(this)
             let $mdTag = $this.parents('.md-tag')
+            let maxTags = +$mdTag.attr('data-max-tags')
             let $error = $mdTag.find('.error')
             let tags = $mdTag.find('.tag')
             let tagCount = tags.length
@@ -52,7 +53,7 @@ export default function initmdTag() {
                 let val = $this.val().trim()
                 $this.val('')
                 if (/\S/.test(val)) {
-                    if (tagCount === 2) {
+                    if (tagCount === maxTags) {
                         showError($error, 'Maximum tags reached.')
                         return
                     }

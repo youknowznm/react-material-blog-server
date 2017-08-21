@@ -1,20 +1,8 @@
 let ArticleModel = require('../models/article')
 
-/**
-取得所有文档
-@param cb {function} 完成的回调，参数为所有文档组成的数组
-*/
-// function getArticles(cb) {
-//     ArticleModel.find({type}, function(e, docs) {
-//         if (e) {
-//             console.error(e)
-//         }
-//         return cb(docs);
-//     })
-// }
 
 /**
-取得包含某标签的所有文档
+取得符合一定条件的的所有文档
 @param tag {string|null} 可选的目标文档标签
 @param type {string|null} 可选的目标文档类型
 @param cb {function} 完成的回调，参数为所有符合条件文档的数组
@@ -99,5 +87,4 @@ module.exports = {
     saveArticle,
     getArticles,
     getArticleById,
-    // getArticlesByTag,
 }

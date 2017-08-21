@@ -24,18 +24,22 @@ module.exports = function(router) {
 
     // 保存
     router.post('/saveArticle', function(req, res, next) {
-        let params = {
-            _id: req.body._id,
-            type: req.body.type,
-            title: req.body.title,
-            summary: req.body.summary,
-            content: req.body.content,
-            tags: req.body.tags,
-            created: req.body.created,
+        if (controllers.getAuthLevel(req) === 0) {
+            res.json({unauthorized: true})
+        } else {
+            let params = {
+                _id: req.body._id,
+                type: req.body.type,
+                title: req.body.title,
+                summary: req.body.summary,
+                content: req.body.content,
+                tags: req.body.tags,
+                created: req.body.created,
+            }
+            articleProxy.saveArticle(params, function(saveResult) {
+                res.json(saveResult)
+            })
         }
-        articleProxy.saveArticle(params, function(saveResult) {
-            res.json(saveResult)
-        })
     })
 
     return router
