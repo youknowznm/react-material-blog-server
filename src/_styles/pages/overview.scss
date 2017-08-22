@@ -104,34 +104,6 @@ body {
         }
     }
 
-    .bg-icon-wrap {
-        position: absolute;
-        display: block;
-        width: 24px;
-        line-height: 24px;
-        height: 24px;
-        overflow: hidden;
-        bottom: 22px;
-        right: 16px;
-        z-index: 11;
-        .bg-icon {
-            position: absolute;
-            display: block;
-            width: 24px;
-            height: 24px;
-            top: -24px;
-            left: 0;
-            /*
-            http://www.zhangxinxu.com/wordpress/2016/06/png-icon-change-color-by-css/
-            Chrome下如果元素的主体部分【完全】不可见，则其drop-shadow不可见；
-            只要元素有【任何】部分可见，则其drop-shadow完全可见。
-            */
-            border-bottom: 24px solid transparent;
-            filter: drop-shadow(rgba(#fff, .87) 0 24px);
-            background-size: 24px 24px;
-        }
-    }
-
     div,
     p,
     h1,

@@ -3,25 +3,41 @@
 
 <div class="main-wrap">
     <div class="main">
-        <div class="post-specific">
+        <div class="article-specific">
             <div class="markdown-parsed">
                 <%-: doc.content | parseMarkdown %>
             </div>
             <div class="content-footer">
                 <% for (let i = 0; i < doc.tags.length; i++) {%>
-                    <button class="md-button _flat _primary">
+                    <button class="md-button _flat _primary tag">
                         <span class="content"><%= doc.tags[i] %></span>
                         <div class="ripple-container"><span class="ripple"></span></div>
                     </button>
                 <%}%>
+                <span class="created">
+                    <%-: doc.created |formatDate %>
+                </span>
+            </div>
+            <div class="comments">
+                <div class="md-input _title">
+                    <label class="placeholder" for="input_1">Title</label>
+                    <input id="input_1" class="_input" maxlength="20" value="<%= doc.title %>"/>
+                    <p class="error"></p>
+                    <h5 class="char-counter">
+                        <span class="current"></span>/<span class="maximum"></span>
+                    </h5>
+                </div>
             </div>
 
-            <ul class="post-nav"></ul>
+            <ul class="article-nav"></ul>
+
+        </div>
+
+        <div class="black">
 
         </div>
 
         <% include ./common/controll-panel.ejs %>
-
     </div>
 
 </div>

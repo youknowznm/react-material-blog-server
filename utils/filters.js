@@ -5,6 +5,14 @@ ejs模板过滤器
 const ejs = require('ejs')
 const marked = require('marked')
 
+// 格式化Date对象为yyyy-mm-dd的字符串
+ejs.filters.formatDate = function(date) {
+    const to2digits = function(str) {
+        return str.length === 2 ? str : ('0' + str)
+    }
+    return `${date.getFullYear()}-${to2digits(date.getMonth() + 1 + '')}-${to2digits(date.getDate() + '')}`
+}
+
 // 结合样式表，产生以'·'和'¬'装饰的span元素
 ejs.filters.breakToSpans = function(str) {
     let arr = str.split(/\s+/g)
@@ -15,7 +23,7 @@ ejs.filters.breakToSpans = function(str) {
     return r
 }
 
-// 大写
+// 首字母大写
 ejs.filters.capitalize = function(str) {
     return str.replace(/^\s*\S/, function(s) {
         return s.toUpperCase()
