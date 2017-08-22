@@ -44,8 +44,7 @@ function saveArticle(params, cb) {
         }
         if (doc === null) {
             articleDoc._id = _id
-            articleDoc.viewCount = articleDoc.liked = 0
-            articleDoc.created = new Date().toString()
+            articleDoc.created = new Date()
             articleDoc.save(function(e) {
                 if (e) {
                     console.error(e)

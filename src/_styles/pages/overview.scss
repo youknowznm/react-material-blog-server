@@ -91,54 +91,6 @@ body {
         }
     }
 
-    .statistics {
-        position: absolute;
-        left: 16px;
-        bottom: 70px;
-        > li {
-            float: left;
-            width: 70px;
-            margin-right: 6px;
-            .content {
-                position: relative;
-                display: inline-block;
-                width: 24px;
-                line-height: 24px;
-                height: 24px;
-                vertical-align: middle;
-                overflow: hidden;
-                .icon {
-                    position: absolute;
-                    display: block;
-                    width: 24px;
-                    height: 24px;
-                    top: -24px;
-                    left: 0;
-                    /*
-                    http://www.zhangxinxu.com/wordpress/2016/06/png-icon-change-color-by-css/
-                    Chrome下如果元素的主体部分【完全】不可见，则其drop-shadow不可见；
-                    只要元素有【任何】部分可见，则其drop-shadow完全可见。
-                    */
-                    border-bottom: 24px solid transparent;
-                    filter: drop-shadow(rgba(#fff, .87) 0 24px);
-                    background-size: 24px 24px;
-                }
-            }
-            .count {
-                margin-left: 6px;
-                line-height: 24px;
-                font-size: 12px;
-                color: rgba(#fff, .87);
-            }
-        }
-        .liked .icon {
-            background: url("../../_images/ic_favorite.png") 0 0 no-repeat;
-        }
-        .comments .icon {
-            background: url("../../_images/ic_comment.png") 0 0 no-repeat;
-        }
-    }
-
     .tags {
         position: absolute;
         bottom: 16px;

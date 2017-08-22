@@ -76,6 +76,7 @@ function saveUser(params, cb) {
     })
     getUserByEmail(email, function(doc) {
         if (doc === null) {
+            userDoc.created = new Date()
             userDoc.save(function(e) {
                 if (e) {
                     console.error(e)

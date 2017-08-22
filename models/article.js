@@ -19,10 +19,6 @@ let articleSchema = mongoose.Schema({
     content: String,
     // 标签
     tags: [String],
-    // 访问计数
-    viewCount: Number,
-    // 点赞计数
-    liked: Number,
     // 评论
     comments: [messageSchema],
 })
