@@ -15,12 +15,12 @@ $(function() {
     // 动画banner的top值和内容输入框高度
     $('body').animate(
         {
-            'scrollTop': 210
+            'scrollTop': 215
         },
         function() {
             $contentInput.animate(
                 {
-                    'height': window.innerHeight - 315
+                    'height': window.innerHeight - 310
                 },
             )
         }

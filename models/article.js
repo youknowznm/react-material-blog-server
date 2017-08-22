@@ -1,20 +1,35 @@
 const mongoose = require('mongoose')
-const MessageModel = require('./message')
+const messageSchema = require('./message').messageSchema
 
+// 文章文档结构
 let articleSchema = mongoose.Schema({
     _id: {
        type: String,
        unique: true,
     },
-    type: String,
-    title: String,
-    summary: String,
-    content: String,
-    tags: [String],
+    // 创建时间
     created: Date,
+    // 类型 - post或product
+    type: String,
+    // 标题
+    title: String,
+    // 摘要
+    summary: String,
+    // 内容
+    content: String,
+    // 标签
+    tags: [String],
+    // 访问计数
     viewCount: Number,
+    // 点赞计数
     liked: Number,
-    comments: [ ],
+    // 评论
+    comments: [messageSchema],
 })
 
-module.exports = mongoose.model('article', articleSchema)
+let ArticleModel = mongoose.model('Article', articleSchema)
+
+module.exports = {
+    articleSchema,
+    ArticleModel,
+}

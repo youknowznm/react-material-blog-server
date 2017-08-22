@@ -1,4 +1,4 @@
-let UserModel = require('../models/user')
+let UserModel = require('../models/user').UserModel
 let nodemailer = require('nodemailer')
 let Hashes= require('jshashes')
 let shortid = require('shortid')
@@ -8,8 +8,8 @@ let smtpConfig = require('../config').smtpConfig
 
 /**
 从固定发件邮箱发送邮件
-@param optionsArg {Object} 参数对象，包含to(收件邮箱)、subject(主题)、html(内容)
-@param cb {function?} 可选的发送完成回调，成功传入true，失败传入false
+@param optionsArg {object} 参数对象，包含to(收件邮箱)、subject(主题)、html(内容)
+@param cb {?function} 可选的发送完成回调，成功传入true，失败传入false
 */
 const sendEmail = (function(optionsArg, cb) {
 

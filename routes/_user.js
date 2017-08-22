@@ -16,7 +16,7 @@ module.exports = function(router) {
     })
 
     // 用户验证
-    router.get(/^\/verify\/\S+/, function(req, res, next) {
+    router.get(/^\/verify\/\S+/, function(req, res, next) { 
         let key = /^\/verify\/(\S+)/.exec(req.path)[1]
         userProxy.verifyEmail(key, function(verifiedEmail) {
             if (typeof verifiedEmail === 'string') {

@@ -1,4 +1,4 @@
-let ArticleModel = require('../models/article')
+let ArticleModel = require('../models/article').ArticleModel
 
 
 /**
