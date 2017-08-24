@@ -8,22 +8,28 @@
                 <%-: doc.content | parseMarkdown %>
             </div>
             <div class="content-footer">
+                <span class="created">
+                    <%-: doc.created |formatDate %>
+                </span>
                 <% for (let i = 0; i < doc.tags.length; i++) {%>
                     <button class="md-button _flat _primary tag">
                         <span class="content"><%= doc.tags[i] %></span>
                         <div class="ripple-container"><span class="ripple"></span></div>
                     </button>
                 <%}%>
-                <span class="created">
-                    <%-: doc.created |formatDate %>
-                </span>
             </div>
             <div class="comments">
                 <div class="row">
                     <!-- 内容 -->
                     <div class="md-textarea responsive-height _content">
-                        <label class="placeholder" for="input_3">Content in Markdown</label>
-                        <textarea id="input_3" class="_input" maxlength="10000"></textarea>
+                        <label class="placeholder" for="input_3">
+                            <% if (authLevel !== 0) {%>
+                                Comment as fsdaf
+                            <%} else {%>
+                                Log in to leave comments.
+                            <%}%>
+                        </label>
+                        <textarea id="input_3" class="_input" maxlength="500" <%if(authLevel===0){%>disabled<%}%> ></textarea>
                         <p class="error"></p>
                         <h5 class="char-counter">
                             <span class="current"></span>/<span class="maximum"></span>
