@@ -116,6 +116,11 @@
             margin-left: .5em;
         }
     }
+    &.responsive-height {
+        ._input {
+            min-height: 0
+        }
+    }
     // 最小容器宽度
     // @media
 }

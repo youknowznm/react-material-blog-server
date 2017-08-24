@@ -19,13 +19,16 @@
                 </span>
             </div>
             <div class="comments">
-                <div class="md-input _title">
-                    <label class="placeholder" for="input_1">Title</label>
-                    <input id="input_1" class="_input" maxlength="20" value="<%= doc.title %>"/>
-                    <p class="error"></p>
-                    <h5 class="char-counter">
-                        <span class="current"></span>/<span class="maximum"></span>
-                    </h5>
+                <div class="row">
+                    <!-- 内容 -->
+                    <div class="md-textarea responsive-height _content">
+                        <label class="placeholder" for="input_3">Content in Markdown</label>
+                        <textarea id="input_3" class="_input" maxlength="10000"></textarea>
+                        <p class="error"></p>
+                        <h5 class="char-counter">
+                            <span class="current"></span>/<span class="maximum"></span>
+                        </h5>
+                    </div>
                 </div>
             </div>
 

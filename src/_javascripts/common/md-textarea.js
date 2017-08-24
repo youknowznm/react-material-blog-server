@@ -51,4 +51,19 @@ export default function initMdTextarea() {
         // $wrap.toggleClass('invalid', currentCount === maxCharCount);
     }
 
+    setTimeout(function() {
+        let $flexibleInput = $('.md-textarea.responsive-height ._input')
+        if ($flexibleInput.length > 0) {
+            let response = function() {
+                $flexibleInput
+                    .height(1)
+                    .height($flexibleInput[0].scrollHeight)
+            }
+            response()
+            $flexibleInput.on('input', function() {
+                response()
+            })
+        }
+    }, 0)
+
 }

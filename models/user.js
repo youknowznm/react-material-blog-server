@@ -24,9 +24,9 @@ let userSchema = mongoose.Schema({
     },
 })
 
-let UserModal = mongoose.model('User', userSchema)
+let UserModel = mongoose.model('User', userSchema)
 
 module.exports = {
     userSchema,
-    UserModal,
+    UserModel,
 }
