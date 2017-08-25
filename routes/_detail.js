@@ -40,11 +40,12 @@ module.exports = function(router) {
         })
     })
 
+    /**
 
+    */
     router.post('/saveComment', function(req, res, next) {
         let currentUserInfo = controllers.getUserInfo(req)
         if (currentUserInfo.authLevel === 0) {
-            console.log(1);
             res.json({unauthorized: true})
         } else {
             let params = {
@@ -52,7 +53,7 @@ module.exports = function(router) {
                 email: req.session.currentUserEmail,
                 content: req.body.content,
                 created: new Date(),
-                articleId: req.body.articleId,
+                articleId: '1333',
             }
             if (typeof params.author === 'string'
                     && /\S/.test(params.author)
@@ -63,12 +64,10 @@ module.exports = function(router) {
                     && typeof params.articleId === 'string'
                     && /\S/.test(params.articleId)
             ) {
-                messageProxy.saveComment(params, function(rr) {
-                    console.log(2,rr);
-                    res.json({'2r': rr})
+                messageProxy.saveComment(params, function(saveResult) {
+                    res.json({saveCommentSuccess: saveResult})
                 })
             } else {
-                console.log(3);
                 res.json({paramValidationFailed: true})
             }
         }
