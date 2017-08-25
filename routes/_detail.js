@@ -1,4 +1,5 @@
 let articleProxy = require('../proxy/article')
+let userProxy = require('../proxy/user')
 let controllers = require('../utils/controllers')
 
 module.exports = function(router) {
@@ -22,7 +23,7 @@ module.exports = function(router) {
                         navType,
                         pageTitle: 'edit',
                         static: 'edit',
-                        authLevel: controllers.getAuthLevel(req),
+                        userInfo: controllers.getUserInfo(req),
                         doc,
                     })
                 } else {
@@ -30,7 +31,7 @@ module.exports = function(router) {
                         navType,
                         pageTitle: doc.title,
                         static: 'detail',
-                        authLevel: controllers.getAuthLevel(req),
+                        userInfo: controllers.getUserInfo(req),
                         doc,
                     })
                 }

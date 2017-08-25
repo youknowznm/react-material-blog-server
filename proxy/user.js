@@ -144,39 +144,49 @@ function verifyEmail(key, cb) {
 @param email {string} 用户邮箱
 @param password {string} 用户密码
 @param cb {function} 登录回调，参数说明：
-                        0 该邮箱尚未注册
-                        1 登陆成功
-                        2 密码错误
-                        3 尚未验证该邮箱
-                        4 服务器错误
+                        loginResultCode:
+                            0 该邮箱尚未注册
+                            1 登陆成功
+                            2 密码错误
+                            3 尚未验证该邮箱
+                            4 服务器错误
+                        loginUserNickname:
+                            登陆成功的用户名或空字符串
 */
 function login(email, password, cb) {
+    let loginResultCode
+    let loginUserNickname = ''
     UserModel.findOne(
         { email },
         function(e, doc) {
             if (e) {
                 console.error(e)
                 // 服务器错误
-                cb(4)
+                loginResultCode = 4
             } else {
                 if (doc === null) {
                     // 该邮箱尚未注册
-                    cb(0)
+                    loginResultCode = 0
                 } else {
                     if (doc.password !== password) {
                         // 密码错误
-                        cb(2)
+                        loginResultCode = 2
                     } else {
                         if (doc.verified === false) {
                             // 尚未验证该邮箱
-                            cb(3)
+                            loginResultCode = 3
                         } else {
                             // 登陆成功
-                            cb(1)
+                            loginResultCode = 1
+                            loginUserNickname = doc.nickname
                         }
                     }
                 }
             }
+            cb({
+                loginResultCode,
+                loginUserNickname,
+            })
         }
     )
 }

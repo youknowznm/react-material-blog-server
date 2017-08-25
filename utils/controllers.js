@@ -1,20 +1,27 @@
 // 取得写在配置内的站长邮箱
 let ownerEmail = require("../config").ownerEmail
+let userProxy = require('../proxy/user')
 
 module.exports = {
     /**
-    根据请求的session判定浏览者的权限级别
+    根据请求的session返回浏览者的权限级别和昵称
+    - authLevel: 未登录0 普通用户登录1 站长登录2
+    - nickname: 未登录空字符串 登录则为用户昵称
     */
-    getAuthLevel(req) {
-        let currentUserEmail = req.session.currentUserEmail
+    getUserInfo(req) {
+        let currentUserEmail = req.session.currentUserEmail || ''
+        let currentUserNickname = req.session.currentUserNickname || ''
         let authLevel = 0
-        if (currentUserEmail !== undefined && currentUserEmail !== '') {
+        if (currentUserEmail !== '') {
             authLevel = 1
             if (currentUserEmail === ownerEmail) {
                 authLevel = 2
             }
         }
-        return authLevel
+        return {
+            authLevel,
+            currentUserNickname,
+        }
     },
     /**
     渲染404

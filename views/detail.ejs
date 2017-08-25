@@ -23,13 +23,13 @@
                     <!-- 内容 -->
                     <div class="md-textarea responsive-height _content">
                         <label class="placeholder" for="input_3">
-                            <% if (authLevel !== 0) {%>
-                                Comment as fsdaf
+                            <% if (userInfo.authLevel !== 0) {%>
+                                Comment as <%= userInfo.currentUserNickname %>
                             <%} else {%>
                                 Log in to leave comments.
                             <%}%>
                         </label>
-                        <textarea id="input_3" class="_input" maxlength="500" <%if(authLevel===0){%>disabled<%}%> ></textarea>
+                        <textarea id="input_3" class="_input" maxlength="500" <%if(userInfo.authLevel===0){%>disabled<%}%> ></textarea>
                         <p class="error"></p>
                         <h5 class="char-counter">
                             <span class="current"></span>/<span class="maximum"></span>

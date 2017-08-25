@@ -16,7 +16,7 @@ module.exports = function(router) {
     })
 
     // 用户验证
-    router.get(/^\/verify\/\S+/, function(req, res, next) { 
+    router.get(/^\/verify\/\S+/, function(req, res, next) {
         let key = /^\/verify\/(\S+)/.exec(req.path)[1]
         userProxy.verifyEmail(key, function(verifiedEmail) {
             if (typeof verifiedEmail === 'string') {
@@ -35,15 +35,13 @@ module.exports = function(router) {
         let session = req.session
         let email = req.body.email
         let password = req.body.password
-        userProxy.login(email, password, function(resCode) {
-            switch (resCode) {
-                case 1:
-                    session.currentUserEmail = email
-                    return res.json({loginResultCode: 1})
-                    break
-                default:
-                    return res.json({loginResultCode: resCode})
+        userProxy.login(email, password, function(loginResult) {
+            let _code = loginResult.loginResultCode
+            if (_code === 1) {
+                session.currentUserEmail = email
+                session.currentUserNickname = loginResult.loginUserNickname
             }
+            return res.json({loginResultCode: _code})
         })
     })
 

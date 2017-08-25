@@ -6,15 +6,15 @@ module.exports = function(router) {
 
     // 新建
     router.get('/create', function(req, res, next) {
-        let authLevel = controllers.getAuthLevel(req)
-        if (authLevel !== 2) {
+        let userInfo = controllers.getUserInfo(req)
+        if (userInfo.authLevel !== 2) {
             res.redirect('/')
         } else {
             res.render('edit', {
                 navType: 0,
                 pageTitle: 'create',
                 static: 'edit',
-                authLevel,
+                userInfo,
                 doc: {
                     _id: shortid.generate(),
                     title: '',
@@ -29,7 +29,7 @@ module.exports = function(router) {
 
     // 保存
     router.post('/saveArticle', function(req, res, next) {
-        if (controllers.getAuthLevel(req) !== 2) {
+        if (controllers.getUserInfo(req) !== 2) {
             res.json({unauthorized: true})
         } else {
             let params = {
