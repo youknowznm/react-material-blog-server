@@ -33,5 +33,11 @@ $(function() {
     })
     $articleContentNav.html(articleContentNavHTML)
 
+    let $commentInput = $('.comment-content ._input')
+    let $submitBtn = $('#submit')
+
+    setInterval(function() {
+        $submitBtn.toggleClass('_disabled', !/\S/.test($commentInput.val()))
+    }, 50)
 
 })

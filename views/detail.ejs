@@ -9,7 +9,7 @@
             </div>
             <div class="content-footer">
                 <span class="created">
-                    <%-: doc.created |formatDate %>
+                    <%-: doc.created | formatDate %>
                 </span>
                 <% for (let i = 0; i < doc.tags.length; i++) {%>
                     <button class="md-button _flat _primary tag">
@@ -21,7 +21,7 @@
             <div class="comments">
                 <div class="row">
                     <!-- 内容 -->
-                    <div class="md-textarea responsive-height _content">
+                    <div class="md-textarea responsive-height comment-content">
                         <label class="placeholder" for="input_3">
                             <% if (userInfo.authLevel !== 0) {%>
                                 Comment as <%= userInfo.currentUserNickname %>
@@ -35,6 +35,10 @@
                             <span class="current"></span>/<span class="maximum"></span>
                         </h5>
                     </div>
+                    <button id="submit" class="md-button _primary _disabled">
+                        <span class="content">submit</span>
+                        <div class="ripple-container"><span class="ripple"></span></div>
+                    </button>
                 </div>
             </div>
 

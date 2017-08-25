@@ -96,9 +96,16 @@ body {
     .comments {
         position: relative;
         width: 100%;
-        min-height: 100px;
 
-        ._content {
+        .comment-content {
+            margin-right: 100px;
+        }
+
+        #submit {
+            position: absolute;
+            margin: 0;
+            right: 0;
+            bottom: 0;
         }
 
     }

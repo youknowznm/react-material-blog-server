@@ -120,27 +120,37 @@ $(function() {
             data,
             success: function(result) {
                 console.log('--- save success --- \n', result)
-                let articleId = result._id
-                if (articleId !== undefined) {
-                    // 保存成功
-                    location.assign(`/articles/${articleId}`)
-                } else if (result.unauthorized === true) {
-                    // 对话过期，保存失败
-                    rhaegoUtil.showMdModal({
-                        isDialog: false,
-                        title: 'Authentication expired.',
-                        content: 'Please re-login.',
-                        onCancel() {
-                            location.reload()
-                        },
-                    })
-                } else {
-                    // 其它原因导致的保存失败
-                    rhaegoUtil.showMdModal({
-                        isDialog: false,
-                        title: 'Save article failed.',
-                        content: 'An error occurred during saving. Please try agin later.'
-                    })
+                switch (true) {
+                    case result._id !== undefined:
+                        // 保存成功
+                        location.assign(`/articles/${result._id}`)
+                        break
+                    case result.unauthorized:
+                        // 对话过期，保存失败
+                        rhaegoUtil.showMdModal({
+                            isDialog: false,
+                            title: 'Authentication expired.',
+                            content: 'Please re-login.',
+                            onCancel() {
+                                location.reload()
+                            },
+                        })
+                        break
+                    case result.paramValidationFailed:
+                        // 标题、内容等参数校验错误
+                        rhaegoUtil.showMdModal({
+                            isDialog: false,
+                            title: 'Parameter validation failed.',
+                            content: 'Please check all input elements.',
+                        })
+                        break
+                    default:
+                        // 其它原因导致的保存失败
+                        rhaegoUtil.showMdModal({
+                            isDialog: false,
+                            title: 'Save article failed.',
+                            content: 'An error occurred during saving. Please try agin later.'
+                        })
                 }
             },
             fail: function(result) {

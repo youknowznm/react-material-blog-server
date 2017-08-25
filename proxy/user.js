@@ -34,7 +34,7 @@ const sendEmail = (function(optionsArg, cb) {
                     cb(true)
                 }
             } else {
-                console.log("--- sending email success --- \n" + response.messageID)
+                console.log("--- sending email success --- \n" + response)
                 if (typeof cb === 'function') {
                     cb(false)
                 }
@@ -73,10 +73,10 @@ function saveUser(params, cb) {
         email: params.email,
         nickname: params.nickname,
         password: params.password,
+        created: params.created,
     })
     getUserByEmail(email, function(doc) {
         if (doc === null) {
-            userDoc.created = new Date()
             userDoc.save(function(e) {
                 if (e) {
                     console.error(e)

@@ -29,7 +29,7 @@ module.exports = function(router) {
 
     // 保存
     router.post('/saveArticle', function(req, res, next) {
-        if (controllers.getUserInfo(req) !== 2) {
+        if (controllers.getUserInfo(req).authLevel !== 2) {
             res.json({unauthorized: true})
         } else {
             let params = {
@@ -39,11 +39,27 @@ module.exports = function(router) {
                 summary: req.body.summary,
                 content: req.body.content,
                 tags: req.body.tags,
-                created: req.body.created,
+                created: new Date(),
             }
-            articleProxy.saveArticle(params, function(saveResult) {
-                res.json(saveResult)
-            })
+            if (typeof params._id === 'string'
+                    && /\S/.test(params._id)
+                    && typeof params.type === 'string'
+                    && /post|product/.test(params.type)
+                    && typeof params.title === 'string'
+                    && /\S/.test(params.title)
+                    && typeof params.summary === 'string'
+                    && /\S/.test(params.summary)
+                    && typeof params.content === 'string'
+                    && /\S/.test(params.content)
+                    && Array.isArray(params.tags)
+                    && typeof params.tags[0] === 'string'
+            ) {
+                articleProxy.saveArticle(params, function(saveResult) {
+                    res.json(saveResult)
+                })
+            } else {
+                res.json({paramValidationFailed: true})
+            }
         }
     })
 

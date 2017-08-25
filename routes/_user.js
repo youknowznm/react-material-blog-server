@@ -8,11 +8,23 @@ module.exports = function(router) {
             email: req.body.email,
             nickname: req.body.nickname,
             password: req.body.password,
+            created: new Date(),
         }
-        userProxy.saveUser(params, function(result) {
-            // 注册成功返回真，邮箱已被注册返回假
-            res.json({'registerSuccessful': result})
-        })
+        if (typeof params.email === 'string'
+                && /\S/.test(params.email)
+                && typeof params.nickname === 'string'
+                && /\S/.test(params.nickname)
+                && typeof params.password === 'string'
+                && /\S/.test(params.password)
+        ) {
+            userProxy.saveUser(params, function(result) {
+                // 注册成功返回1，邮箱已被注册返回2
+                res.json({registerResultCode: result === true ? 1 : 2})
+            })
+        } else {
+            // 参数验证失败返回0
+            res.json({registerResultCode: 0})
+        }
     })
 
     // 用户验证

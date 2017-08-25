@@ -20,9 +20,9 @@ export default function showMdSnackbar() {
     // 根据body的authLeval控制登录控件的显隐
     setTimeout(function() {
         if ($('body').data('authLevel') === 0) {
-            $('.md-snackbar').addClass('show-partial')
+            $mdSnackbar.addClass('show-partial')
         }
-    }, 1500)
+    }, 500)
 
     // 登录控件整体的显隐切换
     $('body').on('click', function(e) {
@@ -32,7 +32,7 @@ export default function showMdSnackbar() {
 
     // 根据不同输入框，以不同的正则判断内容的有效性，切换invalid类
     function validateMdInput($mdInput) {
-        let emailRegExp = /^([a-zA-Z\d]+)\w@(\w+)(\.[a-zA-Z]{1,4}){1,2}$/
+        let emailRegExp = /^([a-zA-Z\d]+)\w*@(\w+)(\.[a-zA-Z]{1,4}){1,2}$/
         let passwordRegExp = /^.{6,}$/
         let val = $mdInput.find('._input').val()
         switch (true) {
@@ -92,15 +92,18 @@ export default function showMdSnackbar() {
                                 location.reload()
                             } else {
                                 const NOTIFICATIONS = {
-                                    0: 'Unregistered email address.',
-                                    2: 'Wrong password.',
-                                    3: 'Check the verification mail.',
-                                    4: 'Internal server error. Please try later.'
+                                    0: 'You inputed an unregistered email address.',
+                                    2: 'You inputed a wrong password.',
+                                    3: 'Check the verification mail sent to that mailbox.',
+                                    4: 'An internal server error occurred. Please try later.'
                                 }
                                 rhaegoUtil.showMdModal({
                                     isDialog: false,
                                     title: 'Login failed.',
                                     content: NOTIFICATIONS[code],
+                                    onCancel() {
+                                        $mdSnackbar.addClass('show-full')
+                                    },
                                 })
                             }
                         },
@@ -152,19 +155,30 @@ export default function showMdSnackbar() {
                         type: 'Post',
                         data,
                         success: function(result) {
-                            if (result.registerSuccessful === true) {
-                                // 若注册成功，则显示查看邮件的提示
-                                $contents.removeClass('show').filter('._notification')
-                                    .children('.highlighted').text(data.email)
-                                    .end().addClass('show')
-                            } else {
-                                // 若该邮箱已注册则提示，稍后移除提示
-                                $registerInputEmail.children('.error').text('Email registered.')
-                                    .end().addClass('invalid')
-                                setTimeout(function() {
-                                    $registerInputEmail.removeClass('invalid')
-                                        .children('.error').text('Invalid email.')
-                                }, 3000)
+                            switch (result.registerResultCode) {
+                                case 0:
+                                    // 邮箱、密码等参数校验错误
+                                    rhaegoUtil.showMdModal({
+                                        isDialog: false,
+                                        title: 'Parameter validation failed.',
+                                        content: 'Please check all input elements.',
+                                    })
+                                    break
+                                case 1:
+                                    // 若注册成功，则显示查看邮件的提示
+                                    $contents.removeClass('show').filter('._notification')
+                                        .children('.highlighted').text(data.email)
+                                        .end().addClass('show')
+                                    break
+                                case 2:
+                                    // 若该邮箱已注册则提示，稍后移除提示
+                                    $registerInputEmail.children('.error').text('Email registered.')
+                                        .end().addClass('invalid')
+                                    setTimeout(function() {
+                                        $registerInputEmail.removeClass('invalid')
+                                            .children('.error').text('Invalid email.')
+                                    }, 3000)
+                                    break;
                             }
                         },
                         fail: function(result) {
@@ -180,6 +194,5 @@ export default function showMdSnackbar() {
             let $parent = $this.closest('.md-input')
             $parent.toggleClass('invalid', /^\s*$/.test($this.val()))
         })
-
 
 }
