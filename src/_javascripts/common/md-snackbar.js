@@ -77,11 +77,12 @@ export default function showMdSnackbar() {
                     * 发送登录请求
                     *
                     */
-                    let data = {
+                    let data = JSON.stringify({
                         email: $loginInputEmail.children('._input').val(),
                         password: $loginInputPassword.children('._input').val(),
-                    }
+                    })
                     $.ajax({
+                        contentType: 'application/json',
                         url: '/login',
                         type: 'Post',
                         data,
@@ -145,12 +146,13 @@ export default function showMdSnackbar() {
                     * 发送注册请求
                     *
                     */
-                    let data = {
+                    let data = JSON.stringify({
                         email: $registerInputEmail.children('._input').val(),
                         nickname: $registerInputNickname.children('._input').val().trim(),
                         password: $registerInputConfirmPassword.children('._input').val(),
-                    }
+                    })
                     $.ajax({
+                        contentType: 'application/json',
                         url: '/register',
                         type: 'Post',
                         data,

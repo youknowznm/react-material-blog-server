@@ -7,7 +7,7 @@ function saveComment(params, cb) {
     let author = params.author
     let email = params.email
     let content = params.content
-    let created = new Date()
+    let created = params.created
     articleProxy.getArticleById(articleId, function(articleDoc) {
         articleDoc.comments.create({
             author,
@@ -15,7 +15,12 @@ function saveComment(params, cb) {
             content,
             created
         }, function(r){
-            console.log(r);
+            console.log(1,r);
         })
+        cb()
     })
+}
+
+module.exports = {
+    saveComment,
 }

@@ -40,4 +40,23 @@ $(function() {
         $submitBtn.toggleClass('_disabled', !/\S/.test($commentInput.val()))
     }, 50)
 
+    $submitBtn.click(function() {
+        if ($(this).is('._disabled')) {
+            return
+        }
+        let data = JSON.stringify({
+            content: $commentInput.val(),
+            articleId: $('.main-wrap').data('uid'),
+        })
+        $.ajax({
+            contentType: 'application/json',
+            url: '/saveComment',
+            type: 'Post',
+            data,
+            success: function(result) {
+                console.log(result);
+            },
+        })
+    })
+
 })

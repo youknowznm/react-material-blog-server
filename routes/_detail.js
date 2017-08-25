@@ -1,4 +1,5 @@
 let articleProxy = require('../proxy/article')
+let messageProxy = require('../proxy/message')
 let userProxy = require('../proxy/user')
 let controllers = require('../utils/controllers')
 
@@ -41,7 +42,37 @@ module.exports = function(router) {
 
 
     router.post('/saveComment', function(req, res, next) {
-        
+        let currentUserInfo = controllers.getUserInfo(req)
+        if (currentUserInfo.authLevel === 0) {
+            console.log(1);
+            res.json({unauthorized: true})
+        } else {
+            let params = {
+                author: req.session.currentUserNickname,
+                email: req.session.currentUserEmail,
+                content: req.body.content,
+                created: new Date(),
+                articleId: req.body.articleId,
+            }
+            if (typeof params.author === 'string'
+                    && /\S/.test(params.author)
+                    && typeof params.email === 'string'
+                    && /\S/.test(params.email)
+                    && typeof params.content === 'string'
+                    && /\S/.test(params.content)
+                    && typeof params.articleId === 'string'
+                    && /\S/.test(params.articleId)
+            ) {
+                messageProxy.saveComment(params, function(rr) {
+                    console.log(2,rr);
+                    res.json({'2r': rr})
+                })
+            } else {
+                console.log(3);
+                res.json({paramValidationFailed: true})
+            }
+        }
+
     })
 
     return router
