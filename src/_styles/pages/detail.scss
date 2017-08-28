@@ -77,11 +77,9 @@ body {
         line-height: 68px;
         padding: 0 24px 0 12px;
         box-sizing: border-box;
-
         .tag {
             float: left;
         }
-
         .created {
             display: block;
             float: right;
@@ -93,23 +91,55 @@ body {
         }
     }
 
-    .comments {
+    .comments-container {
         position: relative;
         width: 100%;
-
-        .comment-content {
+        .row {
+            position: relative;
+            margin: 40px 0;
+        }
+        .comment-input {
             margin-right: 100px;
         }
-
-        #submit {
+        .submit-comment {
             position: absolute;
             margin: 0;
             right: 0;
             bottom: 0;
         }
+        .comments-list {
+            .comment {
+                border-top: 1px dashed rgba(0, 0, 0, 0.4);
+                padding: 6px;
+                font-family: "Roboto Regular";
+                &.is-by-current-user {
+                    background-color: rgb(189, 213, 237);
+                }
+                &:last-child {
+                    border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+                }
+                .comment-info {
+                    color: #757575;
+                    line-height: 24px;
+                    font-size: 12px;
+                    margin-bottom: 2px;
+                    .comment-author {
 
+                    }
+                    .comment-date {
+                        float: right;
+                        font-style: italic;
+                    }
+                }
+                .comment-content {
+                    color: #212121;
+                    line-height: 18px;
+                    font-size: 12px;
+                    clear: both;
+                }
+            }
+        }
     }
-
 }
 
 // md解析出的文章
@@ -121,7 +151,6 @@ body {
         line-height: 24px;
         margin: 16px 0;
     }
-
     h1 {
         font-size: 34px;
         line-height: 40px;
@@ -129,7 +158,6 @@ body {
         color: #757575;
         margin-bottom: 20px;
     }
-
     h2 {
         margin: 40px 0 20px;
         font-size: 24px;
@@ -137,38 +165,31 @@ body {
         font-weight: 300;
         border-bottom: rgb(235, 235, 235) 1px solid;
     }
-
     li {
         margin: 8px 0;
         list-style-position: outside;
     }
-
     ul {
         padding-left: 40px;
         li {
             list-style-type: disc;
         }
     }
-
     ol {
         padding-left: 40px;
         li {
             list-style-type: decimal;
         }
     }
-
     li ol > li {
         list-style-type: lower-alpha;
     }
-
     li ul > li {
         list-style-type: circle;
     }
-
     a {
         color: #039be5;
     }
-
     code {
         color: #37474f;
         font-family: 'Roboto Mono';
@@ -177,7 +198,6 @@ body {
         background-color: #f7f7f7;
         padding: 0 4px;
     }
-
     pre {
         display: block;
         padding: 8px;

@@ -6,7 +6,7 @@ module.exports = function(router) {
 
     /*
     GET 新建文章页
-    - 渲染edit模板，传入一个空文档格式对象
+    - 渲染edit模板，传入一个空文档的对象
     - 未登录或登录过期时重定向至首页
     */
     router.get('/create', function(req, res, next) {

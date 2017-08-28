@@ -18,10 +18,10 @@
                     </button>
                 <%}%>
             </div>
-            <div class="comments">
+            <div class="comments-container">
+                <!-- 输入评论 -->
                 <div class="row">
-                    <!-- 内容 -->
-                    <div class="md-textarea responsive-height comment-content">
+                    <div class="md-textarea responsive-height comment-input">
                         <label class="placeholder" for="input_3">
                             <% if (userInfo.authLevel !== 0) {%>
                                 Comment as <%= userInfo.currentUserNickname %>
@@ -35,10 +35,36 @@
                             <span class="current"></span>/<span class="maximum"></span>
                         </h5>
                     </div>
-                    <button id="submit" class="md-button _primary _disabled">
+                    <button class="submit-comment md-button _primary _disabled">
                         <span class="content">submit</span>
                         <div class="ripple-container"><span class="ripple"></span></div>
                     </button>
+                </div>
+                <!-- 评论列表 -->
+                <div class="row">
+                    <ul class="comments-list">
+                        <li class="comment">
+                            <h3 class="comment-info">
+                                <span class="comment-author">Zhang Enming</span>
+                                <span class="comment-date">2017-07-13</span>
+                            </h3>
+                            <p class="comment-content">取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。</p>
+                        </li>
+                        <li class="comment">
+                            <h3 class="comment-info">
+                                <span class="comment-author">Zhang Enming</span>
+                                <span class="comment-date">2017-07-13</span>
+                            </h3>
+                            <p class="comment-content">取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。</p>
+                        </li>
+                        <li class="comment">
+                            <h3 class="comment-info">
+                                <span class="comment-author">Zhang Enming</span>
+                                <span class="comment-date">2017-07-13</span>
+                            </h3>
+                            <p class="comment-content">取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
