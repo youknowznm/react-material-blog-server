@@ -4,7 +4,11 @@ let articleProxy = require('../proxy/article')
 
 module.exports = function(router) {
 
-    // 新建
+    /*
+    GET 新建文章页
+    - 渲染edit模板，传入一个空文档格式对象
+    - 未登录或登录过期时重定向至首页
+    */
     router.get('/create', function(req, res, next) {
         let userInfo = controllers.getUserInfo(req)
         if (userInfo.authLevel !== 2) {
@@ -27,7 +31,12 @@ module.exports = function(router) {
         }
     })
 
-    // 保存
+    /*
+    POST 保存新建的或已存在的文章
+    - 未登录或登录过期时以 {unauthorized: true} 结束响应
+    - 文章文档的参数验证失败时以 {paramValidationFailed: true} 结束响应
+    - 成功保存时以 {_id: 文章id} 结束响应
+    */
     router.post('/saveArticle', function(req, res, next) {
         if (controllers.getUserInfo(req).authLevel !== 2) {
             res.json({unauthorized: true})

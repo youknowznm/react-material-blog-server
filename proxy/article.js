@@ -1,8 +1,7 @@
 let ArticleModel = require('../models/article').ArticleModel
 
-
 /**
-取得符合一定条件的的所有文章文档
+取得符合可选条件的的所有文章文档
 @param tag {string|null} 可选的目标文档标签
 @param type {string|null} 可选的目标文档类型
 @param cb {function} 完成的回调，参数为所有符合条件的文档的数组
@@ -69,7 +68,7 @@ function saveArticle(params, cb) {
 }
 
 /**
-根据_id查找
+根据文章文档的_id查找
 @param _id {string} 目标文章文档的_id
 @param cb {function} 完成的回调，参数为符合条件的文章文档
 */

@@ -3,15 +3,20 @@ let controllers = require('../utils/controllers')
 
 module.exports = function(router) {
 
-    // 主页（重定向至全部文章页）
+    /*
+    GET 主页
+    - 重定向至全部文章页
+    */
     router.get('/', function(req, res, next) {
         res.redirect('/posts')
     })
 
-    // 某类的全部文章页
-    // 某类的带有某标签的全部文章页
-    // query中有tag时返回含该标签的某类
-    router.get(/^\/(post|product)s/, function(req, res, next) {
+    /*
+    GET 符合一定条件（类型、标签）的文章的概览页
+    - 类型必须为post或product
+    - query中有tag时返回含该类型中包含该标签的所有文档
+    */
+    router.get(/^\/(post|product)s$/, function(req, res, next) {
         let targetTag = req.query.tag
         let targetType = /^\/(post|product)s/.exec(req.path)[1]
         let navType = targetType === 'post' ? 0 : 1

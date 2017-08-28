@@ -8,7 +8,7 @@ let smtpConfig = require('../config').smtpConfig
 
 /**
 从固定发件邮箱发送邮件
-@param optionsArg {object} 参数对象，包含to(收件邮箱)、subject(主题)、html(内容)
+@param optionsArg {object} 参数对象，必须包含to(收件邮箱)、subject(主题)、html(内容)
 @param cb {?function} 可选的发送完成回调，成功传入true，失败传入false
 */
 const sendEmail = (function(optionsArg, cb) {
@@ -44,7 +44,7 @@ const sendEmail = (function(optionsArg, cb) {
 /**
 根据email取得用户文档
 @param email {string} 目标账户的邮箱
-@param cb {function} 查找完成回调，传入找到的文档
+@param cb {function} 查找完成回调，传入找到的用户文档或null
 */
 function getUserByEmail(email, cb) {
     UserModel.findOne(
@@ -114,7 +114,7 @@ function sendVerifyEmail(doc) {
 /**
 验证账户邮箱
 @param key {string} 从邮件提供的url中取得的字符串
-@param cb {function} 验证完成的回调，成功传入该邮箱字符串，失败不传参
+@param cb {function} 验证完成的回调，成功传入该账户的邮箱和昵称，失败传入null
 */
 function verifyEmail(key, cb) {
     let _hash = key.split('!')[0]
@@ -137,7 +137,7 @@ function verifyEmail(key, cb) {
             )
         })
     } else {
-        cb()
+        cb(verifiedAccount)
     }
 }
 

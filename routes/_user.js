@@ -2,7 +2,12 @@ let userProxy = require('../proxy/user')
 
 module.exports = function(router) {
 
-    // 用户注册
+    /*
+    POST 用户注册
+    - 文章文档的参数验证失败时以 {registerResultCode: 0} 结束响应
+    - 注册成功时以 {registerResultCode: 1} 结束响应
+    - 邮箱已被注册时以 {registerResultCode: 2} 结束响应
+    */
     router.post('/register', function(req, res, next) {
         let params = {
             email: req.body.email,
@@ -28,7 +33,10 @@ module.exports = function(router) {
         }
     })
 
-    // 从验证邮件内打开的验证链接
+    /*
+    GET 从验证邮件内打开的验证url
+    - 根据链接的query验证成功时自动登录，并重定向至首页；否则渲染404
+    */
     router.get(/^\/verify\/\S+/, function(req, res, next) {
         let key = /^\/verify\/(\S+)/.exec(req.path)[1]
         userProxy.verifyEmail(key, function(verifiedAccount) {
@@ -38,13 +46,22 @@ module.exports = function(router) {
                 req.session.currentUserNickname = verifiedAccount.nickname
                 res.redirect('/')
             } else {
-                // 否则返回404
+                // 否则渲染404
                 controller.render404(req)
             }
         })
     })
 
-    // 用户登录
+    /*
+    POST 用户登录
+    - 登录成功时将该用户的邮箱和昵称写入session
+    - 以 {loginResultCode: 登录结果码} 结束响应
+        - 0 该邮箱尚未注册
+        - 1 登陆成功
+        - 2 密码错误
+        - 3 尚未验证该邮箱
+        - 4 服务器错误
+    */
     router.post('/login', function(req, res, next) {
         let session = req.session
         let email = req.body.email
@@ -59,7 +76,11 @@ module.exports = function(router) {
         })
     })
 
-    // 用户注销
+    /*
+    GET 用户注销
+    - 重置session内的邮箱和昵称，清楚cookie
+    - 以 {logoutSuccess: true} 结束响应
+    */
     router.get('/logout', function(req, res, next) {
         req.session.currentUserEmail = req.session.currentUserNickname = ''
         res.clearCookie('rhaegoSessionKey')
