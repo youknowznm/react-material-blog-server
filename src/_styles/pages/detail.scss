@@ -144,6 +144,9 @@ body {
 
 // md解析出的文章
 .markdown-parsed {
+    position: relative;
+    padding: 10px;
+    background-color: #fafafa;
     // md元素
     p {
         color: #212121;
