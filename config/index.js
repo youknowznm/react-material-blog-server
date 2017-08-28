@@ -1,4 +1,4 @@
-const CONFIG = {
+module.exports = {
     // 站点名
     siteName: 'rhaego',
     // 数据库的路径
@@ -9,10 +9,13 @@ const CONFIG = {
     ownerEmail: 'znm92@icloud.com',
     // 用于验证用户身份的加密字符串
     accountVerificationKey: 'verifyUser',
-    // 用于向新注册用户发送验证邮件的邮箱设置，可在邮箱的官网设置项中查询
+    // 用于向新注册用户发送验证邮件的邮箱设置，可在邮箱的官网设置项中查询，以下均为必需
     smtpConfig: {
+        // 主机名
         host: 'smtp.126.com',
+        // 端口
         port: 465,
+        // 发件邮箱名
         auth: {
             user: 'rhaego@126.com',
             // 该邮箱的客户端授权码
@@ -22,5 +25,3 @@ const CONFIG = {
         senderInfo: 'Rhaego Support <rhaego@126.com>',
     }
 }
-
-module.exports = CONFIG

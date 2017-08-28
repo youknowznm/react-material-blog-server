@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const messageSchema = require('./message').messageSchema
 
-// 文章文档结构
+// 文章文档大纲
 let articleSchema = mongoose.Schema({
     _id: {
        type: String,

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-// 用户文档结构
+// 用户文档大纲
 let userSchema = mongoose.Schema({
     _id: {
         type: String,

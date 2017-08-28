@@ -12,7 +12,6 @@ let smtpConfig = require('../config').smtpConfig
 @param cb {?function} 可选的发送完成回调，成功传入true，失败传入false
 */
 const sendEmail = (function(optionsArg, cb) {
-
     // 邮件配置
     const SMTP_CONFIG = {
         host: smtpConfig.host,
@@ -23,7 +22,6 @@ const sendEmail = (function(optionsArg, cb) {
         from: smtpConfig.senderInfo
     }
     let transporter = nodemailer.createTransport(SMTP_CONFIG)
-
     return function(optionsArg) {
         let options = Object.assign(DEFAULT_OPTIONS, optionsArg)
         console.log('--- sending email --- \n', options)
@@ -41,7 +39,6 @@ const sendEmail = (function(optionsArg, cb) {
             }
         })
     }
-
 })()
 
 /**
@@ -143,7 +140,7 @@ function verifyEmail(key, cb) {
 登录
 @param email {string} 用户邮箱
 @param password {string} 用户密码
-@param cb {function} 登录回调，参数说明：
+@param cb {function} 登录回调，参数对象的属性为：
                         loginResultCode:
                             0 该邮箱尚未注册
                             1 登陆成功

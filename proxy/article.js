@@ -2,10 +2,10 @@ let ArticleModel = require('../models/article').ArticleModel
 
 
 /**
-取得符合一定条件的的所有文档
+取得符合一定条件的的所有文章文档
 @param tag {string|null} 可选的目标文档标签
 @param type {string|null} 可选的目标文档类型
-@param cb {function} 完成的回调，参数为所有符合条件文档的数组
+@param cb {function} 完成的回调，参数为所有符合条件的文档的数组
 */
 function getArticles(type, tag, cb) {
     let query = {}
@@ -24,7 +24,7 @@ function getArticles(type, tag, cb) {
 }
 
 /**
-保存文档
+保存文章文档
 @param params {object} 参数对象，包含_id、标题、简介、内容、标签、类型
 @param cb {function} 完成的回调，保存失败时返回空json，无论新还是编辑保存成功，都返回该文章的_id
 */
@@ -70,8 +70,8 @@ function saveArticle(params, cb) {
 
 /**
 根据_id查找
-@param _id {string} 目标文档的_id
-@param cb {function} 完成的回调，参数为符合条件的文档
+@param _id {string} 目标文章文档的_id
+@param cb {function} 完成的回调，参数为符合条件的文章文档
 */
 function getArticleById(_id, cb) {
     ArticleModel.findById(_id, function(e, doc) {

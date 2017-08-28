@@ -10,6 +10,7 @@ module.exports = function(router) {
             password: req.body.password,
             created: new Date(),
         }
+        // 参数类型检查
         if (typeof params.email === 'string'
                 && /\S/.test(params.email)
                 && typeof params.nickname === 'string'
@@ -59,9 +60,9 @@ module.exports = function(router) {
 
     // 用户注销
     router.get('/logout', function(req, res, next) {
-        req.session.currentUserEmail = ''
+        req.session.currentUserEmail = req.session.currentUserNickname = ''
         res.clearCookie('rhaegoSessionKey')
-        res.redirect('/')
+        res.json({logoutSuccess: true})
     })
 
     return router

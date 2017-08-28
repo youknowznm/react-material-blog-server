@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-// 评论文档结构
+// 评论文档大纲
 let messageSchema = mongoose.Schema({
     _id: {
        type: String,

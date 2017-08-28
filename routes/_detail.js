@@ -53,7 +53,7 @@ module.exports = function(router) {
                 email: req.session.currentUserEmail,
                 content: req.body.content,
                 created: new Date(),
-                articleId: '1333',
+                articleId: req.body.articleId,
             }
             if (typeof params.author === 'string'
                     && /\S/.test(params.author)

@@ -41,6 +41,7 @@ module.exports = function(router) {
                 tags: req.body.tags,
                 created: new Date(),
             }
+            // 参数类型检查
             if (typeof params._id === 'string'
                     && /\S/.test(params._id)
                     && typeof params.type === 'string'
