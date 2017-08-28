@@ -18,6 +18,7 @@ module.exports = function(router) {
             if (doc === null) {
                 controllers.render404(req, res, next)
             } else {
+                console.log(123,controllers.getUserInfo(req));
                 let navType = doc.type === 'post' ? 0 : 1
                 if (editing === true) {
                     res.render('edit', {
@@ -49,15 +50,12 @@ module.exports = function(router) {
             res.json({unauthorized: true})
         } else {
             let params = {
-                author: req.session.currentUserNickname,
                 email: req.session.currentUserEmail,
                 content: req.body.content,
                 created: new Date(),
                 articleId: req.body.articleId,
             }
-            if (typeof params.author === 'string'
-                    && /\S/.test(params.author)
-                    && typeof params.email === 'string'
+            if (typeof params.email === 'string'
                     && /\S/.test(params.email)
                     && typeof params.content === 'string'
                     && /\S/.test(params.content)

@@ -120,14 +120,19 @@ function verifyEmail(key, cb) {
     let _hash = key.split('!')[0]
     let _email = key.split('!')[1]
     let targetKey = new Hashes.SHA1().hex_hmac(accountVerificationKey, _email) + '!' + _email
+    let verifiedAccount = null
     if (targetKey === key) {
         getUserByEmail(_email, function(doc) {
             UserModel.update(
                 doc,
                 { verified: true },
                 function() {
-                    console.log('--- verified --- \n');
-                    cb(_email)
+                    console.log('--- verified --- \n')
+                    verifiedAccount = {
+                        email: doc.email,
+                        nickname: doc.nickname
+                    }
+                    cb(verifiedAccount)
                 }
             )
         })
