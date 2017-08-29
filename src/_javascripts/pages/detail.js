@@ -54,7 +54,40 @@ $(function() {
             type: 'Post',
             data,
             success: function(result) {
-                console.log(result);
+                switch (true) {
+                    case result.saveCommentSuccess:
+                        // 保存成功
+
+                        location.reload()
+
+                        break
+                    case result.unauthorized:
+                        // 登录对话过期，保存失败
+                        rhaegoUtil.showMdModal({
+                            isDialog: false,
+                            title: 'Authentication expired.',
+                            content: 'Please re-login.',
+                            onCancel() {
+                                location.reload()
+                            },
+                        })
+                        break
+                    case result.paramValidationFailed:
+                        // 标题、内容等参数校验错误
+                        rhaegoUtil.showMdModal({
+                            isDialog: false,
+                            title: 'Parameter validation failed.',
+                            content: 'Please check the content inputed.',
+                        })
+                        break
+                    default:
+                        // 其它原因导致的保存失败
+                        rhaegoUtil.showMdModal({
+                            isDialog: false,
+                            title: 'Save article failed.',
+                            content: 'An error occurred during saving. Please try agin later.'
+                        })
+                }
             },
         })
     })

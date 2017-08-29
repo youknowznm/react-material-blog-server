@@ -28,7 +28,12 @@ function saveComment(params, cb) {
                     })
                     messageDoc.save()
                     // 参数全部正确则创建一个评论文档，将其推入父文章文档的comments数组，执行回调，传入true
-                    articleDoc.comments.push(messageDoc)
+                    let currentComments = articleDoc.comments
+                    currentComments.push(messageDoc)
+                    // 评论按时间排序
+                    currentComments.sort(function(c1, c2) {
+                        return c1.created.valueOf() - c2.created.valueOf()
+                    })
                     articleDoc.save(cb(true))
                 }
             })

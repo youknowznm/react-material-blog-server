@@ -43,27 +43,17 @@
                 <!-- 评论列表 -->
                 <div class="row">
                     <ul class="comments-list">
-                        <li class="comment">
-                            <h3 class="comment-info">
-                                <span class="comment-author">Zhang Enming</span>
-                                <span class="comment-date">2017-07-13</span>
-                            </h3>
-                            <p class="comment-content">取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。</p>
-                        </li>
-                        <li class="comment">
-                            <h3 class="comment-info">
-                                <span class="comment-author">Zhang Enming</span>
-                                <span class="comment-date">2017-07-13</span>
-                            </h3>
-                            <p class="comment-content">取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。</p>
-                        </li>
-                        <li class="comment">
-                            <h3 class="comment-info">
-                                <span class="comment-author">Zhang Enming</span>
-                                <span class="comment-date">2017-07-13</span>
-                            </h3>
-                            <p class="comment-content">取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。取得文章内容的直接header元素，生成内容导航。</p>
-                        </li>
+                        <% for (let c of doc.comments) {%>
+                            <li class="comment">
+                                <h3 class="comment-info">
+                                    <span class="comment-author"><%= c.author[0].nickname %></span>
+                                    <span class="comment-date"><%= c.created %></span>
+                                </h3>
+                                <p class="comment-content">
+                                    <%= c.content %>
+                                </p>
+                            </li>
+                        <%}%>
                     </ul>
                 </div>
             </div>

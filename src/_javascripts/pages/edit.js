@@ -126,7 +126,7 @@ $(function() {
                         location.assign(`/articles/${result._id}`)
                         break
                     case result.unauthorized:
-                        // 对话过期，保存失败
+                        // 登录对话过期，保存失败
                         rhaegoUtil.showMdModal({
                             isDialog: false,
                             title: 'Authentication expired.',
