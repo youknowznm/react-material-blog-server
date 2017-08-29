@@ -129,6 +129,7 @@
                 transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
                 cursor: pointer;
                 &:hover {
+                    color: rgb(16, 108, 200);
                     opacity: 1;
                 }
             }
@@ -159,7 +160,7 @@
                 .info-link {
                     cursor: pointer;
                     padding: 8px 0;
-                    font-weight: bold;
+                    font-weight: lighter;
                     border-bottom: 2px solid transparent;
                     transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
                     &:hover {

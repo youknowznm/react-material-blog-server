@@ -24,7 +24,7 @@
         line-height: 36px;
         opacity: 1;
         transition: all .3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        font-family: "Roboto Regular";
+        font-family: "Roboto";
         text-transform: uppercase;
         letter-spacing: .05rem;
         user-select: none;
@@ -32,7 +32,7 @@
         .underlined {
             padding-bottom: 3px;
             border-bottom: 2px solid rgb(255, 235, 59);
-            font-weight: bold;
+            font-weight: 500;
             cursor: pointer;
         }
     }

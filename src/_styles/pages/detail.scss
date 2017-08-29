@@ -2,13 +2,6 @@
 @import '../common/md-header/main';
 @import '../common/footer';
 
-body {
-
-}
-
-.main {
-}
-
 .article-specific {
     position: relative;
     width: 100%;
@@ -17,7 +10,7 @@ body {
     margin: 0 auto;
     padding: 24px 200px 24px 24px;
     background: #fff;
-    font-family: 'Roboto Regular';
+    font-family: 'Roboto';
 
     // 小页面宽度时内容宽度的重置
     // @media (max-width: 1150px) {
@@ -111,7 +104,7 @@ body {
             .comment {
                 border-top: 1px dashed rgba(0, 0, 0, 0.4);
                 padding: 6px;
-                font-family: "Roboto Regular";
+                font-family: "Roboto";
                 &.is-by-current-user {
                     background-color: rgb(189, 213, 237);
                 }

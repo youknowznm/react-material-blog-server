@@ -12,22 +12,23 @@
     height: 36px;
     line-height: 36px;
     cursor: pointer;
-    font-weight: 500;
     text-transform: uppercase;
     text-align: center;
     border-radius: 2px;
     border: 0 solid rgb(33, 33, 33);
     color: rgb(33, 33, 33);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
-    font-family: "Roboto Medium" !important;
-    font-size: 14px;
     background-color: #fff;
     letter-spacing: .01em;
     user-select: none;
     transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 90;
 
-    .content {}
+    .content {
+        font-family: "Roboto";
+        font-weight: 500;
+        font-size: 14px;
+    }
 
     .ripple-container {
         position: absolute;
