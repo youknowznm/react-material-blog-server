@@ -4,8 +4,8 @@ import initMdInput from './md-input'
 
 export default function showLoginSnackbar() {
 
-    let $mdSnackbar = $('.login-snackbar')
-    let $contents = $mdSnackbar.children('._content')
+    let $loginSnackbar = $('.login-snackbar')
+    let $contents = $loginSnackbar.children('._content')
 
     let $loginInputs = $contents.filter('._login').children('.md-input')
     let $loginInputEmail = $loginInputs.filter('.email')
@@ -20,14 +20,14 @@ export default function showLoginSnackbar() {
     // 根据body的authLeval控制登录控件的显隐
     setTimeout(function() {
         if ($('body').data('authLevel') === 0) {
-            $mdSnackbar.addClass('show-partial')
+            $loginSnackbar.addClass('show-partial')
         }
     }, 500)
 
     // 登录控件整体的显隐切换
     $('body').on('click', function(e) {
         let $this = $(e.target)
-        $mdSnackbar.toggleClass('show-full', $this.closest('.login-snackbar').length !== 0)
+        $loginSnackbar.toggleClass('show-full', $this.closest('.login-snackbar').length !== 0)
     })
 
     // 根据不同输入框，以不同的正则判断内容的有效性，切换invalid类
@@ -50,7 +50,7 @@ export default function showLoginSnackbar() {
         }
     }
 
-    $mdSnackbar
+    $loginSnackbar
         // 登录注册的元素显隐切换
         .on('click', '._to-register', function() {
             $contents.removeClass('show').filter('._register').addClass('show')
@@ -103,7 +103,7 @@ export default function showLoginSnackbar() {
                                     title: 'Login failed.',
                                     content: NOTIFICATIONS[code],
                                     onCancel() {
-                                        $mdSnackbar.addClass('show-full')
+                                        $loginSnackbar.addClass('show-full')
                                     },
                                 })
                             }

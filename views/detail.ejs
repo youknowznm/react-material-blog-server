@@ -43,16 +43,23 @@
                 <!-- 评论列表 -->
                 <div class="row">
                     <ul class="comments-list">
-                        <% for (let c of doc.comments) {%>
-                            <li class="comment">
-                                <h3 class="comment-info">
-                                    <span class="comment-author"><%= c.author[0].nickname %></span>
-                                    <span class="comment-date"><%= c.created %></span>
-                                </h3>
-                                <p class="comment-content">
-                                    <%= c.content %>
-                                </p>
-                            </li>
+                        <% let comments = doc.comments %>
+                        <% for (let i in comments) {%>
+                            <% if (i < comments.length) {%>
+                            <% let c = comments[i] %>
+                                <li class="comment">
+                                    <h3 class="comment-info">
+                                        <span class="comment-author"><%= c.author[0].nickname %></span>
+                                        <span class="comment-date"><%= c.created %></span>
+                                    </h3>
+                                    <p class="comment-content">
+                                        <%= c.content %>
+                                    </p>
+                                    <i class="badge">
+                                        <%= +i + 1 %>
+                                    </i>
+                                </li>
+                            <%}%>
                         <%}%>
                     </ul>
                 </div>
