@@ -2,9 +2,9 @@ import $ from './jquery'
 import initMdButton from './md-button'
 import initMdInput from './md-input'
 
-export default function showMdSnackbar() {
+export default function showLoginSnackbar() {
 
-    let $mdSnackbar = $('.md-snackbar')
+    let $mdSnackbar = $('.login-snackbar')
     let $contents = $mdSnackbar.children('._content')
 
     let $loginInputs = $contents.filter('._login').children('.md-input')
@@ -27,7 +27,7 @@ export default function showMdSnackbar() {
     // 登录控件整体的显隐切换
     $('body').on('click', function(e) {
         let $this = $(e.target)
-        $mdSnackbar.toggleClass('show-full', $this.closest('.md-snackbar').length !== 0)
+        $mdSnackbar.toggleClass('show-full', $this.closest('.login-snackbar').length !== 0)
     })
 
     // 根据不同输入框，以不同的正则判断内容的有效性，切换invalid类

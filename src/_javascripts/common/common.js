@@ -5,9 +5,8 @@ import initMdInput from './md-input'
 import initMdTag from './md-tag'
 import initMdTextarea from './md-textarea'
 import initMdRadio from './md-radio'
-import showMdSnackbar from './md-snackbar'
-
 import globalMethods from './_initializeGlobalMethods'
+import initLoginSnackbar from './login-snackbar'
 
 // 每页的公用逻辑
 $(function() {
@@ -18,7 +17,7 @@ $(function() {
     initMdTextarea()
     initMdButton()
     initMdRadio()
-    showMdSnackbar()
+    initLoginSnackbar()
 
     /*
     控制面板

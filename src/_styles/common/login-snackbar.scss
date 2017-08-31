@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import "./_mixins";
 
-.md-snackbar {
+.login-snackbar {
     position: fixed;
     @include mds-responsive-wrap;
     bottom: -145px;

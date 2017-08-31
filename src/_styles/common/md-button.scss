@@ -352,6 +352,7 @@
     transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
     text-transform: capitalize;
     transform: scale(0);
+    font-weight: 500;
     &.show {
         transform: scale(1);
         opacity: .9;
