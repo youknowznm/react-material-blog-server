@@ -20,7 +20,7 @@ module.exports = function(router) {
                 controllers.render404(req, res, next)
             } else {
                 let navType = doc.type === 'post' ? 0 : 1
-                // console.log('- doc -', doc.comments[0]);
+                console.log('--- article doc ---', doc.comments[0]);
                 if (editing === true) {
                     res.render('edit', {
                         navType,
