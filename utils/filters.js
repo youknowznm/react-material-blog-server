@@ -39,3 +39,27 @@ ejs.filters.getThemeColor = function(navType) {
 ejs.filters.parseMarkdown = function(markdownText) {
     return marked(markdownText)
 }
+
+// 转换当前时间与目标时间毫秒差值为可读字符串
+ejs.filters.getDateDiff = function(targetDate) {
+    var _sec = Math.floor((new Date().valueOf() - targetDate.valueOf()) / 1000)
+    if (_sec < 60) {
+        return (_sec + ' seconds ago')
+    }
+    if (_sec < 60 * 60) {
+        var _min = Math.floor(_sec / 60)
+        return (_min + ' minutes ago')
+    }
+    if (_sec < 60 * 60 * 24) {
+        var _hou = Math.floor(_sec / (60 * 60))
+        var restSeconds = Math.floor(_sec % (60 * 60))
+        var _min = Math.floor(restSeconds / 60)
+        return (_hou + ' hours ' + _min + ' minutes ago')
+    }
+    if (_sec < 60 * 60 * 24 * 30) {
+        var _day = Math.floor(_sec / (60 * 60 * 24))
+        return (_day + ' days ago')
+    }
+    var _mon = Math.floor(_sec / (60 * 60 * 24 * 30))
+    return (_mon + ' months ago')
+}

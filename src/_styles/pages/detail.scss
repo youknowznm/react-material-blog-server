@@ -99,30 +99,42 @@
         }
         .comments-list {
             .comment {
-                border-top: 1px dashed rgba(0, 0, 0, 0.4);
+                position: relative;
+                border-top: 1px dashed rgb(226, 226, 226);
                 padding: 6px;
-                font-family: "Roboto";
+                transition: all .1s ease;
                 &.is-by-current-user {
                     background-color: rgb(189, 213, 237);
+                }
+                &:hover {
+                    background: rgb(240, 248, 255);
                 }
                 &:last-child {
                     border-bottom: 1px dashed rgb(226, 226, 226);
                 }
                 .comment-info {
-                    line-height: 24px;
+                    font-family: "Roboto Medium";
+                    line-height: 18px;
                     font-size: 12px;
                     margin-bottom: 2px;
                     .comment-author {
-                        font-weight: 500;
-                        color: rgb(128, 128, 128);
+                        // color: rgb(128, 128, 128);
                     }
                     .comment-date {
                         margin-left: 5px;
-                        color: rgb(204, 204, 204);
-                        font-style: italic;
+                        color: rgba(#000, .4);
+                    }
+                    .badge {
+                        color: #1e88e5;
+                        float: right;
+                        font-size: 12px;
+                        &:before {
+                            content: "#";
+                        }
                     }
                 }
                 .comment-content {
+                    font-family: "Roboto";
                     color: #212121;
                     line-height: 18px;
                     font-size: 12px;

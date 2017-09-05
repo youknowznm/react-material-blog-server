@@ -121,16 +121,11 @@
                 left: 0;
                 top: 50%;
                 transform: translateY(-50%);
-                font-family: 'Roboto';
-                font-size: 34px;
+                font-family: 'Roboto Mono';
+                font-size: 22px;
                 line-height: 40px;
-                opacity: .5;
-                transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
                 cursor: pointer;
-                &:hover {
-                    color: rgb(16, 108, 200);
-                    opacity: 1;
-                }
+                color: rgb(16, 108, 200);
             }
 
             .info {
