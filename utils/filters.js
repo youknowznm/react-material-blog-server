@@ -43,6 +43,9 @@ ejs.filters.parseMarkdown = function(markdownText) {
 // 转换当前时间与目标时间毫秒差值为可读字符串
 ejs.filters.getDateDiff = function(targetDate) {
     var _sec = Math.floor((new Date().valueOf() - targetDate.valueOf()) / 1000)
+    if (_sec < 10) {
+        return ('just now')
+    }
     if (_sec < 60) {
         return (_sec + ' seconds ago')
     }
