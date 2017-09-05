@@ -10,6 +10,34 @@
 @import "./md-radio";
 
 /*
+fonts - Roboto 和 Roboto Mono 的400、400i和500，共六套字体
+*/
+@font-face {
+    font-family: "Roboto";
+    src: url("../../_fonts/Roboto/Roboto-400.ttf");
+}
+@font-face {
+    font-family: "Roboto Italic";
+    src: url("../../_fonts/Roboto/Roboto-400i.ttf");
+}
+@font-face {
+    font-family: "Roboto Medium";
+    src: url("../../_fonts/Roboto/Roboto-500.ttf");
+}
+@font-face {
+    font-family: "Roboto Mono";
+    src: url("../../_fonts/RobotoMono/RobotoMono-400.ttf");
+}
+@font-face {
+    font-family: "Roboto Mono Italic";
+    src: url("../../_fonts/RobotoMono/RobotoMono-400i.ttf");
+}
+@font-face {
+    font-family: "Roboto Mono Medium";
+    src: url("../../_fonts/RobotoMono/RobotoMono-500.ttf");
+}
+
+/*
 general
 */
 * {

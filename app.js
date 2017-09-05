@@ -50,7 +50,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 // favicon
-app.use(favicon(path.join(__dirname, '/dist/images', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, '/src/_images', 'favicon.ico')))
 
 app.use(logger('dev'))
 app.use(bodyParser.json())

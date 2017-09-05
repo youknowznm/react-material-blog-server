@@ -3,7 +3,7 @@ const path = require('path')
 const fs = require('fs')
 
 const INPUT_PATH = path.join(__dirname, '/src/_javascripts/pages/')
-const OUTPUT_PATH = path.join(__dirname, '/dist/javascripts/')
+const OUTPUT_PATH = path.join(__dirname, '/dist/')
 
 // 公用模块
 let entries = {
@@ -53,14 +53,15 @@ module.exports = {
                 loader: "sass-loader" // 将 Sass 编译成 CSS
             }, ],
         }, {
-            test: /\.png$/,
+            // IDEA: webpack 字体打包
+            test: /\.(jpg|png|ttf)$/,
             use: [
-                'url-loader?mimetype=image/png',
-            ],
-        }, {
-            test: /\.jpg$/,
-            use: [
-                'file-loader',
+                {
+                    loader: 'url-loader',
+                    // options: {
+                    //     limit: 2000000,
+                    // }
+                },
             ],
         }],
     },
@@ -71,7 +72,6 @@ module.exports = {
             minChunks: Infinity,
         }),
         new webpack.HotModuleReplacementPlugin(),
-
         // new webpack.optimize.UglifyJsPlugin({
         //     sourceMap: true,
         //     compress: {
