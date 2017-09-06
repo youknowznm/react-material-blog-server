@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+.md-rte {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+
+    .actions {
+        position: relative;
+        width: 100%;
+        height: 58px;
+        line-height: 58px;
+        padding: 0 9px;
+        background: #fff;
+        > li {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            vertical-align: middle;
+            transition: all .1s ease;
+            cursor: pointer;
+            font-style: normal;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+            color: #aaa;
+            font-family: "Roboto Medium";
+            .icon-wrap {
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                overflow: hidden;
+                left: 8px;
+                top: 8px;
+                .icon {
+                    position: absolute;
+                    display: block;
+                    width: 24px;
+                    height: 24px;
+                    top: -24px;
+                    left: 0;
+                    filter: drop-shadow(#aaa 0 24px);
+                    border-bottom: 24px solid transparent;
+                    background: center no-repeat;
+                    background-size: 24px 24px;
+                }
+            }
+            .md-tooltip {
+                top: 35px;
+            }
+            sub {
+                font-size: small;
+            }
+            &:hover {
+                background-color: #f6f7f8;
+            }
+            &.bold .icon {
+                background-image: url("../../_images/rte/ic_format_bold.png");
+            }
+            &.italic .icon {
+                background-image: url("../../_images/rte/ic_format_italic.png");
+            }
+            &.underline .icon {
+                background-image: url("../../_images/rte/ic_format_underlined.png");
+            }
+            &.strikethrough .icon {
+                background-image: url("../../_images/rte/ic_strikethrough_s.png");
+            }
+            &.paragraph .icon,
+            &.header .icon {
+                // IDEA: md icons里没有合适的，故用字符代替
+            }
+            &.paragraph {
+                font-size: 22px;
+            }
+            &.quote .icon {
+                background-image: url("../../_images/rte/ic_format_quote.png");
+            }
+            &.ol .icon {
+                background-image: url("../../_images/rte/ic_format_list_bulleted.png");
+            }
+            &.ul .icon {
+                background-image: url("../../_images/rte/ic_format_list_numbered.png");
+            }
+            &.code .icon {
+                background-image: url("../../_images/rte/ic_code.png");
+            }
+            &.hr .icon {
+                background-image: url("../../_images/rte/ic_remove.png");
+            }
+            &.link .icon {
+                background-image: url("../../_images/rte/ic_insert_link.png");
+            }
+            &.image .icon {
+                background-image: url("../../_images/rte/ic_insert_photo.png");
+            }
+            &.active {
+                .icon {
+                    filter: drop-shadow(rgb(16, 108, 200) 0 24px);
+                }
+            }
+        }
+    }
+
+    .content {
+        position: relative;
+        width: 100%;
+        min-height: 300px;
+        padding: 12px;
+    }
+}

@@ -79,10 +79,10 @@ export default function initMdButton() {
         })
 
     $('body')
-        .on('mouseenter', '.md-button', function(evt) {
+        .on('mouseenter', '.md-button, .show-tooltip', function(evt) {
             $(this).children('.md-tooltip').addClass('show')
         })
-        .on('mouseleave', '.md-button', function(evt) {
+        .on('mouseleave', '.md-button, .show-tooltip', function(evt) {
             $(this).children('.md-tooltip').removeClass('show')
         })
 

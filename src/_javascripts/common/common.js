@@ -7,6 +7,7 @@ import initMdTextarea from './md-textarea'
 import initMdRadio from './md-radio'
 import globalMethods from './_initializeGlobalMethods'
 import initLoginSnackbar from './login-snackbar'
+import initMdRte from './md-rte'
 
 // 每页的公用逻辑
 $(function() {
@@ -18,6 +19,7 @@ $(function() {
     initMdButton()
     initMdRadio()
     initLoginSnackbar()
+    initMdRte()
 
     /*
     控制面板

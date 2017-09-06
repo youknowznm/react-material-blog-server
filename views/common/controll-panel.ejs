@@ -4,7 +4,7 @@
     <% if (static !== 'edit' && userInfo.authLevel === 2) {%>
     <li class="_create-new">
         <button class="md-button _round _warn">
-            <span class="content"><i class="icon"></i></span>
+            <span class="icon-wrap"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">create</p>
         </button>
@@ -15,7 +15,7 @@
     <% if (static === 'detail' && userInfo.authLevel === 2) {%>
     <li class="_edit">
         <button class="md-button _round _warn">
-            <span class="content"><i class="icon"></i></span>
+            <span class="icon-wrap"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">edit</p>
         </button>
@@ -26,7 +26,7 @@
     <% if (userInfo.authLevel !== 0) {%>
     <li class="_logout">
         <button class="md-button _round _warn">
-            <span class="content"><i class="icon"></i></span>
+            <span class="icon-wrap"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">log out</p>
         </button>
@@ -36,7 +36,7 @@
     <!-- TODO: 高度上空间有点紧张，有时间看有没有解决方案 -->
     <!-- <li class="_to-top">
         <button class="md-button _round _warn">
-            <span class="content"><i class="icon"></i></span>
+            <span class="icon-wrap"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
         </button>
     </li> -->

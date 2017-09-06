@@ -151,7 +151,7 @@
     padding: 0;
     border-radius: 50%;
 
-    .content {
+    .icon-wrap {
         position: relative;
         display: inline-block;
         width: 24px;
@@ -240,7 +240,7 @@
     cursor: pointer;
     z-index: 90;
 
-    .content {
+    .icon-wrap {
         position: relative;
         display: inline-block;
         width: 24px;
@@ -376,7 +376,5 @@
         margin-top: -11px;
         transform-origin: right;
     }
-
-
 
 }

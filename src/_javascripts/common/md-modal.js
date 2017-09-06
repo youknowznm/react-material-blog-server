@@ -3,11 +3,11 @@ import initMdButton from './md-button'
 
 /**
 @param options {object}
-    isDialog {Boolean} 为true时显示为dialog，否则为prompt
-    title {String} 标题字符串
-    content {String} 内容字符串
-    onConfirm {Function?} 可选的确认按钮回调
-    onCancel {Function?} 可选的取消按钮回调
+    - isDialog {Boolean} 为true时显示为dialog，否则为prompt
+    - title {String} 标题字符串
+    - content {String} 内容字符串
+    - onConfirm {Function?} 可选的确认按钮回调
+    - onCancel {Function?} 可选的取消按钮回调
 */
 export default function showMdModal(options) {
 
