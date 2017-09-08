@@ -52,6 +52,16 @@
                 top: 35px;
                 text-transform: capitalize;
                 width: auto !important;
+                white-space: nowrap;
+                transform: scale(0) translateX(-50%);
+                padding: 0 8px;
+                &.show {
+                    transform: scale(1) translateX(-50%);
+                }
+                &.to-show-at-top {
+                    margin-left: 0;
+                    transform-origin: 0 100% !important;
+                }
             }
             sub {
                 font-size: small;
@@ -111,6 +121,10 @@
         position: relative;
         width: 100%;
         min-height: 300px;
+        // line-height: 300px;
+        height: 300px;
         padding: 12px;
+        background: #fff;
+        border: 1px solid #cacaca;
     }
 }
