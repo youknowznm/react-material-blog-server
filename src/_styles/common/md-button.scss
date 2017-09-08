@@ -353,8 +353,10 @@
     text-transform: capitalize;
     transform: scale(0);
     font-weight: 500;
+    transition-delay: 0;
     &.show {
         transform: scale(1);
+        transition-delay: .3s;
         opacity: .9;
     }
     &.to-show-at-top {

@@ -8,14 +8,26 @@ window.rhaegoUtil = rhaegoUtil
 * 定义全局方法
 */
 
-//
+// TODO
 rhaegoUtil.showMdModal = showMdModal
 
 // 在点击动画结束后调用函数
-rhaegoUtil.mdDelay = function(fn) {
+rhaegoUtil.mdDelay = function(fn, delay = 400) {
     setTimeout(function() {
         fn()
-    }, 400)
+    }, delay)
+}
+// TODO
+rhaegoUtil.mdDebounce = function(fn, delay = 500) {
+    var timer = null
+    return function () {
+        var context = this
+        var args = arguments
+        clearTimeout(timer)
+        timer = setTimeout(function() {
+            fn.apply(context, args)
+        }, delay)
+    }
 }
 
 /*

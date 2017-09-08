@@ -78,11 +78,12 @@ export default function initMdButton() {
             }
         })
 
+    // 浮动提示条
     $('body')
-        .on('mouseenter', '.md-button, .show-tooltip', function(evt) {
+        .on('mouseenter', '.show-tooltip', function(evt) {
             $(this).children('.md-tooltip').addClass('show')
         })
-        .on('mouseleave', '.md-button, .show-tooltip', function(evt) {
+        .on('mouseleave', '.show-tooltip', function(evt) {
             $(this).children('.md-tooltip').removeClass('show')
         })
 

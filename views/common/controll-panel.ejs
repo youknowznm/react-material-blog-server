@@ -3,7 +3,7 @@
     <!-- 仅在登录者为站长且位于非新建文章页时显示 -->
     <% if (static !== 'edit' && userInfo.authLevel === 2) {%>
     <li class="_create-new">
-        <button class="md-button _round _warn">
+        <button class="md-button _round _warn show-tooltip">
             <span class="icon-wrap"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">create</p>
@@ -14,7 +14,7 @@
     <!-- 仅在登录者为站长且位于文章详情页时显示 -->
     <% if (static === 'detail' && userInfo.authLevel === 2) {%>
     <li class="_edit">
-        <button class="md-button _round _warn">
+        <button class="md-button _round _warn show-tooltip">
             <span class="icon-wrap"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">edit</p>
@@ -25,7 +25,7 @@
     <!-- 仅在已登录时显示 -->
     <% if (userInfo.authLevel !== 0) {%>
     <li class="_logout">
-        <button class="md-button _round _warn">
+        <button class="md-button _round _warn show-tooltip">
             <span class="icon-wrap"><i class="icon"></i></span>
             <div class="ripple-container"><span class="ripple"></span></div>
             <p class="md-tooltip to-show-at-left">log out</p>
