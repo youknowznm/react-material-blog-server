@@ -70,44 +70,44 @@
             &:hover {
                 background-color: #f6f7f8;
             }
-            &.bold .icon {
+            &[data-action="b"] .icon {
                 background-image: url("../../_images/rte/ic_format_bold.png");
             }
-            &.italic .icon {
+            &[data-action="i"] .icon {
                 background-image: url("../../_images/rte/ic_format_italic.png");
             }
-            &.underline .icon {
+            &[data-action="u"] .icon {
                 background-image: url("../../_images/rte/ic_format_underlined.png");
             }
-            &.strikethrough .icon {
+            &[data-action="s"] .icon {
                 background-image: url("../../_images/rte/ic_strikethrough_s.png");
             }
-            &.paragraph .icon,
-            &.header .icon {
+            &[data-action="p"] .icon,
+            &[data-action="h"] .icon {
                 // IDEA: md icons里没有合适的，故用字符代替
             }
-            &.paragraph {
+            &[data-action="p"] {
                 font-size: 22px;
             }
-            &.quote .icon {
+            &[data-action="q"] .icon {
                 background-image: url("../../_images/rte/ic_format_quote.png");
             }
-            &.ol .icon {
+            &[data-action="ol"] .icon {
                 background-image: url("../../_images/rte/ic_format_list_bulleted.png");
             }
-            &.ul .icon {
+            &[data-action="ul"] .icon {
                 background-image: url("../../_images/rte/ic_format_list_numbered.png");
             }
-            &.code .icon {
+            &[data-action="code"] .icon {
                 background-image: url("../../_images/rte/ic_code.png");
             }
-            &.hr .icon {
+            &[data-action="hr"] .icon {
                 background-image: url("../../_images/rte/ic_remove.png");
             }
-            &.link .icon {
+            &[data-action="link"] .icon {
                 background-image: url("../../_images/rte/ic_insert_link.png");
             }
-            &.image .icon {
+            &[data-action="image"] .icon {
                 background-image: url("../../_images/rte/ic_insert_photo.png");
             }
             &.active {
