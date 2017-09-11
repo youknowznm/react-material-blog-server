@@ -156,60 +156,62 @@
     <div class="row">
         <div class="md-rte">
             <ul class="actions">
-                <li data-action="b" class="show-tooltip">
+                <li data-action-abbr="b" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">bold</p>
                 </li>
-                <li data-action="i" class="show-tooltip">
+                <li data-action-abbr="i" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">italic</p>
                 </li>
-                <li data-action="u" class="show-tooltip">
+                <li data-action-abbr="u" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">underline</p>
                 </li>
-                <li data-action="s" class="show-tooltip">
+                <li data-action-abbr="s" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">strikethrough</p>
                 </li>
-                <li data-action="h" class="show-tooltip">
+                <li data-action-abbr="h" class="action show-tooltip">
                     H<sub>1</sub>
                     <p class="md-tooltip to-show-at-top">header</p>
                 </li>
-                <li data-action="p" class="show-tooltip">
+                <li data-action-abbr="p" class="action show-tooltip">
                     &#182;
                     <p class="md-tooltip to-show-at-top">paragraph</p>
                 </li>
-                <li data-action="q" class="show-tooltip">
+                <li data-action-abbr="q" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">quote</p>
                 </li>
-                <li data-action="ol" class="show-tooltip">
+                <li data-action-abbr="ol" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">ordered list</p>
                 </li>
-                <li data-action="ul" class="show-tooltip">
+                <li data-action-abbr="ul" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">unordered list</p>
                 </li>
-                <li data-action="code" class="show-tooltip">
+                <li data-action-abbr="code" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">code</p>
                 </li>
-                <li data-action="hr" class="show-tooltip">
+                <li data-action-abbr="hr" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">horizontal line</p>
                 </li>
-                <li data-action="link" class="show-tooltip">
+                <li data-action-abbr="link" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">link</p>
                 </li>
-                <li data-action="image" class="show-tooltip">
+                <li data-action-abbr="image" class="action show-tooltip">
                     <span class="icon-wrap"><i class="icon"></i></span>
                     <p class="md-tooltip to-show-at-top">image</p>
                 </li>
-                <!-- bold italic underline strikethrough h1? h2? p? quote ol ul code hr link image -->
             </ul>
+            <button onclick="document.execCommand('bold',false,null);">Bold</button>
+            <div onclick="document.execCommand('bold',false,null);" style='border:1px solid black;width:50px;'>Bold</div>
+
             <div class="content" contenteditable="true">
 
             </div>

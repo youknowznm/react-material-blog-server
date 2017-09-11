@@ -14,7 +14,7 @@
         padding: 0 10px;
         background: #fff;
         box-sizing: border-box;
-        > li {
+        .action {
             position: relative;
             display: inline-block;
             width: 40px;
@@ -70,44 +70,45 @@
             &:hover {
                 background-color: #f6f7f8;
             }
-            &[data-action="b"] .icon {
+            &[data-action-abbr="b"] .icon {
                 background-image: url("../../_images/rte/ic_format_bold.png");
             }
-            &[data-action="i"] .icon {
+            &[data-action-abbr="i"] .icon {
                 background-image: url("../../_images/rte/ic_format_italic.png");
             }
-            &[data-action="u"] .icon {
+            &[data-action-abbr="u"] .icon {
                 background-image: url("../../_images/rte/ic_format_underlined.png");
             }
-            &[data-action="s"] .icon {
+            &[data-action-abbr="s"] .icon {
                 background-image: url("../../_images/rte/ic_strikethrough_s.png");
             }
-            &[data-action="p"] .icon,
-            &[data-action="h"] .icon {
+            &[data-action-abbr="p"] .icon,
+            &[data-action-abbr="h"] .icon {
                 // IDEA: md icons里没有合适的，故用字符代替
+                user-select: none;
             }
-            &[data-action="p"] {
+            &[data-action-abbr="p"] {
                 font-size: 22px;
             }
-            &[data-action="q"] .icon {
+            &[data-action-abbr="q"] .icon {
                 background-image: url("../../_images/rte/ic_format_quote.png");
             }
-            &[data-action="ol"] .icon {
+            &[data-action-abbr="ol"] .icon {
                 background-image: url("../../_images/rte/ic_format_list_bulleted.png");
             }
-            &[data-action="ul"] .icon {
+            &[data-action-abbr="ul"] .icon {
                 background-image: url("../../_images/rte/ic_format_list_numbered.png");
             }
-            &[data-action="code"] .icon {
+            &[data-action-abbr="code"] .icon {
                 background-image: url("../../_images/rte/ic_code.png");
             }
-            &[data-action="hr"] .icon {
+            &[data-action-abbr="hr"] .icon {
                 background-image: url("../../_images/rte/ic_remove.png");
             }
-            &[data-action="link"] .icon {
+            &[data-action-abbr="link"] .icon {
                 background-image: url("../../_images/rte/ic_insert_link.png");
             }
-            &[data-action="image"] .icon {
+            &[data-action-abbr="image"] .icon {
                 background-image: url("../../_images/rte/ic_insert_photo.png");
             }
             &.active {

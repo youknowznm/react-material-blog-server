@@ -5,72 +5,116 @@ import $ from 'jquery'
 */
 export default function initMdRte(options) {
     let $mdRte = $('.md-rte')
-    let $actions = $mdRte.children('.actions')
+    let format = function(commandName, value = null) {
+        console.log(document.execCommand(commandName, false, null))
+    }
     let actionArr = [
         {
             abbr: 'b',
-            title: 'bold',
-            action: () => format('bold'),
+            fullName: 'bold',
+            action: function() {
+                format('bold')
+            }
         },
         {
             abbr: 'i',
-            title: 'italic',
+            fullName: 'italic',
             action: () => format('italic'),
         },
         {
             abbr: 'u',
-            title: 'underline',
+            fullName: 'underline',
             action: () => format('underline'),
         },
         {
             abbr: 's',
-            title: 'strikethrough',
+            fullName: 'strikethrough',
             action: () => format('strikeThrough'),
         },
         {
             abbr: 'h',
-            title: 'header',
+            fullName: 'header',
             action: () => format('formatBlock', '<h1>'),
+            textContentHTML: 'H<sub>1</sub>',
         },
         {
             abbr: 'p',
-            title: 'paragraph',
+            fullName: 'paragraph',
             action: () => format('formatBlock', '<p>'),
+            textContentHTML: '&#182;',
         },
         {
             abbr: 'q',
-            title: 'quote',
+            fullName: 'quote',
             action: () => format('formatBlock', '<blockquote>'),
         },
         {
             abbr: 'ol',
-            title: 'ordered list',
+            fullName: 'ordered list',
             action: () => format('insertOrderedList'),
         },
         {
             abbr: 'ul',
-            title: 'unordered list',
+            fullName: 'unordered list',
             action: () => format('insertUnrderedList'),
         },
         {
             abbr: 'code',
-            title: 'code',
+            fullName: 'code',
             action: () => format('formatBlock', '<pre>'),
         },
         {
             abbr: 'hr',
-            title: 'horizontal line',
+            fullName: 'horizontal line',
             action: () => format('insertHorizontalRule'),
         },
         {
             abbr: 'link',
-            title: 'link',
+            fullName: 'link',
             action: () => null,
         },
         {
             abbr: 'image',
-            title: 'image',
+            fullName: 'image',
             action: () => null,
         },
     ]
+    let rteHTML = '<ul class="actions">'
+    actionArr.forEach(function(action) {
+        // 已有该行为的对应图标时，使用图标；否则用字符串标识其
+        let contentHTML = action.textContentHTML || '<span class="icon-wrap"><i class="icon"></i></span>'
+        rteHTML += `<li data-action-abbr="${action.abbr}" class="action show-tooltip">
+            ${contentHTML}
+            <p class="md-tooltip to-show-at-top">${action.fullName}</p>
+        </li>`
+    })
+    rteHTML += '</ul><div class="content" contenteditable="true"></div>'
+    // $mdRte.html(rteHTML)
+    // $mdRte.on('click', '.action', function(evt) {
+    //     let $this = $(this)
+    //     let _a = $this.data('actionAbbr')
+    //     let actionObj = actionArr.find(function(item) {
+    //         return item.abbr === _a
+    //     })
+    //     console.log(actionObj);
+    //     actionObj.action()
+    // })
+    // setInterval(function() {
+    //     document.execCommand('bold', false, null)
+    // }, 2000)
+    console.log($('[data-action-abbr=b]'));
+    // $mdRte.on('click', function() {
+    //     // document.execCommand('bold',false, null)
+    //     format('bold')
+    // })
+    // $('[data-action-abbr=b]')[0].addEventListener('click'= function() {
+    //     format('bold')
+    // }
+    $('[data-action-abbr=b]').on('mousedown', function(e) {
+        e.preventDefault()
+    })
+    $('[data-action-abbr=b]').on('click', function() {
+        // document.execCommand('bold',false, null)
+        format('bold')
+    })
 }
