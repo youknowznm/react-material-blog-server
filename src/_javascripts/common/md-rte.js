@@ -81,7 +81,7 @@ export default function initMdRte(options) {
     ]
     let rteHTML = '<ul class="actions">'
     actionArr.forEach(function(action) {
-        // 已有该行为的对应图标时，使用图标；否则用字符串标识其
+        // 已有该行为的对应图标时，使用图标；否则用字符串标识之
         let contentHTML = action.textContentHTML || '<span class="icon-wrap"><i class="icon"></i></span>'
         rteHTML += `<li data-action-abbr="${action.abbr}" class="action show-tooltip">
             ${contentHTML}
@@ -89,32 +89,17 @@ export default function initMdRte(options) {
         </li>`
     })
     rteHTML += '</ul><div class="content" contenteditable="true"></div>'
-    // $mdRte.html(rteHTML)
-    // $mdRte.on('click', '.action', function(evt) {
-    //     let $this = $(this)
-    //     let _a = $this.data('actionAbbr')
-    //     let actionObj = actionArr.find(function(item) {
-    //         return item.abbr === _a
-    //     })
-    //     console.log(actionObj);
-    //     actionObj.action()
-    // })
-    // setInterval(function() {
-    //     document.execCommand('bold', false, null)
-    // }, 2000)
-    console.log($('[data-action-abbr=b]'));
-    // $mdRte.on('click', function() {
-    //     // document.execCommand('bold',false, null)
-    //     format('bold')
-    // })
-    // $('[data-action-abbr=b]')[0].addEventListener('click'= function() {
-    //     format('bold')
-    // }
-    $('[data-action-abbr=b]').on('mousedown', function(e) {
-        e.preventDefault()
-    })
-    $('[data-action-abbr=b]').on('click', function() {
-        // document.execCommand('bold',false, null)
-        format('bold')
-    })
+    $mdRte
+        .html(rteHTML)
+        .on('mousedown', '.action', function(evt) {
+            evt.preventDefault()
+        })
+        .on('click', '.action', function(evt) {
+            let $this = $(this)
+            let _a = $this.data('actionAbbr')
+            let actionObj = actionArr.find(function(item) {
+                return item.abbr === _a
+            })
+            actionObj.action()
+        })
 }
