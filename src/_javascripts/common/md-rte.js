@@ -91,6 +91,7 @@ export default function initMdRte(options) {
     rteHTML += '</ul><div class="content" contenteditable="true"></div>'
     $mdRte
         .html(rteHTML)
+        // IDEA 在可编辑区域获得焦点时，execCommand才起作用。否则返回false；而mousedown事件会夺取焦点
         .on('mousedown', '.action', function(evt) {
             evt.preventDefault()
         })
