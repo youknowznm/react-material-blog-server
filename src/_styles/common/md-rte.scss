@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import './globalArticle';
 
 .md-rte {
     position: relative;
@@ -15,11 +16,12 @@
         background: #fff;
         box-sizing: border-box;
         .action {
-            position: relative;
             display: inline-block;
+            position: relative;
             width: 40px;
             height: 40px;
             line-height: 40px;
+            margin-right: 6px;
             vertical-align: middle;
             transition: all .1s ease;
             cursor: pointer;
@@ -27,7 +29,7 @@
             font-size: 20px;
             line-height: 40px;
             text-align: center;
-            color: #aaa;
+            color: #888;
             font-family: "Roboto Medium";
             .icon-wrap {
                 position: absolute;
@@ -43,7 +45,7 @@
                     height: 24px;
                     top: -24px;
                     left: 0;
-                    filter: drop-shadow(#aaa 0 24px);
+                    filter: drop-shadow(#888 0 24px);
                     border-bottom: 24px solid transparent;
                     background: center no-repeat;
                     background-size: 24px 24px;
@@ -68,7 +70,7 @@
                 font-size: small;
             }
             &:hover {
-                background-color: #f6f7f8;
+                background: rgba(7, 96, 176, .1);
             }
             &[data-action-abbr="b"] .icon {
                 background-image: url("../../_images/rte/ic_format_bold.png");
@@ -133,5 +135,29 @@
         // border: 1px solid #cacaca;
         box-sizing: border-box;
         color: rgb(51, 51, 51);
+        &:after,
+        &:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 4px;
+            transition: all .4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background-color: rgb(16, 108, 200);
+            transform: translateX(2px);
+        }
+        &:after {
+            right: 50%;
+        }
+        &:before {
+            left: 50%;
+        }
+        // 获得焦点时
+        &:focus {
+            &:after,
+            &:before {
+                width: calc(50% - 4px);
+            }
+        }
     }
 }

@@ -88,7 +88,7 @@ export default function initMdRte(options) {
             <p class="md-tooltip to-show-at-top">${action.fullName}</p>
         </li>`
     })
-    rteHTML += '</ul><div class="content" contenteditable="true"></div>'
+    rteHTML += '</ul><div class="content" contenteditable="true" spellcheck="false"></div>'
     $mdRte
         .html(rteHTML)
         // IDEA 在可编辑区域获得焦点时，execCommand才起作用。否则返回false；而mousedown事件会夺取焦点
