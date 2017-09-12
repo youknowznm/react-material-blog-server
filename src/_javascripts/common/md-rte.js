@@ -78,6 +78,16 @@ export default function initMdRte(options) {
             fullName: 'image',
             action: () => null,
         },
+        {
+            abbr: 'undo',
+            fullName: 'undo',
+            action: () => null,
+        },
+        {
+            abbr: 'redo',
+            fullName: 'redo',
+            action: () => null,
+        },
     ]
     let rteHTML = '<ul class="actions">'
     actionArr.forEach(function(action) {
@@ -86,7 +96,9 @@ export default function initMdRte(options) {
         rteHTML += `<li data-action-abbr="${action.abbr}" class="action show-tooltip">
             ${contentHTML}
             <p class="md-tooltip to-show-at-top">${action.fullName}</p>
-        </li>`
+
+        </li>
+        <div class="separator"></div>`
     })
     rteHTML += '</ul><div class="content" contenteditable="true" spellcheck="false"></div>'
     $mdRte

@@ -16,7 +16,8 @@
         background: #fff;
         box-sizing: border-box;
         .action {
-            display: inline-block;
+            display: block;
+            float: left;
             position: relative;
             width: 40px;
             height: 40px;
@@ -29,7 +30,7 @@
             font-size: 20px;
             line-height: 40px;
             text-align: center;
-            color: #888;
+            color: #aaa;
             font-family: "Roboto Medium";
             .icon-wrap {
                 position: absolute;
@@ -45,7 +46,7 @@
                     height: 24px;
                     top: -24px;
                     left: 0;
-                    filter: drop-shadow(#888 0 24px);
+                    filter: drop-shadow(#aaa 0 24px);
                     border-bottom: 24px solid transparent;
                     background: center no-repeat;
                     background-size: 24px 24px;
@@ -113,11 +114,20 @@
             &[data-action-abbr="image"] .icon {
                 background-image: url("../../_images/rte/ic_insert_photo.png");
             }
-            &.active {
-                .icon {
-                    filter: drop-shadow(rgb(16, 108, 200) 0 24px);
-                }
+            &[data-action-abbr="undo"] .icon {
+                background-image: url("../../_images/rte/ic_undo.png");
             }
+            &[data-action-abbr="redo"] .icon {
+                background-image: url("../../_images/rte/ic_redo.png");
+            }
+        }
+        .separator {
+            display: block;
+            position: relative;
+            height: 40px;
+            width: 1px;
+            background-color: #e7eaf1;
+            margin: 0;
         }
     }
 
