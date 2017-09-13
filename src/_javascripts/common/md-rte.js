@@ -5,78 +5,75 @@ import $ from 'jquery'
 */
 export default function initMdRte(options) {
     let $mdRte = $('.md-rte')
-    let format = function(commandName, value = null) {
-        console.log(document.execCommand(commandName, false, null))
+    let execute = function(commandName, value = null) {
+        console.log(document.execCommand(commandName, false, value))
     }
-    let actionArr = [
+    const ACTIONS = [
         {
             abbr: 'undo',
             fullName: 'undo',
-            action: () => null,
+            action: () => execute('undo'),
         },
         {
             abbr: 'redo',
             fullName: 'redo',
-            action: () => null,
+            action: () => execute('redo'),
             followedBySeparator: true,
         },
         {
             abbr: 'b',
             fullName: 'bold',
-            action: function() {
-                format('bold')
-            }
+            action: () => execute('bold')
         },
         {
             abbr: 'i',
             fullName: 'italic',
-            action: () => format('italic'),
+            action: () => execute('italic'),
         },
         {
             abbr: 'u',
             fullName: 'underline',
-            action: () => format('underline'),
+            action: () => execute('underline'),
         },
         {
             abbr: 's',
             fullName: 'strikethrough',
-            action: () => format('strikeThrough'),
+            action: () => execute('strikeThrough'),
             followedBySeparator: true,
         },
         {
             abbr: 'h',
             fullName: 'header',
-            action: () => format('formatBlock', '<h1>'),
+            action: () => execute('formatBlock', '<H1>'),
             textContentHTML: 'H<sub>1</sub>',
         },
         {
             abbr: 'p',
             fullName: 'paragraph',
-            action: () => format('formatBlock', '<p>'),
+            action: () => execute('formatBlock', '<P>'),
             textContentHTML: '&#182;',
         },
         {
             abbr: 'q',
             fullName: 'quote',
-            action: () => format('formatBlock', '<blockquote>'),
+            action: () => execute('formatBlock', '<BLOCKQUOTE>'),
         },
         {
             abbr: 'code',
             fullName: 'code',
-            action: () => format('formatBlock', '<pre>'),
+            action: () => execute('formatBlock', '<PRE>'),
         },
         {
             abbr: 'ol',
             fullName: 'ordered list',
-            action: () => format('insertOrderedList'),
+            action: () => execute('insertOrderedList'),
         },
         {
             abbr: 'ul',
             fullName: 'unordered list',
-            action: () => format('insertUnrderedList'),
+            action: () => execute('insertUnorderedList'),
             followedBySeparator: true,
         },
-
         {
             abbr: 'link',
             fullName: 'link',
@@ -90,17 +87,17 @@ export default function initMdRte(options) {
         {
             abbr: 'hr',
             fullName: 'horizontal line',
-            action: () => format('insertHorizontalRule'),
+            action: () => execute('insertHorizontalRule'),
             followedBySeparator: true,
         },
         {
             abbr: 'clear',
             fullName: 'clear format',
-            action: () => null,
+            action: () => execute('removeFormat'),
         },
     ]
     let rteHTML = '<ul class="actions">'
-    actionArr.forEach(function(action) {
+    ACTIONS.forEach(function(action) {
         // 已有该行为的对应图标时，使用图标；否则用字符串标识之
         rteHTML += `
             <li data-action-abbr="${action.abbr}" class="action show-tooltip">
@@ -110,7 +107,7 @@ export default function initMdRte(options) {
             ${action.followedBySeparator === true ? '<div class="separator"></div>' : ''}
         `
     })
-    rteHTML += '</ul><div class="content" contenteditable="true" spellcheck="false"></div>'
+    rteHTML += '</ul><div class="content md-article" contenteditable="true" spellcheck="false"></div>'
     $mdRte
         .html(rteHTML)
         // IDEA 在可编辑区域获得焦点时，execCommand才起作用。否则返回false；而mousedown事件会夺取焦点
@@ -120,9 +117,9 @@ export default function initMdRte(options) {
         })
         .on('click', '.action', function(evt) {
             let $this = $(this)
-            let _a = $this.data('actionAbbr')
-            let actionObj = actionArr.find(function(item) {
-                return item.abbr === _a
+            let targetActionAbbr = $this.data('actionAbbr')
+            let actionObj = ACTIONS.find(function(item) {
+                return item.abbr === targetActionAbbr
             })
             actionObj.action()
         })
