@@ -1,4 +1,4 @@
-import $ from '../common/jquery'
+import $ from '../common/jquery.js'
 import '../../_styles/pages/overview.scss'
 import generateMaterialBackground from '../common/md-background'
 

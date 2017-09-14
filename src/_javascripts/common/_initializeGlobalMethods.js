@@ -1,4 +1,4 @@
-import $ from '../common/jquery'
+import $ from '../common/jquery.js'
 import showMdModal from './md-modal'
 
 let rhaegoUtil = {}
