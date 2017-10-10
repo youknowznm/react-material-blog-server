@@ -29,10 +29,10 @@ $(function() {
     控制面板
     */
     let $main = $('.jm-main')
-    let $controllPanel = $('.controll-panel')
-    $controllPanel
+    let $controlPanel = $('.control-panel')
+    $controlPanel
         // left值初始化
-        .css('left',  $main.width() + $main.offset().left - 75)
+        // .css('left',  $main.width() + $main.offset().left - 75)
         // 新建文章
         .on('click', '._create-new', function() {
             rhaegoUtil.mdDelay(function() {
@@ -63,13 +63,13 @@ $(function() {
                 }
             })
         })
-    // 位置随窗口响应变化
-    $(window).on('resize', function() {
-        $controllPanel.css('left',  $main.width() + $main.offset().left - 75)
-    })
+    // // 位置随窗口响应变化
+    // $(window).on('resize', function() {
+    //     $controlPanel.css('left',  $main.width() + $main.offset().left - 75)
+    // })
     // 推迟显示
     setTimeout(function() {
-        $controllPanel.show()
+        $controlPanel.show()
     }, 600)
 
     /*

@@ -48,8 +48,8 @@ module.exports = function(router) {
                         pageTitle: targetType,
                         static: 'overview',
                         userInfo: controllers.getUserInfo(req),
-                        articles: [],
-                        // articles: docs,
+                        // articles: [],
+                        articles: docs,
                         promptLogin: req.promptLogin,
                     })
                 })

@@ -36,10 +36,12 @@ body {
 }
 .jm-main-wrap {
     position: relative;
-    min-height: calc(100% - 144px);
+    height: calc(100% - 144px);
+    overflow: scroll;
 }
 .jm-main {
     position: relative;
     box-shadow: none;
+    width: 100%;
     height: 100%;
 }

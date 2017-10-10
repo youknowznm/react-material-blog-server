@@ -1,39 +1,36 @@
 <% include ./common/header.ejs %>
 
+<% if (articles[0] === undefined) {%>
 
-    <% if (articles[0] === undefined) {%>
+    <p class="empty-msg">No articles found.</p>
 
-        <p class="empty-msg">No articles found.</p>
+<%} else {%>
 
-    <%} else {%>
-
-        <% for (let article of articles) {%>
-            <div class="article" data-id="<%= article._id %>">
-                <div class="heading">
-                    <h1 class="title">
-                        <%-: article.title | breakToSpans %>
-                    </h1>
-                    <p class="summary">
-                        <%= article.summary %>
-                    </p>
-                </div>
-
-                <ul class="tags">
-                    <% for (let tag of article.tags) {%>
-                        <li class="tag" data-href="/<%= pageTitle %>s?tag=<%= tag %>">
-                            <button class="md-button">
-                                <span class="content"><%= tag %></span>
-                                <div class="ripple-container"><span class="ripple"></span></div>
-                            </button>
-                        </li>
-                    <% } %>
-                </ul>
-
+    <% for (let article of articles) {%>
+        <div class="article" data-id="<%= article._id %>">
+            <div class="heading">
+                <h1 class="title">
+                    <%-: article.title | breakToSpans %>
+                </h1>
+                <p class="summary">
+                    <%= article.summary %>
+                </p>
             </div>
-        <%}%>
 
+            <ul class="tags">
+                <% for (let tag of article.tags) {%>
+                    <li class="tag" data-href="/<%= pageTitle %>s?tag=<%= tag %>">
+                        <button class="md-button">
+                            <span class="content"><%= tag %></span>
+                            <div class="ripple-container"><span class="ripple"></span></div>
+                        </button>
+                    </li>
+                <% } %>
+            </ul>
+
+        </div>
     <%}%>
 
-
+<%}%>
 
 <% include ./common/footer.ejs %>
