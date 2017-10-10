@@ -2,14 +2,16 @@ import '../../_styles/pages/overview.scss'
 
 $(function() {
 
+
     // 生成md背景
     // $('.article').initBackground()
 
     // 稍候显示无内容提示
-    // let $emptyMsg = $('.empty-msg')
-    // setTimeout(function() {
-    //     $emptyMsg.toggleClass('show', $emptyMsg.length > 0)
-    // }, 1200)
+    let $emptyMsg = $('.empty-msg')
+    setTimeout(function() {
+        $emptyMsg.toggleClass('show', $emptyMsg.length > 0)
+    }, 1200)
+
     //
     // $('.article')
     //     // 点击文章的大部分区域，跳转至该文章id的路由

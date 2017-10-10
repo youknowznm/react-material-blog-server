@@ -19,19 +19,19 @@ module.exports = function(router) {
     router.get(/^\/(post|product)s$/, function(req, res, next) {
         let targetTag = req.query.tag
         let targetType = /^\/(post|product)s/.exec(req.path)[1]
-        let navType = targetType === 'post' ? 0 : 1
         switch (targetTag === undefined) {
             // 提供标签的查询字符串时，获取该标签下的所有文章，无文章时返回404
             case false:
                 articleProxy.getArticles(targetType, targetTag, function(docs) {
-                    if (docs[0] !== undefined) {
+                    console.log('-- articles --', docs);
+                    if (articles[0] !== undefined) {
                         res.render('overview', {
-                            navType,
+                            navType: (targetType === 'post') ? 0 : 1,
                             pageTitle: targetType,
                             static: 'overview',
                             userInfo: controllers.getUserInfo(req),
-                            // docs: [],
-                            docs,
+                            // articles: [],
+                            articles: docs,
                             promptLogin: req.promptLogin,
                         })
                     } else {
@@ -42,13 +42,14 @@ module.exports = function(router) {
             // 否则返回所有文章。未发表任何文章时的提示已在模板内写好
             case true:
                 articleProxy.getArticles(targetType, null, function(docs) {
+                    console.log('-- articles --', docs);
                     res.render('overview', {
-                        navType,
+                        navType: (targetType === 'post') ? 0 : 1,
                         pageTitle: targetType,
                         static: 'overview',
                         userInfo: controllers.getUserInfo(req),
-                        // docs: [],
-                        docs,
+                        articles: [],
+                        // articles: docs,
                         promptLogin: req.promptLogin,
                     })
                 })

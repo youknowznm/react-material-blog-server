@@ -1,47 +1,39 @@
 <% include ./common/header.ejs %>
 
-<div class="jm-main-wrap <% if (docs[0] === undefined) {%>empty<%}%>">
 
-    <% if (docs[0] === undefined) {%>
+    <% if (articles[0] === undefined) {%>
 
-        <h1 class="empty-msg">No articles found.</h1>
-        <div class="jm-main">
-            <% include ./common/controll-panel.ejs %>
-        </div>
+        <p class="empty-msg">No articles found.</p>
 
     <%} else {%>
 
-        <div class="jm-main">
-
-            <% for (let d of docs) {%>
-                <div class="article" data-id="<%= d._id %>">
-                    <div class="heading">
-                        <h1 class="title">
-                            <%-: d.title | breakToSpans %>
-                        </h1>
-                        <p class="summary">
-                            <%= d.summary %>
-                        </p>
-                    </div>
-
-                    <ul class="tags">
-                        <% for (let tag of d.tags) {%>
-                            <li class="tag" data-href="/<%= pageTitle %>s?tag=<%= tag %>">
-                                <button class="md-button">
-                                    <span class="content"><%= tag %></span>
-                                    <div class="ripple-container"><span class="ripple"></span></div>
-                                </button>
-                            </li>
-                        <% } %>
-                    </ul>
-
+        <% for (let article of articles) {%>
+            <div class="article" data-id="<%= article._id %>">
+                <div class="heading">
+                    <h1 class="title">
+                        <%-: article.title | breakToSpans %>
+                    </h1>
+                    <p class="summary">
+                        <%= article.summary %>
+                    </p>
                 </div>
-            <%}%>
-            <% include ./common/controll-panel.ejs %>
-        </div>
+
+                <ul class="tags">
+                    <% for (let tag of article.tags) {%>
+                        <li class="tag" data-href="/<%= pageTitle %>s?tag=<%= tag %>">
+                            <button class="md-button">
+                                <span class="content"><%= tag %></span>
+                                <div class="ripple-container"><span class="ripple"></span></div>
+                            </button>
+                        </li>
+                    <% } %>
+                </ul>
+
+            </div>
+        <%}%>
 
     <%}%>
 
-</div>
+
 
 <% include ./common/footer.ejs %>
