@@ -1,18 +1,17 @@
-<% include ./common/header-tags.ejs %>
-<% include ./common/md-header.ejs %>
+<% include ./common/header.ejs %>
 
-<div class="main-wrap <% if (docs[0] === undefined) {%>empty<%}%>">
+<div class="jm-main-wrap <% if (docs[0] === undefined) {%>empty<%}%>">
 
     <% if (docs[0] === undefined) {%>
 
         <h1 class="empty-msg">No articles found.</h1>
-        <div class="main">
+        <div class="jm-main">
             <% include ./common/controll-panel.ejs %>
         </div>
 
     <%} else {%>
 
-        <div class="main">
+        <div class="jm-main">
 
             <% for (let d of docs) {%>
                 <div class="article" data-id="<%= d._id %>">
@@ -45,4 +44,4 @@
 
 </div>
 
-<% include ./common/footer-tags.ejs %>
+<% include ./common/footer.ejs %>

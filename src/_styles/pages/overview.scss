@@ -1,16 +1,14 @@
-@import '../common/_general';
-@import '../common/md-header/main';
-@import '../common/footer';
+@import "../common/main.scss";
 
 body {
     background: #fafafa;
 }
 
-.main-wrap.empty {
+.jm-main-wrap.empty {
     margin-top: 0;
     min-height: 0;
     height: calc(100% - 256px - 144px + 24px);
-    .main {
+    .jm-main {
         min-height: 0;
     }
     ._to-top {

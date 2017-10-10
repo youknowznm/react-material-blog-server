@@ -1,11 +1,10 @@
-<% include ./common/header-tags.ejs %>
-<% include ./common/md-header.ejs %>
+<% include ./common/header.ejs %>
 
-<div class="main-wrap" data-uid="<%= doc._id %>">
-    <div class="main">
+<div class="jm-main-wrap" data-uid="<%= doc._id %>">
+    <div class="jm-main">
         <div class="article-specific">
             <div class="article-content md-article">
-                <%-: doc.content | parseMarkdown %>
+                <%-: doc.content %>
             </div>
             <div class="content-footer">
                 <span class="created">
@@ -76,4 +75,4 @@
 
 </div>
 
-<% include ./common/footer-tags.ejs %>
+<% include ./common/footer.ejs %>

@@ -1,12 +1,8 @@
-@import '../common/_general';
-@import '../common/md-header/main';
-@import '../common/footer';
-
-.main-wrap {
+.jm-main-wrap {
     padding-top: 24px;
 }
 
-.main {
+.jm-main {
     position: relative;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2),
                 0 1px 1px 0 rgba(0, 0, 0, .14),

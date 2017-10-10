@@ -3,7 +3,6 @@ ejs模板过滤器
 */
 
 const ejs = require('ejs')
-const marked = require('marked')
 
 // 格式化Date对象为yyyy-mm-dd的字符串
 ejs.filters.formatDate = function(date) {
@@ -33,11 +32,6 @@ ejs.filters.capitalize = function(str) {
 // 根据路由传入的navType值取得body主题配色的字符串
 ejs.filters.getThemeColor = function(navType) {
     return ['silver', 'gray', 'yellow', 'red'][navType]
-}
-
-// markdown解析
-ejs.filters.parseMarkdown = function(markdownText) {
-    return marked(markdownText)
 }
 
 // 转换当前时间与目标时间毫秒差值为可读字符串

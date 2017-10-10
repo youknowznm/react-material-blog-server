@@ -1,9 +1,8 @@
-import $ from '../common/jquery.js'
 import '../../_styles/pages/edit.scss'
 
 $(function() {
 
-    let $mdInputElements = $('.main').find('.md-input, .md-textarea, .md-tag')
+    let $mdInputElements = $('.jm-main').find('.md-input, .md-textarea, .md-tag')
 
     let $titleInput = $('#input_1')
     let $summaryInput = $('#input_2')
@@ -96,7 +95,7 @@ $(function() {
         if ($(this).is('._disabled')) {
             return
         }
-        let _id = $('.main-wrap').data('uid')
+        let _id = $('.jm-main-wrap').data('uid')
         let title = $titleInput.val().trim()
         let summary = $summaryInput.val().trim()
         let content = $contentInput.val().trim()

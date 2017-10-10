@@ -1,30 +1,34 @@
-import $ from './jquery.js'
-import initMDHeader from './md-header'
-import initMdButton from './md-button'
-import initMdInput from './md-input'
-import initMdTag from './md-tag'
-import initMdTextarea from './md-textarea'
-import initMdRadio from './md-radio'
-import globalMethods from './_initializeGlobalMethods'
-import initLoginSnackbar from './login-snackbar'
-import initMdRte from './md-rte'
+let siteNameWords = ['You', 'Know', 'znM']
 
 // 每页的公用逻辑
 $(function() {
 
-    initMDHeader()
-    initMdInput()
-    initMdTag()
-    initMdTextarea()
-    initMdButton()
-    initMdRadio()
-    initLoginSnackbar()
-    initMdRte()
+    $('.jm-header').initHeader({
+        siteNameWords,
+        navContents: ['posts', 'products', 'messages', 'about'],
+    })
+
+    $('.jm-footer').initFooter({
+        siteInfo: {
+            siteNameWords,
+            siteAuthorName: 'youknowznm',
+            siteAuthorHomepage: 'https://github.com/youknowznm',
+            siteSourceLink: 'https://github.com/youknowznm/jqueryMaterial.js',
+        },
+        socialInfo: {
+            wechatQrLink: '/_images/footer/wechat-qr.png',
+            email: 'znm92@icloud.com',
+            zhihuLink: 'https://www.zhihu.com/people/youkonwznm',
+            githubLink: 'https://github.com/youknowznm',
+        },
+    })
+
+    $('.jm-button').initButton()
 
     /*
     控制面板
     */
-    let $main = $('.main')
+    let $main = $('.jm-main')
     let $controllPanel = $('.controll-panel')
     $controllPanel
         // left值初始化

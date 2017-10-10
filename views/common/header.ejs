@@ -6,10 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="format-detection" content="telephone=no, email=no" />
-    <script type="text/javascript" src="/common.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/rhaegoCommon.js"></script>
     <script type="text/javascript" src="/<%= static %>.js"></script>
     <!-- <link rel="stylesheet"
         type="text/css"
         href="styles/<%= static %>.css" /> -->
 </head>
 <body data-auth-level="<%= userInfo.authLevel %>">
+    <header class="jm-header"></header>
+    <div class="jm-main-wrap">
+        <div class="jm-main">

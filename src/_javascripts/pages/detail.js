@@ -1,4 +1,3 @@
-import $ from '../common/jquery.js'
 import '../../_styles/pages/detail.scss'
 
 $(function() {
@@ -46,7 +45,7 @@ $(function() {
         }
         let data = JSON.stringify({
             content: $commentInput.val(),
-            articleId: $('.main-wrap').data('uid'),
+            articleId: $('.jm-main-wrap').data('uid'),
         })
         $.ajax({
             contentType: 'application/json',

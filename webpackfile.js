@@ -7,8 +7,9 @@ const OUTPUT_PATH = path.join(__dirname, '/dist/')
 
 // 公用模块
 let entries = {
-    common: [
-        path.join(__dirname, '/src/_javascripts/common/common.js'),
+    rhaegoCommon: [
+        './src/_javascripts/common/jqueryMaterial.js',
+        './src/_javascripts/common/common.js',
     ],
 }
 
@@ -41,7 +42,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['es2015'],
+                        presets: ['env'],
                     },
                 },
             },
@@ -70,11 +71,11 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
-            filename: 'common.js',
+            name: 'rhaegoCommon',
+            filename: 'rhaegoCommon.js',
             minChunks: Infinity,
         }),
-        new webpack.HotModuleReplacementPlugin(),
+        // new webpack.HotModuleReplacementPlugin(),
         // new webpack.optimize.UglifyJsPlugin({
         //     sourceMap: true,
         //     compress: {
