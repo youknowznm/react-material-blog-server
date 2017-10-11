@@ -2,15 +2,18 @@ import '../../_styles/pages/overview.scss'
 
 $(function() {
 
-
     // 生成md背景
-    // $('.article').initBackground()
+    $('.article').initBackground()
 
     // 稍候显示无内容提示
     let $emptyMsg = $('.empty-msg')
-    setTimeout(function() {
-        $emptyMsg.toggleClass('show', $emptyMsg.length > 0)
-    }, 1200)
+    if ($emptyMsg.length > 0) {
+        $('body').addClass('no-content')
+        setTimeout(function() {
+            $emptyMsg.addClass('show')
+        }, 1200)
+    }
+
 
     //
     // $('.article')

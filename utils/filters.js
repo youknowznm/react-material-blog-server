@@ -17,7 +17,7 @@ ejs.filters.breakToSpans = function(str) {
     let arr = str.split(/\s+/g)
     let r = ''
     arr.forEach(function(item) {
-        r += `<span class="single-word">${item}</span>`
+        r += `<span class="jm-single-word">${item}</span>`
     })
     return r
 }

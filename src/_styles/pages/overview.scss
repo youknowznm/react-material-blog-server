@@ -1,8 +1,5 @@
 @import "../common/main.scss";
 
-._to-top {
-    display: none;
-}
 .empty-msg {
     position: fixed;
     top: 50%;
@@ -23,7 +20,7 @@
 
 .article {
     position: relative;
-    display: inline-block;
+    float: left;
     // IDEA: 为了达到随窗口宽度响应变化该类元素宽高的目的，使用一个包裹元素，对其设置33.3%宽度，0高度，33.3%下内边距的做法，避免再占用js的资源
     // 'It works because margin/padding-top/bottom, when specified as a percentage, is determined according to the width of the containing element.'
     // https://stackoverflow.com/questions/5445491/height-equal-to-dynamic-width-css-fluid-layout
@@ -55,16 +52,6 @@
             color: rgba(#fff, .87);
             font-weight: 300;
             line-height: 32px;
-            .single-word {
-                float: left;
-                &:after {
-                    content: '·';
-                    opacity: .4;
-                }
-                &:last-of-type:after {
-                    content: '¬';
-                }
-            }
         }
         .summary {
             font-size: 14px;
@@ -97,4 +84,8 @@
         z-index: 10;
     }
 
+}
+
+.float-clearer {
+    clear: left;
 }
