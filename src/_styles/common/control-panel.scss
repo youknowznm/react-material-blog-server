@@ -1,42 +1,35 @@
 .control-panel {
     display: none;
     position: absolute;
-    right: 0;
-    top: 50px;
+    right: 12px;
+    top: 50%;
     transform: translateY(-50%);
     z-index: 199;
     > li {
         display: block;
         animation: zoomIn .4s ease;
-        &.zoom-out {
-            display: none;
-            animation: zoomIn .4s ease reverse;
+        @keyframes zoomIn {
+            from {
+                display: none;
+                transform: scale(0);
+            }
+            to {
+                display: block;
+                transform: scale(1);
+            }
         }
     }
-    ._logout .icon {
+    .panel-log-out .icon {
         background: url("../../_images/ic_logout.png") no-repeat;
-        filter: drop-shadow(#fff 0 24px);
     }
-    ._create-new .icon {
+    .panel-create-new .icon {
         background: url("../../_images/ic_create.png") no-repeat;
-        filter: drop-shadow(#fff 0 24px);
     }
-    ._edit .icon {
+    .panel-edit .icon {
         background: url("../../_images/ic_edit.png") no-repeat;
-        filter: drop-shadow(#fff 0 24px);
     }
-    ._to-top .icon {
+    .panel-to-top .icon {
         background: url("../../_images/ic_arrow_up.png") no-repeat;
-        filter: drop-shadow(#fff 0 24px);
     }
-    @keyframes zoomIn {
-        from {
-            display: none;
-            transform: scale(0);
-        }
-        to {
-            display: block;
-            transform: scale(1);
-        }
-    }
+
 }

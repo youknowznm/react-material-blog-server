@@ -1,4 +1,5 @@
-let siteNameWords = ['You', 'Know', 'znM']
+// let siteNameWords = ['You', 'Know', 'znM']
+let siteNameWords = ['Deshi', 'Basara']
 
 // 每页的公用逻辑
 $(function() {
