@@ -14,10 +14,7 @@ $(function() {
         }, 1200)
     }
 
-    $(window).on('scroll', function(e) {
-        console.log(window.innerHeight - document.documentElement.scrollTop);
-    })
-
+    
 
     //
     // $('.article')

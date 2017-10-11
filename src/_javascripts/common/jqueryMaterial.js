@@ -658,6 +658,7 @@ $.fn.extend({
     生成 angular material 风格的text input元素
     https://material.angularjs.org/latest/demo/input
     目标元素可配置的属性：
+        - data-type 输入框类型。可为text、password等，不提供时为'text'
         - data-label 输入框标题。不提供时从'Input 1'开始计数
         - data-value 实际内容文字。不提供时为''
         - data-maxLength 最大字符数。不提供时为20
@@ -673,6 +674,7 @@ $.fn.extend({
 
             var $input = $(this);
 
+            var type = $input.data('type') || 'text';
             var label = $input.data('label') || 'Input ' + inputEleCounter;
             var value = $input.data('value') || '';
             var maxLength = $input.data('maxLength') || 20;
@@ -680,7 +682,7 @@ $.fn.extend({
             var errorMsg = $input.data('errorMsg') || 'Validation failed.';
             var theme = $input.data('theme') || 'light';
 
-            var inputHTML = '\n                <div class="jm-input-content">\n                    <label class="placeholder" for="jm-input-' + inputEleCounter + '">' + label + '</label>\n                    <input id="jm-input-' + inputEleCounter + '" class="_input" maxlength="' + maxLength + '" value="' + value + '" spellcheck="false" />\n                    <p class="error">' + errorMsg + '</p>\n                    <p class="char-counter">\n                        <span class="current"></span>/<span class="maximum"></span>\n                    </p>\n                </div>';
+            var inputHTML = '\n                <div class="jm-input-content">\n                    <label class="placeholder" for="jm-input-' + inputEleCounter + '">' + label + '</label>\n                    <input id="jm-input-' + inputEleCounter + '" class="_input" type="' + type + '" maxlength="' + maxLength + '" value="' + value + '" spellcheck="false" />\n                    <p class="error">' + errorMsg + '</p>\n                    <p class="char-counter">\n                        <span class="current"></span>/<span class="maximum"></span>\n                    </p>\n                </div>';
 
             $input.toggleClass('_dark', theme === 'dark').html(inputHTML);
 
@@ -1369,8 +1371,7 @@ $.fn.extend({
         var _cb = typeof cb === 'function' ? cb : function () {};
         var _amendment = typeof amendment === 'number' ? amendment : jmHeaderHeight;
 
-        // // 目标元素为body时，目标高度再减12，即.jm-shadow的高度
-        _amendment = $target.is('body') ? jmHeaderHeight - 12 : _amendment;
+        _amendment = $target.is('body') ? jmHeaderHeight : _amendment;
 
         var targetBodyScrollTop = $target.offset().top - _amendment;
         var tId = setInterval(function () {

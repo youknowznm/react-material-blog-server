@@ -1,19 +1,26 @@
 <ul class="control-panel">
 
+    <!-- 仅在登录者为站长且位于非新建文章页时显示 -->
+    <% if (static !== 'edit' && userInfo.authLevel === 2) {%>
+        <li class="panel-create-new">
+            <button class="jm-button _round" data-tooltip-position="left" data-tooltip-content="create"></button>
+        </li>
+    <%}%>
 
-    <li class="panel-create-new">
-        <button class="jm-button _round" data-tooltip-position="left" data-tooltip-content="create"></button>
-    </li>
+    <!-- 仅在登录者为站长且位于文章详情页时显示 -->
+    <% if (static === 'detail' && userInfo.authLevel === 2) {%>
+        <li class="panel-edit">
+            <button class="jm-button _round" data-tooltip-position="left" data-tooltip-content="edit"></button>
+        </li>
+    <%}%>
 
-    <li class="panel-edit">
-        <button class="jm-button _round" data-tooltip-position="left" data-tooltip-content="edit"></button>
-    </li>
+    <!-- 仅在已登录时显示 -->
+    <% if (userInfo.authLevel !== 0) {%>
+        <li class="panel-log-out">
+            <button class="jm-button _round" data-tooltip-position="left" data-tooltip-content="log out"></button>
+        </li>
+    <%}%>
 
-    <li class="panel-log-out">
-        <button class="jm-button _round" data-tooltip-position="left" data-tooltip-content="log out"></button>
-    </li>
-
-    <!-- TODO: 高度上空间有点紧张，有时间看有没有解决方案 -->
     <li class="panel-to-top">
         <button class="jm-button _round" data-tooltip-position="left" data-tooltip-content="to top"></button>
     </li>

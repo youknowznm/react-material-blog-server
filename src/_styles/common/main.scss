@@ -35,8 +35,13 @@ body {
         .jm-main-wrap {
             height: calc(100% - 144px);
         }
-        .control-panel-to-top {
+        .panel-to-top {
             display: none;
+        }
+    }
+    &.no-scroll {
+        .login-snackbar {
+            transform: translateX(calc(-50% - 7.5px));
         }
     }
     .jm-main-wrap {

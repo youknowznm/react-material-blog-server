@@ -1,95 +1,72 @@
-<div class="login-snackbar jm-responsive-wrap">
+<div class="login-snackbar jm-responsive-wrap" id="login">
 
     <p class="_title">
         Log in to <span class="underlined">comment</span> articles (or <span class="underlined">create</span> one if you're the owner).
     </p>
 
-    <!-- 登录开始 -->
-    <div class="_content _login show">
-        <div class="md-input dark email">
-            <!-- IDEA: 只有for属性和对应input的id一致时，才能达到点击前者，聚焦后者的效果。 -->
-            <label class="placeholder" for="input_1">Email</label>
-            <input id="input_1" class="_input" maxlength="30" value="znm92@icloud.com"/>
-            <p class="error">Invalid email.</p>
-            <h5 class="char-counter">
-                <span class="current"></span>/<span class="maximum"></span>
-            </h5>
+    <div class="_division">
+
+        <!-- IDEA: 只有for属性和对应input的id一致时，才能达到点击前者，聚焦后者的效果。 -->
+        <div class="jm-input email"
+            data-validator="^([a-zA-Z\d\-]+)\w*@(\w+)(\.[a-zA-Z]{1,4}){1,2}$"
+            data-label="email"
+            data-max-length="30"
+            data-theme="dark"
+            data-error-msg="Invalid email format.">
         </div>
-        <div class="md-input dark password">
-            <label class="placeholder" for="input_2">Password</label>
-            <input id="input_2" class="_input" type="password" maxlength="20" value="znm922"/>
-            <p class="error">6+ characters plz.</p>
-            <h5 class="char-counter">
-                <span class="current"></span>/<span class="maximum"></span>
-            </h5>
+        <!-- data-value="znm92@icloud.com" -->
+
+        <div class="jm-input password"
+            data-type="password"
+            data-validator="^(.){6,16}$"
+            data-label="password"
+            data-max-length="16"
+            data-theme="dark"
+            data-error-msg="Need 6~16 characters.">
         </div>
-        <div class="buttons">
-            <button class="md-button _primary login">
-                <span class="content">log in</span>
-                <div class="ripple-container"><span class="ripple"></span></div>
-            </button>
-        </div>
+
+        <button class="jm-button _primary login" data-text="login"></button>
+
         <p class="_hint">
             <span class="link _to-register">Register</span> if you haven't got an account yet.
         </p>
+
     </div>
 
-    <!-- 登录结束 -->
+</div>
 
-    <!-- 注册开始 -->
-    <div class="_content _register">
-        <div class="md-input dark email">
-            <label class="placeholder" for="input_3">Email</label>
-            <input id="input_3" class="_input" maxlength="30" value="znm92@icloud.com"/>
-            <p class="error">Invalid email.</p>
-            <h5 class="char-counter">
-                <span class="current"></span>/<span class="maximum"></span>
-            </h5>
+<div class="jm-dialog-wrap" id="register">
+    <div class="jm-dialog">
+        <h1 class="dialog-title">Enter your profile.</h1>
+        <div class="jm-input email"
+            data-validator="^([a-zA-Z\d\-]+)\w*@(\w+)(\.[a-zA-Z]{1,4}){1,2}$"
+            data-label="email"
+            data-max-length="30"
+            data-error-msg="Invalid email format.">
         </div>
-        <div class="md-input dark nickname">
-            <label class="placeholder" for="input_4">Nickname</label>
-            <input id="input_4" class="_input" maxlength="20"  value="znm92" />
-            <p class="error">Required.</p>
-            <h5 class="char-counter">
-                <span class="current"></span>/<span class="maximum"></span>
-            </h5>
+        <div class="jm-input nickname"
+            data-validator="^(.){4,12}$"
+            data-label="nickname"
+            data-max-length="12"
+            data-error-msg="Need 4~12 characters.">
         </div>
-        <div class="md-input dark password">
-            <label class="placeholder" for="input_5">Password</label>
-            <input id="input_5" class="_input" type="password" maxlength="16" value="znm922"/>
-            <p class="error">6+ characters plz.</p>
-            <h5 class="char-counter">
-                <span class="current"></span>/<span class="maximum"></span>
-            </h5>
+        <div class="jm-input password"
+            data-type="password"
+            data-validator="^(.){6,16}$"
+            data-label="password"
+            data-max-length="16"
+            data-error-msg="Need 6~16 characters.">
         </div>
-        <div class="md-input dark confirm-password">
-            <label class="placeholder" for="input_6">Confirm Password</label>
-            <input id="input_6" class="_input" type="password" maxlength="16" value="znm922"/>
-            <p class="error">6+ characters plz.</p>
-            <h5 class="char-counter">
-                <span class="current"></span>/<span class="maximum"></span>
-            </h5>
+        <div class="jm-input password confirm-password"
+            data-type="password"
+            data-validator="^(.){6,16}$"
+            data-label="confirm password"
+            data-max-length="16"
+            data-error-msg="Need 6~16 characters.">
         </div>
         <div class="buttons">
-            <button class="md-button register">
-                <span class="content">register</span>
-                <div class="ripple-container"><span class="ripple"></span></div>
-            </button>
+            <button class="jm-button _primary register" data-text="register"></button>
+            <button class="jm-button cancel" data-text="cancel"></button>
         </div>
-        <p class="_hint">
-            <span class="link _to-login">Log in</span> if you've got an account.
-        </p>
     </div>
-
-    <!-- 注册结束 -->
-
-    <!-- 提示开始 -->
-    <div class="_content _notification">
-        Please check the verification mail just sent to <span class="highlighted">your mailbox</span>.
-        <p class="_hint">
-            <span class="link _to-login">Log in</span> if you've got an account.
-        </p>
-    </div>
-    <!-- 提示结束 -->
-
 </div>

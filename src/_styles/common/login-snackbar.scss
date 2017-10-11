@@ -9,7 +9,7 @@
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0 -2px 5px rgba(0, 0, 0, .2);
-    transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: bottom .4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     z-index: 200;
     text-align: center;
@@ -35,7 +35,7 @@
         }
     }
 
-    ._content {
+    ._division {
         position: absolute;
         display: inline-block;
         width: 100%;
@@ -46,25 +46,7 @@
 
         .jm-input {
             display: inline-block;
-            margin-left: 6px;
-            margin-right: 6px;
-            margin-top: 6px;
-            width: 300px;
-            .char-counter {
-                .current {
-                    margin-right: 4px;
-                }
-                .maximum {
-                    margin-left: 4px;
-                }
-            }
-        }
-
-        .buttons {
-            position: relative;
-            display: inline-block;
-            margin-left: 12px;
-            margin-top: 10px;
+            margin: 0 12px;
         }
 
         .jm-button {
@@ -77,7 +59,6 @@
             width: 100%;
             font-size: 12px;
             line-height: 24px;
-            margin-top: 20px;
             text-align: center;
             color: #fff;
             .link {
@@ -94,27 +75,11 @@
             }
         }
 
-        // 注册
-        &._register {
-            .jm-input {
-                min-width: 0;
-                width: 180px;
-            }
+        .jm-input {
+            min-width: 0;
+            width: 240px;
         }
 
-        // 提示检查邮件
-        &._notification {
-            line-height: 145px;
-            top: -20px;
-            color: #fff;
-            font-size: 18px;
-            .highlighted {
-                color: #ffeb3b;
-            }
-            ._hint {
-                margin-top: -25px;
-            }
-        }
     }
 
     &.show-partial {
@@ -125,7 +90,7 @@
         ._title {
             opacity: 0;
         }
-        ._content {
+        ._division {
             opacity: 1;
         }
         bottom: 0;
@@ -143,4 +108,18 @@
         }
     }
 
+
+}
+
+#register {
+    display: none;
+    .jm-input {
+        display: block;
+    }
+    .jm-button {
+        flex-grow: 0;
+    }
+    .dialog-title {
+        text-align: center;
+    }
 }
