@@ -20,7 +20,7 @@ module.exports = function() {
             $.showJmDialog({
                 dialogType: 'confirm',
                 title: 'Log out?',
-                content: 'Only logged-in users are able to comment or like posts.',
+                content: 'Only logged-in users can comment articles.',
                 onConfirm() {
                     $.ajax({
                         url: '/logout',

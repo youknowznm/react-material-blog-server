@@ -1,8 +1,8 @@
 // 登录提示语的映射
 const LOGIN_RESULT_MAP = {
-    0: 'You inputed an unregistered email address.',
-    2: 'You inputed a wrong password.',
-    3: 'Check the verification mail sent to that mailbox.',
+    0: 'You entered an unregistered email address.',
+    2: 'You entered a wrong password.',
+    3: 'Check the verification mail sent to your mailbox.',
     4: 'An internal server error occurred. Please try later.'
 }
 
@@ -13,16 +13,18 @@ module.exports = function() {
     */
     let $body = $('body')
     let $loginArea = $('#login-area')
-    let $loginButton = $loginArea.find('#confirm-login')
     let $registerArea = $('#register-area')
-    let $registerButton = $registerArea.find('#confirm-register')
-    // 根据body的authLeval控制登录容器的显隐
+    // 当body的authLeval为0（未登录）时，稍后显示登录元素；否则提示登录人身份
     setTimeout(function() {
         if ($body.data('authLevel') === 0) {
-            // $loginArea.addClass('show-partial')
-            $loginArea.addClass('show-partial show-full')
+            $loginArea.addClass('show-partial')
+        } else {
+            $.showJmToast({
+                content: `Logged in as ${$body.data('userNickname')}.`,
+                duration: 5000,
+            })
         }
-    }, 500)
+    }, 1000)
     // 登录控件的显隐切换
     $body.on('click', function(evt) {
         let $this = $(evt.target)
@@ -74,7 +76,7 @@ module.exports = function() {
         switchRegisterAreaDisplay(true)
     })
     // 点击登录按钮
-    $loginButton.on('click', function() {
+    $('#confirm-login').on('click', function() {
         let $this = $(this)
         if (!$this.hasClass('_disabled')) {
             /*
@@ -83,10 +85,10 @@ module.exports = function() {
             *
             */
             let dataObj = {
-                email: $('.login-email').children('._input').val(),
-                password: $('.login-password').children('._input').val(),
+                email: $('.login-email ._input').val(),
+                password: $('.login-password ._input').val(),
             }
-            $loginArea.removeClass('show-full')
+            console.log(dataObj);
             $.ajax({
                 contentType: 'application/json',
                 url: '/login',
@@ -120,11 +122,11 @@ module.exports = function() {
         switchRegisterAreaDisplay(false)
     })
     // 点击注册按钮
-    $registerButton.on('click', function() {
+    $('#confirm-register').on('click', function() {
         let $this = $(this)
         if (!$this.hasClass('_disabled')) {
-            let pwd1 = $registerArea.find('.register-password ._input').val()
-            let pwd2 = $registerArea.find('.register-confirm-password ._input').val()
+            let pwd1 = $('.register-password ._input').val()
+            let pwd2 = $('.register-confirm-password ._input').val()
             // 密码不一致时提示
             if (pwd1 !== pwd2) {
                 $.showJmToast({

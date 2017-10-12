@@ -1,6 +1,6 @@
 import initJqueryMaterial from './_initJqueryMaterial.js';
 import initControlPanel from './_initControlPanel.js';
-import initLoginSnackbar from './_initLoginSnackbar.js';
+import initLoginAndRegister from './_initLoginAndRegister.js';
 
 
 // 每页的公用逻辑
@@ -8,7 +8,7 @@ $(function() {
 
     initJqueryMaterial()
     initControlPanel()
-    initLoginSnackbar()
+    initLoginAndRegister()
 
     /*
     主导航按钮
@@ -26,15 +26,6 @@ $(function() {
         } else {
             location.assign(targetPath)
         }
-    })
-
-    /*
-    footer的view source按钮
-    */
-    $('footer').on('click', '.source', function() {
-        rhaegoUtil.mdDelay(function() {
-            window.open('https://github.com/youknowznm/rhaego')
-        })
     })
 
 })
