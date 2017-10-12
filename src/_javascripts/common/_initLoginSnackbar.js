@@ -1,32 +1,38 @@
+// 登录提示语的映射
+const NOTIFICATION_MAP = {
+    0: 'You inputed an unregistered email address.',
+    2: 'You inputed a wrong password.',
+    3: 'Check the verification mail sent to that mailbox.',
+    4: 'An internal server error occurred. Please try later.'
+}
+
 module.exports = function() {
 
+    /*
+    容器相关和方法
+    */
     let $body = $('body')
-
     let $loginArea = $('#login-area')
     let $loginButton = $loginArea.find('#confirm-login')
-
     let $registerArea = $('#register-area')
     let $registerButton = $registerArea.find('#confirm-register')
-    let $cancelRegisterButton = $registerArea.find('#cancel-register')
-
-    // 根据body的authLeval控制登录控件的显隐
+    // 根据body的authLeval控制登录容器的显隐
     setTimeout(function() {
         if ($body.data('authLevel') === 0) {
             // $loginArea.addClass('show-partial')
             $loginArea.addClass('show-partial show-full')
         }
     }, 500)
-
     // 登录控件的显隐切换
     $body.on('click', function(evt) {
         let $this = $(evt.target)
         if ($this.closest('#login-area').length > 0) {
             $loginArea.addClass('show-full')
-        } else if ($registerArea.css('display') === 'none') {
+        } else if ($this.closest('.jm-dialog-wrap').length === 0) {
             $loginArea.removeClass('show-full')
         }
     })
-
+    // 方法：控制注册区域的显隐
     function switchRegisterAreaDisplay(option) {
         if (option === true) {
             $body.addClass('no-scroll')
@@ -42,8 +48,8 @@ module.exports = function() {
             }, 400)
         }
     }
-
-    function watchInputs($target) {
+    // 方法：检查参数对象下的输入元素，在value均有效时使响应的提交按钮可用；否则不可用之
+    function watchAreaInputs($target) {
         setInterval(function() {
             let allValid = true
             let $targetConfirmButton = $target.find('.input-check-target')
@@ -60,21 +66,17 @@ module.exports = function() {
         }, 100)
     }
 
-    watchInputs($loginArea)
-    watchInputs($registerArea)
-
-    $cancelRegisterButton.on('click', function() {
-        switchRegisterAreaDisplay(false)
-    })
-
+    /*
+    登录区域相关
+    */
+    watchAreaInputs($loginArea)
     $('.to-register-area').on('click', function() {
         switchRegisterAreaDisplay(true)
     })
-
     // 点击登录按钮
     $loginButton.on('click', function() {
         let $this = $(this)
-        if (!$this.hasClass('invalid')) {
+        if (!$this.hasClass('_disabled')) {
             /*
             *
             * 发送登录请求
@@ -84,6 +86,7 @@ module.exports = function() {
                 email: $('.login-email').children('._input').val(),
                 password: $('.login-email').children('._input').val(),
             })
+            $loginArea.removeClass('show-full')
             $.ajax({
                 contentType: 'application/json',
                 url: '/login',
@@ -95,19 +98,10 @@ module.exports = function() {
                     if (code === 1) {
                         location.reload()
                     } else {
-                        const NOTIFICATIONS = {
-                            0: 'You inputed an unregistered email address.',
-                            2: 'You inputed a wrong password.',
-                            3: 'Check the verification mail sent to that mailbox.',
-                            4: 'An internal server error occurred. Please try later.'
-                        }
-                        rhaegoUtil.showJmModal({
-                            isDialog: false,
+                        $.showJmDialog({
+                            dialogType: 'alert',
                             title: 'Login failed.',
-                            content: NOTIFICATIONS[code],
-                            onCancel() {
-                                $loginArea.addClass('show-full')
-                            },
+                            content: NOTIFICATION_MAP[code],
                         })
                     }
                 },
@@ -118,6 +112,13 @@ module.exports = function() {
         }
     })
 
+    /*
+    注册区域相关
+    */
+    watchAreaInputs($registerArea)
+    $('#cancel-register').on('click', function() {
+        switchRegisterAreaDisplay(false)
+    })
     // 点击注册按钮
     $registerButton.on('click', function() {
         let pwd1 = $registerInputPassword.children('._input').val()
