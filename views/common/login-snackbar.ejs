@@ -1,10 +1,8 @@
 <div id="login-area" class="jm-responsive-wrap">
-
     <p class="_title">
         Log in to <span class="underlined">comment</span> articles (or <span class="underlined">create</span> one if you're the owner).
     </p>
-
-    <div class="_division">
+    <div class="_content">
 
         <!-- IDEA: 只有for属性和对应input的id一致时，才能达到点击前者，聚焦后者的效果。 -->
         <div class="jm-input login-email"
@@ -32,32 +30,33 @@
         </p>
 
     </div>
-
 </div>
 
 <div id="register-area" class="jm-dialog-wrap">
     <div class="jm-dialog">
         <h1 class="dialog-title">Enter your profile.</h1>
-        <div class="jm-input email"
+        <div class="jm-input register-email"
             data-validator="^([a-zA-Z\d\-]+)\w*@(\w+)(\.[a-zA-Z]{1,4}){1,2}$"
             data-label="email"
             data-max-length="30"
+            data-value="znm92@icloud.com"
             data-error-msg="Invalid email format.">
         </div>
-        <div class="jm-input nickname"
+        <div class="jm-input register-nickname"
             data-validator="^(.){4,12}$"
             data-label="nickname"
             data-max-length="12"
+            data-value="znm92@icloud.com"
             data-error-msg="Required 4~12 characters.">
         </div>
-        <div class="jm-input password"
+        <div class="jm-input register-password"
             data-type="password"
             data-validator="^(.){6,16}$"
             data-label="password"
             data-max-length="16"
             data-error-msg="Required 6~16 characters.">
         </div>
-        <div class="jm-input password confirm-password"
+        <div class="jm-input register-confirm-password"
             data-type="password"
             data-validator="^(.){6,16}$"
             data-label="confirm password"

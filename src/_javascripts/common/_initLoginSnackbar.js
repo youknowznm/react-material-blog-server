@@ -1,5 +1,5 @@
 // 登录提示语的映射
-const NOTIFICATION_MAP = {
+const LOGIN_RESULT_MAP = {
     0: 'You inputed an unregistered email address.',
     2: 'You inputed a wrong password.',
     3: 'Check the verification mail sent to that mailbox.',
@@ -28,7 +28,7 @@ module.exports = function() {
         let $this = $(evt.target)
         if ($this.closest('#login-area').length > 0) {
             $loginArea.addClass('show-full')
-        } else if ($this.closest('.jm-dialog-wrap').length === 0) {
+        } else if ($this.closest('.jm-dialog-wrap').length === 0 && $this.closest('.jm-toast').length === 0) {
             $loginArea.removeClass('show-full')
         }
     })
@@ -82,16 +82,16 @@ module.exports = function() {
             * 发送登录请求
             *
             */
-            let data = JSON.stringify({
+            let dataObj = {
                 email: $('.login-email').children('._input').val(),
-                password: $('.login-email').children('._input').val(),
-            })
+                password: $('.login-password').children('._input').val(),
+            }
             $loginArea.removeClass('show-full')
             $.ajax({
                 contentType: 'application/json',
                 url: '/login',
                 type: 'Post',
-                data,
+                data: JSON.stringify(dataObj),
                 success: function(result) {
                     console.log('--- login result --- \n', result);
                     let code = result.loginResultCode
@@ -101,7 +101,7 @@ module.exports = function() {
                         $.showJmDialog({
                             dialogType: 'alert',
                             title: 'Login failed.',
-                            content: NOTIFICATION_MAP[code],
+                            content: LOGIN_RESULT_MAP[code],
                         })
                     }
                 },
@@ -121,65 +121,63 @@ module.exports = function() {
     })
     // 点击注册按钮
     $registerButton.on('click', function() {
-        let pwd1 = $registerInputPassword.children('._input').val()
-        let pwd2 = $registerInputConfirmPassword.children('._input').val()
-        // 两个密码框均为非空时，进行一致性判断。
-        if (pwd1 !== '' && pwd2 !== '') {
+        let $this = $(this)
+        if (!$this.hasClass('_disabled')) {
+            let pwd1 = $registerArea.find('.register-password ._input').val()
+            let pwd2 = $registerArea.find('.register-confirm-password ._input').val()
+            // 密码不一致时提示
             if (pwd1 !== pwd2) {
-                $registerInputConfirmPassword.find('.error').text('Password typo.')
-                    .end().addClass('invalid')
+                $.showJmToast({
+                    content: 'Please enter consistent passwords.'
+                })
             } else {
-                $registerInputConfirmPassword.find('.error').text('Required.')
-                    .end().removeClass('invalid')
+                /*
+                *
+                * 发送注册请求
+                *
+                */
+                let dataObj = {
+                    email: $registerArea.find('.register-email ._input').val(),
+                    nickname: $registerArea.find('.register-nickname ._input').val(),
+                    password: $registerArea.find('.register-password ._input').val(),
+                }
+                $.ajax({
+                    contentType: 'application/json',
+                    url: '/register',
+                    type: 'Post',
+                    data: JSON.stringify(dataObj),
+                    success: function(result) {
+                        switch (result.registerResultCode) {
+                            case 0:
+                                // 邮箱、密码等参数校验错误
+                                $.showJmToast({
+                                    content: 'Please check all input values.'
+                                })
+                                break
+                            case 1:
+                                // 若注册成功，则显示查看邮件的提示
+                                switchRegisterAreaDisplay(false)
+                                setTimeout(function() {
+                                    $.showJmDialog({
+                                        dialogType: 'alert',
+                                        title: 'Registration successful.',
+                                        content: `Please check the validation email sent to ${dataObj.email}`,
+                                    })
+                                }, 450)
+                                break
+                            case 2:
+                                // 若该邮箱已注册则提示，稍后移除提示
+                                $.showJmToast({
+                                    content: 'That email address has been registered.'
+                                })
+                                break;
+                        }
+                    },
+                    fail: function(result) {
+                        console.log('--- registration fail --- \n', result);
+                    },
+                })
             }
-        }
-        if ($registerInputs.filter('.invalid').length === 0) {
-            /*
-            *
-            * 发送注册请求
-            *
-            */
-            let data = JSON.stringify({
-                email: $registerInputEmail.children('._input').val(),
-                nickname: $registerInputNickname.children('._input').val().trim(),
-                password: $registerInputConfirmPassword.children('._input').val(),
-            })
-            $.ajax({
-                contentType: 'application/json',
-                url: '/register',
-                type: 'Post',
-                data,
-                success: function(result) {
-                    switch (result.registerResultCode) {
-                        case 0:
-                            // 邮箱、密码等参数校验错误
-                            rhaegoUtil.showJmModal({
-                                isDialog: false,
-                                title: 'Parameter validation failed.',
-                                content: 'Please check all input elements.',
-                            })
-                            break
-                        case 1:
-                            // 若注册成功，则显示查看邮件的提示
-                            $divisions.removeClass('show').filter('._notification')
-                                .children('.highlighted').text(data.email)
-                                .end().addClass('show')
-                            break
-                        case 2:
-                            // 若该邮箱已注册则提示，稍后移除提示
-                            $registerInputEmail.children('.error').text('Email registered.')
-                                .end().addClass('invalid')
-                            setTimeout(function() {
-                                $registerInputEmail.removeClass('invalid')
-                                    .children('.error').text('Invalid email.')
-                            }, 3000)
-                            break;
-                    }
-                },
-                fail: function(result) {
-                    console.log('failed', result)
-                },
-            })
         }
     })
 
