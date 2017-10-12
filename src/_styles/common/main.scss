@@ -40,7 +40,7 @@ body {
         }
     }
     &.no-scroll {
-        .login-snackbar {
+        #login-area {
             transform: translateX(calc(-50% - 7.5px));
         }
     }

@@ -1,4 +1,4 @@
-<div class="login-snackbar jm-responsive-wrap" id="login">
+<div id="login-area" class="jm-responsive-wrap">
 
     <p class="_title">
         Log in to <span class="underlined">comment</span> articles (or <span class="underlined">create</span> one if you're the owner).
@@ -7,7 +7,7 @@
     <div class="_division">
 
         <!-- IDEA: 只有for属性和对应input的id一致时，才能达到点击前者，聚焦后者的效果。 -->
-        <div class="jm-input email"
+        <div class="jm-input login-email"
             data-validator="^([a-zA-Z\d\-]+)\w*@(\w+)(\.[a-zA-Z]{1,4}){1,2}$"
             data-label="email"
             data-max-length="30"
@@ -16,7 +16,7 @@
         </div>
         <!-- data-value="znm92@icloud.com" -->
 
-        <div class="jm-input password"
+        <div class="jm-input login-password"
             data-type="password"
             data-validator="^(.){6,16}$"
             data-label="password"
@@ -25,17 +25,17 @@
             data-error-msg="Need 6~16 characters.">
         </div>
 
-        <button class="jm-button _primary login" data-text="login"></button>
+        <button id="confirm-login" class="jm-button _primary input-check-target" data-text="login"></button>
 
         <p class="_hint">
-            <span class="link _to-register">Register</span> if you haven't got an account yet.
+            <span class="link to-register-area">Register</span> if you haven't got an account yet.
         </p>
 
     </div>
 
 </div>
 
-<div class="jm-dialog-wrap" id="register">
+<div id="register-area" class="jm-dialog-wrap">
     <div class="jm-dialog">
         <h1 class="dialog-title">Enter your profile.</h1>
         <div class="jm-input email"
@@ -65,8 +65,8 @@
             data-error-msg="Need 6~16 characters.">
         </div>
         <div class="buttons">
-            <button class="jm-button _primary register" data-text="register"></button>
-            <button class="jm-button cancel" data-text="cancel"></button>
+            <button id="confirm-register" class="jm-button _primary _flat input-check-target" data-text="register"></button>
+            <button id="cancel-register" class="jm-button _flat" data-text="cancel"></button>
         </div>
     </div>
 </div>

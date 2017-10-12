@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.login-snackbar {
+#login-area {
     position: fixed;
     bottom: -145px;
     height: 145px;
@@ -108,16 +108,23 @@
         }
     }
 
-
 }
 
-#register {
+#register-area {
     display: none;
+    .jm-dialog {
+        transform-origin: 0 50%;
+    }
     .jm-input {
         display: block;
     }
+    .buttons {
+        justify-content: space-around;
+        margin: 6px 0 12px;
+    }
     .jm-button {
         flex-grow: 0;
+        width: 140px;
     }
     .dialog-title {
         text-align: center;
