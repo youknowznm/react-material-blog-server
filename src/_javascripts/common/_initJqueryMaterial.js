@@ -3,9 +3,12 @@ let siteNameWords = ['Rh', 'ae', 'go']
 
 module.exports = function() {
 
-    $('.jm-header').initHeader({
+    let $jmHeader = $('.jm-header')
+    console.log($jmHeader.data('navType').valueOf());
+    $jmHeader.initHeader({
         siteNameWords,
         navContents: ['posts', 'products', 'messages', 'about'],
+        activeNavIndex: $jmHeader.data('navType').valueOf(),
     })
 
     $('.jm-footer').initFooter({

@@ -13,19 +13,28 @@ $(function() {
     /*
     主导航按钮
     */
-    $('.jm-header').on('click', '.nav-item', function() {
-        let targetPath = $(this).data('href')
-        // 不同url的切换产生动画
-        if (location.pathname !== targetPath) {
-            setTimeout(function() {
+    let $body = $('body')
+    let targetPath = ''
+
+    $body
+        .on('mousedown', '.nav-button', function() {
+            targetPath = `/${$(this).text()}`
+        })
+        .on('mouseup', function() {
+            if (targetPath !== '') {
                 if (location.pathname !== targetPath) {
+                    // 不同url的切换产生动画
+                    setTimeout(function() {
+                        location.assign(targetPath)
+                        targetPath = ''
+                    }, 400)
+                } else {
+                    // 相同url下的切换直接跳转
                     location.assign(targetPath)
                 }
-            }, 800)
-        // 相同url下的切换直接跳转
-        } else {
-            location.assign(targetPath)
-        }
-    })
+            }
+        })
+
+
 
 })
