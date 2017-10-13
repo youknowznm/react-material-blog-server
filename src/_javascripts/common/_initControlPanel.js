@@ -27,6 +27,7 @@ module.exports = function() {
                         type: 'Get',
                         data: '',
                         success() {
+                            localStorage.removeItem('userInfoToasted')
                             location.reload()
                         }
                     })

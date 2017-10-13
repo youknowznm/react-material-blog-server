@@ -1,14 +1,14 @@
 import initJqueryMaterial from './_initJqueryMaterial.js';
 import initControlPanel from './_initControlPanel.js';
-import initLoginAndRegister from './_initLoginAndRegister.js';
+import initAuth from './_initAuth.js';
 
 
 // 每页的公用逻辑
 $(function() {
 
     initJqueryMaterial()
+    initAuth()
     initControlPanel()
-    initLoginAndRegister()
 
     /*
     主导航按钮

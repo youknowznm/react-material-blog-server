@@ -14,15 +14,18 @@ module.exports = function() {
     let $body = $('body')
     let $loginArea = $('#login-area')
     let $registerArea = $('#register-area')
-    // 当body的authLeval为0（未登录）时，稍后显示登录元素；否则提示登录人身份
+    // 当body的authLeval为0（未登录）时，稍后显示登录元素；否则提示登录人身份一次
     setTimeout(function() {
         if ($body.data('authLevel') === 0) {
             $loginArea.addClass('show-partial')
         } else {
-            $.showJmToast({
-                content: `Logged in as ${$body.data('userNickname')}.`,
-                duration: 5000,
-            })
+            if (localStorage.getItem('userInfoToasted') === null) {
+                $.showJmToast({
+                    content: `Logged in as ${$body.data('userNickname')}.`,
+                    duration: 5000,
+                })
+                localStorage.setItem('userInfoToasted', true)
+            }
         }
     }, 1000)
     // 登录控件的显隐切换
