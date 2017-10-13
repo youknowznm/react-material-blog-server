@@ -1,18 +1,18 @@
 @import "../common/main.scss";
 
-.jm-main-wrap {
-    padding-top: 24px;
-}
-
 .jm-main {
     position: relative;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2),
                 0 1px 1px 0 rgba(0, 0, 0, .14),
                 0 2px 1px -1px rgba(0, 0, 0, .12);
     border-radius: 4px;
-    .flexed {
-        display: flex;
+    .jm-row {
+        margin: 12px 0 !important;
+        &.flexed {
+            display: flex;
+        }
     }
+
     .article-title {
         flex-grow: .5;
     }
@@ -21,15 +21,19 @@
     }
     .article-type {
         flex-grow: .05;
-
+        .jm-radio {
+            margin: 36px 10px 0 !important;
+        }
     }
     .article-tags {
         flex-grow: 1;
     }
     .buttons {
-        flex-grow: .05;
+        width: 250px;
         .jm-button {
             margin: 28px 8px;
         }
     }
 }
+
+

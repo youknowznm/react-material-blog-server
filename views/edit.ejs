@@ -1,6 +1,8 @@
 <% include ./common/header.ejs %>
 
 <div class="jm-row flexed">
+    <!-- 类型 -->
+    <div class="jm-radio-group article-type" data-current-type="<%= doc.type %>"></div>
     <!-- 标题 -->
     <div class="jm-input article-title"
         data-type="text"
@@ -19,12 +21,11 @@
         data-value="<%= doc.summary %>"
         data-error-msg="Required 10~40 characters.">
     </div>
-    <!-- 类型 -->
-    <div class="jm-radio-group article-type" data-current-type="<%= doc.type %>"></div>
+
 </div>
 <div class="jm-row">
     <!-- 内容 -->
-    <div class="jm-rte article-content"></div>
+    <div class="jm-rte article-content" data-id="<%= doc._id %>"></div>
 </div>
 <div class="jm-row flexed">
     <!-- 标签 -->
@@ -35,7 +36,7 @@
     </div>
     <!-- 按钮 -->
     <div class="buttons">
-        <button id="submit" class="jm-button _primary" data-text="submit"></button>
+        <button id="submit" class="jm-button _primary _disabled" data-text="submit"></button>
         <button id="cancel" class="jm-button" data-text="cancel"></button>
     </div>
 
