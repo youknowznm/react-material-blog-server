@@ -1,4 +1,6 @@
-.article-specific {
+@import "../common/main.scss";
+
+.article-wrap {
     position: relative;
     width: 100%;
     max-width: 1100px;
@@ -14,11 +16,6 @@
     //         max-width: 700px;
     //     }
     // }
-
-    // 重置第一个子元素的上外边距
-    > *:first-child {
-        margin-top: 0 !important;
-    }
 
     // 导航元素
     .article-nav {
@@ -53,99 +50,92 @@
         }
     }
 
-    .content-footer {
-        position: relative;
-        width: 100%;
-        margin: 40px 0;
-        background: #FAFAFA;
-        color: #757575;
-        height: 68px;
-        line-height: 68px;
-        padding: 0 24px 0 12px;
-        box-sizing: border-box;
-        .tag {
-            float: left;
-        }
-        .created {
-            display: block;
-            float: right;
-            line-height: 68px;
-            margin-left: 12px;
-            user-select: none;
-            cursor: default;
-            font-style: italic;
-        }
-    }
+}
 
-    .comments-container {
-        position: relative;
-        width: 100%;
-        .row {
+.content-footer {
+    position: relative;
+    width: 100%;
+    margin: 12px 0;
+    background: #fafafa;
+    color: #757575;
+    height: 68px;
+    line-height: 68px;
+    padding: 0 24px 0 12px;
+    box-sizing: border-box;
+    .tag {
+        float: left;
+    }
+    .created {
+        display: block;
+        float: right;
+        line-height: 68px;
+        margin-left: 12px;
+        user-select: none;
+        cursor: default;
+        font-style: italic;
+    }
+}
+
+.comments-container {
+    position: relative;
+    width: 100%;
+    .comment-input {
+        flex-grow: 1 !important;
+    }
+    .submit-comment {
+        margin: 28px 24px;
+    }
+    .comments-list {
+        .comment {
             position: relative;
-            margin: 40px 0;
-        }
-        .comment-input {
-            margin-right: 100px;
-        }
-        .submit-comment {
-            position: absolute;
-            margin: 0;
-            right: 0;
-            bottom: 0;
-        }
-        .comments-list {
-            .comment {
-                position: relative;
-                border-top: 1px dashed rgb(226, 226, 226);
-                padding: 6px;
-                transition: all .1s ease;
-                &.is-by-current-user {
-                    background-color: rgb(189, 213, 237);
+            border-top: 1px dashed rgb(226, 226, 226);
+            padding: 6px;
+            transition: all .1s ease;
+            &.is-by-current-user {
+                background-color: rgb(189, 213, 237);
+            }
+            &:hover {
+                background: rgb(240, 248, 255);
+            }
+            &:last-child {
+                border-bottom: 1px dashed rgb(226, 226, 226);
+            }
+            .comment-info {
+                font-family: "Roboto Medium";
+                line-height: 18px;
+                font-size: 12px;
+                margin-bottom: 2px;
+                .comment-author {
+                    // color: rgb(128, 128, 128);
                 }
-                &:hover {
-                    background: rgb(240, 248, 255);
+                .comment-date {
+                    margin-left: 5px;
+                    color: rgba(#000, .4);
                 }
-                &:last-child {
-                    border-bottom: 1px dashed rgb(226, 226, 226);
-                }
-                .comment-info {
-                    font-family: "Roboto Medium";
-                    line-height: 18px;
+                .badge {
+                    color: #1e88e5;
+                    float: right;
                     font-size: 12px;
-                    margin-bottom: 2px;
-                    .comment-author {
-                        // color: rgb(128, 128, 128);
-                    }
-                    .comment-date {
-                        margin-left: 5px;
-                        color: rgba(#000, .4);
-                    }
-                    .badge {
-                        color: #1e88e5;
-                        float: right;
-                        font-size: 12px;
-                        &:before {
-                            content: "#";
-                        }
+                    &:before {
+                        content: "#";
                     }
                 }
-                .comment-content {
-                    font-family: "Roboto";
-                    color: #212121;
-                    line-height: 18px;
-                    font-size: 12px;
-                    clear: both;
-                }
+            }
+            .comment-content {
+                font-family: "Roboto";
+                color: #212121;
+                line-height: 18px;
+                font-size: 12px;
+                clear: both;
             }
         }
     }
 }
-
-.article-content {
-    position: relative;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2),
-                0 1px 1px 0 rgba(0, 0, 0, .14),
-                0 2px 1px -1px rgba(0, 0, 0, .12);
-}
+// .article-content {
+//     position: relative;
+//     padding: 10px;
+//     border-radius: 4px;
+//     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2),
+//                 0 1px 1px 0 rgba(0, 0, 0, .14),
+//                 0 2px 1px -1px rgba(0, 0, 0, .12);
+// }

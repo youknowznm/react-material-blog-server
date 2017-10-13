@@ -2,17 +2,6 @@ import '../../_styles/pages/detail.scss'
 
 $(function() {
 
-    // 滚动时处理控制面板和导航栏样式
-    let $articleContentNav = $('.article-nav')
-
-    $(window).on('scroll', function() {
-        let scTp = document.body.scrollTop
-        $articleContentNav.css(
-            'top',
-            scTp < 192 ? 24 : (scTp - 192 + 24)
-        )
-    })
-
     // 取得文章内容的直接header元素，生成内容导航
     let $headers = $('.markdown-parsed').children(':header')
     let articleContentNavHTML = '<li>Contents</li>'
