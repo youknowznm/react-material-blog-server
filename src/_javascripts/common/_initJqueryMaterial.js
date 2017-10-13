@@ -4,7 +4,6 @@ let siteNameWords = ['Rh', 'ae', 'go']
 module.exports = function() {
 
     let $jmHeader = $('.jm-header')
-    console.log($jmHeader.data('navType').valueOf());
     $jmHeader.initHeader({
         siteNameWords,
         navContents: ['posts', 'products', 'messages', 'about'],

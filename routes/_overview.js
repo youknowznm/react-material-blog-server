@@ -24,7 +24,7 @@ module.exports = function(router) {
             case false:
                 articleProxy.getArticles(targetType, targetTag, function(docs) {
                     console.log('-- articles --', docs);
-                    if (articles[0] !== undefined) {
+                    if (docs[0] !== undefined) {
                         res.render('overview', {
                             navType: (targetType === 'post') ? 0 : 1,
                             pageTitle: targetType,
@@ -47,26 +47,13 @@ module.exports = function(router) {
                     d.push(docs[0])
                     d.push(docs[0])
                     d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
                     res.render('overview', {
                         navType: (targetType === 'post') ? 0 : 1,
                         pageTitle: targetType,
                         static: 'overview',
                         userInfo: controllers.getUserInfo(req),
                         // articles: [],
-                        articles: d,
+                        articles: docs,
                         promptLogin: req.promptLogin,
                     })
                 })

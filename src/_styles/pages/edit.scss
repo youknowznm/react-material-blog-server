@@ -1,3 +1,5 @@
+@import "../common/main.scss";
+
 .jm-main-wrap {
     padding-top: 24px;
 }
@@ -8,40 +10,26 @@
                 0 1px 1px 0 rgba(0, 0, 0, .14),
                 0 2px 1px -1px rgba(0, 0, 0, .12);
     border-radius: 4px;
-    .row {
-        font-family: "Roboto";
-        position: relative;
-        display: block;
-        background-color: #fafafa;
-        // min-height: 110px;
-        padding: 8px 16px;
-        font-size: 16px;
-        &.flex-row-space-between {
-            display: flex !important;
-            flex-direction: row !important;
-            justify-content: space-between !important;
-        }
+    .flexed {
+        display: flex;
     }
-    ._title {
+    .article-title {
         flex-grow: .5;
     }
-    ._summary {
+    .article-summary {
         flex-grow: 1;
     }
-    ._type {
+    .article-type {
+        flex-grow: .05;
 
     }
-    ._tags {
-        display: block;
-        margin-right: 264px;
-        clear: right;
-        #input_4 {
-            width: 210px;
-        }
+    .article-tags {
+        flex-grow: 1;
     }
     .buttons {
-        position: absolute;
-        right: 55px;
-        top: 15px;
+        flex-grow: .05;
+        .jm-button {
+            margin: 28px 8px;
+        }
     }
 }

@@ -1,91 +1,44 @@
 <% include ./common/header.ejs %>
 
-<div class="jm-main-wrap" data-uid="<%= doc._id %>">
-    <div class="jm-main">
-
-        <div class="row flex-row-space-between">
-            <!-- 标题 -->
-            <div class="md-input _title">
-                <label class="placeholder" for="input_1">Title</label>
-                <input id="input_1" class="_input" maxlength="20" value="<%= doc.title %>"/>
-                <p class="error"></p>
-                <h5 class="char-counter">
-                    <span class="current"></span>/<span class="maximum"></span>
-                </h5>
-            </div>
-            <!-- 摘要 -->
-            <div class="md-input _summary">
-                <label class="placeholder" for="input_2">Summary</label>
-                <input id="input_2" class="_input" maxlength="40" value="<%= doc.summary %>"/>
-                <p class="error"></p>
-                <h5 class="char-counter">
-                    <span class="current"></span>/<span class="maximum"></span>
-                </h5>
-            </div>
-            <div class="md-radio-group _type">
-                <div class="md-radio" data-name="post" data-selected="<% if (doc.type === 'post') {%>true<%}%>">
-                    <div class="shadow"></div>
-                    <div class="_outer">
-                        <div class="_inner"></div>
-                    </div>
-                    <span class="label">Post</span>
-                </div>
-                <div class="md-radio" data-name="product" data-selected="<% if (doc.type === 'product') {%>true<%}%>">
-                    <div class="shadow"></div>
-                    <div class="_outer">
-                        <div class="_inner"></div>
-                    </div>
-                    <span class="label">Product</span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- 内容 -->
-            <div class="md-textarea _content">
-                <label class="placeholder" for="input_3">Content in Markdown</label>
-                <textarea id="input_3" class="_input" maxlength="10000"><%= doc.content %></textarea>
-                <p class="error"></p>
-                <h5 class="char-counter">
-                    <span class="current"></span>/<span class="maximum"></span>
-                </h5>
-            </div>
-        </div>
-        <div class="row">
-            <!-- 标签 -->
-            <div class="md-tag _tags" data-max-tags="2">
-                <label class="placeholder" for="input_4">Tags</label>
-                <div class="tag-wrap">
-                    <% for (let tag of doc.tags) {%>
-                        <span class="tag">
-                            <span class="tag-content"><%= tag %></span>
-                            <i class="btn-remove"></i>
-                        </span>
-                    <%}%>
-                    <!-- <span class="tag">Apple(fruit)<i class="btn-remove"></i></span> -->
-                    <input id="input_4" class="_input" maxlength="10" placeholder="Type tags and press Enter."/>
-                </div>
-                <p class="error">sb</p>
-                <h5 class="char-counter">
-                    <span class="current"></span>/<span class="maximum"></span>
-                </h5>
-            </div>
-            <!-- 按钮 -->
-            <div class="buttons">
-                <button id="submit" class="md-button _primary _disabled">
-                    <span class="content">submit</span>
-                    <div class="ripple-container"><span class="ripple"></span></div>
-                </button>
-                <button id="cancel" class="md-button">
-                    <span class="content">cancel</span>
-                    <div class="ripple-container"><span class="ripple"></span></div>
-                </button>
-            </div>
-
-        </div>
-
-        <% include ./common/control-panel.ejs %>
-
+<div class="jm-row flexed">
+    <!-- 标题 -->
+    <div class="jm-input article-title"
+        data-type="text"
+        data-validator="^(.){6,20}$"
+        data-label="title"
+        data-max-length="20"
+        data-value="<%= doc.title %>"
+        data-error-msg="Required 6~20 characters.">
     </div>
+    <!-- 摘要 -->
+    <div class="jm-input article-summary"
+        data-type="text"
+        data-validator="^(.){10,40}$"
+        data-label="summary"
+        data-max-length="40"
+        data-value="<%= doc.summary %>"
+        data-error-msg="Required 10~40 characters.">
+    </div>
+    <!-- 类型 -->
+    <div class="jm-radio-group article-type" data-current-type="<%= doc.type %>"></div>
+</div>
+<div class="jm-row">
+    <!-- 内容 -->
+    <div class="jm-rte article-content"></div>
+</div>
+<div class="jm-row flexed">
+    <!-- 标签 -->
+    <div class="jm-tag article-tags">
+        <% for (let tag of doc.tags) {%>
+            <span class="hidden"><%= tag %></span>
+        <%}%>
+    </div>
+    <!-- 按钮 -->
+    <div class="buttons">
+        <button id="submit" class="jm-button _primary" data-text="submit"></button>
+        <button id="cancel" class="jm-button" data-text="cancel"></button>
+    </div>
+
 </div>
 
 <% include ./common/footer.ejs %>

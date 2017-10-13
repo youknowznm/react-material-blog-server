@@ -1,13 +1,12 @@
 import initJqueryMaterial from './_initJqueryMaterial.js';
 import initControlPanel from './_initControlPanel.js';
-import initAuth from './_initAuth.js';
-
+import initLogin from './_initLogin.js';
 
 // 每页的公用逻辑
 $(function() {
 
     initJqueryMaterial()
-    initAuth()
+    initLogin()
     initControlPanel()
 
     /*

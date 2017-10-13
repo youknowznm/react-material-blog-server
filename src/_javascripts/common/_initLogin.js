@@ -120,6 +120,7 @@ module.exports = function() {
     /*
     注册区域相关
     */
+    switchRegisterAreaDisplay(false)
     watchAreaInputs($registerArea)
     $('#cancel-register').on('click', function() {
         switchRegisterAreaDisplay(false)

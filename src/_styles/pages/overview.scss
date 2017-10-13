@@ -65,14 +65,10 @@
 
     .tags {
         position: absolute;
-        bottom: 16px;
-        left: 16px;
+        bottom: 6px;
+        left: 12px;
         .tag {
             float: left;
-            margin-right: 12px;
-            .md-button {
-                margin: 12px 0 0;
-            }
         }
     }
 

@@ -20,10 +20,7 @@
             <ul class="tags">
                 <% for (let tag of article.tags) {%>
                     <li class="tag" data-href="/<%= pageTitle %>s?tag=<%= tag %>">
-                        <button class="md-button">
-                            <span class="content"><%= tag %></span>
-                            <div class="ripple-container"><span class="ripple"></span></div>
-                        </button>
+                        <button class="jm-button" data-text="<%= tag %>"></button>
                     </li>
                 <%}%>
             </ul>
