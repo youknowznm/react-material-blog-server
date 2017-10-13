@@ -37,7 +37,8 @@ $(function() {
     let $articleContent = $('.article-content')
     $articleContent.initRte({
         id: $articleContent.data('id'),
-        maxLength: 5000
+        contentHTML: $articleContent.data('content'),
+        maxLength: 5000,
     })
     let $editArea = $articleContent.find('.jm-edit-area')
     setTimeout(function() {

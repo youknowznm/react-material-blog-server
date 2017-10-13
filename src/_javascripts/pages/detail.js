@@ -3,7 +3,7 @@ import '../../_styles/pages/detail.scss'
 $(function() {
 
     // 取得文章内容的直接header元素，生成内容导航
-    let $headers = $('.markdown-parsed').children(':header')
+    let $headers = $('.jm-article').children(':header')
     let articleContentNavHTML = '<li>Contents</li>'
     Array.prototype.forEach.call($headers, function(item, index, array) {
         item.setAttribute('data-index', index)
