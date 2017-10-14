@@ -11,7 +11,7 @@ $(function() {
     let articleContentNavHTML = '<li>Contents</li>'
     Array.prototype.forEach.call($headers, function(item, index, array) {
         item.setAttribute('data-index', index)
-        articleContentNavHTML += `<li data-index="${index}">${item.innerHTML}</li>`
+        articleContentNavHTML += `<li data-index="${index}">${$(item).text()}</li>`
     })
     // 点击非‘目录’的li时，页面滚动至对应的左侧header
     $articleContentNav.on('click', 'li', function() {
@@ -25,7 +25,12 @@ $(function() {
                 200,
             )
         } else {
-            $headers.eq(index).jmScrollInto()
+            $(document.documentElement).animate(
+                {
+                    scrollTop: $headers.eq(index).offset().top - 88
+                },
+                200,
+            )
         }
     })
     $articleContentNav.html(articleContentNavHTML)

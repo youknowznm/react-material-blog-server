@@ -31,8 +31,8 @@
         list-style: none !important;
         margin: 8px 0 0 !important;
         width: 9em;
-        font-size: 12px;
-        line-height: 14px;
+        font-size: 14px;
+        line-height: 18px;
         color: #212121;
         cursor: pointer;
         font-family: "Roboto";
@@ -60,6 +60,7 @@
     .created {
         float: right;
         margin-right: 12px;
+        font-size: 14px;
         color: #757575;
         line-height: 70px;
         user-select: none;
@@ -85,32 +86,36 @@
         border-top: 1px dashed rgb(226, 226, 226);
         padding: 6px;
         text-align: left;
-        transition: all .1s ease;
+        transition: all .15s ease-in;
         &.is-by-current-user {
             background-color: rgb(189, 213, 237);
         }
         &:hover {
-            background: rgb(240, 248, 255);
+            background: #FFF9C4;
         }
         &:last-child {
             border-bottom: 1px dashed rgb(226, 226, 226);
         }
         .comment-info {
-            font-family: "Roboto Medium";
+            font-family: "Roboto";
             line-height: 20px;
             font-size: 14px;
             margin-bottom: 2px;
             .comment-author {
-                // color: rgb(128, 128, 128);
+                color: #757575;
+                font-weight: 500;
             }
             .comment-date {
                 margin-left: 5px;
-                color: rgba(#000, .4);
+                color: #757575;
+                font-style: italic;
             }
             .badge {
                 color: #1e88e5;
                 float: right;
                 font-size: 12px;
+                cursor: default;
+                user-select: none;
                 &:before {
                     content: "#";
                 }
