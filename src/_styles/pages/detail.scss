@@ -3,10 +3,9 @@
 .article-wrap {
     position: relative;
     width: 100%;
-    max-width: 1100px;
     box-sizing: border-box;
     margin: 0 auto 12px;
-    padding: 24px 200px 24px 24px;
+    padding: 18px 200px 18px 18px;
     background: #fff;
     font-family: 'Roboto';
 
@@ -17,39 +16,41 @@
     //     }
     // }
 
-    // 导航元素
-    .article-nav {
-        position: absolute;
-        box-sizing: border-box;
-        width: 160px;
-        right: 0;
-        top: 24px;
-        border-left: 4px solid #1e88e5;
-        padding: 0 0 0 12px !important;
-        li {
-            list-style: none !important;
-            margin: 8px 0 0 !important;
-            width: 9em;
-            font-size: 13px;
-            line-height: 16px;
-            color: #212121;
-            cursor: pointer;
-            transition: color .2s ease-out;
-            &:first-child {
-                margin: 0 !important;
-                color: #757575;
-            }
-            &.active,
-            &:hover {
-                color: #039be5;
-            }
+}
+
+// 导航元素
+.article-content-nav {
+    position: absolute;
+    box-sizing: border-box;
+    width: 160px;
+    right: 0;
+    top: 24px;
+    border-left: 4px solid #1e88e5;
+    padding: 0 0 0 12px !important;
+    li {
+        list-style: none !important;
+        margin: 8px 0 0 !important;
+        width: 9em;
+        font-size: 12px;
+        line-height: 14px;
+        color: #212121;
+        cursor: pointer;
+        font-family: "Roboto";
+        transition: color .2s ease-out;
+        &:first-child {
+            margin: 0 !important;
+            color: #757575;
+            font-weight: 500;
         }
-        &.fixed {
-            position: fixed;
-            top: 300px;
+        &.active,
+        &:hover {
+            color: #039be5;
         }
     }
-
+    &.fixed {
+        position: fixed;
+        top: 300px;
+    }
 }
 
 .content-footer {
@@ -58,6 +59,7 @@
     }
     .created {
         float: right;
+        margin-right: 12px;
         color: #757575;
         line-height: 70px;
         user-select: none;
@@ -82,6 +84,7 @@
         position: relative;
         border-top: 1px dashed rgb(226, 226, 226);
         padding: 6px;
+        text-align: left;
         transition: all .1s ease;
         &.is-by-current-user {
             background-color: rgb(189, 213, 237);
@@ -94,8 +97,8 @@
         }
         .comment-info {
             font-family: "Roboto Medium";
-            line-height: 18px;
-            font-size: 12px;
+            line-height: 20px;
+            font-size: 14px;
             margin-bottom: 2px;
             .comment-author {
                 // color: rgb(128, 128, 128);
@@ -116,8 +119,8 @@
         .comment-content {
             font-family: "Roboto";
             color: #212121;
-            line-height: 18px;
-            font-size: 12px;
+            line-height: 20px;
+            font-size: 14px;
             clear: both;
         }
     }

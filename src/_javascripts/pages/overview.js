@@ -20,11 +20,6 @@ $(function() {
             let articleId = $(this).data('id')
             location.assign('/articles/' + articleId)
         })
-        // 点击文章的任一标签，跳转至含该标签的所有文章
-        .on('click', '.tag', function(evt) {
-            evt.stopPropagation()
-            location.assign($(this).data('href'))
-        })
 
 })
 

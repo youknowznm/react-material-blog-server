@@ -49,13 +49,12 @@ $(function() {
             },
             200,
             function() {
-                $editArea
-                    .animate(
-                        {
-                            minHeight: window.innerHeight - 370
-                        },
-                        300,
-                    )
+                $editArea.animate(
+                    {
+                        minHeight: window.innerHeight - 370
+                    },
+                    300,
+                )
             }
         )
     }, 400)

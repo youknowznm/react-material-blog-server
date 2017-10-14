@@ -5,9 +5,9 @@
     top: 200px;
     transform: translateY(-50%);
     z-index: 199;
-    > li {
+    .panel-item {
         display: block;
-        animation: zoomIn .4s ease;
+        animation: zoomIn .3s cubic-bezier(0.25, 0.8, 0.25, 1);
         @keyframes zoomIn {
             from {
                 display: none;

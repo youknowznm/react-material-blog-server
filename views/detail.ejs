@@ -1,8 +1,11 @@
 <% include ./common/header.ejs %>
 
 <!--  -->
-<div class="article-wrap jm-article">
+<div class="article-wrap jm-article" data-article-id="<%= doc._id %>">
     <%-: doc.content %>
+</div>
+<div class="article-content-nav">
+
 </div>
 <!--  -->
 <div class="jm-row content-footer">
@@ -12,7 +15,10 @@
     <!-- IDEA 用for 不用 for ..of -->
     <div class="tags">
         <% for (let i = 0; i < doc.tags.length; i++) {%>
-            <button class="jm-button _primary" data-text="<%= doc.tags[i] %>"></button>
+            <% let tag = doc.tags[i] %>
+            <a class="tag" href="/<%= pageTitle %>s?tag=<%= tag %>">
+                <button class="jm-button _primary" data-text="<%= tag %>"></button>
+            </a>
         <%}%>
     </div>
 

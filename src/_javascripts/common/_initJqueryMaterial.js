@@ -1,5 +1,4 @@
-// let siteNameWords = ['You', 'Know', 'znM']
-let siteNameWords = ['Rh', 'ae', 'go']
+let siteNameWords = ['You', 'Know', 'znM']
 
 module.exports = function() {
 

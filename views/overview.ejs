@@ -17,13 +17,14 @@
                 </p>
             </div>
 
-            <ul class="tags">
-                <% for (let tag of article.tags) {%>
-                    <li class="tag" data-href="/<%= pageTitle %>s?tag=<%= tag %>">
+            <div class="tags">
+                <% for (let i = 0; i < article.tags.length; i++) {%>
+                    <% let tag = article.tags[i] %>
+                    <a class="tag" href="/<%= pageTitle %>s?tag=<%= tag %>">
                         <button class="jm-button" data-text="<%= tag %>"></button>
-                    </li>
+                    </a>
                 <%}%>
-            </ul>
+            </div>
 
         </div>
     <%}%>

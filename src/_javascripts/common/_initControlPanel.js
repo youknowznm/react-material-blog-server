@@ -4,6 +4,7 @@ module.exports = function() {
     控制面板
     */
     let $controlPanel = $('.control-panel')
+
     $controlPanel
         // 新建文章
         .on('click', '.panel-create-new', function() {
@@ -36,12 +37,17 @@ module.exports = function() {
         })
         // 回顶部
         .on('click', '.panel-to-top', function() {
-            $('body').jmScrollInto()
+            $(document.documentElement).animate(
+                {
+                    scrollTop: 192
+                },
+                200,
+            )
         })
 
-
     $(window).on('scroll', function(e) {
-        $controlPanel.css('top', document.documentElement.scrollTop + 200)
+        let pageScrollTop = document.documentElement.scrollTop
+        $controlPanel.css('top', pageScrollTop + 200)
     })
 
     // 推迟显示
