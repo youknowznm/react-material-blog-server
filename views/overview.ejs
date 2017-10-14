@@ -20,9 +20,7 @@
             <div class="tags">
                 <% for (let i = 0; i < article.tags.length; i++) {%>
                     <% let tag = article.tags[i] %>
-                    <a class="tag" href="/<%= pageTitle %>s?tag=<%= tag %>">
-                        <button class="jm-button" data-text="<%= tag %>"></button>
-                    </a>
+                    <button class="jm-button article-tag" data-text="<%= tag %>"></button>
                 <%}%>
             </div>
 

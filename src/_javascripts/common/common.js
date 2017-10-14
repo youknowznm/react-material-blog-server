@@ -34,6 +34,11 @@ $(function() {
             }
         })
 
-
+    $('.article-tag').click(function(evt) {
+        evt.stopPropagation()
+        let articleType = ($('.jm-header').data('navType').toString() === '1') ? 'product' : 'post'
+        let tagName = $(this).data('text')
+        location.assign(`/${articleType}s?tag=${tagName}`)
+    })
 
 })

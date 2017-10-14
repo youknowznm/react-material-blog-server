@@ -39,7 +39,7 @@ module.exports = function() {
         .on('click', '.panel-to-top', function() {
             $(document.documentElement).animate(
                 {
-                    scrollTop: 192
+                    scrollTop: 0
                 },
                 200,
             )

@@ -1,7 +1,7 @@
 <% include ./common/header.ejs %>
 
 <!--  -->
-<div class="article-wrap jm-article" data-article-id="<%= doc._id %>">
+<div class="article-wrap jm-article" data-article-id="<%= doc._id %>" data-page-title="<%= doc.title %>">
     <%-: doc.content %>
 </div>
 <div class="article-content-nav">
@@ -16,9 +16,7 @@
     <div class="tags">
         <% for (let i = 0; i < doc.tags.length; i++) {%>
             <% let tag = doc.tags[i] %>
-            <a class="tag" href="/<%= pageTitle %>s?tag=<%= tag %>">
-                <button class="jm-button _primary" data-text="<%= tag %>"></button>
-            </a>
+            <button class="jm-button _primary article-tag" data-text="<%= tag %>"></button>
         <%}%>
     </div>
 

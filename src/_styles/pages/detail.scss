@@ -29,10 +29,9 @@
     padding: 0 0 0 12px !important;
     li {
         list-style: none !important;
-        margin: 8px 0 0 !important;
         width: 9em;
         font-size: 14px;
-        line-height: 18px;
+        line-height: 24px;
         color: #212121;
         cursor: pointer;
         font-family: "Roboto";
@@ -54,6 +53,7 @@
 }
 
 .content-footer {
+    background: #eee;
     .tags {
         float: left;
     }
@@ -86,7 +86,7 @@
         border-top: 1px dashed rgb(226, 226, 226);
         padding: 6px;
         text-align: left;
-        transition: all .15s ease-in;
+        transition: all .2s ease-out;
         &.is-by-current-user {
             background-color: rgb(189, 213, 237);
         }

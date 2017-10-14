@@ -1,10 +1,25 @@
 import '../../_styles/pages/detail.scss'
 
+// 结合样式表，产生以'·'和'¬'装饰的span元素
+function breakToSpans(str) {
+    let arr = str.split(/\s+/g)
+    let r = ''
+    arr.forEach(function(item) {
+        r += `<span class="jm-single-word">${item}</span>`
+    })
+    return r
+}
+
 $(function() {
 
+let $body = $('body')
     let $article = $('.jm-article')
 
     let $articleContentNav = $('.article-content-nav')
+
+    let $pageTitle = $('.page-title')
+    $pageTitle.html(breakToSpans($article.data('pageTitle')))
+
 
     // 取得文章内容的直接header元素，生成内容导航
     let $headers = $article.children(':header')
@@ -42,6 +57,16 @@ $(function() {
         } else {
             $articleContentNav.css('top', 24)
         }
+        // 桌面端调整pageTitle样式
+        // if ($body.is('#mobile')) {
+        //     let scTp = document.documentElement.scrollTop
+        //     // 主体的滚动距离大于一定值时渐隐标题
+        //     if (scTp > 30) {
+        //         $pageTitle.addClass('hidden')
+        //     } else {
+        //         $pageTitle.removeClass('hidden')
+        //     }
+        // }
     })
 
     let $commentJmInput = $('.comment-input .jm-input')

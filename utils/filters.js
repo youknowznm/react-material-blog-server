@@ -4,7 +4,7 @@ ejs模板过滤器
 
 const ejs = require('ejs')
 
-// 格式化Date对象为yyyy-mm-dd的字符串
+// 格式化Date对象为yyyy-mm-dd形式的字符串
 ejs.filters.formatDate = function(date) {
     const to2digits = function(str) {
         return str.length === 2 ? str : ('0' + str)
