@@ -16,7 +16,7 @@
     <div class="tags">
         <% for (let i = 0; i < doc.tags.length; i++) {%>
             <% let tag = doc.tags[i] %>
-            <button class="jm-button _primary article-tag" data-text="<%= tag %>"></button>
+            <button class="jm-button article-tag" data-text="<%= tag %>"></button>
         <%}%>
     </div>
 
@@ -38,26 +38,24 @@
     <button class="submit-comment jm-button _primary _disabled" data-text="submit"></button>
 </div>
 <!-- 评论列表 -->
-<div class="jm-row">
-    <ul class="comments-list">
-        <% let comments = doc.comments %>
-        <% for (let i in comments) {%>
-            <% if (i < comments.length) {%>
+<ul class="comments-list">
+    <% let comments = doc.comments %>
+    <% for (let i in comments) {%>
+        <% if (i < comments.length) {%>
             <% let c = comments[i] %>
-                <li class="comment">
-                    <h3 class="comment-info">
-                        <span class="comment-author"><%= c.author[0].nickname %></span>
-                        <span class="comment-date"><%-: c.created | getDateDiff %></span>
-                        <span class="badge"><%= +i + 1 %></span>
-                    </h3>
-                    <p class="comment-content">
-                        <%= c.content %>
-                    </p>
-                </li>
-            <%}%>
+            <li class="comment <%if(c.author[0].nickname === userInfo.currentUserNickname){%>is-by-current-user<%}%>">
+                <h3 class="comment-info">
+                    <span class="comment-author"><%= c.author[0].nickname %></span>
+                    <span class="comment-date"><%-: c.created | getDateDiff %></span>
+                    <span class="badge"><%= +i + 1 %></span>
+                </h3>
+                <p class="comment-content">
+                    <%= c.content %>
+                </p>
+            </li>
         <%}%>
-    </ul>
-</div>
+    <%}%>
+</ul>
 
 <ul class="article-nav"></ul>
 

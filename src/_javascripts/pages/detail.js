@@ -12,7 +12,7 @@ function breakToSpans(str) {
 
 $(function() {
 
-let $body = $('body')
+    let $body = $('body')
     let $article = $('.jm-article')
 
     let $articleContentNav = $('.article-content-nav')
@@ -20,18 +20,17 @@ let $body = $('body')
     let $pageTitle = $('.page-title')
     $pageTitle.html(breakToSpans($article.data('pageTitle')))
 
-
     // 取得文章内容的直接header元素，生成内容导航
     let $headers = $article.children(':header')
     let articleContentNavHTML = '<li>Contents</li>'
     Array.prototype.forEach.call($headers, function(item, index, array) {
-        item.setAttribute('data-index', index)
-        articleContentNavHTML += `<li data-index="${index}">${$(item).text()}</li>`
+        item.setAttribute('data-jm-heading-index', index)
+        articleContentNavHTML += `<li data-jm-heading-index="${index}">${$(item).text()}</li>`
     })
     // 点击非‘目录’的li时，页面滚动至对应的左侧header
     $articleContentNav.on('click', 'li', function() {
         let $this = $(this)
-        let index = $this.data('index')
+        let index = $this.data('jmHeadingIndex')
         if ($this.is(':first-child')) {
             $(document.documentElement).animate(
                 {
@@ -57,16 +56,6 @@ let $body = $('body')
         } else {
             $articleContentNav.css('top', 24)
         }
-        // 桌面端调整pageTitle样式
-        // if ($body.is('#mobile')) {
-        //     let scTp = document.documentElement.scrollTop
-        //     // 主体的滚动距离大于一定值时渐隐标题
-        //     if (scTp > 30) {
-        //         $pageTitle.addClass('hidden')
-        //     } else {
-        //         $pageTitle.removeClass('hidden')
-        //     }
-        // }
     })
 
     let $commentJmInput = $('.comment-input .jm-input')
@@ -127,4 +116,24 @@ let $body = $('body')
             })
         }
     })
+
+    let $jmActualHeadings = $article.find('[data-jm-heading-index]')
+    let $jmNavHeadings = $articleContentNav.find('[data-jm-heading-index]')
+
+    // 滚动时改变右侧导航的高亮标题
+    $(window).on('scroll', function() {
+        let targetScrollTop = document.documentElement.scrollTop
+        let currentHeadingIndex = 0
+        for (let i = $jmActualHeadings.length - 1; i > -1; --i) {
+            let $this = $jmActualHeadings.eq(i)
+            if ($this.offset().top - 90 < targetScrollTop) {
+                currentHeadingIndex = $this.data('jmHeadingIndex')
+                $jmNavHeadings.removeClass('current').eq(currentHeadingIndex).addClass('current')
+                return false
+            } else {
+                $jmNavHeadings.removeClass('current')
+            }
+        }
+    })
+
 })
