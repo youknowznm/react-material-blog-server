@@ -1,14 +1,15 @@
 <% include ./common/header.ejs %>
 
 <!--  -->
-<div class="article-wrap jm-article" data-article-id="<%= doc._id %>" data-page-title="<%= doc.title %>">
-    <%-: doc.content %>
+<div class="article-wrap">
+    <div class="article-content jm-article" data-article-id="<%= doc._id %>" data-page-title="<%= doc.title %>">
+        <%-: doc.content %>
+    </div>
+    <div class="article-content-nav"></div>
 </div>
-<div class="article-content-nav">
 
-</div>
 <!--  -->
-<div class="jm-row content-footer">
+<div class="jm-row article-footer">
     <span class="created">
         Written on <%-: doc.created | formatDate %>
     </span>
@@ -48,10 +49,12 @@
                     <span class="comment-author"><%= c.author[0].nickname %></span>
                     <span class="comment-date"><%-: c.created | getDateDiff %></span>
                     <span class="badge"><%= +i + 1 %></span>
+                    <span class="current-user-badge">by current user</span>
                 </h3>
                 <p class="comment-content">
                     <%= c.content %>
                 </p>
+
             </li>
         <%}%>
     <%}%>

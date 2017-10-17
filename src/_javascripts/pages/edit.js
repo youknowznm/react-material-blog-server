@@ -140,30 +140,4 @@ $(function() {
         $submitButton.toggleClass('_disabled', !allValid);
     }, 100)
 
-    $(window).unload(function(){
-alert("获取到了页面要关闭的事件了！");
-}); 
-
-    // $('window').on('beforeunload', function(e) {
-    //     e.preventDefault()
-    //     alert('0')
-    // })
-    //
-    // $('window').on('unload', function(e) {
-    //     e.preventDefault()
-    //     alert('1')
-    // })
-    //
-    // window.onbeforeunload = function (e) {
-    //   e = e || window.event;
-    //
-    //   // 兼容IE8和Firefox 4之前的版本
-    //   if (e) {
-    //     e.returnValue = '关闭提示';
-    //   }
-    //
-    //   // Chrome, Safari, Firefox 4+, Opera 12+ , IE 9+
-    //   return '关闭提示';
-    // };
-
 })

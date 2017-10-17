@@ -5,53 +5,55 @@
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto 12px;
-    padding: 18px 200px 18px 18px;
+    padding: 18px;
     background: #fff;
     font-family: 'Roboto';
 
-    // 小页面宽度时内容宽度的重置
-    // @media (max-width: 1150px) {
-    //     & {
-    //         max-width: 700px;
-    //     }
-    // }
+    .article-content {
+        margin-right: 170px;
+        // 小页面宽度时内容宽度的重置
+        // @media (max-width: 1150px) {
+        //     & {
+        //         max-width: 700px;
+        //     }
+        // }
+    }
 
-}
-
-// 导航元素
-.article-content-nav {
-    position: absolute;
-    box-sizing: border-box;
-    width: 160px;
-    right: 0;
-    top: 24px;
-    border-left: 4px solid #1e88e5;
-    padding: 0 0 0 12px !important;
-    li {
-        list-style: none !important;
-        width: 9em;
-        font-size: 14px;
-        line-height: 24px;
-        color: #212121;
-        cursor: pointer;
-        font-family: "Roboto";
-        &:first-child {
-            margin: 0 !important;
-            color: #757575;
-            font-weight: 500;
+    // 导航元素
+    .article-content-nav {
+        position: absolute;
+        box-sizing: border-box;
+        width: 160px;
+        right: 0;
+        top: 24px;
+        border-left: 4px solid #1e88e5;
+        padding: 0 0 0 12px !important;
+        li {
+            list-style: none !important;
+            width: 9em;
+            font-size: 14px;
+            line-height: 24px;
+            color: #212121;
+            cursor: pointer;
+            font-family: "Roboto";
+            &:first-child {
+                margin: 0 !important;
+                color: #757575;
+                font-weight: 500;
+            }
+            &.current,
+            &:hover {
+                color: #039be5;
+            }
         }
-        &.current,
-        &:hover {
-            color: #039be5;
+        &.fixed {
+            position: fixed;
+            top: 300px;
         }
     }
-    &.fixed {
-        position: fixed;
-        top: 300px;
-    }
 }
 
-.content-footer {
+.article-footer {
     .tags {
         float: left;
         .article-tag {
@@ -66,7 +68,6 @@
         font-size: 14px;
         color: #757575;
         line-height: 70px;
-        user-select: none;
         cursor: default;
         font-style: italic;
     }
@@ -90,12 +91,6 @@
         padding: 6px;
         text-align: left;
         transition: all .2s ease-out;
-        &.is-by-current-user {
-            background-color: #FFEB3B;
-        }
-        &:not(.is-by-current-user):hover {
-            background: #FFF9C4;
-        }
         &:last-child {
             border-bottom: 1px dashed rgb(226, 226, 226);
         }
@@ -106,19 +101,27 @@
             margin-bottom: 2px;
             .comment-author {
                 color: #757575;
-                font-weight: 500;
+                font-weight: bold;
             }
             .comment-date {
                 margin-left: 5px;
                 color: #757575;
                 font-style: italic;
             }
+            .current-user-badge {
+                display: none;
+                float: right;
+                color: #757575;
+                float: right;
+                font-size: 12px;
+                cursor: default;
+                margin-right: 6px;
+            }
             .badge {
                 color: #1e88e5;
                 float: right;
                 font-size: 12px;
                 cursor: default;
-                user-select: none;
                 &:before {
                     content: "#";
                 }
@@ -130,6 +133,14 @@
             line-height: 20px;
             font-size: 14px;
             clear: both;
+        }
+        &.is-by-current-user {
+            .current-user-badge {
+                display: block;
+            }
+        }
+        &:hover {
+            background: #BBDEFB;
         }
     }
 }
