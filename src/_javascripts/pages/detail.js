@@ -31,32 +31,20 @@ $(function() {
     $articleContentNav.on('click', 'li', function() {
         let $this = $(this)
         let index = $this.data('jmHeadingIndex')
+        let targetScrollTop
         if ($this.is(':first-child')) {
-            $(document.documentElement).animate(
-                {
-                    scrollTop: 192
-                },
-                200,
-            )
+            targetScrollTop = 192
         } else {
-            $(document.documentElement).animate(
-                {
-                    scrollTop: $headers.eq(index).offset().top - 88
-                },
-                200,
-            )
+            targetScrollTop = $headers.eq(index).offset().top - 88
         }
+        $(document.documentElement).animate(
+            {
+                scrollTop: targetScrollTop
+            },
+            'fast',
+        )
     })
     $articleContentNav.html(articleContentNavHTML)
-    // 滚动时内容导航吸顶
-    $(window).on('scroll', function() {
-        let pageScrollTop = document.documentElement.scrollTop
-        if (pageScrollTop > 192) {
-            $articleContentNav.css('top', pageScrollTop - 168)
-        } else {
-            $articleContentNav.css('top', 24)
-        }
-    })
 
     let $commentJmInput = $('.comment-input .jm-input')
     let $submitBtn = $('.submit-comment')
@@ -120,13 +108,20 @@ $(function() {
     let $jmActualHeadings = $article.find('[data-jm-heading-index]')
     let $jmNavHeadings = $articleContentNav.find('[data-jm-heading-index]')
 
-    // 滚动时改变右侧导航的高亮标题
+    // 滚动时
     $(window).on('scroll', function() {
-        let targetScrollTop = document.documentElement.scrollTop
+        let pageScrollTop = document.documentElement.scrollTop
+        // 内容导航吸顶
+        if (pageScrollTop > 192) {
+            $articleContentNav.css('top', pageScrollTop - 168)
+        } else {
+            $articleContentNav.css('top', 24)
+        }
+        // 改变右侧导航的高亮标题
         let currentHeadingIndex = 0
         for (let i = $jmActualHeadings.length - 1; i > -1; --i) {
             let $this = $jmActualHeadings.eq(i)
-            if ($this.offset().top - 90 < targetScrollTop) {
+            if ($this.offset().top - 90 < pageScrollTop) {
                 currentHeadingIndex = $this.data('jmHeadingIndex')
                 $jmNavHeadings.removeClass('current').eq(currentHeadingIndex).addClass('current')
                 return false
@@ -135,5 +130,9 @@ $(function() {
             }
         }
     })
+
+
+    //
+
 
 })
