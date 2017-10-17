@@ -2,6 +2,7 @@ let articleProxy = require('../proxy/article')
 let messageProxy = require('../proxy/message')
 let userProxy = require('../proxy/user')
 let controllers = require('../utils/controllers')
+let getDateDiff = require('../utils/filters').getDateDiff
 
 module.exports = function(router) {
 
@@ -66,7 +67,20 @@ module.exports = function(router) {
                     && typeof params.articleId === 'string'
                     && /\S/.test(params.articleId)
             ) {
-                messageProxy.saveComment(params, function(saveResult, savedCommentHTML) {
+                messageProxy.saveComment(params, function(saveResult, messageDoc) {
+                    let savedCommentHTML = `
+                        <li class="comment is-by-current-user">
+                            <h3 class="comment-info">
+                                <span class="comment-author">${messageDoc.author[0].nickname}</span>
+                                <span class="comment-date">${getDateDiff(messageDoc.created)}</span>
+                                <span class="comment-order-badge"></span>
+                                <span class="current-user-badge">by current user</span>
+                            </h3>
+                            <p class="comment-content">
+                                ${messageDoc.content}
+                            </p>
+                            <div class="delete-comment" data-comment-id="${messageDoc._id}"></div>
+                        </li>`
                     res.json({
                         saveCommentSuccess: saveResult,
                         savedCommentHTML,
@@ -74,6 +88,19 @@ module.exports = function(router) {
                 })
             } else {
                 res.json({paramValidationFailed: true})
+            }
+        }
+    })
+
+    router.post('/removeComment', function(req, res, next) {
+        let currentUserInfo = controllers.getUserInfo(req)
+        if (currentUserInfo.authLevel === 0) {
+            res.json({unauthorized: true})
+        } else {
+            let params = {
+                email: req.session.currentUserEmail,
+                articleId: req.body.articleId,
+                commentId: req.body.commentId,
             }
         }
     })

@@ -35,7 +35,7 @@ ejs.filters.getThemeColor = function(navType) {
 }
 
 // 转换当前时间与目标时间毫秒差值为可读字符串
-ejs.filters.getDateDiff = function(dateObj) {
+function getDateDiff(dateObj) {
     var _sec = Math.floor((new Date().valueOf() - dateObj.valueOf()) / 1000)
     if (_sec < 10) {
         return ('just now')
@@ -59,4 +59,10 @@ ejs.filters.getDateDiff = function(dateObj) {
     }
     var _mon = Math.floor(_sec / (60 * 60 * 24 * 30))
     return (_mon + ' months ago')
+}
+
+ejs.filters.getDateDiff = getDateDiff
+
+module.exports = {
+    getDateDiff
 }

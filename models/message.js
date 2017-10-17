@@ -13,6 +13,8 @@ let messageSchema = mongoose.Schema({
     author: [userSchema],
     // 内容
     content: String,
+    // 类型为评论还是留言
+    isComment: Boolean
 })
 
 let MessageModel = mongoose.model('Message', messageSchema)

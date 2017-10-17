@@ -12,11 +12,11 @@ function breakToSpans(str) {
 
 // 追加新评论dom，清空输入框
 function appendNewCommentDOM($container, commentHTML) {
-    let $newMessage = $(commentHTML)
+    let $newComment = $(commentHTML)
     let newCommentIndex = $container.find('.comment-order-badge').length + 1
-    $newMessage.find('.comment-order-badge').text(newCommentIndex)
-    $container.append($newMessage)
-    $newMessage.jmScrollInto()
+    $newComment.find('.comment-order-badge').text(newCommentIndex)
+    $container.append($newComment)
+    $newComment.jmScrollInto()
     $('#jm-input-1').val('')
     $('.comment-input .jm-input').removeClass('non-empty')
 }
@@ -42,19 +42,25 @@ $(function() {
     // 点击非‘目录’的li时，页面滚动至对应的左侧header
     $articleContentNav.on('click', 'li', function() {
         let $this = $(this)
-        let index = $this.data('jmHeadingIndex')
-        let targetScrollTop
-        if ($this.is(':first-child')) {
-            targetScrollTop = 192
-        } else {
-            targetScrollTop = $headers.eq(index).offset().top - 88
+        if (!$this.hasClass('current')) {
+            let index = $this.data('jmHeadingIndex')
+            let targetScrollTop
+            if ($this.is(':first-child')) {
+                targetScrollTop = 192
+            } else {
+                targetScrollTop = $headers.eq(index).offset().top - 88
+            }
+            $articleContentNav.hide()
+            $(document.documentElement).animate(
+                {
+                    scrollTop: targetScrollTop
+                },
+                'fast',
+                function() {
+                    $articleContentNav.fadeIn('fast')
+                }
+            )
         }
-        $(document.documentElement).animate(
-            {
-                scrollTop: targetScrollTop
-            },
-            'fast',
-        )
     })
     $articleContentNav.html(articleContentNavHTML)
 
