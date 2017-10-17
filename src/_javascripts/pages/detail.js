@@ -10,10 +10,22 @@ function breakToSpans(str) {
     return r
 }
 
+// 追加新评论dom，清空输入框
+function appendNewCommentDOM($container, commentHTML) {
+    let $newMessage = $(commentHTML)
+    let newCommentIndex = $container.find('.comment-order-badge').length + 1
+    $newMessage.find('.comment-order-badge').text(newCommentIndex)
+    $container.append($newMessage)
+    $newMessage.jmScrollInto()
+    $('#jm-input-1').val('')
+    $('.comment-input .jm-input').removeClass('non-empty')
+}
+
 $(function() {
 
     let $body = $('body')
     let $article = $('.jm-article')
+    let $commentsContainer = $('.comments-list')
 
     let $articleContentNav = $('.article-content-nav')
 
@@ -71,7 +83,7 @@ $(function() {
                     switch (true) {
                         case result.saveCommentSuccess:
                             // 保存成功
-                            location.reload()
+                            appendNewCommentDOM($commentsContainer, result.savedCommentHTML)
                             break
                         case result.unauthorized:
                             // 登录对话过期，保存失败
@@ -130,9 +142,5 @@ $(function() {
             }
         }
     })
-
-
-    //
-
 
 })

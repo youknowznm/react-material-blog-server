@@ -66,8 +66,11 @@ module.exports = function(router) {
                     && typeof params.articleId === 'string'
                     && /\S/.test(params.articleId)
             ) {
-                messageProxy.saveComment(params, function(saveResult) {
-                    res.json({saveCommentSuccess: saveResult})
+                messageProxy.saveComment(params, function(saveResult, savedCommentHTML) {
+                    res.json({
+                        saveCommentSuccess: saveResult,
+                        savedCommentHTML,
+                    })
                 })
             } else {
                 res.json({paramValidationFailed: true})

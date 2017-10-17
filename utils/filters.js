@@ -35,8 +35,8 @@ ejs.filters.getThemeColor = function(navType) {
 }
 
 // 转换当前时间与目标时间毫秒差值为可读字符串
-ejs.filters.getDateDiff = function(targetDate) {
-    var _sec = Math.floor((new Date().valueOf() - targetDate.valueOf()) / 1000)
+ejs.filters.getDateDiff = function(dateObj) {
+    var _sec = Math.floor((new Date().valueOf() - dateObj.valueOf()) / 1000)
     if (_sec < 10) {
         return ('just now')
     }
