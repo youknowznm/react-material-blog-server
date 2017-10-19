@@ -1,7 +1,7 @@
 module.exports = function() {
 
-    // 追加新评论dom，清空输入框
-    function appendNewCommentDOM($container, commentHTML) {
+    // 方法：追加新评论元素，清空输入框
+    function appendNewCommentElement($container, commentHTML) {
         let $newComment = $(commentHTML)
         let newCommentIndex = $container.find('.comment-order-badge').length + 1
         $newComment.find('.comment-order-badge').text(newCommentIndex)
@@ -11,8 +11,8 @@ module.exports = function() {
         $('.comment-input .jm-input').removeClass('non-empty')
     }
 
-    //
-    function removeCommentDOM($removeCommentButton) {
+    // 方法：移除评论元素
+    function removeCommentElement($removeCommentButton) {
         let $targetComment = $removeCommentButton.parents('.comment')
         $targetComment.slideUp(
             'fast',
@@ -21,7 +21,6 @@ module.exports = function() {
             }
         )
     }
-
 
     $(function() {
         let $commentsContainer = $('.comments-list')
@@ -55,7 +54,7 @@ module.exports = function() {
                         switch (true) {
                             case result.saveCommentSuccess:
                                 // 保存成功
-                                appendNewCommentDOM($commentsContainer, result.savedCommentHTML)
+                                appendNewCommentElement($commentsContainer, result.savedCommentHTML)
                                 break
                             case result.unauthorized:
                                 // 登录对话过期，保存失败
@@ -89,7 +88,7 @@ module.exports = function() {
             }
         })
 
-        //
+        // 确认后删除评论
         $commentsContainer.on('click', '.remove-comment', function() {
             let $this = $(this)
             let dataObj = {
@@ -110,7 +109,7 @@ module.exports = function() {
                             switch (true) {
                                 case result.removeCommentSuccess:
                                     // 保存成功
-                                    removeCommentDOM($this)
+                                    removeCommentElement($this)
                                     break
                                 case result.unauthorized:
                                     // 登录对话过期，保存失败

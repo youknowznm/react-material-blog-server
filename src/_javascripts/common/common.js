@@ -34,6 +34,7 @@ $(function() {
             }
         })
 
+    // 点击文章类型标签的跳转
     $('.article-tag').click(function(evt) {
         evt.stopPropagation()
         let articleType = ($('.jm-header').data('navType').toString() === '1') ? 'product' : 'post'

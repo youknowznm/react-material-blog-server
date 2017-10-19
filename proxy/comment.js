@@ -48,7 +48,11 @@ function saveComment(params, cb) {
     })
 }
 
-// TODO
+/**
+删除评论文档。为文章的评论时，从该文章subdoc中移除之并删除；否则只删除
+@param params {object} 参数对象，包含articleId,、commentId 和 email
+@param cb {function} 完成的回调。成功传入true，否则传入false
+*/
 function removeComment(params, cb) {
     let { articleId, commentId, email } = params
     if (articleId === 'INDEPENDENT_MESSAGES') {
@@ -78,7 +82,6 @@ function removeComment(params, cb) {
                         articleDoc.comments.pull({
                             _id: commentId
                         })
-                        console.log(articleDoc.comments);
                         articleDoc.save()
                         CommentModel.remove(
                             {
