@@ -19,44 +19,10 @@
             <button class="jm-button article-tag" data-text="<%= tag %>"></button>
         <%}%>
     </div>
+</div>
 
-</div>
-<!-- 输入评论 -->
-<div class="jm-row comment-input flexed">
-    <% let inputPlaceholder = (userInfo.authLevel !== 0) ? `Comment as ${userInfo.currentUserNickname}` : 'Log in to leave comments.' %>
-    <div class="jm-input"
-        data-type="text"
-        data-validator="^(.){2,100}$"
-        data-label="<%= inputPlaceholder %>"
-        data-max-length="100"
-        data-status="<%if(userInfo.authLevel===0){%>disabled<%}%>"
-        data-error-msg="Required 2~20 characters.">
-    </div>
-    <button class="submit-comment jm-button _primary _disabled" data-text="submit"></button>
-</div>
-<!-- 评论列表 -->
-<ul class="comments-list">
-    <% let comments = doc.comments %>
-    <% for (let i in comments) {%>
-        <% if (i < comments.length) {%>
-            <% let c = comments[i] %>
-            <% let isByCurrentUser = (c.author[0].nickname === userInfo.currentUserNickname) ? true : false %>
-            <li class="comment <%if(isByCurrentUser){%>is-by-current-user<%}%>">
-                <h3 class="comment-info">
-                    <span class="comment-author"><%= c.author[0].nickname %></span>
-                    <span class="comment-date"><%-: c.created | getDateDiff %></span>
-                    <span class="comment-order-badge"><%= +i + 1 %></span>
-                    <span class="current-user-badge">by current user</span>
-                </h3>
-                <p class="comment-content">
-                    <%= c.content %>
-                </p>
-                <% if (userInfo.authLevel === 2 || userInfo.authLevel === 1 && isByCurrentUser) {%>
-                    <div class="remove-comment" data-comment-id="<%= c._id %>"></div>
-                <%}%>
-            </li>
-        <%}%>
-    <%}%>
-</ul>
+<% let comments = doc.comments %>
+<!-- 评论相关 -->
+<% include ./common/comments.ejs %>
 
 <% include ./common/footer.ejs %>

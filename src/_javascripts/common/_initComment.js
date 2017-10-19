@@ -14,7 +14,7 @@ module.exports = function() {
     // 方法：移除评论元素
     function removeCommentElement($removeCommentButton) {
         let $targetComment = $removeCommentButton.parents('.comment')
-        $targetComment.slideUp(
+        $targetComment.fadeOut(
             'fast',
             function() {
                 $targetComment.remove()
