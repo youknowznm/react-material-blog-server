@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
-const messageSchema = require('./message').messageSchema
+const commentSchema = require('./comment').commentSchema
 
 // 文章文档大纲
 let articleSchema = mongoose.Schema({
     _id: {
-       type: String,
-       unique: true,
+        type: String,
+        unique: true,
     },
     // 创建时间
     created: Date,
@@ -20,7 +20,7 @@ let articleSchema = mongoose.Schema({
     // 标签
     tags: [String],
     // 评论
-    comments: [messageSchema],
+    comments: [commentSchema],
 })
 
 let ArticleModel = mongoose.model('Article', articleSchema)

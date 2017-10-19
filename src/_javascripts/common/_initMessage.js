@@ -13,7 +13,6 @@ function appendNewCommentDOM($container, commentHTML) {
 $(function() {
     let $commentsContainer = $('.comments-list')
 
-
     let $commentJmInput = $('.comment-input .jm-input')
     let $submitBtn = $('.submit-comment')
     // 评论内容验证

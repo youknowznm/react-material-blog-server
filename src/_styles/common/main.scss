@@ -5,30 +5,40 @@
 /*
 general
 */
+
 * {
     margin: 0;
     padding: 0;
     outline: 0;
 }
+
 a {
     text-decoration: none;
     color: #000;
 }
-ul, ol {
+
+ul,
+ol {
     list-style: none;
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 400;
 }
+
 html {
     height: 100%;
 }
+
 body {
     position: relative;
     // height: 100%;
-    font-family: "Roboto Mono", "Helvetica Neue",
-                 "PingFang SC", "Microsoft YaHei",
-                 "微软雅黑", Arial, sans-serif;
+    font-family: "Roboto Mono", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     background: #fafafa;
     &.no-content {
@@ -39,8 +49,14 @@ body {
         .panel-to-top {
             display: none;
         }
+        &.no-scroll {
+            padding-right: 0 !important;
+            .jm-header-content {
+                transform: none !important;
+            }
+        }
     }
-    &.no-scroll {
+    &:not(.no-content).no-scroll {
         #login-area {
             transform: translateX(calc(-50% - 7.5px));
         }

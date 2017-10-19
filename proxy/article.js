@@ -52,8 +52,7 @@ function saveArticle(params, cb) {
                 return cb({ _id })
             })
         } else {
-            ArticleModel.update(
-                { _id },
+            ArticleModel.update({ _id },
                 articleDoc,
                 function(e) {
                     if (e) {

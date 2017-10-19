@@ -1,5 +1,5 @@
 let articleProxy = require('../proxy/article')
-let messageProxy = require('../proxy/message')
+let commentProxy = require('../proxy/comment')
 let userProxy = require('../proxy/user')
 let controllers = require('../utils/controllers')
 let getDateDiff = require('../utils/filters').getDateDiff
@@ -52,7 +52,7 @@ module.exports = function(router) {
     router.post('/saveComment', function(req, res, next) {
         let currentUserInfo = controllers.getUserInfo(req)
         if (currentUserInfo.authLevel === 0) {
-            res.json({unauthorized: true})
+            res.json({ unauthorized: true })
         } else {
             let params = {
                 email: req.session.currentUserEmail,
@@ -60,26 +60,27 @@ module.exports = function(router) {
                 created: new Date(),
                 articleId: req.body.articleId,
             }
-            if (typeof params.email === 'string'
-                    && /\S/.test(params.email)
-                    && typeof params.content === 'string'
-                    && /\S/.test(params.content)
-                    && typeof params.articleId === 'string'
-                    && /\S/.test(params.articleId)
+            if (typeof params.email === 'string' &&
+                /\S/.test(params.email) &&
+                typeof params.content === 'string' &&
+                /\S/.test(params.content) &&
+                typeof params.articleId === 'string' &&
+                /\S/.test(params.articleId)
             ) {
-                messageProxy.saveComment(params, function(saveResult, messageDoc) {
+                // 保存成功时在回调内生成HTML
+                commentProxy.saveComment(params, function(saveResult, commentDoc) {
                     let savedCommentHTML = `
                         <li class="comment is-by-current-user">
                             <h3 class="comment-info">
-                                <span class="comment-author">${messageDoc.author[0].nickname}</span>
-                                <span class="comment-date">${getDateDiff(messageDoc.created)}</span>
+                                <span class="comment-author">${commentDoc.author[0].nickname}</span>
+                                <span class="comment-date">${getDateDiff(commentDoc.created)}</span>
                                 <span class="comment-order-badge"></span>
                                 <span class="current-user-badge">by current user</span>
                             </h3>
                             <p class="comment-content">
-                                ${messageDoc.content}
+                                ${commentDoc.content}
                             </p>
-                            <div class="delete-comment" data-comment-id="${messageDoc._id}"></div>
+                            <div class="delete-comment" data-comment-id="${commentDoc._id}"></div>
                         </li>`
                     res.json({
                         saveCommentSuccess: saveResult,
@@ -87,7 +88,7 @@ module.exports = function(router) {
                     })
                 })
             } else {
-                res.json({paramValidationFailed: true})
+                res.json({ paramValidationFailed: true })
             }
         }
     })
@@ -95,7 +96,7 @@ module.exports = function(router) {
     router.post('/removeComment', function(req, res, next) {
         let currentUserInfo = controllers.getUserInfo(req)
         if (currentUserInfo.authLevel === 0) {
-            res.json({unauthorized: true})
+            res.json({ unauthorized: true })
         } else {
             let params = {
                 email: req.session.currentUserEmail,
