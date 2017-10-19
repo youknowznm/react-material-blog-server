@@ -80,7 +80,7 @@ module.exports = function(router) {
                             <p class="comment-content">
                                 ${commentDoc.content}
                             </p>
-                            <div class="delete-comment" data-comment-id="${commentDoc._id}"></div>
+                            <div class="remove-comment" data-comment-id="${commentDoc._id}"></div>
                         </li>`
                     res.json({
                         saveCommentSuccess: saveResult,
@@ -93,6 +93,12 @@ module.exports = function(router) {
         }
     })
 
+    /*
+    POST 删除评论
+    - 未登录或登录过期时以 {unauthorized: true} 结束响应
+    - 参数验证失败时以 {paramValidationFailed: true} 结束响应
+    - 删除成功时以 {removeCommentSuccess: true} 结束响应
+    */
     router.post('/removeComment', function(req, res, next) {
         let currentUserInfo = controllers.getUserInfo(req)
         if (currentUserInfo.authLevel === 0) {
@@ -102,6 +108,21 @@ module.exports = function(router) {
                 email: req.session.currentUserEmail,
                 articleId: req.body.articleId,
                 commentId: req.body.commentId,
+            }
+            if (typeof params.email === 'string' &&
+                /\S/.test(params.email) &&
+                typeof params.articleId === 'string' &&
+                /\S/.test(params.articleId) &&
+                typeof params.commentId === 'string' &&
+                /\S/.test(params.commentId)
+            ) {
+                commentProxy.removeComment(params, function(saveResult) {
+                    res.json({
+                        removeCommentSuccess: saveResult,
+                    })
+                })
+            } else {
+                res.json({ paramValidationFailed: true })
             }
         }
     })

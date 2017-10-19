@@ -52,7 +52,7 @@
                     <%= c.content %>
                 </p>
                 <% if (userInfo.authLevel === 2 || userInfo.authLevel === 1 && isByCurrentUser) {%>
-                    <div class="delete-comment" data-comment-id="<%= c._id %>"></div>
+                    <div class="remove-comment" data-comment-id="<%= c._id %>"></div>
                 <%}%>
             </li>
         <%}%>

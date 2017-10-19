@@ -48,30 +48,51 @@ function saveComment(params, cb) {
     })
 }
 
+// TODO
 function removeComment(params, cb) {
     let { articleId, commentId, email } = params
-    articleProxy.getArticleById(articleId, function(articleDoc) {
-        // 根据参数未找到文章文档时执行回调，传入false
-        if (articleDoc === null) {
-            return cb(false)
-        } else {
-            let targetCommentDoc = articleDoc.comments.find(function(item) {
-                return item._id === commentId
-            })
-            if (targetCommentDoc === null) {
+    if (articleId === 'INDEPENDENT_MESSAGES') {
+        CommentModel.remove(
+            {
+                _id: commentId
+            },
+            function() {
+                return cb(true)
+            }
+        )
+    } else {
+        articleProxy.getArticleById(articleId, function(articleDoc) {
+            // 根据参数未找到文章文档时执行回调，传入false
+            if (articleDoc === null) {
                 return cb(false)
             } else {
-                if (targetCommentDoc.author[0].email !== email) {
+                let targetCommentDoc = articleDoc.comments.find(function(item) {
+                    return item._id === commentId
+                })
+                if (targetCommentDoc === null) {
                     return cb(false)
                 } else {
-                    articleDoc.pull({
-                        _id: commentId
-                    })
-                    return cb(true)
+                    if (targetCommentDoc.author[0].email !== email) {
+                        return cb(false)
+                    } else {
+                        articleDoc.comments.pull({
+                            _id: commentId
+                        })
+                        console.log(articleDoc.comments);
+                        articleDoc.save()
+                        CommentModel.remove(
+                            {
+                                _id: commentId
+                            },
+                            function() {
+                                return cb(true)
+                            }
+                        )
+                    }
                 }
             }
-        }
-    })
+        })
+    }
 }
 
 module.exports = {
