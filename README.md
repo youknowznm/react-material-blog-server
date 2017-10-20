@@ -1,7 +1,8 @@
 # Rhaego
 Material Design 风格的 Node.js 博客系统
 
-基于 Express 框架和 [jQueryMaterial.js](https://github.com/youknowznm/jqueryMaterial.js) 组件库（我的另一个项目）的开源博客系统，未使用第三方登录和评论组件。  
+基于 Express 框架和 [jQueryMaterial.js](https://github.com/youknowznm/jqueryMaterial.js) 组件库（我的另一个项目）的开源博客系统。  
+未使用任何非原创的样式库、登录方案或评论组件。 
 近期会部署上线。
 
 ```
