@@ -1,28 +1,32 @@
 module.exports = function() {
 
-    // 方法：追加新评论元素，清空输入框
+    // 方法：追加新评论元素，清空输入框，滚动至底部
     function appendNewCommentElement($container, commentHTML) {
         let $newComment = $(commentHTML)
         let newCommentIndex = $container.find('.comment-order-badge').length + 1
         $newComment.find('.comment-order-badge').text(newCommentIndex)
         $container.append($newComment)
-        $newComment.jmScrollInto()
         $('#jm-input-1').val('')
         $('.comment-input .jm-input').removeClass('non-empty')
+        $('html').animate({
+            scrollTop: $(document).height()
+        })
     }
 
-    // 方法：移除评论元素
-    function removeCommentElement($removeCommentButton) {
+    // 方法：移除评论元素后执行回调
+    function removeCommentElement($removeCommentButton, cb) {
         let $targetComment = $removeCommentButton.parents('.comment')
         $targetComment.fadeOut(
-            'fast',
             function() {
                 $targetComment.remove()
+                cb()
             }
         )
     }
 
     $(function() {
+        let $noComments = $('.no-comments')
+
         let $commentsContainer = $('.comments-list')
 
         let $commentJmInput = $('.comment-input .jm-input')
@@ -55,6 +59,7 @@ module.exports = function() {
                             case result.saveCommentSuccess:
                                 // 保存成功
                                 appendNewCommentElement($commentsContainer, result.savedCommentHTML)
+                                $noComments.removeClass('show')
                                 break
                             case result.unauthorized:
                                 // 登录对话过期，保存失败
@@ -109,7 +114,9 @@ module.exports = function() {
                             switch (true) {
                                 case result.removeCommentSuccess:
                                     // 保存成功
-                                    removeCommentElement($this)
+                                    removeCommentElement($this, function() {
+                                        $noComments.toggleClass('show', $commentsContainer.children('.comment').length === 0)
+                                    })
                                     break
                                 case result.unauthorized:
                                     // 登录对话过期，保存失败

@@ -74,13 +74,13 @@ module.exports = function(router) {
                             <h3 class="comment-info">
                                 <span class="comment-author">${commentDoc.author[0].nickname}</span>
                                 <span class="comment-date">${getDateDiff(commentDoc.created)}</span>
+                                <span class="remove-comment" data-comment-id="${commentDoc._id}"></span>
                                 <span class="comment-order-badge"></span>
                                 <span class="current-user-badge">by current user</span>
                             </h3>
                             <p class="comment-content">
                                 ${commentDoc.content}
                             </p>
-                            <div class="remove-comment" data-comment-id="${commentDoc._id}"></div>
                         </li>`
                     res.json({
                         saveCommentSuccess: saveResult,

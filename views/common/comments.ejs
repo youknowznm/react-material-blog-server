@@ -12,36 +12,31 @@
     <button class="submit-comment jm-button _primary _disabled" data-text="submit"></button>
 </div>
 
+<!-- 无评论 -->
+<div class="jm-row no-comments <%if(comments.length === 0){%>show<%}%>">
+    <p>Be the first to say something.</p>
+</div>
+
 <!-- 评论列表 -->
-<% if (comments.length === 0) {%>
-
-    <div class="jm-row">
-        <p class="no-comments">Be the first to say something.</p>
-    </div>
-
-<%} else {%>
-
-    <ul class="comments-list">
-        <% for (let i in comments) {%>
-            <% if (i < comments.length) {%>
-                <% let c = comments[i] %>
-                <% let isByCurrentUser = (c.author[0].nickname === userInfo.currentUserNickname) ? true : false %>
-                <li class="comment <%if(isByCurrentUser){%>is-by-current-user<%}%>">
-                    <h3 class="comment-info">
-                        <span class="comment-author"><%= c.author[0].nickname %></span>
-                        <span class="comment-date"><%-: c.created | getDateDiff %></span>
-                        <span class="comment-order-badge"><%= +i + 1 %></span>
-                        <span class="current-user-badge">by current user</span>
-                    </h3>
-                    <p class="comment-content">
-                        <%= c.content %>
-                    </p>
+<ul class="comments-list">
+    <% for (let i in comments) {%>
+        <% if (i < comments.length) {%>
+            <% let c = comments[i] %>
+            <% let isByCurrentUser = (c.author[0].nickname === userInfo.currentUserNickname) ? true : false %>
+            <li class="comment <%if(isByCurrentUser){%>is-by-current-user<%}%>">
+                <h3 class="comment-info">
+                    <span class="comment-author"><%= c.author[0].nickname %></span>
+                    <span class="comment-date"><%-: c.created | getDateDiff %></span>
                     <% if (userInfo.authLevel === 2 || userInfo.authLevel === 1 && isByCurrentUser) {%>
-                        <div class="remove-comment" data-comment-id="<%= c._id %>"></div>
+                        <span class="remove-comment" data-comment-id="<%= c._id %>"></span>
                     <%}%>
-                </li>
-            <%}%>
+                    <span class="comment-order-badge"><%= +i + 1 %></span>
+                    <span class="current-user-badge">by current user</span>
+                </h3>
+                <p class="comment-content">
+                    <%= c.content %>
+                </p>
+            </li>
         <%}%>
-    </ul>
-
-<%}%>
+    <%}%>
+</ul>

@@ -27,13 +27,34 @@
             font-size: 14px;
             margin-bottom: 6px;
             .comment-author {
+                display: inline-block;
+                margin-right: 6px;
+                line-height: 24px;
                 color: #757575;
                 font-weight: bold;
             }
             .comment-date {
-                margin-left: 5px;
+                display: inline-block;
+                line-height: 24px;
                 color: #757575;
                 font-style: italic;
+            }
+            .remove-comment {
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                line-height: 24px;
+                background: url("../../_images/ic_delete.png") no-repeat;
+                background-size: 24px 24px;
+                right: 3px;
+                bottom: 6px;
+                opacity: .3;
+                vertical-align: middle;
+                transition: opacity .2s ease-out;
+                cursor: pointer;
+                &:hover {
+                    opacity: .7;
+                }
             }
             .current-user-badge {
                 display: none;
@@ -62,21 +83,6 @@
             clear: both;
             padding-right: 24px;
         }
-        .remove-comment {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background: url("../../_images/ic_delete.png") no-repeat;
-            background-size: 24px 24px;
-            right: 3px;
-            bottom: 6px;
-            opacity: .5;
-            transition: opacity .2s ease-out;
-            cursor: pointer;
-            &:hover {
-                opacity: .8;
-            }
-        }
         &.is-by-current-user {
             .current-user-badge {
                 display: block;
@@ -89,8 +95,13 @@
 }
 
 .no-comments {
-    color: #757575;
-    line-height: 70px;
-    cursor: default;
-    user-select: none;
+    display: none;
+    > p {
+        line-height: 70px;
+        color: #757575;
+        user-select: none;
+    }
+    &.show {
+        display: block;
+    }
 }
