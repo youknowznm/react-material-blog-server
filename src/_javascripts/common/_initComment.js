@@ -32,7 +32,7 @@ module.exports = function() {
         let $commentJmInput = $('.comment-input .jm-input')
         let $submitCommentButton = $('.submit-comment')
 
-        let articleId = $('[data-article-id]').data('articleId')
+        let articleId = $('[data-article-id]').data('articleId') || 'INDEPENDENT_MESSAGES'
 
         // 评论内容验证
         setInterval(function() {

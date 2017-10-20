@@ -32,7 +32,6 @@ module.exports = function(router) {
                             userInfo: controllers.getUserInfo(req),
                             // articles: [],
                             articles: docs,
-                            promptLogin: req.promptLogin,
                         })
                     } else {
                         controllers.render404(req, res, next)
@@ -43,10 +42,6 @@ module.exports = function(router) {
             case true:
                 articleProxy.getArticles(targetType, null, function(docs) {
                     console.log('-- articles --', docs);
-                    let d = []
-                    d.push(docs[0])
-                    d.push(docs[0])
-                    d.push(docs[0])
                     res.render('overview', {
                         navType: (targetType === 'post') ? 0 : 1,
                         pageTitle: targetType,
@@ -54,7 +49,6 @@ module.exports = function(router) {
                         userInfo: controllers.getUserInfo(req),
                         // articles: [],
                         articles: docs,
-                        promptLogin: req.promptLogin,
                     })
                 })
                 break

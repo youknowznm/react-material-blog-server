@@ -20,13 +20,15 @@ function saveComment(params, cb) {
             // 找到用户文档则创建评论文档，注意设置其isMessage值
             let commentDoc = new CommentModel({
                 _id: shortid.generate(),
-                author: userDoc,
+                author: [userDoc],
                 content,
                 created,
                 isMessage: (articleId === 'INDEPENDENT_MESSAGES') ? true : false
             })
+            console.log(333,commentDoc.author[0]);
+            // console.log(userDoc);
             if (articleId === 'INDEPENDENT_MESSAGES') {
-                commentDoc.save()
+                commentDoc.save(cb(true, commentDoc))
             } else {
                 articleProxy.getArticleById(articleId, function(articleDoc) {
                     // 根据参数未找到文章文档时执行回调，传入false
@@ -98,7 +100,24 @@ function removeComment(params, cb) {
     }
 }
 
+/*
+取得所有独立评论（即isMessage为true的文档对象）
+@param cb {function} 读取完成的回调
+*/
+function getIndependentMessages(cb) {
+    CommentModel.find(
+        {
+            isMessage: true
+        },
+        function(e, docs) {
+            console.log(11,docs);
+            return cb(docs);
+        }
+    )
+}
+
 module.exports = {
     saveComment,
     removeComment,
+    getIndependentMessages,
 }
