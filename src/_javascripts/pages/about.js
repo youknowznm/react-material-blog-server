@@ -5,7 +5,7 @@ $(function() {
     let $resume = $('.resume')
     let $resumeContentNav = $('.resume-content-nav')
 
-    // initArticleNav($resume, $resumeContentNav)
+    initArticleNav($resume, $resumeContentNav)
 
 
 })

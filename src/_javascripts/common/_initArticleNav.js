@@ -10,25 +10,23 @@ module.exports = function($article, $articleContentNav) {
     // 点击非‘目录’的li时，页面滚动至对应的左侧header
     $articleContentNav.on('click', 'li', function() {
         let $this = $(this)
-        if (!$this.hasClass('current')) {
-            let index = $this.data('jmHeadingIndex')
-            let targetScrollTop
-            if ($this.is(':first-child')) {
-                targetScrollTop = 192
-            } else {
-                targetScrollTop = $headers.eq(index).offset().top - 88
-            }
-            $articleContentNav.hide()
-            $(document.documentElement).animate(
-                {
-                    scrollTop: targetScrollTop
-                },
-                'fast',
-                function() {
-                    $articleContentNav.fadeIn('fast')
-                }
-            )
+        let index = $this.data('jmHeadingIndex')
+        let targetScrollTop
+        if ($this.is(':first-child')) {
+            targetScrollTop = 192
+        } else {
+            targetScrollTop = $headers.eq(index).offset().top - 88
         }
+        $articleContentNav.hide()
+        $(document.documentElement).animate(
+            {
+                scrollTop: targetScrollTop
+            },
+            'fast',
+            function() {
+                $articleContentNav.fadeIn('fast')
+            }
+        )
     })
     $articleContentNav.html(articleContentNavHTML)
 

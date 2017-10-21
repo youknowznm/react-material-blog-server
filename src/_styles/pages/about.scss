@@ -1,18 +1,22 @@
-@import "../common/comments.scss";
+@import "../common/main.scss";
+@import "../common/article-nav.scss";
 
 .resume {
     background: #fafafa;
     font-size: 12px;
     margin: 12px 0;
     font-family: "Roboto";
-    padding-right: 180px;
+    padding: 18px 153px 18px 3em;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2),
+                0 1px 1px 0 rgba(0, 0, 0, 0.14),
+                0 2px 1px -1px rgba(0, 0, 0, 0.12);
     a {
-        color: #039be5;
+        color: #1e88e5;
         border-bottom: 2px solid transparent;
         padding-bottom: 6px;
         transition: all .2s ease;
         &:hover {
-            border-bottom-color: #039be5;
+            border-bottom-color: #1e88e5;
             padding-bottom: 3px;
         }
     }
@@ -29,12 +33,12 @@
     .info {
         display: flex;
         justify-content: space-between;
-        padding: 0 3em;
         .name {
             font-size: 3.5em;
             font-weight: 500;
             line-height: 100px;
             height: 100px;
+            margin-left: 12px;
         }
         .subtitle {
             text-align: right;
@@ -44,7 +48,7 @@
         }
     }
     .title {
-        margin: 12px 0;
+        margin-top: 18px;
         &.i {
             font-style: italic;
         }
@@ -57,18 +61,16 @@
         font-size: 1.3em;
         line-height: 2.5em;
         >.title {
-            width: 150px;
-            text-align: center;
+            width: 10em;
             .anchor {
                 display: inline-block;
                 color: #666;
                 border-bottom: 3px solid;
-                padding-bottom: 4px;
+                margin-left: 1em;
             }
         }
         >.content {
             color: #666;
-            padding: 0 2em;
             flex-grow: 1;
             b {
                 font-weight: 400;
@@ -117,7 +119,8 @@
 }
 
 .resume-content-nav {
-    position: absolute;
-    right: 0;
-    top: 0;
+    width: 7em;
+    li {
+        width: 5em !important;
+    }
 }
