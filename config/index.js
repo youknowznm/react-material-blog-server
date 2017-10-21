@@ -1,6 +1,6 @@
 module.exports = {
     // 站点名
-    siteName: 'rhaego',
+    siteName: 'YouKnowznM',
     // 数据库的路径
     dbPath: 'mongodb://localhost/rhaego',
     // session的加密字符串
