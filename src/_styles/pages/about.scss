@@ -1,0 +1,123 @@
+@import "../common/comments.scss";
+
+.resume {
+    background: #fafafa;
+    font-size: 12px;
+    margin: 12px 0;
+    font-family: "Roboto";
+    padding-right: 180px;
+    a {
+        color: #039be5;
+        border-bottom: 2px solid transparent;
+        padding-bottom: 6px;
+        transition: all .2s ease;
+        &:hover {
+            border-bottom-color: #039be5;
+            padding-bottom: 3px;
+        }
+    }
+    ul {
+        padding-left: 6px;
+        ul {
+            padding-left: 24px;
+        }
+    }
+    li {
+        list-style-position: inside;
+        line-height: 2em;
+    }
+    .info {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 3em;
+        .name {
+            font-size: 3.5em;
+            font-weight: 500;
+            line-height: 100px;
+            height: 100px;
+        }
+        .subtitle {
+            text-align: right;
+            line-height: 2em;
+            font-size: 1.4em;
+            color: #666;
+        }
+    }
+    .title {
+        margin: 12px 0;
+        &.i {
+            font-style: italic;
+        }
+    }
+    .ul {
+        margin: 12px 0;
+    }
+    .block {
+        display: flex;
+        font-size: 1.3em;
+        line-height: 2.5em;
+        >.title {
+            width: 150px;
+            text-align: center;
+            .anchor {
+                display: inline-block;
+                color: #666;
+                border-bottom: 3px solid;
+                padding-bottom: 4px;
+            }
+        }
+        >.content {
+            color: #666;
+            padding: 0 2em;
+            flex-grow: 1;
+            b {
+                font-weight: 400;
+            }
+            .right {
+                float: right;
+            }
+            .title {
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+@media print {
+    .footer,.header {
+        display: none;
+    }
+    .resume {
+        padding: 0;
+    }
+    .resume .button-group {
+        display: none;
+    }
+    .resume .wrapper {
+        padding: 0;
+        max-width: none;
+    }
+    .resume .block {
+        font-size: 1.1em;
+        margin-top: 10px;
+        line-height: 2em;
+    }
+    .resume .block>.title {
+        width: 60px;
+    }
+    .resume .block>.content {
+        font-weight: 400;
+    }
+    .resume .block ul {
+        margin: 5px 0;
+    }
+}
+@page {
+    size: "A4";
+}
+
+.resume-content-nav {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

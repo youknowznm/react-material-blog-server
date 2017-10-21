@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+// 导航元素
+.article-content-nav {
+    position: absolute;
+    box-sizing: border-box;
+    width: 160px;
+    right: 0;
+    top: 24px;
+    border-left: 4px solid #1e88e5;
+    padding: 0 0 0 12px !important;
+    li {
+        list-style: none !important;
+        width: 9em;
+        font-size: 14px;
+        line-height: 24px;
+        color: #212121;
+        cursor: pointer;
+        font-family: "Roboto";
+        &:first-child {
+            margin: 0 !important;
+            color: #757575;
+            font-weight: 500;
+        }
+        &.current,
+        &:hover {
+            color: #039be5;
+        }
+    }
+    &.fixed {
+        position: fixed;
+        top: 300px;
+    }
+}
