@@ -25,5 +25,9 @@ $(function() {
 
     $('.page-title').html(breakToSpans($article.data('pageTitle')))
 
+    $article.find('h1').each(function() {
+        let $this = $(this)
+        $this.html(breakToSpans($this.html()))
+    })
 
 })

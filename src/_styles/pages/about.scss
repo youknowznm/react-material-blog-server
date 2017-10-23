@@ -125,3 +125,12 @@
         width: 5em !important;
     }
 }
+
+/*
+移动端重置
+*/
+body#mobile {
+    .resume {
+        padding: 0 12px;
+    }
+}

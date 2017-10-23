@@ -62,7 +62,6 @@
         }
         .summary {
             font-size: 14px;
-            width: 85%;
             line-height: 26px;
             margin: 10px 0 14px;
             font-family: "Roboto";
@@ -91,4 +90,23 @@
 
 .float-clearer {
     clear: left;
+}
+
+/*
+移动端重置
+*/
+body#mobile {
+    .article {
+        width: 100%;
+        padding-bottom: 100%;
+    }
+    .jm-main-wrap {
+        min-height: 0;
+    }
+    .empty-msg {
+        position: fixed;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }

@@ -32,3 +32,14 @@
         top: 300px;
     }
 }
+
+/*
+移动端重置
+*/
+body#mobile {
+    .article-content-nav {
+        position: fixed;
+        left: 12px;
+        top: 130px;
+    }
+}

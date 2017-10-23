@@ -34,25 +34,27 @@ module.exports = function($article, $articleContentNav) {
     let $jmNavHeadings = $articleContentNav.find('[data-jm-heading-index]')
 
     // 滚动时
-    $(window).on('scroll', function() {
-        let pageScrollTop = document.documentElement.scrollTop
-        // 内容导航吸顶
-        if (pageScrollTop > 192) {
-            $articleContentNav.css('top', pageScrollTop - 168)
-        } else {
-            $articleContentNav.css('top', 24)
-        }
-        // 改变右侧导航的高亮标题
-        let currentHeadingIndex = 0
-        for (let i = $jmActualHeadings.length - 1; i > -1; --i) {
-            let $this = $jmActualHeadings.eq(i)
-            if ($this.offset().top - 90 < pageScrollTop) {
-                currentHeadingIndex = $this.data('jmHeadingIndex')
-                $jmNavHeadings.removeClass('current').eq(currentHeadingIndex).addClass('current')
-                return false
+    if (!$('body').is('#mobile')) {
+        $(window).on('scroll', function() {
+            let pageScrollTop = document.documentElement.scrollTop
+            // 内容导航吸顶
+            if (pageScrollTop > 192) {
+                $articleContentNav.css('top', pageScrollTop - 168)
             } else {
-                $jmNavHeadings.removeClass('current')
+                $articleContentNav.css('top', 24)
             }
-        }
-    })
+            // 改变右侧导航的高亮标题
+            let currentHeadingIndex = 0
+            for (let i = $jmActualHeadings.length - 1; i > -1; --i) {
+                let $this = $jmActualHeadings.eq(i)
+                if ($this.offset().top - 90 < pageScrollTop) {
+                    currentHeadingIndex = $this.data('jmHeadingIndex')
+                    $jmNavHeadings.removeClass('current').eq(currentHeadingIndex).addClass('current')
+                    return false
+                } else {
+                    $jmNavHeadings.removeClass('current')
+                }
+            }
+        })
+    }
 }

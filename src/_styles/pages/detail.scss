@@ -14,12 +14,6 @@
 
     .article-content {
         margin-right: 170px;
-        // 小页面宽度时内容宽度的重置
-        // @media (max-width: 1150px) {
-        //     & {
-        //         max-width: 700px;
-        //     }
-        // }
     }
 
 }
@@ -41,5 +35,14 @@
         line-height: 70px;
         cursor: default;
         font-style: italic;
+    }
+}
+
+/*
+移动端重置
+*/
+body#mobile {
+    .article-content {
+        margin-right: 0;
     }
 }

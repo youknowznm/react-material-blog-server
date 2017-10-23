@@ -42,4 +42,10 @@ $(function() {
         location.assign(`/${articleType}s?tag=${tagName}`)
     })
 
+    if ($body.is('#mobile')) {
+        $('.jm-main-wrap').css({
+            height: window.innerHeight - 248
+        })
+    }
+
 })
