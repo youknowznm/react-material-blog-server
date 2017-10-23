@@ -80,8 +80,27 @@ function getArticleById(_id, cb) {
     })
 }
 
+
+/**
+删除文章文档
+@param _id {string} 目标文章文档的_id
+@param cb {function} 完成的回调，参数为TODO
+*/
+function removeArticle(_id, cb) {
+    ArticleModel.remove(
+        {
+            _id
+        },
+        function(e) {
+            console.log('res', e);
+            return cb(true);
+        }
+    )
+}
+
 module.exports = {
     saveArticle,
     getArticles,
     getArticleById,
+    removeArticle,
 }

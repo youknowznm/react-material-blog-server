@@ -21,7 +21,6 @@
         data-value="<%= doc.summary %>"
         data-error-msg="Required 10~40 characters.">
     </div>
-
 </div>
 <div class="jm-row">
     <!-- 内容 -->
@@ -39,7 +38,12 @@
         <button id="submit" class="jm-button _primary _disabled" data-text="submit"></button>
         <button id="cancel" class="jm-button" data-text="cancel"></button>
     </div>
-
 </div>
+<% if (pageTitle === 'edit') {%>
+    <div class="jm-row">
+        <!-- 删除文章按钮 -->
+        <button id="delete" class="jm-button _warn delete-article" data-text="delete article"></button>
+    </div>
+<%}%>
 
 <% include ./common/footer.ejs %>

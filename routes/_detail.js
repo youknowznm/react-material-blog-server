@@ -18,21 +18,29 @@ module.exports = function(router) {
                 controllers.render404(req, res, next)
             } else {
                 let navType = doc.type === 'post' ? 0 : 1
+                let userInfo = controllers.getUserInfo(req)
                 console.log('--- article doc ---', doc.comments[0]);
                 if (editing === true) {
-                    res.render('edit', {
-                        navType,
-                        pageTitle: 'edit',
-                        static: 'edit',
-                        userInfo: controllers.getUserInfo(req),
-                        doc,
-                    })
+                    if (userInfo.authLevel === 2) {
+                        // editing为真时，若用户为管理员则正常渲染编辑页
+                        res.render('edit', {
+                            navType,
+                            pageTitle: 'edit',
+                            static: 'edit',
+                            userInfo,
+                            doc,
+                        })
+                    } else {
+                        // 否则回到首页
+                        res.redirect('/')
+                    }
                 } else {
+                    // 非编辑状态则渲染文章详情
                     res.render('detail', {
                         navType,
                         pageTitle: doc.title,
                         static: 'detail',
-                        userInfo: controllers.getUserInfo(req),
+                        userInfo,
                         doc,
                     })
                 }

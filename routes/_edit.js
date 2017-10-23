@@ -73,6 +73,30 @@ module.exports = function(router) {
         }
     })
 
+    /*
+    POST 删除已存在的文章
+    - 未登录或登录过期时以 {unauthorized: true} 结束响应
+    - 文章文档的参数验证失败时以 {paramValidationFailed: true} 结束响应
+    - 成功删除时以true结束响应
+    */
+    router.post('/removeArticle', function(req, res, next) {
+        if (controllers.getUserInfo(req).authLevel !== 2) {
+            res.json({unauthorized: true})
+        } else {
+            let _id = req.body._id
+            console.log(_id);
+            if (typeof _id === 'string'
+                    && /\S/.test(_id)
+            ) {
+                articleProxy.removeArticle(_id, function(removeResult) {
+                    res.json(removeResult)
+                })
+            } else {
+                res.json({paramValidationFailed: true})
+            }
+        }
+    })
+
     return router
 
 }

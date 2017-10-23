@@ -140,4 +140,28 @@ $(function() {
         $submitButton.toggleClass('_disabled', !allValid);
     }, 100)
 
+    // 删除文章
+    let $deleteButton = $('#delete')
+    $deleteButton.click(function() {
+        let dataObj = {
+            _id: $articleContent.data('id')
+        }
+        $.showJmDialog({
+            dialogType: 'confirm',
+            title: 'Delete this article?',
+            content: 'Deleted articles cannot be recovered.',
+            onConfirm() {
+                $.ajax({
+                    contentType: 'application/json',
+                    url: '/removeArticle',
+                    type: 'Post',
+                    data: JSON.stringify(dataObj),
+                    success: function(result) {
+                        console.log(result);
+                    },
+                })
+            }
+        })
+    })
+
 })
