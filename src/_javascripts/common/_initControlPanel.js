@@ -45,9 +45,16 @@ module.exports = function() {
             )
         })
 
-    $(window).on('scroll', function(e) {
-        let pageScrollTop = document.documentElement.scrollTop
-        $controlPanel.css('top', pageScrollTop + 200)
+    let $main = $('.jm-main')
+
+    $controlPanel.css({
+        left: $main.width() + parseInt($main.css('marginLeft')) + 18
+    })
+
+    $(window).on('resize', function(e) {
+        $controlPanel.css({
+            left: $main.width() + parseInt($main.css('marginLeft')) + 18
+        })
     })
 
     // 推迟显示

@@ -1,10 +1,7 @@
 @import "../common/main.scss";
 
 .empty-msg {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
+    transform: translateY(100px);
     font-size: 18px;
     user-select: none;
     cursor: default;
@@ -15,6 +12,16 @@
     transition: opacity .3s ease-out;
     &.show {
         opacity: 1;
+    }
+    @media (min-height: 700px) {
+        & {
+            transform: translateY(150px);
+        }
+    }
+    @media (min-height: 900px) {
+        & {
+            transform: translateY(250px);
+        }
     }
 }
 

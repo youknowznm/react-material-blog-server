@@ -1,8 +1,8 @@
 .control-panel {
     display: none;
-    position: absolute;
-    right: -90px;
-    top: 200px;
+    position: fixed;
+    right: 0;
+    top: calc(50% + 50px);
     transform: translateY(-50%);
     z-index: 199;
     .panel-item {

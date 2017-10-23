@@ -156,8 +156,16 @@ $(function() {
                     url: '/removeArticle',
                     type: 'Post',
                     data: JSON.stringify(dataObj),
-                    success: function(result) {
-                        console.log(result);
+                    success: function(removeResult) {
+                        if (removeResult === true) {
+                            location.assign('/')
+                        } else {
+                            $.showJmDialog({
+                                dialogType: 'alert',
+                                title: 'Save article failed.',
+                                content: 'An error occurred during saving. Please try agin later.'
+                            })
+                        }
                     },
                 })
             }
