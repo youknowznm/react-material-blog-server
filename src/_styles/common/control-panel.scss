@@ -31,5 +31,13 @@
     .panel-to-top .icon {
         background: url("../../_images/ic_arrow_up.png") no-repeat;
     }
+}
 
+/*
+移动端重置
+*/
+body#mobile {
+    .control-panel {
+        
+    }
 }

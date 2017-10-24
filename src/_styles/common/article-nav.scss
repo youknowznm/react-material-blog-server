@@ -38,8 +38,6 @@
 */
 body#mobile {
     .article-content-nav {
-        position: fixed;
-        left: 12px;
-        top: 130px;
+        display: none;
     }
 }

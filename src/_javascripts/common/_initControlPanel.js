@@ -47,14 +47,23 @@ module.exports = function() {
 
     let $main = $('.jm-main')
 
-    $controlPanel.css({
-        left: $main.width() + parseInt($main.css('marginLeft')) + 18
-    })
+    function positionControlPanel() {
+        if ($('body').is('#mobile')) {
+            $controlPanel.css({
+                left: 'auto',
+                right: 12,
+            })
+        } else {
+            $controlPanel.css({
+                left: $main.width() + parseInt($main.css('marginLeft')) + 18
+            })
+        }
+    }
+
+    positionControlPanel()
 
     $(window).on('resize', function(e) {
-        $controlPanel.css({
-            left: $main.width() + parseInt($main.css('marginLeft')) + 18
-        })
+        positionControlPanel()
     })
 
     // 推迟显示
