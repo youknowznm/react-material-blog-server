@@ -4,7 +4,7 @@
     right: 0;
     top: calc(50% + 50px);
     transform: translateY(-50%);
-    z-index: 199;
+    z-index: 210;
     .panel-item {
         display: block;
         animation: zoomIn .3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -38,6 +38,6 @@
 */
 body#mobile {
     .control-panel {
-        
+
     }
 }

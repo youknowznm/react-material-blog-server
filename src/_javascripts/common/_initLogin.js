@@ -23,8 +23,7 @@ module.exports = function() {
             $loginArea.hide()
             if (localStorage.getItem('userInfoToasted') === null) {
                 $.showJmToast({
-                    content: `Logged in as ${$body.data('userNickname')}.`,
-                    duration: 5000,
+                    content: `Logged in as ${$body.data('userNickname')}.`
                 })
                 localStorage.setItem('userInfoToasted', true)
             }
@@ -46,12 +45,14 @@ module.exports = function() {
             $registerArea.css('display', 'block')
             setTimeout(function() {
                 $registerArea.addClass('show')
+                $loginArea.removeClass('show-full')
             }, 0)
         } else {
             $registerArea.removeClass('show')
             setTimeout(function() {
                 $registerArea.css('display', 'none')
                 $body.removeClass('no-scroll')
+                $loginArea.addClass('show-full')
             }, 400)
         }
     }
@@ -122,7 +123,6 @@ module.exports = function() {
     /*
     注册区域相关
     */
-    switchRegisterAreaDisplay(false)
     watchAreaInputs($registerArea)
     $('#cancel-register').on('click', function() {
         switchRegisterAreaDisplay(false)

@@ -46,6 +46,12 @@ $(function() {
         $('.jm-main-wrap').css({
             height: window.innerHeight - 304
         })
+        // TODO
+        setTimeout(function() {
+            $.showJmToast({
+                content: `Use a PC browser for better experience.`
+            })
+        }, 3500)
     }
 
 })
