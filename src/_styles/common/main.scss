@@ -43,16 +43,10 @@ body {
         .panel-to-top {
             display: none;
         }
-        &.no-scroll {
-            padding-right: 0 !important;
-            .jm-header-content {
-                transform: none !important;
-            }
-        }
     }
-    &:not(.no-content).no-scroll {
+    &.no-scroll {
         #login-area {
-            transform: translateX(calc(-50% - 7.5px));
+            margin-left: -7.5px;
         }
     }
     .jm-main-wrap {
@@ -71,5 +65,11 @@ body {
         &.flexed {
             display: flex;
         }
+    }
+}
+
+body#mobile.no-scroll {
+    #login-area {
+        margin-left: 0;
     }
 }

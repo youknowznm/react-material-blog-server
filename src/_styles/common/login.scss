@@ -2,16 +2,16 @@
 
 #login-area {
     position: fixed;
-    bottom: -145px;
+    bottom: 0;
     height: 145px;
     background: #000;
     margin: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(100%);
     box-shadow: 0 -2px 5px rgba(0, 0, 0, .2);
-    transition: bottom .4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    z-index: 200;
+    z-index: 201;
     text-align: center;
     opacity: .87;
 
@@ -26,13 +26,8 @@
         text-transform: uppercase;
         letter-spacing: .05rem;
         user-select: none;
+        font-weight: 500;
         cursor: pointer;
-        .underlined {
-            padding-bottom: 3px;
-            border-bottom: 2px solid rgb(255, 235, 59);
-            font-weight: 500;
-            cursor: pointer;
-        }
     }
 
     ._content {
@@ -54,7 +49,7 @@
             margin: 8px 8px;
         }
 
-        ._hint {
+        .hint {
             position: relative;
             width: 100%;
             font-size: 12px;
@@ -83,7 +78,7 @@
     }
 
     &.show-partial {
-        bottom: -109px;
+        transform: translateX(-50%) translateY(calc(100% - 36px));
     }
 
     &.show-full {
@@ -93,7 +88,7 @@
         ._content {
             opacity: 1;
         }
-        bottom: 0;
+        transform: translateX(-50%) translateY(0);
         opacity: 1;
         cursor: default;
     }
@@ -128,5 +123,25 @@
     }
     .dialog-title {
         text-align: center;
+    }
+}
+
+// 移动端
+
+body#mobile {
+    #login-area {
+        width: 100%;
+        height: 300px;
+        .jm-input {
+            display: block;
+            margin: 0 auto;
+        }
+        .hint {
+            margin-top: 12px;
+        }
+        .link {
+            border-bottom-color: #ffeb3b;
+            padding: 4px 0;
+        }
     }
 }

@@ -14,11 +14,13 @@ module.exports = function() {
     let $body = $('body')
     let $loginArea = $('#login-area')
     let $registerArea = $('#register-area')
+
     // 当body的authLeval为0（未登录）时，稍后显示登录元素；否则提示登录人身份一次
     setTimeout(function() {
         if ($body.data('authLevel') === 0) {
             $loginArea.addClass('show-partial')
         } else {
+            $loginArea.hide()
             if (localStorage.getItem('userInfoToasted') === null) {
                 $.showJmToast({
                     content: `Logged in as ${$body.data('userNickname')}.`,
