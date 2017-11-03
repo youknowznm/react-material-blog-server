@@ -3,6 +3,7 @@ ejs模板过滤器
 */
 
 const ejs = require('ejs')
+const marked = require('./marked');
 
 // 格式化Date对象为yyyy-mm-dd形式的字符串
 ejs.filters.formatDate = function(date) {
@@ -14,6 +15,7 @@ ejs.filters.formatDate = function(date) {
 
 // 结合样式表，产生以'·'和'¬'装饰的span元素
 ejs.filters.breakToSpans = function(str) {
+    str = str + ''
     let arr = str.split(/\s+/g)
     let r = ''
     arr.forEach(function(item) {
@@ -33,6 +35,9 @@ ejs.filters.capitalize = function(str) {
 ejs.filters.getThemeColor = function(navType) {
     return ['silver', 'gray', 'yellow', 'red'][navType]
 }
+
+// markdown渲染
+ejs.filters.marked = marked
 
 // 转换当前时间与目标时间毫秒差值为可读字符串
 function getDateDiff(dateObj) {

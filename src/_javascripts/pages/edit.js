@@ -37,11 +37,13 @@ $(function() {
     let $articleContent = $('.article-content')
     $articleContent.initRte({
         id: $articleContent.data('id'),
-        contentHTML: $articleContent.data('content'),
+        contentToEdit: $articleContent.data('content'),
         maxLength: 5000,
+        useRichText: false
     })
     let $editArea = $articleContent.find('.jm-edit-area')
     setTimeout(function() {
+        let editAreaOffset = $('.jm-footer').height() - $('.jm-nav').height() + 5
         // 内容编辑区动画
         $(document.documentElement).animate(
             {
@@ -51,7 +53,7 @@ $(function() {
             function() {
                 $editArea.animate(
                     {
-                        minHeight: window.innerHeight - 370
+                        minHeight: window.innerHeight - editAreaOffset
                     },
                     300,
                 )
@@ -69,7 +71,7 @@ $(function() {
                 _id: $articleContent.data('id'),
                 title: $title.find('._input').val().trim(),
                 summary: $summary.find('._input').val().trim(),
-                content: $editArea.html(),
+                content: $editArea.val(),
                 tags: $tagContainer.data('tagsData'),
                 type: $typeRadioGroup.find('[data-checked=true]').find('.text').text(),
             }

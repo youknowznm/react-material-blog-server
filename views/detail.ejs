@@ -3,7 +3,7 @@
 <!-- 文章内容 -->
 <div class="article-wrap">
     <div class="article-content jm-article" data-article-id="<%= doc._id %>" data-page-title="<%= doc.title %>">
-        <%-: doc.content %>
+        <%-: doc.content | marked %>
     </div>
     <div class="article-content-nav"></div>
 </div>

@@ -6,6 +6,7 @@ initComment()
 
 // 结合样式表，产生以'·'和'¬'装饰的span元素
 function breakToSpans(str) {
+    str = str + ''
     let arr = str.split(/\s+/g)
     let r = ''
     arr.forEach(function(item) {
@@ -25,9 +26,12 @@ $(function() {
 
     $('.page-title').html(breakToSpans($article.data('pageTitle')))
 
-    $article.find('h1').each(function() {
-        let $this = $(this)
-        $this.html(breakToSpans($this.html()))
-    })
+    let $headers = $article.find(':header')
+    if ($headers.length > 0) {
+        $headers.each(function() {
+            let $this = $(this)
+            $this.html(breakToSpans($this.html()))
+        })
+    }
 
 })
