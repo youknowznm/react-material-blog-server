@@ -1,7 +1,11 @@
 @import "../common/main.scss";
 
 .empty-msg {
-    transform: translateY(100px);
+    position: fixed;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
     font-size: 18px;
     user-select: none;
     cursor: default;
@@ -12,16 +16,6 @@
     transition: opacity .3s ease-out;
     &.show {
         opacity: 1;
-    }
-    @media (min-height: 700px) {
-        & {
-            transform: translateY(150px);
-        }
-    }
-    @media (min-height: 900px) {
-        & {
-            transform: translateY(250px);
-        }
     }
 }
 
@@ -95,18 +89,18 @@
 /*
 移动端重置
 */
-body#mobile {
+html#mobile {
     .article {
         width: 100%;
         padding-bottom: 100%;
     }
-    .jm-main-wrap {
-        min-height: 0;
-    }
-    .empty-msg {
-        position: fixed;
-        width: 100%;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+    // .jm-main-wrap {
+    //     min-height: 0;
+    // }
+    // .empty-msg {
+    //     position: fixed;
+    //     width: 100%;
+    //     top: 50%;
+    //     transform: translateY(-50%);
+    // }
 }

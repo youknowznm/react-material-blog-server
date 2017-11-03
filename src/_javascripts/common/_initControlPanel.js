@@ -48,7 +48,7 @@ module.exports = function() {
     let $main = $('.jm-main')
 
     function positionControlPanel() {
-        if ($('body').is('#mobile')) {
+        if ($('html').is('#mobile')) {
             $controlPanel.css({
                 left: 'auto',
                 right: 12,

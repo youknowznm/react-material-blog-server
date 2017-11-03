@@ -34,7 +34,7 @@ module.exports = function($article, $articleContentNav) {
     let $jmNavHeadings = $articleContentNav.find('[data-jm-heading-index]')
 
     // 滚动时
-    if (!$('body').is('#mobile')) {
+    if (!$('html').is('#mobile')) {
         $(window).on('scroll', function() {
             let pageScrollTop = document.documentElement.scrollTop
             // 内容导航吸顶

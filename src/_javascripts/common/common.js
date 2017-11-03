@@ -42,16 +42,10 @@ $(function() {
         location.assign(`/${articleType}s?tag=${tagName}`)
     })
 
-    if ($body.is('#mobile')) {
+    if ($('html').is('#mobile')) {
         $('.jm-main-wrap').css({
-            height: window.innerHeight - 304
+            minHeight: window.innerHeight - 304
         })
-        // TODO
-        setTimeout(function() {
-            $.showJmToast({
-                content: `Use a PC browser for better experience.`
-            })
-        }, 3500)
     }
 
 })
