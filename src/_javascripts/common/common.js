@@ -44,7 +44,7 @@ $(function() {
 
     if ($('html').is('#mobile')) {
         $('.jm-main-wrap').css({
-            minHeight: window.innerHeight - 304
+            minHeight: window.innerHeight - 292
         })
     }
 

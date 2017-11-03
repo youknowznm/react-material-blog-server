@@ -27,9 +27,13 @@ h6 {
 }
 
 html {
-
-    &:not(#mobile) {
+    &#pc {
         min-height: 700px;
+        body.no-scroll {
+            #login-area {
+                margin-left: -7.5px;
+            }
+        }
         &.no-content {
             height: 100%;
             display: flex;
@@ -40,14 +44,7 @@ html {
         }
     }
     &#mobile {
-        .no-scroll {
-            #login-area {
-                margin-left: 0;
-            }
-        }
-        .jm-footer {
-            z-index: 10000;
-        }
+        
     }
 }
 
@@ -56,11 +53,6 @@ body {
     font-family: "Roboto Mono", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     background: #fafafa;
-    &.no-scroll {
-        #login-area {
-            margin-left: -7.5px;
-        }
-    }
     .jm-main-wrap {
         position: relative;
         min-height: 180px;
