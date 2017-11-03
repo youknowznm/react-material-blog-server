@@ -25,13 +25,23 @@
     // IDEA: 为了达到随窗口宽度响应变化该类元素宽高的目的，使用一个包裹元素，对其设置33.3%宽度，0高度，33.3%下内边距的做法，避免再占用js的资源
     // 'It works because margin/padding-top/bottom, when specified as a percentage, is determined according to the width of the containing element.'
     // https://stackoverflow.com/questions/5445491/height-equal-to-dynamic-width-css-fluid-layout
-    width: 25%;
     height: 0;
-    padding-bottom: 25%;
-    @media (max-width: 1900px) {
+    @media (max-width: 1280px) {
         & {
             width: 50%;
             padding-bottom: 50%;
+        }
+    }
+    @media (min-width: 1280px) and (max-width: 1900px) {
+        & {
+            width: 33.33%;
+            padding-bottom: 33.33%;
+        }
+    }
+    @media (min-width: 1900px) {
+        & {
+            width: 25%;
+            padding-bottom: 25%;
         }
     }
     cursor: pointer;

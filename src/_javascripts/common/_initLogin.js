@@ -11,6 +11,7 @@ module.exports = function() {
     /*
     容器相关和方法
     */
+    let $html = $('html')
     let $body = $('body')
     let $loginArea = $('#login-area')
     let $registerArea = $('#register-area')
@@ -41,7 +42,7 @@ module.exports = function() {
     // 方法：控制注册区域的显隐
     function switchRegisterAreaDisplay(option) {
         if (option === true) {
-            $body.addClass('no-scroll')
+            $html.addClass('no-scroll')
             $registerArea.css('display', 'block')
             setTimeout(function() {
                 $registerArea.addClass('show')
@@ -51,7 +52,7 @@ module.exports = function() {
             $registerArea.removeClass('show')
             setTimeout(function() {
                 $registerArea.css('display', 'none')
-                $body.removeClass('no-scroll')
+                $html.removeClass('no-scroll')
                 $loginArea.addClass('show-full')
             }, 400)
         }
