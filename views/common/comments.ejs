@@ -7,9 +7,9 @@
         data-type="text"
         data-validator="^(.){2,100}$"
         data-label="<%= inputPlaceholder %>"
-        data-max-comments.length="100"
+        data-max-length="100"
         data-status="<%if(userInfo.authLevel===0){%>disabled<%}%>"
-        data-error-msg="Required 2~20 characters.">
+        data-error-msg="Required 2~100 characters.">
     </div>
     <button class="submit-comment jm-button _primary _disabled" data-text="submit"></button>
 </div>
@@ -33,11 +33,11 @@
                         <span class="remove-comment" data-comment-id="<%= c._id %>"></span>
                     <%}%>
                     <span class="comment-order-badge"><%= +i + 1 %></span>
-                    <span class="current-user-badge">by current user</span>
                 </h3>
                 <p class="comment-content">
                     <%= c.content %>
                 </p>
+                <span class="current-user-badge">by current user</span>
             </li>
         <%}%>
     <%}%>

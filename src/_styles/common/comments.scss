@@ -26,7 +26,6 @@
             font-family: "Roboto";
             line-height: 20px;
             font-size: 14px;
-            margin-bottom: 6px;
             .comment-author {
                 display: inline-block;
                 margin-right: 6px;
@@ -45,7 +44,7 @@
                 width: 24px;
                 height: 24px;
                 line-height: 24px;
-                background: url("../../_images/ic_delete.png") no-repeat;
+                background: url("../../_images/ic_delete_24px.svg") no-repeat;
                 background-size: 24px 24px;
                 right: 3px;
                 bottom: 6px;
@@ -56,15 +55,6 @@
                 &:hover {
                     opacity: .7;
                 }
-            }
-            .current-user-badge {
-                display: none;
-                float: right;
-                color: #757575;
-                float: right;
-                font-size: 12px;
-                cursor: default;
-                margin-right: 6px;
             }
             .comment-order-badge {
                 color: #1e88e5;
@@ -82,7 +72,17 @@
             line-height: 18px;
             font-size: 14px;
             clear: both;
-            padding-right: 24px;
+            padding-right: 100px;
+        }
+        .current-user-badge {
+            display: none;
+            position: absolute;
+            right: 12px;
+            bottom: 6px;
+            color: #aaa;
+            font-size: 12px;
+            cursor: default;
+            font-family: "Roboto";
         }
         &.is-by-current-user {
             .current-user-badge {
@@ -116,5 +116,10 @@ html#mobile {
     .submit-comment {
         width: 100%;
         margin: 0 24px 24px;
+    }
+    .comment * {
+        @media (max-width: 350px) {
+            font-size: 12px !important
+        }
     }
 }

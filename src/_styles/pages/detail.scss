@@ -50,4 +50,21 @@ html#mobile {
     .article-content {
         margin-right: 0;
     }
+    .article-footer {
+        min-height: 40px;
+        .tags {
+            display: none;
+        }
+        .created {
+            line-height: 40px;
+            float: none;
+        }
+    }
+    .no-comments {
+        min-height: 40px;
+        > p {
+            font-size: 14px;
+            line-height: 40px;
+        }
+    }
 }
