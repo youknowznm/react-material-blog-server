@@ -42,24 +42,6 @@ $(function() {
         useRichText: false
     })
     let $editArea = $articleContent.find('.jm-edit-area')
-    setTimeout(function() {
-        let editAreaOffset = $('.jm-footer').height() - $('.jm-nav').height() + 5
-        // 内容编辑区动画
-        $(document.documentElement).animate(
-            {
-                scrollTop: 192
-            },
-            200,
-            function() {
-                $editArea.animate(
-                    {
-                        minHeight: window.innerHeight - editAreaOffset
-                    },
-                    300,
-                )
-            }
-        )
-    }, 400)
 
     // 按钮
     let $submitButton = $('#submit')
@@ -136,7 +118,7 @@ $(function() {
     setInterval(function() {
         let titleValid = ($title.hasClass('non-empty') && !$title.hasClass('invalid'))
         let summaryValid = ($summary.hasClass('non-empty') && !$summary.hasClass('invalid'))
-        let contentValid = /\S/.test($editArea.text())
+        let contentValid = /\S/.test($editArea.text() || $editArea.val())
         let tagsValid = ($tagContainer.data('tagsData')[0] !== undefined)
         let allValid = (titleValid && summaryValid && tagsValid && contentValid)
         $submitButton.toggleClass('_disabled', !allValid);
@@ -173,5 +155,29 @@ $(function() {
             }
         })
     })
+
+    // 编辑区高度动画
+    if ($('html').is('#pc')) {
+        setTimeout(function() {
+            let editAreaOffset = $('.jm-footer').height() - $('.jm-nav').height() + 5
+            // 内容编辑区动画
+            $(document.documentElement).animate(
+                {
+                    scrollTop: 192
+                },
+                200,
+                function() {
+                    $editArea.animate(
+                        {
+                            minHeight: window.innerHeight - editAreaOffset
+                        },
+                        300,
+                    )
+                }
+            )
+        }, 400)
+    } else {
+        $editArea.css('minHeight', window.innerHeight - 150)
+    }
 
 })

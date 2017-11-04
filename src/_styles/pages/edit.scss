@@ -36,4 +36,21 @@
     }
 }
 
-
+// 移动端重置
+html#mobile {
+    .jm-row {
+        margin: 0 !important;
+    }
+    .jm-row.flexed,
+    .article-title,
+    .article-summary {
+        display: block;
+    }
+    .jm-rte {
+        width: auto;
+        margin: 0 12px;
+    }
+    .buttons {
+        width: auto;
+    }
+}

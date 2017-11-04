@@ -5,6 +5,11 @@ module.exports = function() {
     */
     let $controlPanel = $('.control-panel')
 
+    // 移动端使用小按钮样式
+    if ($('html').is('#mobile')) {
+        $controlPanel.find('.jm-button').addClass('_small')
+    }
+
     $controlPanel
         // 新建文章
         .on('click', '.panel-create-new', function() {

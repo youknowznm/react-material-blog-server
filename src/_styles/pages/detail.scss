@@ -42,6 +42,11 @@
 移动端重置
 */
 html#mobile {
+    .mobile-article-title {
+        font-weight: 500;
+        line-height: 72px;
+        font-size: 22px;
+    }
     .article-content {
         margin-right: 0;
     }

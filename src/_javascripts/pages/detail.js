@@ -18,13 +18,19 @@ function breakToSpans(str) {
 $(function() {
 
     let $body = $('body')
+    let $pageTitle = $('.page-title')
     let $article = $('.jm-article')
 
     let $articleContentNav = $('.article-content-nav')
 
     initArticleNav($article, $articleContentNav)
 
-    $('.page-title').html(breakToSpans($article.data('pageTitle')))
+    $pageTitle.html(breakToSpans($article.data('pageTitle')))
+
+    // 移动端处理额外的标题内容
+    if ($('html').is('#mobile')) {
+        $('.mobile-article-title').html($pageTitle.html())
+    }
 
     let $headers = $article.find(':header')
     if ($headers.length > 0) {

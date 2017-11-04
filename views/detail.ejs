@@ -2,6 +2,11 @@
 
 <!-- 文章内容 -->
 <div class="article-wrap">
+    <% if (deviceType === 'mobile') {%>
+        <div class="mobile-article-title">
+            
+        </div>
+    <%}%>
     <div class="article-content jm-article" data-article-id="<%= doc._id %>" data-page-title="<%= doc.title %>">
         <%-: doc.content | marked %>
     </div>
