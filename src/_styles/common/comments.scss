@@ -15,7 +15,7 @@
     .comment {
         position: relative;
         border-top: 1px dashed rgb(226, 226, 226);
-        padding: 6px;
+        padding: 6px 12px;
         text-align: left;
         transition: all .2s ease-out;
         list-style: none;
@@ -79,7 +79,7 @@
         .comment-content {
             font-family: "Roboto";
             color: #212121;
-            line-height: 20px;
+            line-height: 18px;
             font-size: 14px;
             clear: both;
             padding-right: 24px;
@@ -105,5 +105,16 @@
     }
     &.show {
         display: block;
+    }
+}
+
+// 移动端重置
+html#mobile {
+    .comment-input {
+        flex-wrap: wrap;
+    }
+    .submit-comment {
+        width: 100%;
+        margin: 0 24px 24px;
     }
 }

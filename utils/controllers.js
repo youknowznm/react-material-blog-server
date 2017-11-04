@@ -24,6 +24,17 @@ module.exports = {
         }
     },
     /**
+    判断浏览器终端
+    */
+    getDeviceType(req, res, next) {
+        let deviceType = 'pc'
+        if (/Android|iPhone|Windows Phone|iPad/i.test(req.headers['user-agent'])) {
+            deviceType = 'mobile'
+        }
+        req.deviceType = deviceType
+        next()
+    },
+    /**
     渲染404
     */
     render404(req, res, next) {

@@ -26,7 +26,8 @@ module.exports = function(router) {
                     content: '',
                     type: 'post',
                     tags: [],
-                }
+                },
+                deviceType: req.deviceType,
             })
         }
     })

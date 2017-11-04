@@ -12,6 +12,7 @@ module.exports = function(router) {
             pageTitle: 'about',
             static: 'about',
             userInfo,
+            deviceType: req.deviceType,
         })
     })
 

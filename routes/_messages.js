@@ -101,6 +101,7 @@ module.exports = function(router) {
                 static: 'messages',
                 userInfo: controllers.getUserInfo(req),
                 messages: docs || [],
+                deviceType: req.deviceType,
             })
         })
     })

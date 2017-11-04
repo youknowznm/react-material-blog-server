@@ -29,6 +29,7 @@ module.exports = function(router) {
                             static: 'edit',
                             userInfo,
                             doc,
+                            deviceType: req.deviceType,
                         })
                     } else {
                         // 否则回到首页
@@ -42,6 +43,7 @@ module.exports = function(router) {
                         static: 'detail',
                         userInfo,
                         doc,
+                        deviceType: req.deviceType,
                     })
                 }
             }

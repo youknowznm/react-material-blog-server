@@ -60,6 +60,9 @@ app.use(cookieParser())
 // 指定静态文件目录
 app.use(express.static(path.join(__dirname, '/dist/')))
 
+// 取得浏览器类型
+app.use(controllers.getDeviceType)
+
 // 使用获取的路由
 routes.forEach(function(router) {
     app.use(router)

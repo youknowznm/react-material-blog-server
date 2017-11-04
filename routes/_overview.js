@@ -32,6 +32,7 @@ module.exports = function(router) {
                             userInfo: controllers.getUserInfo(req),
                             // articles: [],
                             articles: docs,
+                            deviceType: req.deviceType,
                         })
                     } else {
                         controllers.render404(req, res, next)
@@ -49,6 +50,7 @@ module.exports = function(router) {
                         userInfo: controllers.getUserInfo(req),
                         // articles: [],
                         articles: docs,
+                        deviceType: req.deviceType,
                     })
                 })
                 break
