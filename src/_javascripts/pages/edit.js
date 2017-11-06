@@ -159,7 +159,7 @@ $(function() {
     // 编辑区高度动画
     if ($('html').is('#pc')) {
         setTimeout(function() {
-            let editAreaOffset = $('.jm-footer').height() - $('.jm-nav').height() + 5
+            let editAreaOffset = $('.jm-footer').height() - $('.jm-nav').height()
             // 内容编辑区动画
             $(document.documentElement).animate(
                 {
@@ -169,7 +169,7 @@ $(function() {
                 function() {
                     $editArea.animate(
                         {
-                            minHeight: window.innerHeight - editAreaOffset
+                            minHeight: window.innerHeight - editAreaOffset - 10
                         },
                         300,
                     )

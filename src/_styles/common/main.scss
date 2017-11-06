@@ -29,7 +29,7 @@ h6 {
 html {
     &#pc {
         min-height: 700px;
-        &.no-scroll {
+        &.no-scroll.hide-scroll-bar {
             #login-area {
                 margin-left: -7.5px;
             }
