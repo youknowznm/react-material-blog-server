@@ -1,3 +1,4 @@
+// 开发环境
 const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
@@ -21,11 +22,6 @@ pages.forEach((pageName, index, array) => {
         entries[pageName] = path.join(INPUT_PATH, pageName)
     }
 })
-
-// const extractSass = new ExtractTextPlugin({
-//     filename: "[name].[contenthash].css",
-//     disable: process.env.NODE_ENV === "development"
-// });
 
 module.exports = {
     watch: true,
@@ -75,12 +71,5 @@ module.exports = {
             filename: 'rhaegoCommon.js',
             minChunks: Infinity,
         }),
-        // new webpack.HotModuleReplacementPlugin(),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     sourceMap: true,
-        //     compress: {
-        //         warnings: true,
-        //     },
-        // }),
     ]
 }
