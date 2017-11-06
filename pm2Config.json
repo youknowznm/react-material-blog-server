@@ -1,0 +1,12 @@
+{
+	"apps": [{
+		"name": "youknowznm",
+		"script": "./bin/www",
+		"cwd": "./",
+		"watch": ["bin", "config", "models", "proxy", "routes", "src", "utils," "views"],
+		"ignore_watch": ["mode_modules", "dist", "logs"],
+		"error_file": "./logs/err.log",
+		"out_file": "./logs/out.log",
+		"log_date_format": "YYYY-MM-DD HH:mm Z"
+	}]
+}

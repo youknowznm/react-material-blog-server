@@ -6,7 +6,7 @@
         "devServer": "NODE_ENV=development nodemon ./bin/www",
         "proServer": "NODE_ENV=production nodemon ./bin/www",
         "devBuild": "./node_modules/.bin/webpack --config webpackfile.dev.js --display-error-details",
-        "proBuild": "./node_modules/.bin/webpack --config  webpackfile.pro.js --display-error-details"
+        "proBuild": "./node_modules/.bin/webpack --config webpackfile.pro.js --display-error-details"
     },
     "dependencies": {
         "babel-core": "^6.24.1",
