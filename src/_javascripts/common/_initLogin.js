@@ -16,6 +16,8 @@ module.exports = function() {
     let $loginArea = $('#login-area')
     let $registerArea = $('#register-area')
 
+    let hasOverflownContent = $html[0].scrollHeight > $html[0].clientHeight
+
     // 当body的authLeval为0（未登录）时，稍后显示登录元素；否则提示登录人身份一次
     setTimeout(function() {
         if ($body.data('authLevel') === 0) {
@@ -43,6 +45,9 @@ module.exports = function() {
     function switchRegisterAreaDisplay(option) {
         if (option === true) {
             $html.addClass('no-scroll')
+            if (hasOverflownContent) {
+                $html.addClass('hide-scroll-bar')
+            }
             $registerArea.css('display', 'block')
             setTimeout(function() {
                 $registerArea.addClass('show')
@@ -52,7 +57,7 @@ module.exports = function() {
             $registerArea.removeClass('show')
             setTimeout(function() {
                 $registerArea.css('display', 'none')
-                $html.removeClass('no-scroll')
+                $html.removeClass('no-scroll hide-scroll-bar')
                 $loginArea.addClass('show-full')
             }, 400)
         }

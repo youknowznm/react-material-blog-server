@@ -23,5 +23,7 @@ module.exports = {
         },
         // 发件人的信息
         senderInfo: 'Rhaego Support <rhaego@126.com>',
-    }
+    },
+    // 不同环境的站点地址
+    siteAddress: process.env.NODE_ENV === 'development' ? 'localhost:5000' : '140.143.188.149'
 }

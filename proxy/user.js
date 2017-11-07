@@ -3,8 +3,10 @@ let nodemailer = require('nodemailer')
 let Hashes= require('jshashes')
 let shortid = require('shortid')
 
-let accountVerificationKey = require('../config').accountVerificationKey
-let smtpConfig = require('../config').smtpConfig
+let config = require('../config')
+
+let accountVerificationKey = config.accountVerificationKey
+let smtpConfig = config.smtpConfig
 
 /**
 从固定发件邮箱发送邮件
@@ -96,16 +98,16 @@ function sendVerifyEmail(doc) {
     let key = new Hashes.SHA1().hex_hmac(accountVerificationKey, email) + '!' + email
     sendEmail({
         to: email,
-        subject: 'Rhaego Account Verification',
+        subject: 'YouKnowznM Site Verification',
         html: `
             <h3>
                 Dear ${doc.nickname},
             </h3>
             <p>
-                <a href="http://localhost:5000/verify/${key}">Click here</a> to verify your Rhaego account.
+                Thanks for registering at <i>youknowznm.com</i>. <a href="http://${config.siteAddress}/verify/${key}">Click here</a> to verify your account.
             </p>
             <p>
-                Please ignore this mail if you haven't registered at Rhaego.
+                Please ignore this mail if you haven't visited <i>youknowznm.com</i>.
             </p>
         `,
     })
