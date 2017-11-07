@@ -17,7 +17,7 @@ module.exports = function() {
             siteSourceLink: 'https://github.com/youknowznm/jqueryMaterial.js',
         },
         socialInfo: {
-            wechatQrLink: '/_images/footer/wechat-qr.png',
+            wechatQrLink: 'https://raw.githubusercontent.com/youknowznm/youknowznm.github.io/master/_site/demos/jquery-material/images/footer/wechat-qr.png',
             email: 'znm92@icloud.com',
             zhihuLink: 'https://www.zhihu.com/people/youkonwznm',
             githubLink: 'https://github.com/youknowznm',
