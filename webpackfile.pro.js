@@ -17,7 +17,7 @@ let entries = {
 // 多个打包入口
 let pages = fs.readdirSync(INPUT_PATH)
 
-pages.forEach((pageName, index, array) => {
+pages.forEach((pageName, index, array) => { 
     if (!/^\./.test(pageName)) {
         entries[pageName] = path.join(INPUT_PATH, pageName)
     }

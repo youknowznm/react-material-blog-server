@@ -3,57 +3,60 @@ module.exports = function() {
     /*
     控制面板
     */
+    let isMobile = $('html').is('#mobile')
+
+    let $body = $('body')
+    let $main = $('.jm-main')
+
     let $controlPanel = $('.control-panel')
 
+    let $createNew = $controlPanel.children('.panel-create-new')
+    let $edit = $controlPanel.children('.panel-edit')
+    let $logOut = $controlPanel.children('.panel-log-out')
+    let $toTop = $controlPanel.children('.panel-to-top')
+
+    // 新建文章
+    $createNew.bindClickListener(function() {
+        location.pathname = '/create'
+    })
+    // 编辑文章
+    $edit.bindClickListener(function() {
+        if (!/editing=true/.test(location.search)) {
+            location.assign(location.href + '?editing=true')
+        }
+    })
+    // 注销登录
+    $logOut.bindClickListener(function() {
+        $.showJmDialog({
+            dialogType: 'confirm',
+            title: 'Log out?',
+            content: 'Only logged-in users can comment articles or leave a message.',
+            onConfirm() {
+                $.ajax({
+                    url: '/logout',
+                    type: 'Get',
+                    data: '',
+                    success() {
+                        localStorage.removeItem('userInfoToasted')
+                        location.reload()
+                    }
+                })
+            }
+        })
+    })
+    // 回顶部
+    $toTop.bindClickListener(function() {
+        $body.jmScrollInto()
+    })
+
+
     // 移动端使用小按钮样式
-    if ($('html').is('#mobile')) {
+    if (isMobile) {
         $controlPanel.find('.jm-button').addClass('_small')
     }
 
-    $controlPanel
-        // 新建文章
-        .on('click', '.panel-create-new', function() {
-            location.pathname = '/create'
-        })
-        // 编辑文章
-        .on('click', '.panel-edit', function() {
-            if (!/editing=true/.test(location.search)) {
-                location.assign(location.href + '?editing=true')
-            }
-        })
-        // 注销登录
-        .on('click', '.panel-log-out', function() {
-            $.showJmDialog({
-                dialogType: 'confirm',
-                title: 'Log out?',
-                content: 'Only logged-in users can comment articles or leave a message.',
-                onConfirm() {
-                    $.ajax({
-                        url: '/logout',
-                        type: 'Get',
-                        data: '',
-                        success() {
-                            localStorage.removeItem('userInfoToasted')
-                            location.reload()
-                        }
-                    })
-                }
-            })
-        })
-        // 回顶部
-        .on('click', '.panel-to-top', function() {
-            $(document.documentElement).animate(
-                {
-                    scrollTop: 0
-                },
-                200,
-            )
-        })
-
-    let $main = $('.jm-main')
-
     function positionControlPanel() {
-        if ($('html').is('#mobile')) {
+        if (isMobile) {
             $controlPanel.css({
                 left: 'auto',
                 right: 12,

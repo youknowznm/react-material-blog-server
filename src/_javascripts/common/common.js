@@ -5,6 +5,14 @@ import initLogin from './_initLogin.js';
 // 每页的公用逻辑
 $(function() {
 
+    let $html = $('html')
+    let $body = $('body')
+
+    let shoudFitToView = document.documentElement.scrollHeight > document.documentElement.clientHeight
+    console.log(shoudFitToView);
+    console.log(document.documentElement.scrollHeight, document.documentElement.clientHeight, document.documentElement.offsetHeight);
+    // $html.toggleClass('fit-to-view', shoudFitToView)
+
     initJqueryMaterial()
     initLogin()
     initControlPanel()
@@ -12,7 +20,6 @@ $(function() {
     /*
     主导航按钮
     */
-    let $body = $('body')
     let targetPath = ''
 
     $body
@@ -35,14 +42,13 @@ $(function() {
         })
 
     // 点击文章类型标签的跳转
-    $('.article-tag').click(function(evt) {
-        evt.stopPropagation()
+    $('.article-tag').bindClickListener(function($this) {
         let articleType = ($('.jm-header').data('navType').toString() === '1') ? 'product' : 'post'
-        let tagName = $(this).data('text')
+        let tagName = $this.data('text')
         location.assign(`/${articleType}s?tag=${tagName}`)
     })
 
-    if ($('html').is('#mobile')) {
+    if ($html.is('#mobile')) {
         $('.jm-main-wrap').css({
             minHeight: window.innerHeight - 292
         })

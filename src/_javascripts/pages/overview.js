@@ -8,7 +8,7 @@ $(function() {
     // 稍候显示无内容提示
     let $emptyMsg = $('.empty-msg')
     if ($emptyMsg.length > 0) {
-        $('html').addClass('no-content')
+        $('html').addClass('fit-to-view')
         setTimeout(function() {
             $emptyMsg.addClass('show')
         }, 1200)

@@ -7,6 +7,7 @@
     z-index: 120;
     .panel-item {
         display: block;
+        margin: 0 0 24px;
         animation: zoomIn .3s cubic-bezier(0.25, 0.8, 0.25, 1);
         @keyframes zoomIn {
             from {

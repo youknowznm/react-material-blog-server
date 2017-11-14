@@ -42,8 +42,7 @@ module.exports = function() {
         }, 50)
 
         // 评论发送
-        $submitCommentButton.click(function() {
-            let $this = $(this)
+        $submitCommentButton.bindClickListener(function($this) {
             if (!$this.is('._disabled')) {
                 let dataObj = {
                     content: $commentJmInput.find('._input').val(),

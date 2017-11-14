@@ -18,7 +18,7 @@ module.exports = function($article, $articleContentNav) {
             targetScrollTop = $headers.eq(index).offset().top - 88
         }
         $articleContentNav.hide()
-        $(document.documentElement).animate(
+        $(document.scrollingElement).animate(
             {
                 scrollTop: targetScrollTop
             },
@@ -36,7 +36,7 @@ module.exports = function($article, $articleContentNav) {
     // 滚动时
     if (!$('html').is('#mobile')) {
         $(window).on('scroll', function() {
-            let pageScrollTop = document.documentElement.scrollTop
+            let pageScrollTop = document.scrollingElement.scrollTop
             // 内容导航吸顶
             if (pageScrollTop > 192) {
                 $articleContentNav.css('top', pageScrollTop - 168)

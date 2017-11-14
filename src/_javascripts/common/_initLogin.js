@@ -16,8 +16,6 @@ module.exports = function() {
     let $loginArea = $('#login-area')
     let $registerArea = $('#register-area')
 
-    let hasOverflownContent = $html[0].scrollHeight > $html[0].clientHeight
-
     // 当body的authLeval为0（未登录）时，稍后显示登录元素；否则提示登录人身份一次
     setTimeout(function() {
         if ($body.data('authLevel') === 0) {
@@ -25,9 +23,7 @@ module.exports = function() {
         } else {
             $loginArea.hide()
             if (localStorage.getItem('userInfoToasted') === null) {
-                $.showJmToast({
-                    content: `Logged in as ${$body.data('userNickname')}.`
-                })
+                $.showJmToast(`Logged in as ${$body.data('userNickname')}.`)
                 localStorage.setItem('userInfoToasted', true)
             }
         }
@@ -45,7 +41,7 @@ module.exports = function() {
     function switchRegisterAreaDisplay(option) {
         if (option === true) {
             $html.addClass('no-scroll')
-            if (hasOverflownContent) {
+            if ($html[0].scrollHeight > $html[0].clientHeight) {
                 $html.addClass('hide-scroll-bar')
             }
             $registerArea.css('display', 'block')
@@ -141,9 +137,7 @@ module.exports = function() {
             let pwd2 = $('.register-confirm-password ._input').val()
             // 密码不一致时提示
             if (pwd1 !== pwd2) {
-                $.showJmToast({
-                    content: 'Please enter consistent passwords.'
-                })
+                $.showJmToast('Please enter consistent passwords.')
             } else {
                 /*
                 *
@@ -164,9 +158,7 @@ module.exports = function() {
                         switch (result.registerResultCode) {
                             case 0:
                                 // 邮箱、密码等参数校验错误
-                                $.showJmToast({
-                                    content: 'Please check all input values.'
-                                })
+                                $.showJmToast('Please check all input values.')
                                 break
                             case 1:
                                 // 若注册成功，则显示查看邮件的提示
@@ -181,9 +173,7 @@ module.exports = function() {
                                 break
                             case 2:
                                 // 若该邮箱已注册则提示，稍后移除提示
-                                $.showJmToast({
-                                    content: 'That email address has been registered.'
-                                })
+                                $.showJmToast('That email address has been registered.')
                                 break;
                         }
                     },
