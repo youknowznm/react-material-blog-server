@@ -8,11 +8,6 @@ $(function() {
     let $html = $('html')
     let $body = $('body')
 
-    let shoudFitToView = document.documentElement.scrollHeight > document.documentElement.clientHeight
-    console.log(shoudFitToView);
-    console.log(document.documentElement.scrollHeight, document.documentElement.clientHeight, document.documentElement.offsetHeight);
-    // $html.toggleClass('fit-to-view', shoudFitToView)
-
     initJqueryMaterial()
     initLogin()
     initControlPanel()

@@ -2,6 +2,8 @@ let siteNameWords = ['You', 'Know', 'znM']
 
 module.exports = function() {
 
+    let $html = $('html')
+
     let $jmHeader = $('.jm-header')
     $jmHeader.initHeader({
         siteNameWords,
@@ -26,6 +28,12 @@ module.exports = function() {
 
     $('.jm-button').initButton()
     $('.jm-input').initInput()
+
+    // 垂直上无溢出内容时，使header .main 和 footer占满垂直空间
+    let $footerBottom = $('._bottom-wrap')
+    let rect = $footerBottom[0].getBoundingClientRect()
+    let verticalOverflown = (rect.top + rect.height) > $html[0].clientHeight
+    $html.toggleClass('fit-to-view', !verticalOverflown);
 
 }
 

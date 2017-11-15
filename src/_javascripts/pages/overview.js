@@ -8,10 +8,10 @@ $(function() {
     // 稍候显示无内容提示
     let $emptyMsg = $('.empty-msg')
     if ($emptyMsg.length > 0) {
-        $('html').addClass('fit-to-view')
+        // $('html').addClass('fit-to-view')
         setTimeout(function() {
             $emptyMsg.addClass('show')
-        }, 1200)
+        }, 500)
     }
 
     // 点击文章的大部分区域，跳转至该文章id的路由
