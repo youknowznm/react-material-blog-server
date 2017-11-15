@@ -6,6 +6,4 @@ $(function() {
     let $resumeContentNav = $('.resume-content-nav')
 
     initArticleNav($resume, $resumeContentNav)
-
-
 })

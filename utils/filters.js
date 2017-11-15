@@ -14,7 +14,7 @@ ejs.filters.formatDate = function(date) {
 }
 
 // 结合样式表，产生以'·'和'¬'装饰的span元素
-ejs.filters.breakToSpans = function(str) {
+ejs.filters.generateJmSpans = function(str) {
     str = str + ''
     let arr = str.split(/\s+/g)
     let r = ''

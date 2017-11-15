@@ -32,16 +32,10 @@
             padding-bottom: 50%;
         }
     }
-    @media (min-width: 1280px) and (max-width: 1900px) {
+    @media (min-width: 1280px) {
         & {
             width: 33.33%;
             padding-bottom: 33.33%;
-        }
-    }
-    @media (min-width: 1900px) {
-        & {
-            width: 25%;
-            padding-bottom: 25%;
         }
     }
     cursor: pointer;

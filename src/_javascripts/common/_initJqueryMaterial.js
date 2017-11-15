@@ -6,6 +6,7 @@ module.exports = function() {
 
     let $jmHeader = $('.jm-header')
     $jmHeader.initHeader({
+        pageTitle: $jmHeader.data('pageTitle'),
         siteNameWords,
         navContents: ['posts', 'products', 'messages', 'about'],
         activeNavIndex: $jmHeader.data('navType').valueOf(),

@@ -1,7 +1,7 @@
 module.exports = function($article, $articleContentNav) {
 
-    // 取得文章内容的直接header元素，生成内容导航
-    let $headers = $article.find(':header')
+    // 取得文章内容的直接h1子元素，生成内容导航
+    let $headers = $article.find('h1')
     let articleContentNavHTML = '<li>Contents</li>'
     Array.prototype.forEach.call($headers, function(item, index, array) {
         item.setAttribute('data-jm-heading-index', index)
@@ -15,16 +15,16 @@ module.exports = function($article, $articleContentNav) {
         if ($this.is(':first-child')) {
             targetScrollTop = 192
         } else {
-            targetScrollTop = $headers.eq(index).offset().top - 88
+            targetScrollTop = $headers.eq(index).offset().top - 76
         }
         $articleContentNav.hide()
         $(document.scrollingElement).animate(
             {
                 scrollTop: targetScrollTop
             },
-            'fast',
+            200,
             function() {
-                $articleContentNav.fadeIn('fast')
+                $articleContentNav.fadeIn(200)
             }
         )
     })

@@ -10,7 +10,7 @@
         <div class="article" data-id="<%= article._id %>">
             <div class="heading">
                 <h1 class="title">
-                    <%-: article.title | breakToSpans %>
+                    <%-: article.title | generateJmSpans %>
                 </h1>
                 <p class="summary">
                     <%= article.summary %>

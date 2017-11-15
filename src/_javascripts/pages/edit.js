@@ -161,7 +161,7 @@ $(function() {
         setTimeout(function() {
             let editAreaOffset = $('.jm-footer').height() - $('.jm-nav').height()
             // 内容编辑区动画
-            $(document.documentElement).animate(
+            $(document.scrollingElement).animate(
                 {
                     scrollTop: 192
                 },
