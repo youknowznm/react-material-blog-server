@@ -1,4 +1,7 @@
-# Rhaego
+## 正在用 React 和 Koa 重写。此版本已废弃。
+
+## Rhaego
+
 Material Design 风格的 Node.js 博客系统。线上地址在[这里](https://www.youknowznm.com)。
 
 基于 Express 框架和 [jQueryMaterial.js](https://github.com/youknowznm/jqueryMaterial.js) 组件库（我的另一个项目），未使用任何非原创的样式库、登录方案或评论组件。
