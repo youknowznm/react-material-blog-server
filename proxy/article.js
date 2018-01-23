@@ -7,19 +7,19 @@ let ArticleModel = require('../models/article').ArticleModel
 @param cb {function} 完成的回调，参数为所有符合条件的文档的数组
 */
 function getArticles(type, tag, cb) {
-    let query = {}
-    if (typeof type === 'string') {
-        query.type = type
+  let query = {}
+  if (typeof type === 'string') {
+    query.type = type
+  }
+  if (typeof tag === 'string') {
+    query.tags = tag
+  }
+  ArticleModel.find(query, function(e, docs) {
+    if (e) {
+      console.error(e)
     }
-    if (typeof tag === 'string') {
-        query.tags = tag
-    }
-    ArticleModel.find(query, function(e, docs) {
-        if (e) {
-            console.error(e)
-        }
-        return cb(docs);
-    })
+    return cb(docs);
+  })
 }
 
 /**
@@ -28,42 +28,42 @@ function getArticles(type, tag, cb) {
 @param cb {function} 完成的回调，保存失败时返回空json，无论新还是编辑保存成功，都返回该文章的_id
 */
 function saveArticle(params, cb) {
-    let _id = params._id
-    let articleDoc = new ArticleModel({
-        title: params.title,
-        type: params.type,
-        summary: params.summary,
-        content: params.content,
-        tags: params.tags,
-        created: params.created
-    })
-    ArticleModel.findById(_id, function(e, doc) {
+  let _id = params._id
+  let articleDoc = new ArticleModel({
+    title: params.title,
+    type: params.type,
+    summary: params.summary,
+    content: params.content,
+    tags: params.tags,
+    created: params.created
+  })
+  ArticleModel.findById(_id, function(e, doc) {
+    if (e) {
+      console.error(e)
+      return cb({})
+    }
+    if (doc === null) {
+      articleDoc._id = _id
+      articleDoc.save(function(e) {
         if (e) {
+          console.error(e)
+          return cb({})
+        }
+        return cb({ _id })
+      })
+    } else {
+      ArticleModel.update({ _id },
+        articleDoc,
+        function(e) {
+          if (e) {
             console.error(e)
             return cb({})
+          }
+          return cb({ _id })
         }
-        if (doc === null) {
-            articleDoc._id = _id
-            articleDoc.save(function(e) {
-                if (e) {
-                    console.error(e)
-                    return cb({})
-                }
-                return cb({ _id })
-            })
-        } else {
-            ArticleModel.update({ _id },
-                articleDoc,
-                function(e) {
-                    if (e) {
-                        console.error(e)
-                        return cb({})
-                    }
-                    return cb({ _id })
-                }
-            )
-        }
-    })
+      )
+    }
+  })
 }
 
 /**
@@ -72,12 +72,12 @@ function saveArticle(params, cb) {
 @param cb {function} 完成的回调，参数为符合条件的文章文档
 */
 function getArticleById(_id, cb) {
-    ArticleModel.findById(_id, function(e, doc) {
-        if (e) {
-            console.error(e)
-        }
-        return cb(doc)
-    })
+  ArticleModel.findById(_id, function(e, doc) {
+    if (e) {
+      console.error(e)
+    }
+    return cb(doc)
+  })
 }
 
 
@@ -87,20 +87,20 @@ function getArticleById(_id, cb) {
 @param cb {function} 完成的回调，参数为TODO
 */
 function removeArticle(_id, cb) {
-    ArticleModel.remove(
-        {
-            _id
-        },
-        function(e) {
-            console.log('res', e);
-            return cb(true);
-        }
-    )
+  ArticleModel.remove(
+    {
+      _id
+    },
+    function(e) {
+      console.log('res', e);
+      return cb(true);
+    }
+  )
 }
 
 module.exports = {
-    saveArticle,
-    getArticles,
-    getArticleById,
-    removeArticle,
+  saveArticle,
+  getArticles,
+  getArticleById,
+  removeArticle,
 }
