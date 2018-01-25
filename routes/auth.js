@@ -1,4 +1,5 @@
-let userProxy = require('../proxy/user')
+const userProxy = require('../proxy/user')
+const controller = require('../utils/controllers')
 
 module.exports = function(router) {
 
@@ -8,21 +9,11 @@ module.exports = function(router) {
   - 注册成功时以 {registerResultCode: 1} 结束响应
   - 邮箱已被注册时以 {registerResultCode: 2} 结束响应
   */
-  router.post('/register', function(req, res, next) {
-    let params = {
-      email: req.body.email,
-      nickname: req.body.nickname,
-      password: req.body.password,
-      created: new Date(),
-    }
+  router.post('/register', (req, res, next) => {
+    const {email, nickname, password} = req.body
     // 参数类型检查
-    if (typeof params.email === 'string'
-        && /\S/.test(params.email)
-        && typeof params.nickname === 'string'
-        && /\S/.test(params.nickname)
-        && typeof params.password === 'string'
-        && /\S/.test(params.password)
-    ) {
+    const paramsValid = controllers.isValidString(email, nickname, password)
+    if (paramsValid) {
       userProxy.saveUser(params, function(result) {
         // 注册成功返回1，邮箱已被注册返回2
         res.json({registerResultCode: result === true ? 1 : 2})

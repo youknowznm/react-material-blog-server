@@ -2,7 +2,7 @@ module.exports = {
   // 站点名
   siteName: 'YouKnowznM',
   // 数据库的路径
-  dbPath: 'mongodb://localhost/rhaego',
+  dbUrl: 'mongodb://localhost:27017/materialBlog',
   // session的加密字符串
   sessionKey: 'ssecret',
   // 站长的登录邮箱
