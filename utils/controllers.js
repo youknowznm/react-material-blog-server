@@ -1,6 +1,5 @@
 // 取得写在配置内的站长邮箱
 let ownerEmail = require("../config").ownerEmail
-let userProxy = require('../proxy/user')
 
 module.exports = {
   /**

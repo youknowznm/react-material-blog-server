@@ -1,13 +1,13 @@
 // 连接mongodb
 const MongoClient = require('mongodb').MongoClient
-const assert = require('assert')
+const {assert} = require('../utils')
 const dbUrl = require('../config').dbUrl
 
-const addUserCollection = require('./user')
+const {addUserCollection} = require('./user')
 
 const initMongo = () => {
   MongoClient.connect(dbUrl, (err, db) => {
-    assert.equal(null, err)
+    assert(err)
     console.log('# db connection success')
     addUserCollection(db)
   })

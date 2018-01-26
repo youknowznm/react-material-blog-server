@@ -12,13 +12,16 @@
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
+    "ejs": "^2.5.7",
     "express": "^4.16.0",
     "express-session": "^1.15.4",
+    "externalip": "^1.0.2",
     "jshashes": "^1.0.7",
     "mongodb": "^2.2.34",
     "morgan": "~1.8.1",
     "nodemailer": "^4.0.1",
     "nodemon": "^1.12.1",
+    "public-ip": "^2.4.0",
     "shortid": "^2.2.8"
   }
 }
