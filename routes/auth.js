@@ -6,26 +6,34 @@ const controller = require('../utils/controllers')
 module.exports = function(router) {
 
   router.get('/', (req, res) => {
-    var ip = (req.headers['x-forwarded-for'] ||
-     req.connection.remoteAddress ||
-     req.socket.remoteAddress ||
-     req.connection.socket.remoteAddress).split(",")[0];
 
-     console.log(ip);
+    var request = require('request');
+    var url = 'http://myexternalip.com/raw';
+    request(url, function (err, resp, myip) {
+      res.end(myip)
+    })
 
-     var headerXForwardedFor = req.headers['x-forwarded-for']
-     var connectionRemoteAddress = req.connection.remoteAddress
-     var socketRemoteAddress = req.socket.remoteAddress
-     var connectionSocketRemoteAddress = req.connection.socket
 
-     var r = `
-       headerXForwardedFor: ${headerXForwardedFor},
-       connectionRemoteAddress: ${connectionRemoteAddress},
-       socketRemoteAddress: ${socketRemoteAddress},
-       connectionSocketRemoteAddress: ${connectionSocketRemoteAddress},
-     `
+    // var ip = (req.headers['x-forwarded-for'] ||
+    //  req.connection.remoteAddress ||
+    //  req.socket.remoteAddress ||
+    //  req.connection.socket.remoteAddress).split(",")[0];
+    //
+    //  console.log(ip);
+    //
+    //  var headerXForwardedFor = req.headers['x-forwarded-for']
+    //  var connectionRemoteAddress = req.connection.remoteAddress
+    //  var socketRemoteAddress = req.socket.remoteAddress
+    //  var connectionSocketRemoteAddress = req.connection.socket
+    //
+    //  var r = `
+    //    headerXForwardedFor: ${headerXForwardedFor},
+    //    connectionRemoteAddress: ${connectionRemoteAddress},
+    //    socketRemoteAddress: ${socketRemoteAddress},
+    //    connectionSocketRemoteAddress: ${connectionSocketRemoteAddress},
+    //  `
 
-     res.end(r)
+     // res.end(r)
   })
 
   /*

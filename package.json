@@ -22,6 +22,7 @@
     "nodemailer": "^4.0.1",
     "nodemon": "^1.12.1",
     "public-ip": "^2.4.0",
+    "request": "^2.83.0",
     "shortid": "^2.2.8"
   }
 }
