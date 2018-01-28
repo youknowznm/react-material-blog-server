@@ -3,6 +3,8 @@ const express = require('express')
 // 生成应用
 const app = express()
 
+app.set('trust proxy', 'loopback');
+
 // 全局变量
 app.locals = require('./config')
 

@@ -6,12 +6,16 @@ const controller = require('../utils/controllers')
 module.exports = function(router) {
 
   router.get('/', (req, res) => {
+    console.log('ip: ', req.ip);
+    console.log('ips: ', req.ips);
 
-    var request = require('request');
-    var url = 'http://myexternalip.com/raw';
-    request(url, function (err, resp, myip) {
-      res.end(myip)
-    })
+    res.end(`IP - ${req.ip}\nIPS - ${req.ips}\n`)
+
+    // var request = require('request');
+    // var url = 'http://myexternalip.com/raw';
+    // request(url, function (err, resp, myip) {
+    //   res.end(myip)
+    // })
 
 
     // var ip = (req.headers['x-forwarded-for'] ||
