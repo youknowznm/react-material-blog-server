@@ -3,11 +3,21 @@ const {saveUser} = require('../db/user')
 
 const controller = require('../utils/controllers')
 
+var proxyaddr = require('proxy-addr')
+
+
+
 module.exports = function(router) {
 
   router.get('/', (req, res) => {
+
+    console.log('proxyaddr: ', proxyaddr(req, 'loopback'));
+
+
     console.log('ip: ', req.ip);
     console.log('ips: ', req.ips);
+
+    console.log('xff: ', req.headers['X-Forwarded-For']);
 
     res.end(`IP - ${req.ip}\nIPS - ${req.ips}\n`)
 
