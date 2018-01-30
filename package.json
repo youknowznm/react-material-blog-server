@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./bin/www",
-    "pro": "NODE_ENV=production nodemon ./bin/www"
+    "pro": "NODE_ENV=production nodemon ./bin/www",
+
+    "fuck": "nodemon ./server.js"
   },
   "dependencies": {
     "assert": "^1.4.1",
@@ -19,7 +21,7 @@
     "mongodb": "^2.2.34",
     "morgan": "~1.8.1",
     "nodemailer": "^4.0.1",
-    "nodemon": "^1.12.1",
+    "nodemon": "^1.14.11",
     "proxy-addr": "^2.0.2",
     "request": "^2.83.0",
     "shortid": "^2.2.8"
