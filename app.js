@@ -15,8 +15,6 @@ initMongo()
 // 获取注册的全部路由
 const routes = require('./routes')
 
-
-//
 // const path = require('path')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')

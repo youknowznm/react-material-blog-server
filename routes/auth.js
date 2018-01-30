@@ -9,8 +9,12 @@ var proxyaddr = require('proxy-addr')
 
 module.exports = function(router) {
 
-  router.get('/', (req, res) => {
+  router.post('/auth', (req, res) => {
+    // res.end('cao ni ma bi')
+    res.end(200)
+  })
 
+  router.get('/', (req, res) => {
     console.log('proxyaddr: ', proxyaddr(req, 'loopback'));
 
 
