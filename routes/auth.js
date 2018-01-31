@@ -6,7 +6,6 @@ const controller = require('../utils/controllers')
 var proxyaddr = require('proxy-addr')
 
 
-
 module.exports = function(router) {
 
   router.post('/auth', (req, res) => {
