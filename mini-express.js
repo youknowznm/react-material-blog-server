@@ -33,19 +33,20 @@ class MiniExpress {
         const thisRoute = routeIterator.next().value
         // 1 - 已经遍历结束
         if (thisRoute === undefined) {
-          res.end(`### Router not found: ${targetMethod} ${targetPath} ###`)
+          res.writeHead(404, {'Content-Type': 'text/plain'})
+          res.end(`ROUTER UNFOUND: [${targetMethod} ${targetPath}]`)
           return
         }
         const {method, path, handler} = thisRoute
         // 2 - 匹配到了符合的路由
         if ([targetMethod, 'all'].includes(method) && [targetPath, '*'].includes(path)) {
-          handler(req, res)
+          handler(enhanceReq(req), enhanceRes(res))
           return
         }
         // 3 - 匹配到了中间件
         if (method === 'use' && [targetPath, '/'].includes(path)) {
           // 传递 next 方法给监听函数，在其内部可进行条件判断，决定是否把执行权交回 routeIterator
-          handler(req, res, next)
+          handler(enhanceReq(req), enhanceRes(res), next)
           return
         }
         next()
@@ -69,6 +70,40 @@ class MiniExpress {
   use(path, handler) {
     this.routes.push({method: 'use', path, handler})
   }
+}
+
+// 增强 req，可按需添加其它方法
+const enhanceReq = (req) => {
+  // 获取请求 url 的参数对象
+  req.query = (() => {
+    const urlObj = url.parse(req.url)
+    const queryObj = {}
+    const queryString = urlObj.query
+    if (typeof queryString === 'string') {
+      const searchArr = queryString.split('&')
+      searchArr.forEach((i) => {
+        var pair = i.split('=')
+        queryObj[pair[0]] = pair[1]
+      })
+    }
+    return queryObj
+  })()
+  return req
+}
+
+// 增强 res，可按需添加其它方法
+const enhanceRes = (res) => {
+  // 设置状态码
+  res.status = (statusCode) => {
+    res.statusCode = statusCode
+    return res
+  }
+  // 以 json 结束响应
+  res.json = (data) => {
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify(data))
+  }
+  return res
 }
 
 module.exports = MiniExpress

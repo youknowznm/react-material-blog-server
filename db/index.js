@@ -5,10 +5,10 @@ const dbUrl = require('../config').dbUrl
 
 const {addUserCollection} = require('./user')
 
-const initMongo = () => {
+const initMongo = (db) => {
   MongoClient.connect(dbUrl, (err, db) => {
     assert(err)
-    console.log('# db connection success')
+    console.log('### Db connection success. ###')
     addUserCollection(db)
   })
 }

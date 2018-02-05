@@ -1,10 +1,19 @@
-const useAuthRoute = (app) => {
-  app.post('/auth', (req, res) => {
-    res.end('fuck you')
+const {adminPassword, adminEmail} = require('../config')
+const {endResWithJSON} = require('../utils')
+
+const useLoginRoute = (app) => {
+  app.post('/login', (req, res) => {
+    const body = req.body
+    if (body.password === adminPassword && body.email === adminEmail) {
+      req.session.adminLoggedIn = true
+      res.status(200).json({msg: 'Login successful.'})
+    } else {
+      res.status(403).json({msg: 'Invalid email or password.'})
+    }
   })
 }
 
-module.exports =  useAuthRoute
+module.exports = useLoginRoute
 
 
 // const MongoClient = require('mongodb').MongoClient

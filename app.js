@@ -1,23 +1,38 @@
 const MiniExpress = require('./mini-express.js')
-var proxyaddr = require('proxy-addr')
+const proxyaddr = require('proxy-addr')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 
-// 生成应用
+// 实例化服务器
 const app = new MiniExpress()
 
-// app.set('trust proxy', 'loopback');
+// 连接数据库
+require('./db')()
 
-const initMongo = require('./db')
+// 使用中间件
+app.use('/', session({
+  name: 'materialBLogSessionKey',
+  secret: 'materialBLogSessionSecret',
+  store: new MongoStore({
+    url: 'mongodb://localhost:27017/materialBlog',
+  }),
+  saveUninitialized: false,
+  resave: false,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000,
+  },
+}))
+app.use('/', logger('dev'))
+app.use('/', bodyParser.json())
+app.use('/', bodyParser.urlencoded({ extended: false }))
+app.use('/', bodyParser.text())
+app.use('/', cookieParser())
 
-initMongo()
 
-// 获取注册的全部路由
-// const test = require('./routes/test')
-//
-// test(app)
-const useAllRoutes = require('./routes');
+const useAllRoutes = require('./routes')
 useAllRoutes(app)
 app.listen()
 
@@ -32,26 +47,6 @@ app.listen()
 // const controllers = require('./utils/controllers')
 
 
-// // session中间件
-// app.use(session({
-//   name: 'materialBLogSessionKey',
-//   secret: sessionKey,
-//   store: new MongoStore({
-//     mongooseConnection: mongoose.connection
-//   }),
-//   saveUninitialized: false,
-//   resave: false,
-//   cookie: {
-//     maxAge: 24 * 60 * 60 * 1000,
-//   },
-//   currentUserEmail: '',
-// }))
-//
-
-// app.use(logger('dev'))
-// app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(cookieParser())
 
 // // 404
 // app.use(controllers.render404)
@@ -59,7 +54,7 @@ app.listen()
 
 // 500
 // app.use(function(err, req, res, next) {
-//   console.log('-e ',  err);
+//   console.log('-e ',  err)
 //   res.status(500).end()
 //   // res.status(500).render('common/500', {
 //   //   url: req.path,

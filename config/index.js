@@ -1,4 +1,8 @@
 module.exports = {
+  //TODO
+  adminEmail: 'znm92@icloud.com',
+  adminPassword: '123123',
+
   // 站点名
   siteName: 'YouKnowznM',
   // 数据库的路径
