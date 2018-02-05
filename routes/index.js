@@ -1,16 +1,15 @@
-let fs = require('fs')
+const fs = require('fs')
 
-module.exports = []
+const routeFuncs = fs.readdirSync(__dirname)
 
-function addRouter(path) {
-  module.exports.push(require(path)(router))
+const useAllRoutes = (app) => {
+  routeFuncs.forEach((thisRouteFileName) => {
+    if (thisRouteFileName !== 'index.js') {
+      console.log(`### using route "${thisRouteFileName}". ###`);
+      require(`./${thisRouteFileName}`)(app)
+    }
+  })
 }
 
-// 自动读取route目录，添加路由
-let routeNameArr = fs.readdirSync('./routes')
 
-for (let routeName of routeNameArr) {
-  if (!/^(\.DS_Store|index\.js)$/.test(routeName)) {
-    addRouter('./' + routeName)
-  }
-}
+module.exports = useAllRoutes
