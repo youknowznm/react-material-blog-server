@@ -103,6 +103,11 @@ const enhanceRes = (res) => {
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify(data))
   }
+  // 301重定向
+  res.redirect = (location) => {
+    res.writeHead(301, {'Location': location})
+    res.end()
+  }
   return res
 }
 

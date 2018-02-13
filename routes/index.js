@@ -1,8 +1,9 @@
 const fs = require('fs')
 
+// 同步读取当前目录下除 index.js 之外的模块
 const routeFuncs = fs.readdirSync(__dirname)
 
-const useAllRoutes = (app) => {
+module.exports = (app) => {
   routeFuncs.forEach((thisRouteFileName) => {
     if (thisRouteFileName !== 'index.js') {
       console.log(`### using route "${thisRouteFileName}". ###`)
@@ -10,6 +11,3 @@ const useAllRoutes = (app) => {
     }
   })
 }
-
-
-module.exports = useAllRoutes

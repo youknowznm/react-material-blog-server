@@ -61,7 +61,7 @@ const saveArticle = (params, cb) => {
 }
 
 /**
-根据文章文档的_id查找
+根据文章文档的 _id 查找
 @param _id {string} 目标文章文档的_id
 @param cb {function} 完成的回调，传入符合条件的文章文档或 null
 */
@@ -72,13 +72,12 @@ const getArticleById = (_id, cb) => {
   })
 }
 
-
 /**
-删除文章文档
+根据文章文档的 _id 删除
 @param _id {string} 目标文章文档的_id
-@param cb {function} 完成的回调，参数为TODO
+@param cb {function} 完成的回调，删除成功传入 true
 */
-const removeArticle = (_id, cb) => {
+const deleteArticle = (_id, cb) => {
   ArticleModel.remove(
     {_id},
     (err) => {
@@ -92,5 +91,5 @@ module.exports = {
   saveArticle,
   getArticles,
   getArticleById,
-  removeArticle,
+  deleteArticle,
 }
