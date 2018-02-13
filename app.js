@@ -3,21 +3,29 @@ const proxyaddr = require('proxy-addr')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+// const multer = require('multer')
+
+const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
+
+// const upload = multer({ dest: './uploads/' })
 
 // 实例化服务器
 const app = new MiniExpress()
 
 // 连接数据库
-require('./db')()
+mongoose.connect(require('./config').dbPath)
+mongoose.connection.on('error', function(e) {
+  console.log('### db connection error ###\n' + e)
+})
 
 // 使用中间件
 app.use('/', session({
   name: 'materialBLogSessionKey',
   secret: 'materialBLogSessionSecret',
   store: new MongoStore({
-    url: 'mongodb://localhost:27017/materialBlog',
+    mongooseConnection: mongoose.connection,
   }),
   saveUninitialized: false,
   resave: false,
@@ -25,32 +33,18 @@ app.use('/', session({
     maxAge: 24 * 60 * 60 * 1000,
   },
 }))
+
 app.use('/', logger('dev'))
 app.use('/', bodyParser.json())
 app.use('/', bodyParser.urlencoded({ extended: false }))
 app.use('/', bodyParser.text())
 app.use('/', cookieParser())
 
-
-const useAllRoutes = require('./routes')
-useAllRoutes(app)
+require('./routes')(app)
 app.listen()
-
-// const path = require('path')
-
-
-// // 数据库和session相关
-// const session = require('express-session')
-// const sessionKey = require('./config').sessionKey
-//
-// // 控制器
-// const controllers = require('./utils/controllers')
-
-
 
 // // 404
 // app.use(controllers.render404)
-//
 
 // 500
 // app.use(function(err, req, res, next) {

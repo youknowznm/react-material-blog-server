@@ -1,5 +1,3 @@
-const {endResWithJSON} = require('../utils')
-
 const useLogoutRoute = (app) => {
   app.post('/logout', (req, res) => {
     req.session.adminLoggedIn = false

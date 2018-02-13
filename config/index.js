@@ -2,6 +2,7 @@ module.exports = {
   //TODO
   adminEmail: 'znm92@icloud.com',
   adminPassword: '123123',
+  dbPath: 'mongodb://localhost/rhaego',
 
   // 站点名
   siteName: 'YouKnowznM',

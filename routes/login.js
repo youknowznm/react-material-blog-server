@@ -1,5 +1,4 @@
 const {adminPassword, adminEmail} = require('../config')
-const {endResWithJSON} = require('../utils')
 
 const useLoginRoute = (app) => {
   app.post('/login', (req, res) => {
@@ -8,7 +7,7 @@ const useLoginRoute = (app) => {
       req.session.adminLoggedIn = true
       res.status(200).json({msg: 'Login successful.'})
     } else {
-      res.status(403).json({msg: 'Invalid email or password.'})
+      res.status(401).json({msg: 'Invalid email or password.'})
     }
   })
 }

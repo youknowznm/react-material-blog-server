@@ -7,13 +7,13 @@
     "pro": "NODE_ENV=production nodemon ./app.js"
   },
   "dependencies": {
-    "assert": "^1.4.1",
     "body-parser": "~1.17.1",
     "connect-mongo": "^2.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express-session": "^1.15.4",
     "mongodb": "^2.2.34",
+    "mongoose": "^5.0.4",
     "morgan": "~1.8.1",
     "nodemon": "^1.14.11",
     "promise": "^8.0.1",
