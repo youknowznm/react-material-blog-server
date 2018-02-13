@@ -39,6 +39,7 @@ app.use('/', bodyParser.json())
 app.use('/', bodyParser.urlencoded({ extended: false }))
 app.use('/', bodyParser.text())
 app.use('/', cookieParser())
+// app.use('/', multer)
 
 require('./routes')(app)
 app.listen()

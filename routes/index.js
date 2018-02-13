@@ -6,7 +6,6 @@ const routeFuncs = fs.readdirSync(__dirname)
 module.exports = (app) => {
   routeFuncs.forEach((thisRouteFileName) => {
     if (thisRouteFileName !== 'index.js') {
-      console.log(`### using route "${thisRouteFileName}". ###`)
       require(`./${thisRouteFileName}`)(app)
     }
   })

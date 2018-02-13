@@ -6,6 +6,10 @@ const {
   deleteArticle,
 } = require('../proxy/article')
 
+const formidable = require('formidable')
+const fs = require('fs')
+const path = require('path')
+
 module.exports = (app) => {
 
   // 保存新建或修改的文章
@@ -68,6 +72,36 @@ module.exports = (app) => {
         }
       })
     }
-    
   })
+
+  // TODO
+  app.post('/upload', (req, res) => {
+
+    var form = new formidable.IncomingForm()
+    // form.uploadDir = "./upload/"
+
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        console.log('e',err)
+        res.status(500).json({msg: 'Server Error. Please try again later.'})
+        return
+      }
+      if (JSON.stringify(files) === '{}') {
+        res.status(400).json({msg: 'Please select a picture to upload.'})
+        return
+      }
+      const {pic} = files
+      var tmpPath = pic.path
+      var targetPath = path.resolve() + '/upload/' + pic.name
+      fs.rename(tmpPath, targetPath, (err) => {
+        if (err) {console.log(err)}
+        fs.unlink(tmpPath, function() {
+          if (err) throw err
+          res.end('File uploaded to: ' + targetPath + ' - ' + pic.size + ' bytes')
+          res.status(200)
+       })
+      })
+    })
+  })
+
 }
