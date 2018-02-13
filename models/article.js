@@ -1,26 +1,45 @@
 const mongoose = require('mongoose')
 const commentSchema = require('./comment').commentSchema
 
-let articleSchema = mongoose.Schema({
+const articleSchema = mongoose.Schema({
   _id: {
     type: String,
-    unique: true,
+  },
+  // 标题
+  title: {
+    type: String,
+    required: true,
+    validate: (val) => (/^.{10,20}$/.test(val)),
+  },
+  // 标签
+  tags: {
+    type: [String],
+    required: true,
+    validate: (val) => (val.length < 3 && val.length > 0),
+  },
+  // 摘要
+  summary: {
+    type: String,
+    required: true,
+    validate: (val) => (/^.{10,50}$/.test(val)),
   },
   // 创建时间
-  createdDate: Date,
-  // 标题
-  title: String,
-  // 摘要
-  summary: String,
+  createdDate: {
+    type: String,
+    required: true,
+    validate: (val) => (/^\d{4}-\d{2}-\d{2}$/.test(val)),
+  },
   // 内容
-  content: String,
-  // 标签
-  tags: [String],
+  content: {
+    type: String,
+    required: true,
+    validate: (val) => (/\S/.test(val)),
+  },
   // 评论
   comments: [commentSchema],
 })
 
-let ArticleModel = mongoose.model('Article', articleSchema)
+const ArticleModel = mongoose.model('Article', articleSchema)
 
 module.exports = {
   articleSchema,

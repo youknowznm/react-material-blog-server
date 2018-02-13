@@ -1,61 +1,59 @@
-let ArticleModel = require('../models/article').ArticleModel
+const {assertNoError} = require('../utils');
+const ArticleModel = require('../models/article').ArticleModel
 
 /**
-取得符合可选条件的的所有文章文档
+取得包含目标标签的所有文章文档
 @param tag {string|null} 可选的目标文档标签
 @param cb {function} 完成的回调，参数为所有符合条件的文档的数组
 */
-function getArticles(type, tag, cb) {
+const getArticles = (tag, cb) => {
   let query = {}
   if (typeof tag === 'string') {
     query.tags = tag
   }
-  ArticleModel.find(query, function(e, docs) {
-    if (e) {
-      console.error(e)
-    }
-    return cb(docs);
+  ArticleModel.find(query, (err, articleDocs) => {
+    assertNoError(err)
+    return cb(articleDocs)
   })
 }
 
 /**
-保存文章文档
+保存文章文档。有符合目标 id 的文档则修改，没有则新建
 @param params {object} 参数对象，包含_id、标题、简介、内容、标签、类型
-@param cb {function} 完成的回调，保存失败时返回空json，无论新还是编辑保存成功，都返回该文章的_id
+@param cb {function} 完成的回调，保存失败时返回{error}，成功则返回{_id}
 */
-function saveArticle(params, cb) {
-  let _id = params._id
+const saveArticle = (params, cb) => {
+  let {_id, title, summary, tags, createdDate, content} = params
   let articleDoc = new ArticleModel({
-    title: params.title,
-    type: params.type,
-    summary: params.summary,
-    content: params.content,
-    tags: params.tags,
-    created: params.created
+    title,
+    summary,
+    tags,
+    createdDate,
+    content,
   })
-  ArticleModel.findById(_id, function(e, doc) {
-    if (e) {
-      console.error(e)
-      return cb({})
+  ArticleModel.findById(_id, (err, doc) => {
+    if (err) {
+      console.error(err)
+      return cb({err})
     }
     if (doc === null) {
       articleDoc._id = _id
-      articleDoc.save(function(e) {
-        if (e) {
-          console.error(e)
-          return cb({})
+      articleDoc.save((err) => {
+        if (err) {
+          console.error(err)
+          return cb({err})
         }
-        return cb({ _id })
+        return cb({_id})
       })
     } else {
-      ArticleModel.update({ _id },
+      ArticleModel.update({_id},
         articleDoc,
-        function(e) {
-          if (e) {
-            console.error(e)
+        (err) => {
+          if (err) {
+            console.error(err)
             return cb({})
           }
-          return cb({ _id })
+          return cb({err})
         }
       )
     }
@@ -65,13 +63,11 @@ function saveArticle(params, cb) {
 /**
 根据文章文档的_id查找
 @param _id {string} 目标文章文档的_id
-@param cb {function} 完成的回调，参数为符合条件的文章文档
+@param cb {function} 完成的回调，传入符合条件的文章文档或 null
 */
-function getArticleById(_id, cb) {
-  ArticleModel.findById(_id, function(e, doc) {
-    if (e) {
-      console.error(e)
-    }
+const getArticleById = (_id, cb) => {
+  ArticleModel.findById(_id, function(err, doc) {
+    assertNoError(err)
     return cb(doc)
   })
 }
@@ -82,14 +78,12 @@ function getArticleById(_id, cb) {
 @param _id {string} 目标文章文档的_id
 @param cb {function} 完成的回调，参数为TODO
 */
-function removeArticle(_id, cb) {
+const removeArticle = (_id, cb) => {
   ArticleModel.remove(
-    {
-      _id
-    },
-    function(e) {
-      console.log('res', e);
-      return cb(true);
+    {_id},
+    (err) => {
+      assertNoError(err)
+      return cb(true)
     }
   )
 }

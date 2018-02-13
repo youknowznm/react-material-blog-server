@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
-let commentSchema = mongoose.Schema({
+const commentSchema = mongoose.Schema({
   _id: {
     type: String,
-    unique: true,
+    // unique: true,
   },
   // 创建时间
   createdDate: Date,
