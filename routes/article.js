@@ -1,4 +1,8 @@
+const fs = require('fs')
+const path = require('path')
+const formidable = require('formidable')
 const shortid = require('shortid')
+const {assertNoError, authMiddleware} = require('../utils')
 const {
   saveArticle,
   getArticles,
@@ -6,18 +10,11 @@ const {
   deleteArticle,
 } = require('../proxy/article')
 
-const formidable = require('formidable')
-const fs = require('fs')
-const path = require('path')
-
 module.exports = (app) => {
 
-  // 保存新建或修改的文章
+  // 保存新建或修改的文章，需要管理员登录
+  app.use('/saveArticle', authMiddleware)
   app.post('/saveArticle', (req, res) => {
-    if (req.session.adminLoggedIn !== true) {
-      res.status(401).json({msg: 'Please log in as admin.'})
-      return
-    }
     const params = Object.assign({}, req.body)
     params._id = shortid.generate()
     saveArticle(params, (result) => {
@@ -56,13 +53,12 @@ module.exports = (app) => {
     }
   })
 
-  // 删除符合目标 id 的文章，必须在 query 中提供 id
+  // 删除符合目标 id 的文章，必须在 query 中提供 id，需要管理员登录
+  app.use('/deleteArticle', authMiddleware)
   app.post('/deleteArticle', (req, res) => {
     const {id} = req.query
     if (id === undefined) {
-      res.status(400).json({
-        msg: 'Article id query is required.'
-      })
+      res.status(400).json({msg: 'Article id query is required.'})
     } else {
       deleteArticle(id, (result) => {
         if (result === true) {
@@ -74,31 +70,31 @@ module.exports = (app) => {
     }
   })
 
-  // TODO
-  app.post('/upload', (req, res) => {
-
-    var form = new formidable.IncomingForm()
-    // form.uploadDir = "./upload/"
-
+  // 上传 1M 内的图片，需要管理员登录
+  app.use('/uploadPicture', authMiddleware)
+  app.post('/uploadPicture', (req, res) => {
+    const form = new formidable.IncomingForm()
     form.parse(req, (err, fields, files) => {
       if (err) {
-        console.log('e',err)
         res.status(500).json({msg: 'Server Error. Please try again later.'})
         return
       }
-      if (JSON.stringify(files) === '{}') {
-        res.status(400).json({msg: 'Please select a picture to upload.'})
+      if (JSON.stringify(files) === '{}' || !/^image\//.test(pic.type)) {
+        res.status(400).json({msg: 'Please select an image file.'})
         return
       }
       const {pic} = files
-      var tmpPath = pic.path
-      var targetPath = path.resolve() + '/upload/' + pic.name
+      if (pic.size > 1024 * 1024) {
+        res.status(400).json({msg: 'Select an image file less than 1M.'})
+        return
+      }
+      const tmpPath = pic.path
+      const targetPath = path.resolve() + '/upload/' + pic.name
       fs.rename(tmpPath, targetPath, (err) => {
-        if (err) {console.log(err)}
+        assertNoError(err)
         fs.unlink(tmpPath, function() {
-          if (err) throw err
-          res.end('File uploaded to: ' + targetPath + ' - ' + pic.size + ' bytes')
-          res.status(200)
+          assertNoError(err)
+          res.status(200).json({msg: 'Upload successful.'})
        })
       })
     })
