@@ -3,13 +3,9 @@ const proxyaddr = require('proxy-addr')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-// const multer = require('multer')
-
-const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
-
-// const upload = multer({ dest: './uploads/' })
+const mongoose = require('mongoose')
 
 // 实例化服务器
 const app = new MiniExpress()
@@ -39,7 +35,6 @@ app.use('/', bodyParser.json())
 app.use('/', bodyParser.urlencoded({ extended: false }))
 app.use('/', bodyParser.text())
 app.use('/', cookieParser())
-// app.use('/', multer)
 
 require('./routes')(app)
 app.listen()

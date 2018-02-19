@@ -1,5 +1,5 @@
 const shortid = require('shortid')
-const {assertNoError, validateIp} = require('../utils')
+const {assertErrorIsNull, validateIp} = require('../utils')
 const {
   saveComment,
   getCommentsByArticleId,
@@ -16,15 +16,15 @@ module.exports = (app) => {
   app.post('/saveComment', (req, res) => {
     const params = Object.assign({}, req.body)
     params._id = shortid.generate()
-    saveComment(params, (result) => {
-      if (typeof result._id === 'string') {
+    // saveComment(params, (result) => {
+    //   if (typeof result._id === 'string') {
         res.status(200).json({msg: 'Save comment successful.'})
-      } else if (result.err.name === 'ValidationError') {
-        res.status(400).json({msg: 'Invalid fields. Please check your input.'})
-      } else {
-        res.status(500).json({msg: 'Server Error. Please try again later.'})
-      }
-    })
+    //   } else if (result.err.name === 'ValidationError') {
+    //     res.status(400).json({msg: 'Invalid fields. Please check your input.'})
+    //   } else {
+    //     res.status(500).json({msg: 'Server Error. Please try again later.'})
+    //   }
+    // })
   })
 
   // 获取符合目标 id 的文章下的评论，必须在 query 中提供 id。id 为空字符串时则返回所有留言

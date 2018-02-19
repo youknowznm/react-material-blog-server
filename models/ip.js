@@ -4,21 +4,23 @@ const ipSchema = mongoose.Schema({
   _id: {
     type: String,
   },
-  // 发表评论者的 ip
+  // 评论者 ip
   ip: {
     type: String,
     required: true,
     validate: (val) => (/^(\d{1,3}\.){3}\d{1,3}$/.test(val)),
   },
-  // 一定时间内的请求次数
-  attempts: {
+  // 一小时内的请求次数
+  hourlyAttempts: {
     type: Number,
+    required: true,
     default: 0,
   },
-  restricted: {
-    type: Boolean,
+  // 一天内的请求次数
+  dailyAttempts: {
+    type: Number,
     required: true,
-    default: false,
+    default: 0,
   },
 })
 

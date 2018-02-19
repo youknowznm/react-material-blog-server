@@ -1,7 +1,9 @@
 const proxyaddr = require('proxy-addr')
+const {getIpDoc} = require('../proxy/ip')
+const {hourlyCommentLimit, dailyCommentLimit} = require('../config')
 
 // 无 error 断言
-const assertNoError = (err) => {
+const assertErrorIsNull = (err) => {
   require('assert').equal(err, null)
 }
 
@@ -14,16 +16,35 @@ const authMiddleware = (req, res, next) => {
   }
 }
 
-//
+// 
 const validateIp = (req, res, next) => {
   const ip = proxyaddr(req, 'loopback')
   req.ip = ip
-  // console.log('xff: ', req.headers['X-Forwarded-For']);
-  next()
+  getIpDoc(ip, (ipDoc) => {
+    console.log('ip: ', ipDoc)
+    if (ip.hourlyAttempts >= hourlyCommentLimit) {
+      res.status(403).json({msg: 'Maximum hourly requests reached. Try again later.'})
+      return
+    }
+    if (ipDoc.dailyAttempts >= hourlyCommentLimit) {
+      res.status(403).json({msg: 'Maximum daily requests reached. Try again tomorrow.'})
+      return
+    }
+    ++ipDoc.hourlyAttempts
+    ++ipDoc.dailyAttempts
+    ipDoc.save(((err) => {
+      if (err) {
+        console.error(err)
+        res.status(500).json({msg: 'Server error. Please try again later.'})
+        return
+      }
+      next()
+    }))
+  })
 }
 
 module.exports = {
-  assertNoError,
+  assertErrorIsNull,
   authMiddleware,
   validateIp,
 }

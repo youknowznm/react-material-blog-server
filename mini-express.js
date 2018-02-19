@@ -19,7 +19,7 @@ class MiniExpress {
         this.routes.push({method, path, handler})
       }
     })
-    // 类的实例中的 this 默认不会指向实例本身，修改之（常写 React 的你是不是感觉很亲切）
+    // 使类实例的目标方法中的 this 总是指向实例本身
     this.requestListener = this.requestListener.bind(this)
   }
   // 使用路由迭代器进行路由的遍历

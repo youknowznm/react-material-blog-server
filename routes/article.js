@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const formidable = require('formidable')
 const shortid = require('shortid')
-const {assertNoError, authMiddleware} = require('../utils')
+const {assertErrorIsNull, authMiddleware} = require('../utils')
 const {
   saveArticle,
   getArticles,
@@ -91,9 +91,9 @@ module.exports = (app) => {
       const tmpPath = pic.path
       const targetPath = path.resolve() + '/upload/' + pic.name
       fs.rename(tmpPath, targetPath, (err) => {
-        assertNoError(err)
+        assertErrorIsNull(err)
         fs.unlink(tmpPath, function() {
-          assertNoError(err)
+          assertErrorIsNull(err)
           res.status(200).json({msg: 'Upload successful.'})
        })
       })

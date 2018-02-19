@@ -3,7 +3,9 @@ module.exports = {
   adminEmail: 'znm92@icloud.com',
   adminPassword: '123123',
   dbPath: 'mongodb://localhost/materialBlog',
-
+  hourlyCommentLimit: 5,
+  dailyCommentLimit: 20,
+  
   // 站点名
   siteName: 'YouKnowznM',
   // 数据库的路径

@@ -1,4 +1,4 @@
-const {assertNoError} = require('../utils');
+const {assertErrorIsNull} = require('../utils');
 const {CommentModel} = require('../models/comment')
 const {ArticleModel} = require('../models/article')
 
@@ -8,9 +8,9 @@ const {ArticleModel} = require('../models/article')
 @param cb {function} 完成的回调，传入评论或留言数组
 */
 const getCommentsByArticleId = (articleId, cb) => {
-  CommentModel.find({articleId}, (err, commentDocs) => {
-    assertNoError(err)
-    return cb(commentDocs)
+  CommentModel.find({articleId}, (err, docs) => {
+    assertErrorIsNull(err)
+    return cb(docs)
   })
 }
 
@@ -55,8 +55,8 @@ const saveComment = (params, cb) => {
 @param cb {function} 完成的回调，传入找到的评论文档或 null
 */
 const getCommentById = (_id, cb) => {
-  CommentModel.findById(_id, (err) => {
-    assertNoError(err)
+  CommentModel.findById(_id, (err, doc) => {
+    assertErrorIsNull(err)
     return cb(doc)
   })
 }
@@ -68,7 +68,7 @@ const getCommentById = (_id, cb) => {
 */
 const deleteComment = (_id, cb) => {
   CommentModel.remove({_id}, (err) => {
-    assertNoError(err)
+    assertErrorIsNull(err)
     return cb(true)
   })
 }

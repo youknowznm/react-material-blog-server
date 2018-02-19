@@ -1,4 +1,4 @@
-const {assertNoError} = require('../utils');
+const {assertErrorIsNull} = require('../utils');
 const {ArticleModel} = require('../models/article')
 
 /**
@@ -11,9 +11,9 @@ const getArticles = (tag, cb) => {
   if (typeof tag === 'string') {
     query.tags = tag
   }
-  ArticleModel.find(query, (err, articleDocs) => {
-    assertNoError(err)
-    return cb(articleDocs)
+  ArticleModel.find(query, (err, docs) => {
+    assertErrorIsNull(err)
+    return cb(docs)
   })
 }
 
@@ -67,7 +67,7 @@ const saveArticle = (params, cb) => {
 */
 const getArticleById = (_id, cb) => {
   ArticleModel.findById(_id, function(err, doc) {
-    assertNoError(err)
+    assertErrorIsNull(err)
     return cb(doc)
   })
 }
@@ -79,7 +79,7 @@ const getArticleById = (_id, cb) => {
 */
 const deleteArticle = (_id, cb) => {
   ArticleModel.remove({_id}, (err) => {
-    assertNoError(err)
+    assertErrorIsNull(err)
     return cb(true)
   })
 }
