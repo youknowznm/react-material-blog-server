@@ -22,6 +22,12 @@ const ipSchema = mongoose.Schema({
     required: true,
     default: 0,
   },
+  // 是否受限
+  restricted: {
+    type: Boolean,
+    required: true,
+    default: false,
+  }
 })
 
 let IpModel = mongoose.model('ip', ipSchema)
