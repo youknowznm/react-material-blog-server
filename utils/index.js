@@ -23,10 +23,7 @@ const validateIp = (req, res, next) => {
   getIpDoc(ip, (ipDoc) => {
     console.log('visitor ip: ', ipDoc)
     if (ipDoc.hourlyAttempts >= hourlyCommentLimit) {
-      // 达到每小时上限且尚未限制时，
-      if (ipDoc.restricted === false) {
-        startNextHourResetTimeout(ipDoc, f => f)
-      }
+      startNextHourResetTimeout(ipDoc, f => f)
       res.status(403).json({msg: 'Maximum hourly requests reached. Try again later.'})
       return
     }

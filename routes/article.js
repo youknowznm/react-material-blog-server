@@ -19,6 +19,7 @@ module.exports = (app) => {
     params._id = shortid.generate()
     saveArticle(params, (result) => {
       if (typeof result._id === 'string') {
+        // res.status(200).json({msg: 'Save article successful.'})
         res.status(200).json({msg: 'Save article successful.'})
       } else if (result.err.name === 'ValidationError') {
         res.status(400).json({msg: 'Invalid fields. Please check your input.'})

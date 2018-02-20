@@ -23,7 +23,7 @@ const ipSchema = mongoose.Schema({
     default: 0,
   },
   // 是否受限
-  restricted: {
+  hourResetTimeoutInProgress: {
     type: Boolean,
     required: true,
     default: false,
