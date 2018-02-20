@@ -12,20 +12,18 @@ const {
 
 module.exports = (app) => {
 
+  app.use('/article', authMiddleware)
+
   // 保存新建或修改的文章，需要管理员登录
-  app.use('/saveArticle', authMiddleware)
-  app.post('/saveArticle', (req, res) => {
+  app.post('/article', (req, res) => {
     const params = Object.assign({}, req.body)
     params._id = shortid.generate()
     saveArticle(params, (result) => {
       if (typeof result._id === 'string') {
-        // res.status(200).json({msg: 'Save article successful.'})
         res.status(200).json({msg: '保存文章成功。'})
       } else if (result.err.name === 'ValidationError') {
-        // res.status(400).json({msg: 'Invalid fields. Please check your input.'})
-        res.status(400).json({msg: '请检查无效的文章字段。'})
+        res.status(400).json({msg: '请检查错误的输入字段。'})
       } else {
-        // res.status(500).json({msg: 'Server Error. Please try again later.'})
         res.status(500).json({msg: '服务器错误。请稍后重试。'})
       }
     })
@@ -36,7 +34,6 @@ module.exports = (app) => {
     getArticles(req.query.tag, (articleDocs) => {
       res.status(200).json({
         articles: articleDocs,
-        // msg: 'Get articles successful.'
         msg: '获取文章成功。'
       })
     })
@@ -51,7 +48,6 @@ module.exports = (app) => {
       getArticleById(id, (articleDoc) => {
         res.status(200).json({
           article: articleDoc,
-          // msg: 'Get target article successful.'
           msg: '获取目标文章成功。'
         })
       })
@@ -59,16 +55,13 @@ module.exports = (app) => {
   })
 
   // 删除符合目标 id 的文章，必须在 query 中提供 id，需要管理员登录
-  app.use('/deleteArticle', authMiddleware)
-  app.post('/deleteArticle', (req, res) => {
+  app.delete('/article', (req, res) => {
     const {id} = req.query
     if (id === undefined) {
-      // res.status(400).json({msg: 'Article id query is required.'})
       res.status(400).json({msg: '请在 query 中提供有效的文章 id。'})
     } else {
       deleteArticle(id, (result) => {
         if (result === true) {
-          // res.status(200).json({msg: 'Delete article successful.'})
           res.status(200).json({msg: '删除文章成功。'})
         } else {
           res.status(500).json({msg: '服务器错误。请稍后重试。'})
@@ -78,8 +71,8 @@ module.exports = (app) => {
   })
 
   // 上传 1M 内的图片，需要管理员登录
-  app.use('/uploadPicture', authMiddleware)
-  app.post('/uploadPicture', (req, res) => {
+  app.use('/picture', authMiddleware)
+  app.post('/picture', (req, res) => {
     const form = new formidable.IncomingForm()
     form.parse(req, (err, fields, files) => {
       if (err) {
@@ -87,13 +80,11 @@ module.exports = (app) => {
         return
       }
       if (JSON.stringify(files) === '{}' || !/^image\//.test(pic.type)) {
-        // res.status(400).json({msg: 'Please select an image file.'})
         res.status(400).json({msg: '请选择图片文件。'})
         return
       }
       const {pic} = files
       if (pic.size > 1024 * 1024) {
-        // res.status(400).json({msg: 'Select an image file less than 1M.'})
         res.status(400).json({msg: '请选择 1M 内的图片文件。'})
         return
       }
@@ -103,7 +94,6 @@ module.exports = (app) => {
         assertErrorIsNull(err)
         fs.unlink(tmpPath, function() {
           assertErrorIsNull(err)
-          // res.status(200).json({msg: 'Upload successful.'})
           res.status(200).json({msg: '图片上传成功。'})
        })
       })
