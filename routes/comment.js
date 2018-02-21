@@ -14,15 +14,15 @@ module.exports = (app) => {
   app.post('/comment', (req, res) => {
     const params = Object.assign({}, req.body)
     params._id = shortid.generate()
-    // saveComment(params, (result) => {
-    //   if (typeof result._id === 'string') {
-        res.status(200).json({msg: 'Save comment successful.'})
-    //   } else if (result.err.name === 'ValidationError') {
-    //     res.status(400).json({msg: '请检查错误的输入字段。'})
-    //   } else {
-    //     res.status(500).json({msg: '服务器错误。请稍后重试。'})
-    //   }
-    // })
+    saveComment(params, (result) => {
+      if (typeof result._id === 'string') {
+        res.status(200).json({msg: '评论成功。'})
+      } else if (result.err.name === 'ValidationError') {
+        res.status(400).json({msg: '请检查错误的输入字段。'})
+      } else {
+        res.status(500).json({msg: '服务器错误。请稍后重试。'})
+      }
+    })
   })
 
   // 获取符合目标 id 的文章下的评论，必须在 query 中提供 id。id 为空字符串时则返回所有留言

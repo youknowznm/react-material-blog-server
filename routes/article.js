@@ -71,25 +71,29 @@ module.exports = (app) => {
   })
 
   // 上传 1M 内的图片，需要管理员登录
-  app.use('/picture', authMiddleware)
+  // app.use('/picture', authMiddleware)
   app.post('/picture', (req, res) => {
     const form = new formidable.IncomingForm()
     form.parse(req, (err, fields, files) => {
+      const {pictureFile} = files
+      if (pictureFile === undefined) {
+        res.status(400).json({msg: '搞事情？字段名不对。'})
+        return
+      }
       if (err) {
         res.status(500).json({msg: '服务器错误。请稍后重试。'})
         return
       }
-      if (JSON.stringify(files) === '{}' || !/^image\//.test(pic.type)) {
+      if (JSON.stringify(files) === '{}' || !/^image\//.test(pictureFile.type)) {
         res.status(400).json({msg: '请选择图片文件。'})
         return
       }
-      const {pic} = files
-      if (pic.size > 1024 * 1024) {
+      if (pictureFile.size > 1024 * 1024) {
         res.status(400).json({msg: '请选择 1M 内的图片文件。'})
         return
       }
-      const tmpPath = pic.path
-      const targetPath = path.resolve() + '/upload/' + pic.name
+      const tmpPath = pictureFile.path
+      const targetPath = path.resolve() + '/pictures/' + pictureFile.name
       fs.rename(tmpPath, targetPath, (err) => {
         assertErrorIsNull(err)
         fs.unlink(tmpPath, function() {

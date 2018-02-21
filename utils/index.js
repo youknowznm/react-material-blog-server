@@ -20,9 +20,9 @@ const authMiddleware = (req, res, next) => {
   res.status(401).json({msg: '请以管理员身份登录。'})
 }
 
-// 检查当前 ip 是否受限。只在方法为 post 时检查
+// 检查当前 ip 是否受限。方法为 get 时不检查
 const validateIp = (req, res, next) => {
-  if (req.method !== 'POST') {
+  if (req.method === 'GET') {
     next()
     return
   }
@@ -31,7 +31,7 @@ const validateIp = (req, res, next) => {
   getIpDoc(ip, (ipDoc) => {
     console.log('visitor ip: ', ipDoc)
     if (ipDoc.hourlyAttempts >= hourlyCommentLimit) {
-      startNextHourResetTimeout(ipDoc, f => f)
+      startNextHourResetTimeout(ipDoc)
       res.status(403).json({msg: '已达到一小时内评论数上限。请稍后重试。'})
       return
     }
