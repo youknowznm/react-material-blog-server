@@ -16,14 +16,14 @@ const getCommentsByArticleId = (articleId, cb) => {
 
 /**
 保存评论文档。评论不可修改
-@param params {object} 参数对象，包含_id、文章 id、作者 ip、作者昵称、内容、创建时间
+@param params {object} 参数对象，包含_id、文章 id、设备 id、作者昵称、内容、创建时间
 @param cb {function} 完成的回调，保存失败时返回{error}，成功则返回{_id}
 */
 const saveComment = (params, cb) => {
-  let {_id, authorIp, authorNickname, articleId, content, createdTime} = params
+  let {_id, clientId, author, email, articleId, content, createdTime} = params
   let commentDoc = new CommentModel({
-    authorIp,
-    authorNickname,
+    clientId,
+    author,
     articleId,
     content,
     createdTime,

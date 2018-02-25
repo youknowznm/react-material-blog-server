@@ -17,11 +17,16 @@ module.exports = (app) => {
   // 保存新建或修改的文章，需要管理员登录
   app.post('/article', (req, res) => {
     const params = Object.assign({}, req.body)
-    params._id = shortid.generate()
+    if (params._id === '') {
+      params._id = shortid.generate()
+    }
     saveArticle(params, (result) => {
       if (typeof result._id === 'string') {
-        res.status(200).json({msg: '保存文章成功。'})
-      } else if (result.err.name === 'ValidationError') {
+        res.status(200).json({
+          msg: '保存文章成功。',
+          articleId: result._id,
+        })
+      } else if (result.err && result.err.name === 'ValidationError') {
         res.status(400).json({msg: '请检查错误的输入字段。'})
       } else {
         res.status(500).json({msg: '服务器错误。请稍后重试。'})
@@ -31,7 +36,8 @@ module.exports = (app) => {
 
   // 获取含目标标签的文章，不提供标签则返回所有文章
   app.get('/articles', (req, res) => {
-    getArticles(req.query.tag, (articleDocs) => {
+    const targetTag = req.query.tag || {}
+    getArticles(targetTag, (articleDocs) => {
       res.status(200).json({
         articles: articleDocs,
         msg: '获取文章成功。'
@@ -41,11 +47,11 @@ module.exports = (app) => {
 
   // 获取符合目标 id 的文章，必须在 query 中提供 id
   app.get('/article', (req, res) => {
-    const {id} = req.query
-    if (id === undefined) {
-      res.status(400).json({msg: 'Article id query is required.'})
+    const {articleId} = req.query
+    if (articleId === undefined) {
+      res.status(400).json({msg: '在 query 中提供文章 id 以查询。'})
     } else {
-      getArticleById(id, (articleDoc) => {
+      getArticleById(articleId, (articleDoc) => {
         res.status(200).json({
           article: articleDoc,
           msg: '获取目标文章成功。'

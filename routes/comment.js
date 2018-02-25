@@ -1,5 +1,5 @@
 const shortid = require('shortid')
-const {assertErrorIsNull, validateIp} = require('../utils')
+const {assertErrorIsNull, validateClientId} = require('../utils')
 const {
   saveComment,
   getCommentsByArticleId,
@@ -8,7 +8,7 @@ const {
 
 module.exports = (app) => {
 
-  app.use('/comment', validateIp)
+  app.use('/comment', validateClientId)
 
   // 保存评论，需要检查 ip
   app.post('/comment', (req, res) => {

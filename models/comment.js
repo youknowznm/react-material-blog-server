@@ -1,22 +1,28 @@
 const mongoose = require('mongoose')
-const ipSchema = require('./ip').ipSchema
+const clientSchema = require('./client').clientSchema
 
 const commentSchema = mongoose.Schema({
   _id: {
     type: String,
   },
-  // 作者 IP
-  authorIp: ipSchema,
+  // 作者设备
+  client: clientSchema,
   // 隶属的文章 id，空字符串时为评论
   articleId: {
     type: String,
     required: true,
   },
-  // 作者昵称
-  authorNickname: {
+  // 作者
+  author: {
     type: String,
     required: true,
     validate: (val) => (/^.{3,10}$/.test(val)),
+  },
+  // 邮箱
+  email: {
+    type: String,
+    required: true,
+    validate: (val) => (/^([a-zA-Z0-9]+[\w-]*)(@[\w]{2,})(\.[\w]{2,4})(\.[\w]{2,4})?$/.test(val)),
   },
   // 内容
   content: {

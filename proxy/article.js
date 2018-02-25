@@ -53,7 +53,7 @@ const saveArticle = (params, cb) => {
             console.error(err)
             return cb({})
           }
-          return cb({err})
+          return cb({_id})
         }
       )
     }

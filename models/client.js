@@ -1,14 +1,9 @@
 const mongoose = require('mongoose')
 
-const ipSchema = mongoose.Schema({
+const clientSchema = mongoose.Schema({
+  // 设备指纹
   _id: {
     type: String,
-  },
-  // 评论者 ip
-  ip: {
-    type: String,
-    required: true,
-    validate: (val) => (/^(\d{1,3}\.){3}\d{1,3}$/.test(val)),
   },
   // 一小时内的请求次数
   hourlyAttempts: {
@@ -30,9 +25,9 @@ const ipSchema = mongoose.Schema({
   }
 })
 
-let IpModel = mongoose.model('ip', ipSchema)
+let ClientModel = mongoose.model('client', clientSchema)
 
 module.exports = {
-  ipSchema,
-  IpModel,
+  clientSchema,
+  ClientModel,
 }

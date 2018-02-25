@@ -9,7 +9,7 @@ const articleSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
-    validate: (val) => (/^.{10,20}$/.test(val)),
+    validate: (val) => (/^.{10,40}$/.test(val)),
   },
   // 标签
   tags: {
@@ -21,12 +21,13 @@ const articleSchema = mongoose.Schema({
   summary: {
     type: String,
     required: true,
-    validate: (val) => (/^.{10,50}$/.test(val)),
+    validate: (val) => (/^.{10,100}$/.test(val)),
   },
   // 创建时间
-  createdTime: {
-    type: Date,
+  createdDate: {
+    type: String,
     required: true,
+    validate: (val) => (/^\d{4}-\d{2}-\d{2}$/.test(val)),
   },
   // 内容
   content: {
@@ -36,6 +37,12 @@ const articleSchema = mongoose.Schema({
   },
   // 评论
   comments: [commentSchema],
+  // 赞
+  liked: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
 })
 
 const ArticleModel = mongoose.model('Article', articleSchema)

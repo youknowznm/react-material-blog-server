@@ -18,7 +18,6 @@
     "morgan": "~1.8.1",
     "nodemon": "^1.14.11",
     "promise": "^8.0.1",
-    "proxy-addr": "^2.0.2",
     "shortid": "^2.2.8"
   }
 }
