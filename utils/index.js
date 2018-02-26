@@ -1,5 +1,5 @@
 const proxyaddr = require('proxy-addr')
-const {getClientDoc, startNextHourResetTimeout} = require('../proxy/client')
+const {getClientDocByClientId, startNextHourResetTimeout} = require('../proxy/client')
 const {hourlyCommentLimit, dailyCommentLimit} = require('../config')
 
 // 无 error 断言
@@ -27,8 +27,8 @@ const validateClientId = (req, res, next) => {
     return
   }
   const clientId = req.body.clientId
-  getClientDoc(clientId, (clientDoc) => {
-    console.log('visitor client doc: ', clientDoc)
+  getClientDocByClientId(clientId, (clientDoc) => {
+    console.log('visitor client doc hour attempts: ', clientDoc.hourlyAttempts)
     if (clientDoc.hourlyAttempts >= hourlyCommentLimit) {
       startNextHourResetTimeout(clientDoc)
       res.status(403).json({msg: '已达到一小时内评论数上限。请稍后重试。'})

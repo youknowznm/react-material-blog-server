@@ -1,9 +1,13 @@
 const mongoose = require('mongoose')
 
 const clientSchema = mongoose.Schema({
-  // 设备指纹
   _id: {
     type: String,
+  },
+  // 设备指纹
+  clientId: {
+    type: String,
+    required: true,
   },
   // 一小时内的请求次数
   hourlyAttempts: {

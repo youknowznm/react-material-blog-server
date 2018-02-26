@@ -5,31 +5,56 @@ const {hourlyCommentLimit} = require('../config')
 
 /**
 查找目标 client 文档
-@param client {string} 目标 client
+@param clientId {string} 目标 client
 @param cb {function} 完成的回调，传入符合条件的 client 文档或 null
 */
-const getClientDoc = (clientId, cb) => {
-  ClientModel.find({_id: client}, (err, clientDocs) => {
-    console.log('a', clientDocs);
-    if (err) {
-      console.error(err)
-      return cb({err})
-    }
-    if (clientDocs.length !== 0) {
-      return cb(clientDocs[0])
-    }
-    let newClientDoc = new ClientModel({
-      _id: shortid.generate(),
-      client,
-    })
-    newClientDoc.save((err) => {
-      if (err) {
-        console.error(err)
-        return cb({err})
+const getClientDocByClientId = (clientId, cb) => {
+  ClientModel.findOne({clientId})
+    .then((doc) => {
+
+      if (doc !== null) {
+        return cb(doc)
+      } else {
+        const newClientDoc = new ClientModel({
+          _id: shortid.generate(),
+          clientId,
+        })
+        newClientDoc.save()
+          .then(() => {
+            return cb(newClientDoc);
+          })
+          .catch((err) => {
+            console.error(err);
+            return cb({err})
+          })
       }
-      return cb(newClientDoc)
+
     })
-  })
+    .catch((err) => {
+      console.error(err);
+      return cb({err})
+    })
+
+  // ClientModel.find({clientId}, (err, clientDocs) => {
+  //   if (err) {
+  //     console.error(err)
+  //     return cb({err})
+  //   }
+  //   if (clientDocs.length !== 0) {
+  //     return cb(clientDocs[0])
+  //   }
+  //   let newClientDoc = new ClientModel({
+  //     _id: shortid.generate(),
+  //     clientId,
+  //   })
+  //   newClientDoc.save((err) => {
+  //     if (err) {
+  //       console.error(err)
+  //       return cb({err})
+  //     }
+  //     return cb(newClientDoc)
+  //   })
+  // })
 }
 
 /**
@@ -54,20 +79,17 @@ const startNextHourResetTimeout = (clientDoc) => {
 const startDailyResetInterval = () => {
   setInterval(() => {
     if (new Date().getHours() === 0) {
-      ClientModel.update(
-        {},
-        {dailyAttempts: 0},
-        (err) => {
-          assertErrorIsNull(err)
-        }
-      )
+      ClientModel.update({}, {dailyAttempts: 0})
+        .catch((err) => {
+          console.error(err)
+        })
     }
   }, 60 * 60 * 1000)
 }
 
 
 module.exports = {
-  getClientDoc,
+  getClientDocByClientId,
   startNextHourResetTimeout,
   startDailyResetInterval,
 }

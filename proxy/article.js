@@ -1,4 +1,3 @@
-const {assertErrorIsNull} = require('../utils');
 const {ArticleModel} = require('../models/article')
 
 /**
@@ -11,10 +10,14 @@ const getArticles = (tag, cb) => {
   if (typeof tag === 'string') {
     query.tags = tag
   }
-  ArticleModel.find(query, (err, docs) => {
-    assertErrorIsNull(err)
-    return cb(docs)
-  })
+  ArticleModel.find(query)
+    .then((docs) => {
+      return cb(docs)
+    })
+    .catch((err) => {
+      console.error(err)
+      return cb([])
+    })
 }
 
 /**
@@ -31,33 +34,35 @@ const saveArticle = (params, cb) => {
     createdDate,
     content,
   })
-  ArticleModel.findById(_id, (err, doc) => {
-    if (err) {
+  ArticleModel.findById(_id)
+    .then((doc) => {
+
+      if (doc === null) {
+        articleDoc._id = _id
+        articleDoc.save()
+          .then(() => {
+            return cb({_id})
+          })
+          .catch((err) => {
+            console.error(err)
+            return cb({err})
+          })
+      } else {
+        ArticleModel.update({_id}, articleDoc)
+          .then(() => {
+            return cb({_id})
+          })
+          .catch((err) => {
+            console.error(err)
+            return cb({err})
+          })
+      }
+
+    })
+    .catch((err) => {
       console.error(err)
       return cb({err})
-    }
-    if (doc === null) {
-      articleDoc._id = _id
-      articleDoc.save((err) => {
-        if (err) {
-          console.error(err)
-          return cb({err})
-        }
-        return cb({_id})
-      })
-    } else {
-      ArticleModel.update({_id},
-        articleDoc,
-        (err) => {
-          if (err) {
-            console.error(err)
-            return cb({})
-          }
-          return cb({_id})
-        }
-      )
-    }
-  })
+    })
 }
 
 /**
@@ -66,10 +71,14 @@ const saveArticle = (params, cb) => {
 @param cb {function} 完成的回调，传入符合条件的文章文档或 null
 */
 const getArticleById = (_id, cb) => {
-  ArticleModel.findById(_id, function(err, doc) {
-    assertErrorIsNull(err)
-    return cb(doc)
-  })
+  ArticleModel.findById(_id)
+    .then((doc) => {
+      cb(doc)
+    })
+    .catch((err) => {
+      console.error(err)
+      cb(null)
+    })
 }
 
 /**
@@ -78,10 +87,14 @@ const getArticleById = (_id, cb) => {
 @param cb {function} 完成的回调，删除成功传入 true
 */
 const deleteArticle = (_id, cb) => {
-  ArticleModel.remove({_id}, (err) => {
-    assertErrorIsNull(err)
-    return cb(true)
-  })
+  ArticleModel.remove({_id})
+    .then(() => {
+      cb(true)
+    })
+    .catch((err) => {
+      console.error(err)
+      cb(false)
+    })
 }
 
 module.exports = {

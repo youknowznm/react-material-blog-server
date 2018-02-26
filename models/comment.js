@@ -6,7 +6,10 @@ const commentSchema = mongoose.Schema({
     type: String,
   },
   // 作者设备
-  client: clientSchema,
+  clientId: {
+    type: String,
+    required: true,
+  },
   // 隶属的文章 id，空字符串时为评论
   articleId: {
     type: String,
@@ -16,7 +19,7 @@ const commentSchema = mongoose.Schema({
   author: {
     type: String,
     required: true,
-    validate: (val) => (/^.{3,10}$/.test(val)),
+    validate: (val) => (/^.{4,16}$/.test(val)),
   },
   // 邮箱
   email: {
@@ -28,7 +31,7 @@ const commentSchema = mongoose.Schema({
   content: {
     type: String,
     required: true,
-    validate: (val) => (/^.{3,40}$/.test(val)),
+    validate: (val) => (/^.{4,120}$/.test(val)),
   },
   // 创建时间
   createdTime: {

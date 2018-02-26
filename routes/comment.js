@@ -5,18 +5,27 @@ const {
   getCommentsByArticleId,
   deleteComment,
 } = require('../proxy/comment')
+const {
+  getArticleById,
+} = require('../proxy/article')
 
 module.exports = (app) => {
-
+  const promise = require('promise');
   app.use('/comment', validateClientId)
 
   // 保存评论，需要检查 ip
   app.post('/comment', (req, res) => {
     const params = Object.assign({}, req.body)
     params._id = shortid.generate()
+    params.createdTime = new Date()
+    // console.log(23,params);
     saveComment(params, (result) => {
       if (typeof result._id === 'string') {
-        res.status(200).json({msg: '评论成功。'})
+        getArticleById(params.articleId, (doc) => {
+          doc.comments.push(result)
+          // doc.save((e) =>
+          res.status(200).json({msg: '评论成功。'})
+        })
       } else if (result.err.name === 'ValidationError') {
         res.status(400).json({msg: '请检查错误的输入字段。'})
       } else {

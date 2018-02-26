@@ -8,10 +8,19 @@ const {ArticleModel} = require('../models/article')
 @param cb {function} 完成的回调，传入评论或留言数组
 */
 const getCommentsByArticleId = (articleId, cb) => {
-  CommentModel.find({articleId}, (err, docs) => {
-    assertErrorIsNull(err)
-    return cb(docs)
-  })
+  CommentModel.find({articleId})
+    .then((docs) => {
+      return cb(docs);
+    })
+    .catch((err) => {
+      console.error(err);
+      return cb([])
+    })
+  //
+  // CommentModel.find({articleId}, (err, docs) => {
+  //   assertErrorIsNull(err)
+  //   return cb(docs)
+  // })
 }
 
 /**
@@ -22,31 +31,72 @@ const getCommentsByArticleId = (articleId, cb) => {
 const saveComment = (params, cb) => {
   let {_id, clientId, author, email, articleId, content, createdTime} = params
   let commentDoc = new CommentModel({
+    _id,
     clientId,
     author,
     articleId,
     content,
     createdTime,
+    email,
   })
-  CommentModel.findById(_id, (err, doc) => {
-    if (err) {
-      console.error(err)
+  CommentModel.findById(_id)
+    .then((doc) => {
+
+      if (doc !== null) {
+        return cb({
+          err: new Error('Comment with that id already exists.'),
+        })
+      } else {
+        commentDoc.save()
+          .then((savedCommentDoc) => {
+            ArticleModel.findById(savedCommentDoc.articleId)
+              .then((articleDoc) => {
+                articleDoc.comments.push(commentDoc)
+                articleDoc.save()
+                  .then(() => {
+                    return cb({_id});
+                  })
+                  .catch((err) => {
+                    console.error(rr);
+                    return cb({err})
+                  })
+              })
+              .catch((err) => {
+                console.error(err);
+                return cb({err})
+              })
+          })
+          .catch((err) => {
+            console.error(err);
+            return cb({err})
+          })
+      }
+
+    })
+    .catch((err) => {
+      console.error(err);
       return cb({err})
-    }
-    if (doc !== null) {
-      return cb({
-        err: new Error('Comment with that id already exists.'),
-      })
-    } else {
-      commentDoc.save((err) => {
-        if (err) {
-          console.error(err)
-          return cb({err})
-        }
-        return cb({_id})
-      })
-    }
-  })
+    })
+
+  // CommentModel.findById(_id, (err, doc) => {
+  //   if (err) {
+  //     console.error(err)
+  //     return cb({err})
+  //   }
+  //   if (doc !== null) {
+  //     return cb({
+  //       err: new Error('Comment with that id already exists.'),
+  //     })
+  //   } else {
+  //     commentDoc.save((err) => {
+  //       if (err) {
+  //         console.error(err)
+  //         return cb({err})
+  //       }
+  //       return cb({_id})
+  //     })
+  //   }
+  // })
 }
 
 /**
@@ -55,10 +105,19 @@ const saveComment = (params, cb) => {
 @param cb {function} 完成的回调，传入找到的评论文档或 null
 */
 const getCommentById = (_id, cb) => {
-  CommentModel.findById(_id, (err, doc) => {
-    assertErrorIsNull(err)
-    return cb(doc)
-  })
+  CommentModel.findById(_id)
+    .then((doc) => {
+      return cb(doc)
+    })
+    .catch((err) => {
+      console.error(err);
+      return cb(null)
+    })
+  //
+  // CommentModel.findById(_id, (err, doc) => {
+  //   assertErrorIsNull(err)
+  //   return cb(doc)
+  // })
 }
 
 /**
@@ -67,10 +126,19 @@ const getCommentById = (_id, cb) => {
 @param cb {function} 完成的回调，删除成功传入 true
 */
 const deleteComment = (_id, cb) => {
-  CommentModel.remove({_id}, (err) => {
-    assertErrorIsNull(err)
-    return cb(true)
-  })
+  CommentModel.remove({_id})
+    .then(() => {
+      return cb(true);
+    })
+    .catch((err) => {
+      console.error(err);
+      return cb(false)
+    })
+  //
+  // CommentModel.remove({_id}, (err) => {
+  //   assertErrorIsNull(err)
+  //   return cb(true)
+  // })
 }
 
 module.exports = {
