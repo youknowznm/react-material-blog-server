@@ -1,4 +1,3 @@
-const {assertErrorIsNull} = require('../utils')
 const {CommentModel} = require('../models/comment')
 const {ArticleModel} = require('../models/article')
 const {ClientModel} = require('../models/client')
@@ -17,11 +16,6 @@ const getCommentsByArticleId = (articleId, cb) => {
       console.error(err)
       return cb([])
     })
-  //
-  // CommentModel.find({articleId}, (err, docs) => {
-  //   assertErrorIsNull(err)
-  //   return cb(docs)
-  // })
 }
 
 /**
@@ -78,26 +72,6 @@ const saveComment = (params, cb) => {
       console.error(err)
       return cb({err})
     })
-
-  // CommentModel.findById(_id, (err, doc) => {
-  //   if (err) {
-  //     console.error(err)
-  //     return cb({err})
-  //   }
-  //   if (doc !== null) {
-  //     return cb({
-  //       err: new Error('Comment with that id already exists.'),
-  //     })
-  //   } else {
-  //     commentDoc.save((err) => {
-  //       if (err) {
-  //         console.error(err)
-  //         return cb({err})
-  //       }
-  //       return cb({_id})
-  //     })
-  //   }
-  // })
 }
 
 /**
@@ -114,11 +88,6 @@ const getCommentById = (_id, cb) => {
       console.error(err)
       return cb(null)
     })
-  //
-  // CommentModel.findById(_id, (err, doc) => {
-  //   assertErrorIsNull(err)
-  //   return cb(doc)
-  // })
 }
 
 /**
@@ -135,14 +104,7 @@ const deleteComment = (_id, cb) => {
       console.error(err)
       return cb(false)
     })
-  //
-  // CommentModel.remove({_id}, (err) => {
-  //   assertErrorIsNull(err)
-  //   return cb(true)
-  // })
 }
-
-
 
 /**
 根据文章文档的 _id 点赞
@@ -150,19 +112,21 @@ const deleteComment = (_id, cb) => {
 @param cb {function} 完成的回调，点赞成功传入 true，否则传入或原因
 */
 const likeArticle = (clientId, articleId, cb) => {
-  ClientModel.findOne({clientId})
+  ClientModel.find({clientId})
     .then((clientDoc) => {
+      console.log(1,clientDoc);
       if (clientDoc === null) {
-        cb(false)
+        return cb(false)
       } else {
         ArticleModel.findById(articleId)
           .then((articleDoc) => {
+            console.log(2,articleDoc);
             if (articleDoc === null) {
-              cb(false)
-            } else if (articleDoc.liked.includes(clientDoc)) {
-              cb('已经赞过了。')
+              return cb(false)
+            } else if (articleDoc.liked.includes(clientId)) {
+              return cb('已经赞过了。')
             } else {
-              articleDoc.liked.push(clientDoc)
+              articleDoc.liked.push(clientId)
               articleDoc.save()
                 .then(() => {
                   return cb(true)
@@ -175,13 +139,13 @@ const likeArticle = (clientId, articleId, cb) => {
           })
           .catch((err) => {
             console.error(err)
-            cb(false)
+            return cb(false)
           })
       }
     })
     .catch((err) => {
       console.error(err)
-      cb(false)
+      return cb(false)
     })
 }
 

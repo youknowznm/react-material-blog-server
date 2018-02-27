@@ -38,7 +38,7 @@ const articleSchema = mongoose.Schema({
   // 评论
   comments: [commentSchema],
   // 赞
-  liked: [clientSchema],
+  liked: [String],
 })
 
 const ArticleModel = mongoose.model('Article', articleSchema)

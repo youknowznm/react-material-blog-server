@@ -20,15 +20,27 @@ const authMiddleware = (req, res, next) => {
   res.status(401).json({msg: '请以管理员身份登录。'})
 }
 
-// 检查当前 client 是否受限。方法为 get 时不检查
-const validateClientId = (req, res, next) => {
+// 存储 client 文档的中间件
+const initClientDocMiddleware = (req, res, next) => {
+  const clientId = req.body.clientId
+  getClientDocByClientId(clientId, (result) => {
+    if (result !== null) {
+      next()
+    } else {
+      res.status(500).json({msg: '服务器错误。请稍后重试。'})
+    }
+  })
+}
+
+// 检查当前 client 是否受限的中间件。方法为 get 时不检查
+const validateClientIdMiddleware = (req, res, next) => {
   if (req.method === 'GET') {
     next()
     return
   }
   const clientId = req.body.clientId
   getClientDocByClientId(clientId, (clientDoc) => {
-    console.log('visitor client doc hour attempts: ', clientDoc.hourlyAttempts)
+    // console.log('visitor client doc hour attempts: ', clientDoc.hourlyAttempts)
     if (clientDoc.hourlyAttempts >= hourlyCommentLimit) {
       startNextHourResetTimeout(clientDoc)
       res.status(403).json({msg: '已达到一小时内评论数上限。请稍后重试。'})
@@ -56,5 +68,6 @@ const validateClientId = (req, res, next) => {
 module.exports = {
   assertErrorIsNull,
   authMiddleware,
-  validateClientId,
+  initClientDocMiddleware,
+  validateClientIdMiddleware,
 }

@@ -2,7 +2,10 @@ const fs = require('fs')
 const path = require('path')
 const formidable = require('formidable')
 const shortid = require('shortid')
-const {assertErrorIsNull, authMiddleware} = require('../utils')
+const {
+  assertErrorIsNull,
+  authMiddleware,
+} = require('../utils')
 const {
   saveArticle,
   getArticles,

@@ -1,12 +1,11 @@
 const {ClientModel} = require('../models/client')
 const shortid = require('shortid')
-const {assertErrorIsNull} = require('../utils')
 const {hourlyCommentLimit} = require('../config')
 
 /**
-查找目标 client 文档
+根据目标 clientId 查找或新建文档
 @param clientId {string} 目标 client
-@param cb {function} 完成的回调，传入符合条件的 client 文档或 null
+@param cb {function} 完成的回调，传入完成的 client 文档。出错时传入 err
 */
 const getClientDocByClientId = (clientId, cb) => {
   ClientModel.findOne({clientId})
@@ -34,27 +33,6 @@ const getClientDocByClientId = (clientId, cb) => {
       console.error(err);
       return cb({err})
     })
-
-  // ClientModel.find({clientId}, (err, clientDocs) => {
-  //   if (err) {
-  //     console.error(err)
-  //     return cb({err})
-  //   }
-  //   if (clientDocs.length !== 0) {
-  //     return cb(clientDocs[0])
-  //   }
-  //   let newClientDoc = new ClientModel({
-  //     _id: shortid.generate(),
-  //     clientId,
-  //   })
-  //   newClientDoc.save((err) => {
-  //     if (err) {
-  //       console.error(err)
-  //       return cb({err})
-  //     }
-  //     return cb(newClientDoc)
-  //   })
-  // })
 }
 
 /**

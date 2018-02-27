@@ -1,5 +1,8 @@
 const shortid = require('shortid')
-const {assertErrorIsNull, validateClientId} = require('../utils')
+const {
+  initClientDocMiddleware,
+  validateClientIdMiddleware,
+} = require('../utils')
 const {
   saveComment,
   getCommentsByArticleId,
@@ -12,16 +15,16 @@ const {
 
 module.exports = (app) => {
 
-  app.use('/comment', validateClientId)
-  app.use('/like', validateClientId)
+  app.use('/comment', validateClientIdMiddleware)
+  app.use('/like', initClientDocMiddleware)
 
-  // 对目标文章点赞，需要检查设备 id
+  // 对目标文章点赞
   app.post('/like', (req, res) => {
     const params = Object.assign({}, req.body)
     const {clientId, articleId} = params
     likeArticle(clientId, articleId, (result) => {
       if (result === true) {
-        res.status(200).json({msg: '评论成功。'})
+        res.status(200).json({msg: '已赞！'})
       } else if (typeof result === 'string') {
         res.status(403).json({msg: result})
       } else {
@@ -47,7 +50,7 @@ module.exports = (app) => {
   })
 
   // 获取符合目标 id 的文章下的评论，必须在 query 中提供 id。id 为空字符串时则返回所有留言
-  app.get('/comment', (req, res) => {
+  app.get('/comments', (req, res) => {
     const {articleId} = req.query
     if (articleId === undefined) {
       res.status(400).json({msg: '请在 query 中提供有效的文章 id。'})
