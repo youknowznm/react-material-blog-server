@@ -20,6 +20,7 @@ module.exports = (app) => {
     if (params._id === '') {
       params._id = shortid.generate()
     }
+    params.createdDate = new Date(params.createdDate)
     saveArticle(params, (result) => {
       if (typeof result._id === 'string') {
         res.status(200).json({
@@ -62,11 +63,11 @@ module.exports = (app) => {
 
   // 删除符合目标 id 的文章，必须在 query 中提供 id，需要管理员登录
   app.delete('/article', (req, res) => {
-    const {id} = req.query
-    if (id === undefined) {
-      res.status(400).json({msg: '请在 query 中提供有效的文章 id。'})
+    const {articleId} = req.query
+    if (articleId === undefined) {
+      res.status(400).json({msg: '请在 body 中提供有效的文章 id。'})
     } else {
-      deleteArticle(id, (result) => {
+      deleteArticle(articleId, (result) => {
         if (result === true) {
           res.status(200).json({msg: '删除文章成功。'})
         } else {

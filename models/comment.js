@@ -34,7 +34,7 @@ const commentSchema = mongoose.Schema({
     validate: (val) => (/^.{4,120}$/.test(val)),
   },
   // 创建时间
-  createdTime: {
+  createdDate: {
     type: Date,
     required: true,
   },

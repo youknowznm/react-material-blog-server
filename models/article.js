@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const {commentSchema} = require('./comment')
+const {clientSchema} = require('./client')
 
 const articleSchema = mongoose.Schema({
   _id: {
@@ -25,9 +26,8 @@ const articleSchema = mongoose.Schema({
   },
   // 创建时间
   createdDate: {
-    type: String,
+    type: Date,
     required: true,
-    validate: (val) => (/^\d{4}-\d{2}-\d{2}$/.test(val)),
   },
   // 内容
   content: {
@@ -38,11 +38,7 @@ const articleSchema = mongoose.Schema({
   // 评论
   comments: [commentSchema],
   // 赞
-  liked: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
+  liked: [clientSchema],
 })
 
 const ArticleModel = mongoose.model('Article', articleSchema)
