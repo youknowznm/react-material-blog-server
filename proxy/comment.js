@@ -1,6 +1,7 @@
 const {CommentModel} = require('../models/comment')
 const {ArticleModel} = require('../models/article')
 const {ClientModel} = require('../models/client')
+const {getArticleById} = require('./article')
 
 /**
 取得目标文章 id 下的评论，id 为空字符串时返回所有留言
@@ -96,14 +97,31 @@ const getCommentById = (_id, cb) => {
 @param cb {function} 完成的回调，删除成功传入 true
 */
 const deleteComment = (_id, cb) => {
-  CommentModel.remove({_id})
-    .then(() => {
-      return cb(true)
-    })
-    .catch((err) => {
-      console.error(err)
+  getCommentById(_id, (commentDoc) => {
+    if (commentDoc === null) {
       return cb(false)
-    })
+    } else {
+      getArticleById(commentDoc.articleId, (articleDoc) => {
+        articleDoc.comments.id(_id).remove()
+        articleDoc.save((err) => {
+          if (err) {
+            console.error(err)
+            return cb(false)
+          }
+          CommentModel.remove({_id})
+            .then(() => {
+              return cb(true)
+            })
+            .catch((err) => {
+              console.error(err)
+              return cb(false)
+            })
+        })
+
+      })
+    }
+  })
+
 }
 
 /**
@@ -114,13 +132,11 @@ const deleteComment = (_id, cb) => {
 const likeArticle = (clientId, articleId, cb) => {
   ClientModel.find({clientId})
     .then((clientDoc) => {
-      console.log(1,clientDoc);
       if (clientDoc === null) {
         return cb(false)
       } else {
         ArticleModel.findById(articleId)
           .then((articleDoc) => {
-            console.log(2,articleDoc);
             if (articleDoc === null) {
               return cb(false)
             } else if (articleDoc.liked.includes(clientId)) {

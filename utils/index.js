@@ -32,9 +32,9 @@ const initClientDocMiddleware = (req, res, next) => {
   })
 }
 
-// 检查当前 client 是否受限的中间件。方法为 get 时不检查
+// 检查当前 client 是否受限的中间件。方法为 get 和 delete 时不检查
 const validateClientIdMiddleware = (req, res, next) => {
-  if (req.method === 'GET') {
+  if (['GET', 'DELETE'].includes(req.method)) {
     next()
     return
   }

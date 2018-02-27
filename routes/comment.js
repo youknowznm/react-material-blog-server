@@ -8,6 +8,7 @@ const {
   getCommentsByArticleId,
   deleteComment,
   likeArticle,
+  getCommentById,
 } = require('../proxy/comment')
 const {
   getArticleById,
@@ -66,19 +67,18 @@ module.exports = (app) => {
 
   // 删除符合目标 id 的评论，必须在 query 中提供 id，需要管理员登录
   app.delete('/comment', (req, res) => {
-    const {articleId} = req.body
-    if (articleId === undefined) {
+    const {commentId} = req.query
+    if ([undefined, ''].includes(commentId)) {
       res.status(400).json({msg: '未提供有效的评论 id。'})
       return
     }
-    getCommentById(articleId, (commentDoc) => {
+    getCommentById(commentId, (commentDoc) => {
       if (commentDoc === null) {
         res.status(404).json({msg: '未找到目标评论。'})
         return
       }
-      // 管理员可删除任意评论
       if (req.session.adminLoggedIn === true) {
-        deleteComment(articleId, (result) => {
+        deleteComment(commentId, (result) => {
           if (result === true) {
             res.status(200).json({msg: '删除评论成功。'})
           } else {
@@ -86,7 +86,7 @@ module.exports = (app) => {
           }
         })
       } else {
-        res.status(403).json({msg: '只有评论作者和管理员可进行删除操作。'})
+        res.status(403).json({msg: '只有管理员可进行删除操作。'})
       }
     })
   })

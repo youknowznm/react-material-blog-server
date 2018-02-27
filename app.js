@@ -15,7 +15,7 @@ const app = new MiniExpress()
 mongoose.connect(require('./config').dbPath)
 // mongoose.Promise = bluebird
 mongoose.connection.on('error', function(e) {
-  console.log('### db connection error ###\n' + e)
+  console.error('db connection error \n' + e)
 })
 
 // 使用中间件
