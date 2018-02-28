@@ -1,19 +1,16 @@
 const MiniExpress = require('./mini-express.js')
-const proxyaddr = require('proxy-addr')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const mongoose = require('mongoose')
-const bluebird = require('bluebird');
 
 // 实例化服务器
 const app = new MiniExpress()
 
 // 连接数据库
 mongoose.connect(require('./config').dbPath)
-// mongoose.Promise = bluebird
 mongoose.connection.on('error', function(e) {
   console.error('db connection error \n' + e)
 })

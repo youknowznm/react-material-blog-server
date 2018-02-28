@@ -1,4 +1,3 @@
-const proxyaddr = require('proxy-addr')
 const {getClientDocByClientId, startNextHourResetTimeout} = require('../proxy/client')
 const {hourlyCommentLimit, dailyCommentLimit} = require('../config')
 
