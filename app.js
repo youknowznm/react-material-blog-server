@@ -39,18 +39,4 @@ app.use('/', bodyParser.text())
 app.use('/', cookieParser())
 
 require('./routes')(app)
-app.listen()
-
-// // 404
-// app.use(controllers.render404)
-
-// 500
-// app.use(function(err, req, res, next) {
-//   console.log('-e ',  err)
-//   res.status(500).end()
-//   // res.status(500).render('common/500', {
-//   //   url: req.path,
-//   //   isDev: req.app.get('env') === 'development',
-//   //   err,
-//   // })
-// })
+app.listen(5000)
