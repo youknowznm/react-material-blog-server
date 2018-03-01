@@ -16,11 +16,11 @@ const {
 
 module.exports = (app) => {
 
-  app.use('/comment', validateClientIdMiddleware)
-  app.use('/like', initClientDocMiddleware)
+  app.use('/api/comment', validateClientIdMiddleware)
+  app.use('/api/like', initClientDocMiddleware)
 
   // 对目标文章点赞
-  app.post('/like', (req, res) => {
+  app.post('/api/like', (req, res) => {
     const params = Object.assign({}, req.body)
     const {clientId, articleId} = params
     likeArticle(clientId, articleId, (result) => {
@@ -35,7 +35,7 @@ module.exports = (app) => {
   })
 
   // 保存评论，需要检查设备 id
-  app.post('/comment', (req, res) => {
+  app.post('/api/comment', (req, res) => {
     const params = Object.assign({}, req.body)
     params._id = shortid.generate()
     params.createdDate = new Date()
@@ -51,7 +51,7 @@ module.exports = (app) => {
   })
 
   // 获取符合目标 id 的文章下的评论，必须在 query 中提供 id。id 为空字符串时则返回所有留言
-  app.get('/comments', (req, res) => {
+  app.get('/api/comments', (req, res) => {
     const {articleId} = req.query
     if (articleId === undefined) {
       res.status(400).json({msg: '请在 query 中提供有效的文章 id。'})
@@ -66,7 +66,7 @@ module.exports = (app) => {
   })
 
   // 删除符合目标 id 的评论，必须在 query 中提供 id，需要管理员登录
-  app.delete('/comment', (req, res) => {
+  app.delete('/api/comment', (req, res) => {
     const {commentId} = req.query
     if ([undefined, ''].includes(commentId)) {
       res.status(400).json({msg: '未提供有效的评论 id。'})

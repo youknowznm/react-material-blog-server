@@ -15,10 +15,10 @@ const {
 
 module.exports = (app) => {
 
-  app.use('/article', authMiddleware)
+  app.use('/api/article', authMiddleware)
 
   // 保存新建或修改的文章，需要管理员登录
-  app.post('/article', (req, res) => {
+  app.post('/api/article', (req, res) => {
     const params = Object.assign({}, req.body)
     if (params._id === '') {
       params._id = shortid.generate()
@@ -39,7 +39,7 @@ module.exports = (app) => {
   })
 
   // 获取含目标标签的文章，不提供标签则返回所有文章
-  app.get('/articles', (req, res) => {
+  app.get('/api/articles', (req, res) => {
     const targetTag = req.query.tag || {}
     getArticles(targetTag, (articleDocs) => {
       res.status(200).json({
@@ -50,7 +50,7 @@ module.exports = (app) => {
   })
 
   // 获取符合目标 id 的文章，必须在 query 中提供 id
-  app.get('/article', (req, res) => {
+  app.get('/api/article', (req, res) => {
     const {articleId} = req.query
     if (articleId === undefined) {
       res.status(400).json({msg: '在 query 中提供文章 id 以查询。'})
@@ -65,7 +65,7 @@ module.exports = (app) => {
   })
 
   // 删除符合目标 id 的文章，必须在 query 中提供 id，需要管理员登录
-  app.delete('/article', (req, res) => {
+  app.delete('/api/article', (req, res) => {
     const {articleId} = req.query
     if (articleId === undefined) {
       res.status(400).json({msg: '请在 body 中提供有效的文章 id。'})
@@ -81,8 +81,8 @@ module.exports = (app) => {
   })
 
   // 上传 1M 内的图片，需要管理员登录
-  // app.use('/picture', authMiddleware)
-  app.post('/picture', (req, res) => {
+  app.use('/api/picture', authMiddleware)
+  app.post('/api/picture', (req, res) => {
     const form = new formidable.IncomingForm()
     form.parse(req, (err, fields, files) => {
       const {pictureFile} = files
