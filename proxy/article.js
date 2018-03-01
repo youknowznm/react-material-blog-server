@@ -48,7 +48,10 @@ const saveArticle = (params, cb) => {
             return cb({err})
           })
       } else {
-        ArticleModel.update({_id}, articleDoc)
+        ArticleModel.update(
+          {_id},
+          {title, summary, tags, createdDate, content}
+        )
           .then(() => {
             return cb({_id})
           })
