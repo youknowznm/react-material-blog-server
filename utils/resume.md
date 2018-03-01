@@ -1,59 +1,96 @@
-# React Material Blog Server
+# 教育经历
+- **首都师范大学／本科／英语语言文学** *2010 - 2014*
 
-##### **完全原创、独立完成**的[个人站点](https://www.youknowznm.com/)的后端。前端代码在[这里](https://github.com/youknowznm/react-material-blog)。
+# 个人技能
 
-### 特点：
+### **前端**
+  - 熟练编写语义化的 `HTML` 和 `CSS` / `SCSS`
+  - 熟悉原生 `JavaScript`，熟悉 `ES6` 的常用特性
+  - 熟练使用 `React` 和 `Redux` 及其相关生态
+  - 熟悉 `Vue` 框架
+  - 熟悉 `jQuery` 和 `Bootstrap` 库
+  - 熟悉 `Gulp` 和前端自动化
+  - 熟悉 `Webpack` 和模块化开发
+  - 熟悉微信小程序的开发
 
-  - Material Design 风格，自适应于不同设备的浏览器
-  - 可编辑和展示文章标题、摘要、Markdown 内容、标签和创建日期
-  - 可在编辑器内实时预览 Markdown 内容
-  - 支持图片的上传和托管
-  - 管理员可创建或编辑文章，并管理访客在文章下的评论
-  - 访客无需注册即可对文章进行点赞、评论
-  - 根据浏览器指纹控制访客在一定时间内的评论数
-  - 支持按指定的标签类别展示文章，阅读时展示文章的索引
-  - 根据配置展示 GitHub 作品、社交资料和个人简历
+### **后端**
+  - 熟悉 `Node.js` 和 `Express` 框架
+  - 熟悉 `MongoDB` 的常用操作
+  - 了解 `Linux` 的常用命令
+  - 了解服务器环境的搭建
 
-### 技术栈：
+### **其它**
+  - 熟悉 Git 的常用操作
+  - 熟悉 macOS 下的开发
+  - 英语专业八级
 
-前端：
+# 工作经历
 
-  - 使用 [react-redux](https://github.com/reactjs/react-redux) 处理数据的渲染和单向流动
-  - 使用 [redux-thunk](https://github.com/troch/react-thunk) 和 [redux-action-tools](https://github.com/kpaxqin/redux-action-tools) 处理异步 action
-  - 使用 [material-ui](https://github.com/mui-org/material-ui) 组件库和 [material-ui-icons](https://github.com/MODX-Club/material-ui-icons) 图标库实现全站的 Material Design 风格
-  - 使用 [fingerprint.js](https://github.com/Valve/fingerprintjs2) 作为客户端的访客身份标识
-  - 使用 [react-syntax-highlighter](https://github.com/conorhastings/react-syntax-highlighter) 实现展示文章时的代码高亮
-  - 使用 [marked](https://github.com/markedjs/marked) 渲染文章的 Markdown 内容为 HTML
-  - 使用 [axios](https://github.com/axios/axios) 处理客户端 HTTP 请求
-  - 使用 [node-sass-chokidar](https://github.com/michaelwayman/node-sass-chokidar) 转译 SCSS 为 CSS
+## **国美互联网／前端开发** *2016.12 至今*
+1. 创新型社交电商网站 Gomeplus
+  - 主要负责该项目 PC 站的维护和迭代
+  - 使用 Gulp + SCSS 编写样式以提高开发效率
+  - 使用 jQuery 库，通过 Webpack + ES6 实现模块化
+2. 面向海外市场的电商应用
+  - 主要负责该项目手机站及原生应用内嵌页的开发和维护
+  - 使用 Gulp + SCSS 编写样式以提高开发效率
+  - 使用公司的打包工具 lithe.js 实现模块化
+  - 使用 Vue.js 框架和 Zepto 库实现交互逻辑
+  - 同时维护静态文件和 Express 中间层，前后端完全分离
+3. 负责公司的创新项目微信小程序”顺路“的开发
 
-后端：
+## **留彼工坊／前端开发** *2015.03 - 2016.12*
+1. 留彼工坊是一个面向英国留学生群体的短租服务应用
+  - 主要负责房源搜索结果、个人档案、订购流程等页面的样式和逻辑的实现
+  - 在不同尺寸和设备的浏览器内精确还原设计图的视觉和交互效果
+  - 对部分旧脚本进行了模块化处理，对站点的大部分旧样式进行了重构，便于团队后续的开发和维护
+  - 使用 jQuery + Bootstrap 编写前端，同时维护部分后端的 PyJade 模板</a>
 
-  - 使用 [mini-express](https://github.com/youknowznm/mini-express)（我的另一个项目）作为简易的服务器框架
-  - 使用 [mongodb](https://www.mongodb.com/) 存取数据
-  - 使用 [mongoose](http://mongoosejs.com/) 简化对 MongoDB 的操作
-  - 使用 [shortid](https://github.com/dylang/shortid) 生成文档的 _id
+# 开源项目
 
+## *[react-material-blog](https://github.com/youknowznm/react-material-blog)*
+- 完全原创、独立完成的个人站点的前端，基于 React 和 Material-UI
+- Material Design 风格，自适应于不同设备的浏览器
+- 可编辑和展示文章标题、摘要、Markdown 内容、标签和创建日期
+- 可在编辑器内实时预览 Markdown 内容
+- 支持图片的上传和托管
+- 管理员可创建或编辑文章，并管理访客在文章下的评论
+- 访客无需注册即可对文章进行点赞、评论
+- 根据浏览器指纹控制访客在一定时间内的评论数
+- 支持按指定的标签类别展示文章，阅读时展示文章的索引
+- 根据配置展示 GitHub 作品、社交资料和个人简历
+- 线上地址在[这里](https://www.youknowznm.com/)
 
-### 调试：
+## *[react-material-blog-server](https://github.com/youknowznm/react-material-blog-server)*
+- 完全原创、独立完成的个人站点的后端，基于原生 Nodejs 和 MongoDB
+- 使用 mini-express（我的另一个项目）作为简易的服务器框架
+- 线上地址在[这里](https://www.youknowznm.com/)
 
-  1. 克隆 [react-material-blog](https://github.com/youknowznm/react-material-blog) 和 [react-material-blog-server](https://github.com/youknowznm/react-material-blog-server)
+## *[mini-express](https://github.com/youknowznm/mini-express)*
+- 简单的 HTTP 服务器，提供 Express 风格的接口
+- 实现了路由池、中间件和对请求及响应的部分增强
 
-  2. 安装 mongodb
+## *[vue-memo](https://github.com/youknowznm/vue-memo)*
+- 支持文本和涂鸦两种记录方式
+- 文本编辑器支持 Markdown 格式
+- 涂鸦编辑器（我的另一个项目）支持选取颜色、撤销、重做、清除画布
+- 增删、编辑笔记，标记笔记是否为已完成状态
+- 按类别、标题、内容或时间戳进行过滤
+- 按创建时间或标题排序
+- 暂存未确认保存的笔记
+- 通过 localStorage 对象实现数据的本地持久化
+- 对不同尺寸的桌面端和移动端响应适配
+- Demo 地址在[这里](https://youknowznm.github.io/demos/vue-memo)
 
-  3. 进入 react-material-blog 项目
+## *[jqueryMaterial.js](https://github.com/youknowznm/jQueryMaterial.js)*
+- Material Design 风格的 jQuery 组件库，适用于桌面端和移动端的快速建站
+- 交互行为和样式参考了若干 Google 的设计相关站点
+- 包含：页头、背景生成器、按钮、输入框、对话框、单选组、标签组、页脚和富文本编辑器
+- Demo 地址在[这里](https://youknowznm.github.io/demos/jquery-material)
 
-  ```bash
-  npm i
-  npm run scss
-  npm run dev
-  ```
+## *[protoQuery.js](https://github.com/youknowznm/protoQuery.js)*
+- 通过修改原生对象的原型，实现 jQuery 的常用接口
+- 包括选择器、属性和样式读写、事件监听、DOM 树遍历、Ajax、字符串处理等
 
-  4. 进入 react-material-blog-server 项目
-
-  ```bash
-  npm i
-  npm run dev
-  ```
-
-  5. 在 `localhost:3000` 查看。
+## *[paint](https://github.com/youknowznm/paint)*
+- 基于 canvas 的简易画板
