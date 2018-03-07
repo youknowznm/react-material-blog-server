@@ -39,26 +39,19 @@ const validateClientIdMiddleware = (req, res, next) => {
   }
   const clientId = req.body.clientId
   getClientDocByClientId(clientId, (clientDoc) => {
-    // console.log('visitor client doc hour attempts: ', clientDoc.hourlyAttempts)
-    if (clientDoc.hourlyAttempts >= hourlyCommentLimit) {
-      startNextHourResetTimeout(clientDoc)
-      res.status(403).json({msg: '已达到一小时内评论数上限。请稍后重试。'})
-      return
-    }
     if (clientDoc.dailyAttempts >= dailyCommentLimit) {
       res.status(403).json({msg: '已达到当日评论上限。请明天再试。'})
       return
     }
-    ++clientDoc.hourlyAttempts
     ++clientDoc.dailyAttempts
     clientDoc.save(((err) => {
       if (err) {
         console.error(err)
-        --clientDoc.hourlyAttempts
         --clientDoc.dailyAttempts
         res.status(500).json({msg: '服务器错误。请稍后重试。'})
         return
       }
+      req.dailyAttemptsRemain = dailyCommentLimit - clientDoc.dailyAttempts
       next()
     }))
   })

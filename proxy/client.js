@@ -36,38 +36,29 @@ const getClientDocByClientId = (clientId, cb) => {
 }
 
 /**
-在一小时后，重置目标 client 文档的 hourlyAttempts
-@param clientDoc {string} 目标 client 文档
-*/
-const startNextHourResetTimeout = (clientDoc) => {
-  if (clientDoc.hourResetTimeoutInProgress === false) {
-    clientDoc.hourResetTimeoutInProgress = true
-    clientDoc.save()
-    setTimeout((clientDoc) => {
-      clientDoc.hourlyAttempts = 0
-      clientDoc.hourResetTimeoutInProgress = false
-      clientDoc.save()
-    }, 60 * 60 * 1000)
-  }
-}
-
-/**
-每小时检查一次，在零点时，重置所有 client 文档的 dailyAttempts
+每5s检查一次，在零点时，重置所有 client 文档的 dailyAttempts
 */
 const startDailyResetInterval = () => {
+  let nowTime = new Date()
+  let nextTime
   setInterval(() => {
-    if (new Date().getHours() === 0) {
+    nextTime = new Date()
+    if (nextTime.getDate() !== nowTime.getDate()) {
       ClientModel.update({}, {dailyAttempts: 0})
+        .then((res) => {
+          console.log('重置成功。');
+        })
         .catch((err) => {
           console.error(err)
         })
     }
-  }, 60 * 60 * 1000)
+    nowTime = new Date()
+  }, 5000)
 }
 
+startDailyResetInterval()
 
 module.exports = {
   getClientDocByClientId,
-  startNextHourResetTimeout,
   startDailyResetInterval,
 }

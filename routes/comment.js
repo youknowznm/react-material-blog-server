@@ -41,7 +41,7 @@ module.exports = (app) => {
     params.createdDate = new Date()
     saveComment(params, (result) => {
       if (typeof result._id === 'string') {
-        res.status(200).json({msg: '评论成功。'})
+        res.status(200).json({msg: `评论成功。此设备今天还能评论 ${req.dailyAttemptsRemain} 次。`})
       } else if (result.err.name === 'ValidationError') {
         res.status(400).json({msg: '请检查错误的输入字段。'})
       } else {
