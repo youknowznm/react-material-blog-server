@@ -6,7 +6,7 @@
 ### **前端**
   - 熟练编写语义化的 `HTML` 和 `CSS` / `SCSS`
   - 熟悉原生 `JavaScript`，熟悉 `ES6` 的常用特性
-  - 熟练使用 `React` 和 `Redux` 及其相关生态
+  - 熟悉 `React` 和 `Redux` 及其相关生态
   - 熟悉 `Vue` 框架
   - 熟悉 `jQuery` 和 `Bootstrap` 库
   - 熟悉 `Gulp` 和前端自动化
@@ -26,35 +26,30 @@
 
 # 工作经历
 
-## **国美互联网／前端开发** *2016.12 至今*
+## **百度／前端开发／2018.04 至今**
 
-  1. 创新型社交电商网站 Gomeplus
-    - 主要负责该项目 PC 站的维护和迭代
-    - 使用 Gulp + SCSS 编写样式以提高开发效率
-    - 使用 jQuery 库，通过 Webpack + ES6 实现模块化
+## **国美互联网／前端开发／2016.12 - 2018.04**
 
-  2. 面向海外市场的电商应用
-    - 主要负责该项目手机站及原生应用内嵌页的开发和维护
-    - 使用 Gulp + SCSS 编写样式以提高开发效率
-    - 使用公司的打包工具 lithe.js 实现模块化
-    - 使用 Vue.js 框架和 Zepto 库实现交互逻辑
-    - 同时维护静态文件和 Express 中间层，前后端完全分离
+  - 负责社交电商产品 Gomeplus 的手机站及 Hybrid 站的前端和中台开发
+  - 开发、维护前端静态文件和 Express 中间层，前后端完全分离
+  - 使用 Vue.js 框架和 Zepto 库实现交互逻辑
+  - 使用 Gulp + SCSS 编写样式以提高开发效率
+  - 使用 lithe.js 实现模块化
 
-  3. 负责公司的创新项目微信小程序”顺路“的开发
+## **留彼工坊／前端开发／2015.03 - 2016.12**
 
-## **留彼工坊／前端开发** *2015.03 - 2016.12*
-
-  1. 留彼工坊是一个面向英国留学生群体的短租服务应用
-    - 主要负责房源搜索结果、个人档案、订购流程等页面的样式和逻辑的实现
-    - 在不同尺寸和设备的浏览器内精确还原设计图的视觉和交互效果
-    - 对部分旧脚本进行了模块化处理，对站点的大部分旧样式进行了重构，便于团队后续的开发和维护
-    - 使用 jQuery + Bootstrap 编写前端，同时维护部分后端的 PyJade 模板</a>
+  <!-- - 留彼工坊是一个面向英国留学生群体的短租服务应用 -->
+  - 负责房源搜索结果、个人档案、订购流程等页面的样式和逻辑的实现
+  - 在不同尺寸和设备的浏览器内精确还原设计图的视觉和交互效果
+  - 对部分旧脚本进行了模块化处理，对站点的大部分旧样式进行了重构
+  - 使用 jQuery + Bootstrap 编写前端代码，同时维护后端的 PyJade 模板
 
 # 开源项目
 
 ## *[react-material-blog](https://github.com/youknowznm/react-material-blog)*
-- 完全原创、独立完成的个人站点的前端，基于 React 和 Material-UI
-- Material Design 风格，自适应于不同设备的浏览器
+- 完全原创、独立完成的个人站点的前端
+- 基于 React + Redux + Material-UI
+- Material Design 风格，对不同设备的浏览器响应适配
 - 可编辑和展示文章标题、摘要、Markdown 内容、标签和创建日期
 - 可在编辑器内实时预览 Markdown 内容
 - 支持图片的上传和托管
@@ -66,7 +61,8 @@
 - 线上地址在[这里](https://www.youknowznm.com/)
 
 ## *[react-material-blog-server](https://github.com/youknowznm/react-material-blog-server)*
-- 完全原创、独立完成的个人站点的后端，基于原生 Nodejs 和 MongoDB
+- 完全原创、独立完成的个人站点的后端
+- 基于原生 Nodejs + MongoDB
 - 使用 mini-express（我的另一个项目）作为简易的服务器框架
 - 线上地址在[这里](https://www.youknowznm.com/)
 
@@ -75,7 +71,8 @@
 - 实现了路由池、中间件和对请求及响应的部分增强
 
 ## *[vue-memo](https://github.com/youknowznm/vue-memo)*
-- 支持文本和涂鸦两种记录方式
+- 完全原创的基于 Vue.js 的记事本应用
+- 使用本地存储，支持文本和涂鸦两种记录方式
 - 文本编辑器支持 Markdown 格式
 - 涂鸦编辑器（我的另一个项目）支持选取颜色、撤销、重做、清除画布
 - 增删、编辑笔记，标记笔记是否为已完成状态
@@ -98,3 +95,7 @@
 
 ## *[paint](https://github.com/youknowznm/paint)*
 - 基于 canvas 的简易画板
+
+---
+
+> May the flames guide thee.
